@@ -1,0 +1,716 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>PDuk Brainworks · Agent Architect Stack — Modular infrastructure for AI agents</title>
+  <meta name="description" content="An open-source umbrella of independently installable modules for AI agents: persistent memory, defensive runtime, and more.">
+  <style>
+    /* =========================================================
+       Agent Architect Stack — Landing Page v0.1 (polished)
+       Refined through tribunal review, 2026-06.
+       - Self-contained: NO JS, NO external resources (system fonts, CSS-only backdrop)
+       - Dark theme — Brainworks aesthetic; light mode deferred
+       - Copy and visual treatment elevated to dev-tool-debut quality
+       - Brand tokens (§--brand*) are name-agnostic: swap ~8 vars to rebrand
+       - Content boundary: no personal/business content
+       ========================================================= */
+
+    :root {
+      /* --- DARK theme — Brainworks / skunkworks aesthetic (cockpit-at-night) --- */
+      --brand:        #2dd4bf;   /* bright teal — pops on near-black (~9:1 AAA) */
+      --brand-strong: #5eead4;   /* hover (lighter on dark) */
+      --brand-soft:   rgba(45,212,191,0.12);
+      --brand-ring:   #2dd4bf;
+      --accent:       #fbbf24;   /* amber */
+      --accent-soft:  rgba(251,191,36,0.12);
+      --violet:       #a78bfa;
+      --violet-soft:  rgba(167,139,250,0.14);
+
+      --ink:        #e9f2ef;     /* light text on dark — ~16:1 */
+      --muted:      #9fb4ae;     /* secondary — ~7:1 (AA) */
+      --soft:       #76918a;
+      --line:       #1f2c29;     /* borders */
+      --line-strong:#33473f;
+      --bg:         #080d0c;     /* near-black, faint teal cast */
+      --surface:    #0f1716;     /* cards */
+      --surface-alt:#0b1211;     /* alternating sections */
+      --code-bg:    #060c0b;     /* terminal surface */
+      --code-fg:    #d6e6e2;
+
+      --ok:   #5eead4; --ok-bg: rgba(45,212,191,0.14); --ok-bd: rgba(45,212,191,0.45);
+      --warn: #fcd34d; --warn-bg: rgba(251,191,36,0.14); --warn-bd: rgba(251,191,36,0.45);
+      --fut:  #c4b5fd; --fut-bg: rgba(167,139,250,0.14); --fut-bd: rgba(167,139,250,0.45);
+
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+      /* --- spacing scale (replaces flat 24px) --- */
+      --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px; --s5: 24px;
+      --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
+
+      --radius: 10px;
+      --radius-sm: 7px;
+      --max: 1120px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.45);
+      --shadow-md: 0 8px 24px rgba(0,0,0,.55);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,.65), 0 0 0 1px rgba(45,212,191,0.14);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { color: var(--brand-strong); text-decoration: underline; }
+
+    /* visible focus for keyboard users */
+    a:focus-visible, .btn:focus-visible, .skip:focus-visible {
+      outline: 3px solid var(--brand-ring);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+      background: var(--brand-soft);
+      color: var(--brand-strong);
+      padding: 0.12em 0.4em;
+      border-radius: 5px;
+    }
+
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--s5); }
+
+    /* skip link */
+    .skip {
+      position: absolute; left: -9999px; top: 8px; z-index: 100;
+      background: var(--surface); color: var(--ink); border: 1px solid var(--brand-ring);
+      padding: 10px 16px; border-radius: var(--radius-sm);
+    }
+    .skip:focus { left: 16px; }
+
+    /* ---- Header / nav ---- */
+    header {
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: saturate(140%) blur(8px);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--s4) var(--s5); max-width: var(--max); margin: 0 auto;
+    }
+    .brand { font-weight: 800; font-size: 1.05rem; color: var(--ink); letter-spacing: -0.01em; }
+    .brand .glyph { color: var(--brand); }
+    .nav-links { display: flex; gap: var(--s5); font-size: 0.95rem; }
+    .nav-links a { color: var(--muted); font-weight: 500; }
+    .nav-links a:hover { color: var(--brand); text-decoration: none; }
+
+    /* ---- Hero ---- */
+    .hero {
+      position: relative;
+      padding: var(--s9) 0 var(--s8);
+      text-align: center;
+      overflow: hidden;
+      background:
+        radial-gradient(60% 50% at 50% 0%, rgba(15,118,110,0.08) 0%, rgba(15,118,110,0) 70%),
+        linear-gradient(180deg, var(--surface-alt) 0%, #ffffff 70%);
+    }
+    /* CSS-only dot grid backdrop (no image) */
+    .hero::before {
+      content: ""; position: absolute; inset: 0; z-index: 0;
+      background-image: radial-gradient(rgba(15,118,110,0.10) 1px, transparent 1px);
+      background-size: 22px 22px;
+      -webkit-mask-image: radial-gradient(70% 60% at 50% 30%, #000 0%, transparent 75%);
+              mask-image: radial-gradient(70% 60% at 50% 30%, #000 0%, transparent 75%);
+    }
+    .hero .container { position: relative; z-index: 1; }
+    .eyebrow {
+      display: inline-block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--brand-strong);
+      background: var(--brand-soft); border: 1px solid var(--brand-ring);
+      padding: 5px 12px; border-radius: 999px; margin-bottom: var(--s5);
+    }
+    .hero h1 {
+      font-size: 3.75rem; font-weight: 800; line-height: 1.05;
+      letter-spacing: -0.03em; margin-bottom: var(--s5);
+      max-width: 14ch; margin-left: auto; margin-right: auto;
+    }
+    .hero .tagline {
+      font-size: 1.3rem; color: var(--muted); max-width: 62ch;
+      margin: 0 auto var(--s7); line-height: 1.55;
+    }
+    .hero .cta { display: flex; gap: var(--s4); justify-content: center; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 46px; padding: 12px 26px; border-radius: var(--radius-sm);
+      font-weight: 650; font-size: 1rem; cursor: pointer;
+      border: 1px solid transparent; transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
+    }
+    .btn-primary { background: var(--brand); color: #fff; box-shadow: var(--shadow-sm); }
+    .btn-primary:hover { background: var(--brand-strong); color: #fff; text-decoration: none; transform: translateY(-1px); box-shadow: var(--shadow-md); }
+    .btn-secondary { background: var(--surface); color: var(--ink); border-color: var(--line-strong); }
+    .btn-secondary:hover { background: var(--surface-alt); color: var(--ink); text-decoration: none; transform: translateY(-1px); }
+
+    .badges { display: flex; gap: var(--s2); justify-content: center; margin-top: var(--s6); flex-wrap: wrap; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 13px; border-radius: 999px; font-size: 0.8rem; font-weight: 600;
+      border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+    }
+    .badge-license { background: var(--brand-soft); color: var(--brand-strong); border-color: var(--brand-ring); }
+    .badge-status  { background: var(--ok-bg); color: var(--ok); border-color: var(--ok-bd); }
+    .badge-branches{ background: var(--surface-alt); color: var(--soft); border-color: var(--line); }
+
+    /* ---- Section common ---- */
+    section { padding: var(--s9) 0; }
+    section.alt { background: var(--surface-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    section h2 { font-size: 2.25rem; font-weight: 750; letter-spacing: -0.02em; margin-bottom: var(--s4); text-align: center; }
+    section .section-intro { font-size: 1.1rem; color: var(--muted); max-width: 68ch; margin: 0 auto var(--s7); text-align: center; }
+
+    /* ---- What this is ---- */
+    .what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); }
+    .what-card {
+      background: var(--surface); border: 1px solid var(--line);
+      border-left: 4px solid var(--brand); border-radius: var(--radius);
+      padding: var(--s6); box-shadow: var(--shadow-sm);
+    }
+    .what-card:nth-child(4) {
+      grid-column: 1 / -1;
+      background: var(--brand-soft); border: 1px solid var(--brand-ring); border-left: 4px solid var(--brand);
+      text-align: center;
+    }
+    .what-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: var(--s3); }
+    .what-card p { color: var(--muted); font-size: 0.97rem; margin-bottom: var(--s2); }
+    .what-card ul { list-style: none; margin-top: var(--s2); }
+    .what-card li { padding: var(--s2) 0; border-bottom: 1px solid var(--surface-alt); color: var(--muted); font-size: 0.95rem; }
+    .what-card li:last-child { border-bottom: none; }
+    .what-card li strong, .what-card em { color: var(--ink); font-style: normal; font-weight: 650; }
+    .what-card:nth-child(4) p { color: var(--ink); }
+
+    /* ---- Architecture tree ---- */
+    .tree { display: flex; flex-direction: column; align-items: center; gap: var(--s5); padding: var(--s5) 0; }
+    .tree-node {
+      padding: var(--s3) var(--s5); background: var(--surface); border: 1px solid var(--line-strong);
+      border-radius: var(--radius); text-align: center; min-width: 220px; box-shadow: var(--shadow-sm);
+    }
+    .tree-node.umbrella { background: var(--ink); color: #fff; border-color: var(--ink); font-weight: 750; font-size: 1.1rem; letter-spacing: -0.01em; }
+    .tree-node.orchestrator { background: var(--brand); color: #fff; border-color: var(--brand); font-weight: 650; }
+    .tree-node .node-label { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+    .tree-node.umbrella .node-label { color: rgba(255,255,255,0.72); }
+    .tree-node.orchestrator .node-label { color: rgba(255,255,255,0.85); }
+    .tree-connector { width: 2px; height: var(--s5); background: var(--line-strong); }
+    .tree-branches { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s4); width: 100%; max-width: 900px; position: relative; }
+    .tree-branches::before {
+      content: ""; position: absolute; top: calc(-1 * var(--s5)); left: 16.67%; right: 16.67%;
+      height: 2px; background: var(--line-strong);
+    }
+    .tree-branch {
+      position: relative; padding: var(--s4); background: var(--surface);
+      border: 1px solid var(--line); border-radius: var(--radius); text-align: center; box-shadow: var(--shadow-sm);
+    }
+    .tree-branch::before {
+      content: ""; position: absolute; top: calc(-1 * var(--s5)); left: 50%; transform: translateX(-50%);
+      width: 2px; height: var(--s5); background: var(--line-strong);
+    }
+    .tree-branch-name { font-weight: 700; font-size: 1rem; }
+    .tree-branch-meta { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+
+    /* ---- Branch cards ---- */
+    .branches-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s5); }
+    .branch-card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: var(--s6); box-shadow: var(--shadow-sm); transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .branch-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .branch-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: var(--s2); display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; }
+    .branch-card .branch-tagline { color: var(--muted); font-size: 1rem; margin-bottom: var(--s4); }
+    .status-pill { display: inline-block; padding: 3px 11px; border-radius: 999px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    .status-ready { background: var(--ok-bg); color: var(--ok); border: 1px solid var(--ok-bd); }
+    .status-prerelease { background: var(--warn-bg); color: var(--warn); border: 1px solid var(--warn-bd); }
+    .status-future { background: var(--fut-bg); color: var(--fut); border: 1px solid var(--fut-bd); }
+    .branch-card ul { list-style: none; margin: var(--s4) 0; }
+    .branch-card li { padding: var(--s2) 0; border-bottom: 1px solid var(--surface-alt); font-size: 0.94rem; padding-left: 22px; position: relative; }
+    .branch-card li::before { content: "▸"; color: var(--brand); position: absolute; left: 0; }
+    .branch-card li:last-child { border-bottom: none; }
+    .branch-card .meta { font-size: 0.85rem; color: var(--soft); margin-top: var(--s4); padding-top: var(--s4); border-top: 1px solid var(--surface-alt); }
+    .branch-card .meta strong { color: var(--muted); }
+    .branch-mystery { border: 2px dashed var(--line-strong); background: linear-gradient(135deg, var(--surface) 0%, var(--violet-soft) 100%); }
+    .branch-mystery .branch-tagline { font-style: italic; }
+    .branch-mystery li::before { color: var(--fut); }
+
+    /* ---- Why pick-and-choose ---- */
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s5); }
+    .why-card { padding: var(--s5); }
+    .why-card .icon {
+      width: 44px; height: 44px; border-radius: var(--radius-sm);
+      background: var(--brand); color: #fff; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1.2rem; margin-bottom: var(--s4); box-shadow: var(--shadow-sm);
+    }
+    .why-card h4 { font-size: 1.12rem; font-weight: 700; margin-bottom: var(--s2); }
+    .why-card p { color: var(--muted); font-size: 0.96rem; }
+
+    /* ---- Code blocks (terminal feel) ---- */
+    .code-head { font-size: 0.95rem; font-weight: 650; margin-bottom: var(--s3); }
+    pre.term {
+      background: var(--code-bg); color: var(--code-fg); border-radius: var(--radius);
+      padding: 0; overflow: hidden; margin-bottom: var(--s5); box-shadow: var(--shadow-md);
+      border: 1px solid #082b27;
+    }
+    pre.term .bar { display: flex; gap: 7px; padding: 12px 16px; background: #0a1916; border-bottom: 1px solid #082b27; }
+    pre.term .bar i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+    pre.term .bar .r { background: #ff5f56; } pre.term .bar .y { background: #ffbd2e; } pre.term .bar .g { background: #27c93f; }
+    pre.term code { display: block; background: transparent; color: var(--code-fg); padding: 18px 20px; font-size: 0.9rem; line-height: 1.7; overflow-x: auto; }
+    pre.term code .c { color: #6fae9f; } /* comments */
+
+    /* ---- Status table ---- */
+    .status-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    .status-table th { text-align: left; padding: 14px 18px; background: var(--brand-soft); color: var(--brand-strong); font-size: 0.95rem; border-bottom: 1px solid var(--line); }
+    .status-table td { padding: 13px 18px; border-bottom: 1px solid var(--surface-alt); }
+    .status-table tr:nth-child(even) td { background: var(--surface-alt); }
+    .status-table tr:last-child td { border-bottom: none; }
+
+    /* Original Work & Influences table — vertical group rail + tonal tints */
+    .influences-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: var(--s5); table-layout: fixed; }
+    .influences-table th { text-align: left; padding: 14px 16px; background: var(--brand-soft); color: var(--brand-strong); font-size: 0.92rem; border-bottom: 1px solid var(--line); font-weight: 650; }
+    .influences-table th.th-rail { width: 38px; padding: 0; }
+    .influences-table th.th-component { width: 20%; }
+    .influences-table th.th-origin { width: 21%; text-align: center; }
+    .influences-table td { padding: 14px 16px; border-bottom: 1px solid var(--surface-alt); font-size: 0.92rem; color: var(--muted); vertical-align: middle; line-height: 1.55; }
+    .influences-table td:last-child { text-align: center; }
+    .influences-table td.name { color: var(--ink); font-weight: 600; }
+    .influences-table td.rail { padding: 10px 5px; text-align: center; vertical-align: middle; }
+    .influences-table td.rail span { display: inline-block; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em; white-space: nowrap; }
+    .influences-table tr.g-umbrella td { background: rgba(45,212,191,0.055); }
+    .influences-table tr.g-memory td { background: rgba(45,212,191,0.03); }
+    .influences-table tr.g-security td { background: rgba(45,212,191,0.012); }
+    .influences-table td.rail-umbrella { color: var(--brand); border-right: 2px solid var(--brand); }
+    .influences-table td.rail-memory { color: var(--brand-strong); border-right: 2px solid var(--brand-strong); }
+    .influences-table td.rail-security { color: var(--soft); border-right: 2px solid var(--soft); }
+    .influences-table .pill-original { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; background: var(--brand); color: #04342c; }
+    .influences-table tr:last-child td { border-bottom: none; }
+    .influences-table strong { color: var(--brand-strong); font-weight: 650; }
+    .influences-table em { color: var(--ink); font-style: normal; }
+    .section-outro { margin-top: var(--s7); font-style: italic; color: var(--muted); text-align: center; max-width: 720px; margin-left: auto; margin-right: auto; }
+
+    /* ---- Footer ---- */
+    footer { border-top: 1px solid var(--line); padding: var(--s7) 0; background: var(--surface-alt); color: var(--soft); font-size: 0.9rem; }
+    footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--s4); }
+    footer .footer-links { display: flex; gap: var(--s5); }
+    footer .creds { margin-top: var(--s2); font-size: 0.82rem; color: var(--soft); }
+    footer .creds span { color: var(--brand-strong); font-weight: 600; }
+    footer .thanks { margin-top: var(--s2); font-size: 0.82rem; color: var(--soft); }
+    footer .thanks a { color: var(--brand); text-decoration: none; }
+    footer .thanks a:hover { text-decoration: underline; }
+
+    /* ---- Responsive: tablet (1024) + mobile (768) ---- */
+    @media (max-width: 1024px) {
+      .hero h1 { font-size: 2.9rem; }
+      .branches-grid, .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .tree-branches { grid-template-columns: repeat(2, 1fr); }
+      .tree-branches::before { display: none; }
+      .tree-branch::before { display: none; }
+    }
+    @media (max-width: 768px) {
+      :root { --s9: 64px; --s8: 48px; }
+      .hero h1 { font-size: 2.1rem; max-width: 18ch; }
+      .hero .tagline { font-size: 1.08rem; }
+      .what-grid, .branches-grid, .why-grid, .tree-branches { grid-template-columns: 1fr; }
+      .influences-table { font-size: 0.85rem; }
+      .influences-table th, .influences-table td { padding: 10px 12px; }
+      .influences-table td.rail { padding: 8px 3px; }
+      .influences-table th.th-component { width: 24%; }
+      .what-card:nth-child(4) { grid-column: 1; }
+      .nav-links { display: none; }
+      footer .container { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ---- Reduced motion ---- */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+      .btn:hover, .branch-card:hover { transform: none !important; }
+    }
+
+    /* ===================== DARK-THEME OVERRIDES ===================== */
+    /* token flip handles ~90%; these fix hardcoded-light values + #fff-on-brand */
+    header { background: rgba(8,13,12,0.82); }
+    .btn-primary, .btn-primary:hover { color: #06100e; }   /* dark text on bright teal */
+    .why-card .icon { color: #06100e; }
+    .tree-node.orchestrator { color: #06100e; }
+    .tree-node.orchestrator .node-label { color: rgba(6,16,14,0.72); }
+    .tree-node.umbrella {
+      background: rgba(45,212,191,0.10); border-color: var(--brand); color: var(--ink);
+      box-shadow: 0 0 26px rgba(45,212,191,0.18);
+    }
+    .tree-node.umbrella .node-label { color: var(--muted); }
+    .branch-mystery { background: linear-gradient(135deg, var(--surface) 0%, rgba(167,139,250,0.10) 100%); }
+
+    /* Hero — dark atmospheric backdrop (CSS-only, no external image) */
+    .hero {
+      background:
+        radial-gradient(45% 42% at 50% 6%, rgba(45,212,191,0.18) 0%, rgba(45,212,191,0) 70%),
+        radial-gradient(55% 50% at 88% 0%, rgba(167,139,250,0.10) 0%, rgba(167,139,250,0) 60%),
+        linear-gradient(180deg, #0a1312 0%, var(--bg) 60%);
+    }
+    .hero::before {
+      background-image: radial-gradient(rgba(45,212,191,0.16) 1px, transparent 1px);
+      background-size: 26px 26px;
+    }
+
+    /* Brainworks inline-SVG logo mark */
+    .logo { display: inline-flex; align-items: center; gap: 10px; }
+    .logo svg { width: 26px; height: 26px; flex: none; }
+    .logo-hero { display: flex; justify-content: center; margin-bottom: var(--s5); }
+    .logo-hero svg { width: 66px; height: 66px; filter: drop-shadow(0 0 16px rgba(45,212,191,0.45)); }
+    .maker-line { font-size: 0.95rem; color: var(--muted); margin-top: var(--s5); }
+    .maker-line strong { color: var(--brand-strong); font-weight: 700; letter-spacing: 0.01em; }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip">Skip to content</a>
+
+  <header>
+    <div class="nav-inner">
+      <a href="#" class="brand logo"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 2 28 9 28 23 16 30 4 23 4 9Z" stroke="#2dd4bf" stroke-width="1.6" fill="rgba(45,212,191,0.07)"/><circle cx="16" cy="11" r="2.1" fill="#2dd4bf"/><circle cx="11" cy="20" r="2.1" fill="#5eead4"/><circle cx="21" cy="20" r="2.1" fill="#fbbf24"/><path d="M16 11 11 20M16 11 21 20M11 20 21 20" stroke="#2dd4bf" stroke-width="1.2" opacity="0.6"/></svg> PDuk Brainworks <span style="color:var(--muted);font-weight:500;font-size:0.82rem;">/ Agent Architect Stack</span></a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="#what">Premise</a>
+        <a href="#branches">Branches</a>
+        <a href="#why">Why</a>
+        <a href="#influences">Influences</a>
+        <a href="#quickstart">Quick Start</a>
+        <a href="#status">Status</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+  <section class="hero">
+    <div class="container">
+      <div class="logo-hero"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 2 28 9 28 23 16 30 4 23 4 9Z" stroke="#2dd4bf" stroke-width="1.4" fill="rgba(45,212,191,0.07)"/><circle cx="16" cy="11" r="2.1" fill="#2dd4bf"/><circle cx="11" cy="20" r="2.1" fill="#5eead4"/><circle cx="21" cy="20" r="2.1" fill="#fbbf24"/><path d="M16 11 11 20M16 11 21 20M11 20 21 20" stroke="#2dd4bf" stroke-width="1.1" opacity="0.6"/></svg></div>
+      <span class="eyebrow">Open source · Apache 2.0 · Now live</span>
+      <h1>Modular infrastructure for AI agents</h1>
+      <p class="tagline">Persistent memory, secure runtime, and more — install what you need, when you need it. The Agent Architect Stack is an open-source umbrella of independently installable modules that grow with your agent.</p>
+      <div class="cta">
+        <a href="#quickstart" class="btn btn-primary">Get the Memory branch →</a>
+        <a href="#branches" class="btn btn-secondary">See all branches</a>
+      </div>
+      <div class="badges">
+        <span class="badge badge-license">⚖ Apache 2.0</span>
+        <span class="badge badge-status">🚀 Live — Memory v3.6.0</span>
+        <span class="badge badge-branches">🌿 2 active · more planned</span>
+      </div>
+      <p class="maker-line">Built by <strong>PDuk Brainworks</strong> — an independent studio building modular infrastructure for AI agents.</p>
+    </div>
+  </section>
+
+  <section class="what" id="what">
+    <div class="container">
+      <h2>The Premise</h2>
+      <p class="section-intro">A clear statement of purpose, the problems we plan to solve, and what makes this stack different from anything else in the agent-infrastructure space.</p>
+
+      <div class="what-grid">
+        <div class="what-card">
+          <h3>Purpose</h3>
+          <p>To give AI agents a stable, inspectable, installable infrastructure layer — the same way Kubernetes gave services a stable substrate. The Agent Architect Stack is a set of <em>peer-sibling modules</em> an agent harness can install to gain persistent memory, a defensive runtime, and (over time) more. Each module is independent; the umbrella is just a way to discover them together.</p>
+        </div>
+        <div class="what-card">
+          <h3>Problems we solve</h3>
+          <ul>
+            <li><strong>Agents forget between sessions.</strong> The Memory branch gives your agent a persistent vault + knowledge graph so context survives restarts, machine moves, and context-window overflows.</li>
+            <li><strong>Skills and tools are an unvetted supply chain.</strong> The Security branch gives your agent a 3-tier automated + 5-layer manual vetting pipeline, runtime bash + write guards, and an append-only audit log — so installing a new skill doesn't compromise the runtime.</li>
+            <li><strong>No standard for cross-agent context.</strong> The Memory + Security branches together produce a portable context format (the vault + audit log) that any agent harness can read — a first step toward cross-agent federation.</li>
+            <li><strong>Agent projects are monolithic or scattered.</strong> The umbrella model is neither. Each branch is a complete product; the umbrella is a discovery surface, not a runtime dependency.</li>
+          </ul>
+        </div>
+        <div class="what-card">
+          <h3>What makes this stack unique</h3>
+          <ul>
+            <li><strong>Pick-and-choose installation.</strong> Install one branch, install some, install all. No forced dependencies, no monolithic install. Each branch is independently versioned.</li>
+            <li><strong>Data lives in files you own.</strong> The Memory branch stores everything as plain Markdown + JSON in a vault you can open in Obsidian, grep, version-control, and back up with <code>cp -r</code>. No proprietary database, no vendor lock-in.</li>
+            <li><strong>Defense by design, not just by theory.</strong> The Security branch's architecture spans 8 layers; v0.1 ships <strong>Layer 1 — skill/tool vetting</strong> (a static, read-only scanner with a 3-tier verdict) and <strong>Layer 4 — runtime hooks</strong> (<code>bash_guard</code> + <code>write_guard</code>), covered by an extensive test suite (guard logic, the bash sources, cross-platform equivalence, and the vetting corpus). The other six layers are designed and roadmapped.</li>
+            <li><strong>Schema-enforced memory hygiene.</strong> Decisions, learnings, and daily logs all follow documented schemas with lint tools that surface problems for human review (never auto-mutate — surface-only by design).</li>
+            <li><strong>Architected by hand. Built with agents, for agents.</strong> The v0 release is the collective work of multiple agent sessions across multiple machines under human direction — a meta-demonstration of the cross-agent collaboration the stack itself enables.</li>
+          </ul>
+        </div>
+        <div class="what-card">
+          <h3>What it does</h3>
+          <p style="font-size: 1.18rem; line-height: 1.7;">The Agent Architect Stack turns a stateless LLM into a <em>stateful, inspectable, defensible agent</em> by giving it a persistent memory vault, a vetting pipeline for new tools, runtime guards against untrusted input, and an audit log you can review.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="alt">
+    <div class="container">
+      <h2>The Architecture</h2>
+      <p class="section-intro">One umbrella. Multiple peer branches. An Orchestrator above. Branches grow over time; you install what you need.</p>
+
+      <div class="tree">
+        <div class="tree-node umbrella">
+          AGENT ARCHITECT STACK
+          <div class="node-label">Umbrella identity</div>
+        </div>
+        <div class="tree-connector"></div>
+        <div class="tree-node orchestrator">
+          Orchestrator
+          <div class="node-label">Spawns + coordinates branches</div>
+        </div>
+        <div class="tree-connector"></div>
+        <div class="tree-branches">
+          <div class="tree-branch">
+            <div class="tree-branch-name">Memory</div>
+            <div class="tree-branch-meta">UMS v3.6.0 ✅</div>
+          </div>
+          <div class="tree-branch">
+            <div class="tree-branch-name">Security</div>
+            <div class="tree-branch-meta">agent-shield v0.1.0 🟡</div>
+          </div>
+          <div class="tree-branch" style="opacity:0.45;">
+            <div class="tree-branch-name">…</div>
+            <div class="tree-branch-meta">more in development</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="branches">
+    <div class="container">
+      <h2>Current Branches</h2>
+      <p class="section-intro">Each branch is a standalone module. Install one, install some, install all. They share conventions but have no hard runtime dependencies. The list below is the current state — more branches are added as they're developed.</p>
+
+      <div class="branches-grid">
+
+        <div class="branch-card">
+          <h3>Memory <span class="status-pill status-ready">Ready</span></h3>
+          <p class="branch-tagline">Persistent memory + knowledge graphs + Obsidian vault + prompt compression.</p>
+          <ul>
+            <li>Survives context resets (your agent remembers between sessions)</li>
+            <li>Searchable as a graph (entities, relationships, temporal facts)</li>
+            <li>Human-readable vault (Obsidian + Templater)</li>
+            <li>Prompt compression at a quality-preserving threshold</li>
+            <li>Auto-detects Claude Code, OpenClaw, or generic 9-root-file harness</li>
+          </ul>
+          <div class="meta">
+            <strong>Repo:</strong> <a href="https://github.com/esoteric1entity/ultimate-memory-stack">esoteric1entity/ultimate-memory-stack</a><br>
+            <strong>License:</strong> Apache-2.0<br>
+            <strong>Status:</strong> v3.6.0 general-edition ready; biotech-edition available separately
+          </div>
+        </div>
+
+        <div class="branch-card">
+          <h3>Security <span class="status-pill status-prerelease">Release imminent</span></h3>
+          <p class="branch-tagline">8-layer defensive overlay for AI agents: skill vetting, input sanitization, runtime hooks, network egress, audit.</p>
+          <ul>
+            <li>3-tier automated + 5-layer manual escalation for new skills</li>
+            <li>4-layer input sanitization (structural, content, encoding, context)</li>
+            <li>Bash + write guards (Python + bash, cross-platform-equivalence tested)</li>
+            <li>Append-only audit log with SHA-256 chain integrity</li>
+            <li>Anti-prompt-injection via structured output enforcement</li>
+          </ul>
+          <div class="meta">
+            <strong>Repo:</strong> esoteric1entity/agent-shield — <em>release imminent</em><br>
+            <strong>License:</strong> Apache-2.0<br>
+            <strong>Status:</strong> v0.1.0 alpha — Layers 1 + 4 complete &amp; tested (vetting scanner + runtime hooks); release imminent, further layers in development
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <section id="why" class="alt">
+    <div class="container">
+      <h2><em>You</em> Choose</h2>
+      <p class="section-intro">The modular consumer principle: you get exactly what you need, with zero lock-in. The branches share conventions, not dependencies.</p>
+
+      <div class="why-grid">
+        <div class="why-card">
+          <div class="icon">1</div>
+          <h4>Independent installation</h4>
+          <p>Install Memory alone. Install Security alone. Install both. No auto-installs, no forced dependencies. Each branch is a complete product on its own.</p>
+        </div>
+        <div class="why-card">
+          <div class="icon">2</div>
+          <h4>Independent versioning</h4>
+          <p>Memory v3.6.0 doesn't have to wait for Security v0.2.0. Each branch ships on its own timeline. Compatible versions are documented per release.</p>
+        </div>
+        <div class="why-card">
+          <div class="icon">3</div>
+          <h4>Better together</h4>
+          <p>When you install both, Memory's audit logs feed Security's anomaly detection. When you install just one, that branch is the whole product. The umbrella grows; you don't have to.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="influences">
+    <div class="container">
+      <h2>Original Work &amp; Influences</h2>
+      <p class="section-intro">No stack is built in a vacuum. Below is a candid account of what's original to this project, alongside the upstream work the Agent Architect Stack builds on — Obsidian, Microsoft Research, the Linux kernel's contribution conventions, and the broader agent-memory tradition.</p>
+
+      <table class="influences-table">
+        <thead>
+          <tr>
+            <th class="th-rail"></th>
+            <th class="th-component">Component</th>
+            <th>What it provides (our contribution)</th>
+            <th class="th-origin">Origin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="g-umbrella">
+            <td class="rail rail-umbrella" rowspan="3"><span>UMBRELLA</span></td>
+            <td class="name">Cross-branch integration</td>
+            <td>Memory's audit logs feed Security's anomaly detection — the "better together" composition is the umbrella's key value-add</td>
+            <td><span class="pill-original">Original</span></td>
+          </tr>
+          <tr class="g-umbrella">
+            <td class="name">Governance / process</td>
+            <td>The <strong>Tribunal Pattern</strong> — a cross-machine, cross-agent consensus mechanism for architectural decisions</td>
+            <td>DCO (Linux kernel), Apache Foundation CLA, Conventional Commits, Keep-a-Changelog</td>
+          </tr>
+          <tr class="g-umbrella">
+            <td class="name">Harness targets</td>
+            <td>The <strong>modular consumer architecture</strong> — designs that work with any 9-root-file harness</td>
+            <td>Claude Code (Anthropic), OpenClaw (sibling platform)</td>
+          </tr>
+          <tr class="g-memory">
+            <td class="rail rail-memory" rowspan="7"><span>MEMORY</span></td>
+            <td class="name">Memory architecture <em>(core)</em></td>
+            <td>The 7-layer architecture with <strong>tiered deployment markers</strong> (features activate as infrastructure unblocks), bi-temporal supersession, compliance presets (none / healthcare / enterprise / custom), and the audit + quarantine workflow</td>
+            <td><span class="pill-original">Original</span></td>
+          </tr>
+          <tr class="g-memory">
+            <td class="name">Markdown-vault memory</td>
+            <td>The <strong>9-root-file convention</strong>, tier-based loading, and a structured per-entry metadata schema</td>
+            <td>Obsidian + Templater for the user-readable layer</td>
+          </tr>
+          <tr class="g-memory">
+            <td class="name">Per-project memory</td>
+            <td><strong>Schema enforcement</strong> + audit log layered on top of the adopted 6-file structure</td>
+            <td>Cline-convention "memory bank"</td>
+          </tr>
+          <tr class="g-memory">
+            <td class="name">Knowledge graph</td>
+            <td>The integration as <strong>Layer 5</strong> in a tiered architecture; Graphiti is one backend option among several</td>
+            <td>Graphiti (Zep AI) — bi-temporal facts</td>
+          </tr>
+          <tr class="g-memory">
+            <td class="name">Code symbol graph</td>
+            <td>Layer 5 sibling addon; the <strong>typosquat defense</strong> + deliberate <strong>opt-in install semantics</strong></td>
+            <td>Graphify + tree-sitter — codebase structural index</td>
+          </tr>
+          <tr class="g-memory">
+            <td class="name">Prompt compression</td>
+            <td>Layer 4 caching tier; migration path to SecurityLingua flagged for v4+</td>
+            <td>LLMLingua / LLMLingua-2 (Microsoft Research) — token-level perplexity compression</td>
+          </tr>
+          <tr class="g-memory">
+            <td class="name">Lint discipline</td>
+            <td>Surface-only implementation: lint surfaces issues for human review; <strong>never auto-mutates</strong> user content</td>
+            <td>Karpathy "surface-only lint" philosophy</td>
+          </tr>
+          <tr class="g-security">
+            <td class="rail rail-security"><span>SECURITY</span></td>
+            <td class="name">Security architecture <em>(core)</em></td>
+            <td>The <strong>8-layer overlay</strong> synthesizing skill vetting + input sanitization + runtime hooks + structured-output enforcement + egress control + audit chain</td>
+            <td><span class="pill-original">Original</span></td>
+          </tr>
+        </tbody>
+      </table>
+
+      <p class="section-outro">Each branch can be installed independently. The synthesis — how they cooperate, what's enforced, what's pluggable — is what the Agent Architect Stack is.</p>
+    </div>
+  </section>
+
+  <section id="quickstart">
+    <div class="container">
+      <h2>Quick Start</h2>
+      <p class="section-intro">Four ways in — pick your door. Same engine underneath: detect your harness, confirm the target, install, verify. Security branch install instructions ship with the agent-shield release (imminent).</p>
+
+      <div class="code-head">Door 1 — Claude Code marketplace</div>
+      <pre class="term"><span class="bar"><i class="r"></i><i class="y"></i><i class="g"></i></span><code><span class="c"># Add the marketplace + install the plugin</span>
+/plugin marketplace add esoteric1entity/ultimate-memory-stack
+/plugin install ultimate-memory-stack@ultimate-memory-stack
+
+<span class="c"># Then, in the project where the memory should live:</span>
+/install-ultimate-memory-stack</code></pre>
+
+      <div class="code-head">Door 2 — Tell your agent (any harness)</div>
+      <pre class="term"><span class="bar"><i class="r"></i><i class="y"></i><i class="g"></i></span><code>git clone https://github.com/esoteric1entity/ultimate-memory-stack.git
+
+<span class="c"># Then tell your agent — Claude Code, OpenClaw, or any capable harness:</span>
+<span class="c">#   "Install this — read INSTALL_AGENT.md and follow it."</span></code></pre>
+
+      <div class="code-head">Door 3 — Script (Linux / macOS / WSL · Windows)</div>
+      <pre class="term"><span class="bar"><i class="r"></i><i class="y"></i><i class="g"></i></span><code>git clone https://github.com/esoteric1entity/ultimate-memory-stack.git
+
+cd /path/to/your/workspace            <span class="c"># where the memory stack should live</span>
+/path/to/ultimate-memory-stack/setup-memory-stack.sh    <span class="c"># or: --target &lt;dir&gt;</span>
+/path/to/ultimate-memory-stack/verify.sh
+
+<span class="c"># Flags: --minimal · --addon &lt;name&gt; · --no-templater · --compliance=&lt;preset&gt; · --yes</span>
+<span class="c"># Windows: setup-memory-stack.ps1 (same options, PowerShell-style: -Minimal, -Addon, -Compliance …; needs Python 3.8+)</span></code></pre>
+
+      <p class="section-intro">Door 4 — no tooling at all: drag two folders into your workspace and paste one activation prompt. Whatever the door, the installer refuses to mix your memory into the package tree, never touches your data on re-install, and records exactly what it did in a manifest.</p>
+    </div>
+  </section>
+
+  <section id="status" class="alt">
+    <div class="container">
+      <h2>Project Status</h2>
+      <p class="section-intro">Memory branch v3.6.0 is live — the first public release. The Security branch follows imminently; its repo opens once final QA completes.</p>
+
+      <table class="status-table">
+        <thead>
+          <tr><th>Item</th><th>Status</th></tr>
+        </thead>
+        <tbody>
+          <tr><td>Memory branch v3.6.0</td><td>✅ Released</td></tr>
+          <tr><td>Security branch — Layers 1 + 4 (v0.1.0 — vetting scanner + runtime hooks)</td><td>🟡 Complete &amp; tested — release imminent</td></tr>
+          <tr><td>Security branch — Layers 0, 2–3 &amp; 5–7</td><td>⏳ In development</td></tr>
+          <tr><td>Future branches</td><td>🟡 In design</td></tr>
+        </tbody>
+      </table>
+      <p class="section-intro" style="margin-top: var(--s5); margin-bottom: 0;">Last updated 2026-06-12.</p>
+    </div>
+  </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div>
+        <strong>PDuk Brainworks</strong> 🧬 · Agent Architect Stack — Apache-2.0 — © 2026 esoteric1entity. A PDuk Brainworks project<br>
+        <span style="font-size: 0.85rem;">Part of a larger research program on agent infrastructure. Public launch: 2026-06-12.</span>
+        <div class="creds"><span>One HTML file</span> · no JavaScript · no trackers · no external resources · loads instantly</div>
+        <div class="thanks">Special thanks to <a href="https://github.com/angiexu25" target="_blank" rel="noopener">@angiexu25</a> for the inspiration.</div>
+        <div class="thanks">Built something with the stack? A citation or mention of <strong>PDuk Brainworks</strong> / esoteric1entity is all we ask — entirely optional, always appreciated.</div>
+      </div>
+      <div class="footer-links">
+        <a href="https://github.com/esoteric1entity" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://github.com/esoteric1entity/ultimate-memory-stack/issues" target="_blank" rel="noopener">Report a bug</a>
+        <a href="LICENSE">License</a>
+        <a href="AUTHORS.md">Authors</a>
+        <a href="https://thepdukedge.substack.com/" target="_blank" rel="noopener">PDuk Edge ↗</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
