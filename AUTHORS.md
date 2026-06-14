@@ -17,11 +17,6 @@ headers; git commit history is the source of truth for line-level attribution.
     protocol, and the per-branch install guides.
   - **Contact:** via GitHub issues on this repository.
 
-## Acknowledgements
-
-- **An early collaborator** — special thanks for participating in the
-  initial pull-request iteration cycles and supporting this work.
-
 ## How to add yourself
 
 When you submit a pull request, add your name to the "Contributors" section

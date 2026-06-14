@@ -134,6 +134,8 @@ The 8 layers:
 
 ## Authoring process
 
+The architecture itself is **original to esoteric1entity** — a sustained personal design effort begun in early 2026, built on prior AI/ML study (the CalTech CTME AIML program, 2025), and first deployed as the maker's own agent stack. The Memory and Security branches are **descendants of that original design, not its source.**
+
 This stack was built using **multiple AI agents across multiple machines, working alongside the human designer** — with cross-agent peer review at each step (the Tribunal Pattern). Every architectural decision is captured in a decision-log entry with full documentation discipline (purpose / rationale / sound reasoning / scope CAN / scope CANNOT).
 
 The same discipline applies to code quality: releases are developed test-first, must pass the full unit, integration, and end-to-end suites, and go through an independent adversarial review pass before shipping — with every claim backed by an append-only, internally maintained test-evidence register.
@@ -170,7 +172,10 @@ appreciated** — is a citation or mention of **esoteric1entity** /
 ## Authors
 
 - **esoteric1entity** — architect + design lead
-- **An early collaborator** — see Acknowledgements in /AUTHORS.md
+
+## Acknowledgements
+
+- Special thanks to [@angiexu25](https://github.com/angiexu25) for the early inspiration toward agentic AI.
 
 ---
 
