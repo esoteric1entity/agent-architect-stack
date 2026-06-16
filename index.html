@@ -410,7 +410,7 @@
       </div>
       <div class="badges">
         <span class="badge badge-license">⚖ Apache 2.0</span>
-        <span class="badge badge-status">🚀 Live — Memory v3.6.0</span>
+        <span class="badge badge-status">🚀 Live — Memory v3.6.1</span>
         <span class="badge badge-branches">🌿 2 active · more planned</span>
       </div>
       <p class="maker-line">Built by <strong>PDuk Brainworks</strong> — an independent studio building modular infrastructure for AI agents.</p>
@@ -473,7 +473,7 @@
         <div class="tree-branches">
           <div class="tree-branch">
             <div class="tree-branch-name">Memory</div>
-            <div class="tree-branch-meta">UMS v3.6.0 ✅</div>
+            <div class="tree-branch-meta">UMS v3.6.1 ✅</div>
           </div>
           <div class="tree-branch">
             <div class="tree-branch-name">Security</div>
@@ -508,7 +508,7 @@
           <div class="meta">
             <strong>Repo:</strong> <a href="https://github.com/esoteric1entity/ultimate-memory-stack">esoteric1entity/ultimate-memory-stack</a><br>
             <strong>License:</strong> Apache-2.0<br>
-            <strong>Status:</strong> v3.6.0 general-edition ready; biotech-edition available separately
+            <strong>Status:</strong> v3.6.1 general-edition ready
           </div>
         </div>
 
@@ -547,7 +547,7 @@
         <div class="why-card">
           <div class="icon">2</div>
           <h4>Independent versioning</h4>
-          <p>Memory v3.6.0 doesn't have to wait for Security v0.2.0. Each branch ships on its own timeline. Compatible versions are documented per release.</p>
+          <p>Memory v3.6.1 doesn't have to wait for Security v0.2.0. Each branch ships on its own timeline. Compatible versions are documented per release.</p>
         </div>
         <div class="why-card">
           <div class="icon">3</div>
@@ -661,29 +661,34 @@ cd /path/to/your/workspace            <span class="c"># where the memory stack s
 <span class="c">#   "Install this — read INSTALL_AGENT.md and follow it."</span></code></pre>
 
       <div class="code-head">Door 3 — Claude Code marketplace</div>
-      <pre class="term"><span class="bar"><i class="r"></i><i class="y"></i><i class="g"></i></span><code><span class="c"># Add the marketplace + install the plugin</span>
+      <p class="section-intro" style="font-size:0.8rem; max-width:none; margin-bottom:0.6rem;">⚠️ Run these <strong>inside Claude Code</strong>, not your shell — Claude Code must be installed &amp; authenticated.</p>
+      <pre class="term"><span class="bar"><i class="r"></i><i class="y"></i><i class="g"></i></span><code><span class="c"># 1. In Claude Code — add the marketplace + install the plugin</span>
 /plugin marketplace add esoteric1entity/ultimate-memory-stack
 /plugin install ultimate-memory-stack@ultimate-memory-stack
 
-<span class="c"># Then, in the project where the memory should live:</span>
+<span class="c"># 2. Exit Claude Code (/exit or Ctrl-D)</span>
+<span class="c"># 3. In your shell: cd to the project where the memory should live</span>
+<span class="c"># 4. Relaunch Claude Code from inside that directory, then run:</span>
 /install-ultimate-memory-stack</code></pre>
-      <p class="section-intro">Already have a <code>memory/</code> store in that project? Back it up first — or use the script or agent door above, which detect and preserve an existing store automatically.</p>
+      <p class="section-intro" style="font-size:0.8rem; max-width:none; text-align:left; margin-top:-16px;"><em>Note:</em> Existing <code>memory/</code> store in that project? <strong>Back it up first</strong> — or use the script/agent door, which preserves it automatically.</p>
 
-      <p class="section-intro">Door 4 — no tooling at all: drag two folders into your workspace and paste one activation prompt. Whatever the door, the installer refuses to mix your memory into the package tree and records exactly what it did in a manifest.</p>
+      <div class="code-head">Door 4 — no tooling at all</div>
+      <p class="section-intro" style="max-width:none;">Drag the <code>common-specs/</code> and <code>general-edition/</code> folders into your workspace, then paste one activation prompt.</p>
+      <p class="section-intro">Whatever the door, the installer refuses to mix your memory into the package tree and records exactly what it did in a manifest.</p>
     </div>
   </section>
 
   <section id="status" class="alt">
     <div class="container">
       <h2>Project Status</h2>
-      <p class="section-intro">Memory branch v3.6.0 is live — the first public release. The Security branch follows imminently; its repo opens once final QA completes.</p>
+      <p class="section-intro">Memory branch v3.6.1 is live — a data-safety + install-UX patch over the first public release (v3.6.0). The Security branch follows imminently; its repo opens once final QA completes.</p>
 
       <table class="status-table">
         <thead>
           <tr><th>Item</th><th>Status</th></tr>
         </thead>
         <tbody>
-          <tr><td>Memory branch v3.6.0</td><td>✅ Released</td></tr>
+          <tr><td>Memory branch v3.6.1</td><td>✅ Released</td></tr>
           <tr><td>Security branch — Layers 1 + 4 (v0.1.0 — vetting scanner + runtime hooks)</td><td>🟡 Complete &amp; tested — release imminent</td></tr>
           <tr><td>Security branch — Layers 0, 2–3 &amp; 5–7</td><td>⏳ In development</td></tr>
           <tr><td>Future branches</td><td>🟡 In design</td></tr>
