@@ -148,7 +148,7 @@
     }
     .hero h1 .h1-for {
       display: block; font-size: 1.05rem; font-weight: 400; font-style: italic;
-      color: var(--soft); letter-spacing: 0.02em; margin: 2px 0;
+      color: var(--soft); letter-spacing: 0.02em; line-height: 1.1; margin: 6px 0;
     }
     .hero .tagline {
       font-size: 1.3rem; color: var(--muted); max-width: 62ch;
@@ -309,6 +309,11 @@
     .influences-table strong { color: var(--brand-strong); font-weight: 650; }
     .influences-table em { color: var(--ink); font-style: normal; }
     .section-outro { margin-top: var(--s7); font-style: italic; color: var(--muted); text-align: center; max-width: 720px; margin-left: auto; margin-right: auto; }
+    /* Original Work intro — full-width editorial prose (spans the page; no orphan last-words) */
+    .influences-intro { max-width: none; margin: 0 0 var(--s7); text-align: left; }
+    .influences-intro p { font-size: 1.1rem; color: var(--muted); line-height: 1.65; text-wrap: pretty; }
+    .influences-intro p:first-child { margin-bottom: var(--s4); }
+    .influences-intro strong { color: var(--brand-strong); font-weight: 650; }
 
     /* ---- Footer ---- */
     footer { border-top: 1px solid var(--line); padding: var(--s7) 0; background: var(--surface-alt); color: var(--soft); font-size: 0.9rem; }
@@ -408,7 +413,7 @@
     <div class="container">
       <div class="logo-hero"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 2 28 9 28 23 16 30 4 23 4 9Z" stroke="#2dd4bf" stroke-width="1.4" fill="rgba(45,212,191,0.07)"/><circle cx="16" cy="11" r="2.1" fill="#2dd4bf"/><circle cx="11" cy="20" r="2.1" fill="#5eead4"/><circle cx="21" cy="20" r="2.1" fill="#fbbf24"/><path d="M16 11 11 20M16 11 21 20M11 20 21 20" stroke="#2dd4bf" stroke-width="1.1" opacity="0.6"/></svg></div>
       <span class="eyebrow">Open source · Apache 2.0 · Now live</span>
-      <h1>Modular Infrastructure<br><span class="h1-for">for</span><br>AI Agents</h1>
+      <h1>Modular Infrastructure<span class="h1-for">for</span>AI Agents</h1>
       <p class="tagline"><span class="tag-lead">Persistent memory, secure runtime, and more.<br>Install what you need, when you need it.</span><br><span class="tag-sub">The Agent Architect Stack is an open-source umbrella of independently installable modules that grow with your agent.</span></p>
       <div class="cta">
         <a href="#quickstart" class="btn btn-primary">Get the Memory branch →</a>
@@ -567,9 +572,9 @@
   <section id="influences">
     <div class="container">
       <h2>Original Work &amp; Influences</h2>
-      <div style="max-width:64ch;margin:0 auto;text-align:left;">
-        <p class="section-intro" style="text-align:left;max-width:none;margin-bottom:var(--s4);">No stack is built in a vacuum — here's a candid account of what's original to this project and the upstream work it builds on.</p>
-        <p class="section-intro" style="text-align:left;max-width:none;margin-bottom:0;"><strong style="color:var(--brand-strong);">Where it came from.</strong> The architecture is original to esoteric1entity — a sustained personal design effort begun in early 2026, drawing on prior studies, practices, and influences (2025). It was first deployed as the maker's own agent stack and matured across directed agents on private hardware. The Memory and Security branches below are its descendants, not its source.</p>
+      <div class="influences-intro">
+        <p>No stack is built in a vacuum — here's a candid account of what's original to this project and the upstream work it builds on.</p>
+        <p><strong>Where it came from.</strong> The architecture is original to esoteric1entity — a sustained personal design effort begun in early 2026, drawing on prior studies, practices, and influences (2025). It was first deployed as the maker's own agent stack and matured across directed agents on private hardware. The Memory and Security branches below are its descendants, not its source.</p>
       </div>
 
       <table class="influences-table">
@@ -681,7 +686,7 @@ cd /path/to/your/workspace            <span class="c"># where the memory stack s
       <p class="section-intro" style="font-size:0.8rem; max-width:none; text-align:left; margin-top:-16px;"><em>Note:</em> Existing <code>memory/</code> store in that project? <strong>Back it up first</strong> — or use the script/agent door, which preserves it automatically.</p>
 
       <div class="code-head">Door 4 — no tooling at all</div>
-      <p class="section-intro" style="max-width:none;">Drag the <code>common-specs/</code> and <code>general-edition/</code> folders into your workspace, then paste one activation prompt.</p>
+      <p class="section-intro" style="max-width:none;text-align:left;">Drag the <code>common-specs/</code> and <code>general-edition/</code> folders into your workspace, then paste one activation prompt.</p>
       <p class="section-intro">Whatever the door, the installer refuses to mix your memory into the package tree and records exactly what it did in a manifest.</p>
     </div>
   </section>
