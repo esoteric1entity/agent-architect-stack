@@ -144,12 +144,18 @@
     .hero h1 {
       font-size: 3.75rem; font-weight: 800; line-height: 1.05;
       letter-spacing: -0.03em; margin-bottom: var(--s5);
-      max-width: 14ch; margin-left: auto; margin-right: auto;
+      max-width: none; margin-left: auto; margin-right: auto;
+    }
+    .hero h1 .h1-for {
+      display: block; font-size: 1.05rem; font-weight: 400; font-style: italic;
+      color: var(--soft); letter-spacing: 0.02em; margin: 2px 0;
     }
     .hero .tagline {
       font-size: 1.3rem; color: var(--muted); max-width: 62ch;
       margin: 0 auto var(--s7); line-height: 1.55;
     }
+    .hero .tagline .tag-lead { font-size: 1.25rem; font-weight: 500; color: var(--ink); line-height: 1.5; }
+    .hero .tagline .tag-sub { display: inline-block; margin-top: 14px; font-size: 0.95rem; color: var(--muted); max-width: 58ch; }
     .hero .cta { display: flex; gap: var(--s4); justify-content: center; flex-wrap: wrap; }
 
     .btn {
@@ -177,7 +183,7 @@
     section { padding: var(--s9) 0; }
     section.alt { background: var(--surface-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     section h2 { font-size: 2.25rem; font-weight: 750; letter-spacing: -0.02em; margin-bottom: var(--s4); text-align: center; }
-    section .section-intro { font-size: 1.1rem; color: var(--muted); max-width: 68ch; margin: 0 auto var(--s7); text-align: center; }
+    section .section-intro { font-size: 1.1rem; color: var(--muted); max-width: 68ch; margin: 0 auto var(--s7); text-align: center; text-wrap: balance; }
 
     /* ---- What this is ---- */
     .what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); }
@@ -324,7 +330,7 @@
     }
     @media (max-width: 768px) {
       :root { --s9: 64px; --s8: 48px; }
-      .hero h1 { font-size: 2.1rem; max-width: 18ch; }
+      .hero h1 { font-size: 1.85rem; }
       .hero .tagline { font-size: 1.08rem; }
       .what-grid, .branches-grid, .why-grid, .tree-branches { grid-template-columns: 1fr; }
       .influences-table { font-size: 0.85rem; }
@@ -402,15 +408,15 @@
     <div class="container">
       <div class="logo-hero"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 2 28 9 28 23 16 30 4 23 4 9Z" stroke="#2dd4bf" stroke-width="1.4" fill="rgba(45,212,191,0.07)"/><circle cx="16" cy="11" r="2.1" fill="#2dd4bf"/><circle cx="11" cy="20" r="2.1" fill="#5eead4"/><circle cx="21" cy="20" r="2.1" fill="#fbbf24"/><path d="M16 11 11 20M16 11 21 20M11 20 21 20" stroke="#2dd4bf" stroke-width="1.1" opacity="0.6"/></svg></div>
       <span class="eyebrow">Open source · Apache 2.0 · Now live</span>
-      <h1>Modular infrastructure for AI agents</h1>
-      <p class="tagline">Persistent memory, secure runtime, and more — install what you need, when you need it. The Agent Architect Stack is an open-source umbrella of independently installable modules that grow with your agent.</p>
+      <h1>Modular Infrastructure<br><span class="h1-for">for</span><br>AI Agents</h1>
+      <p class="tagline"><span class="tag-lead">Persistent memory, secure runtime, and more.<br>Install what you need, when you need it.</span><br><span class="tag-sub">The Agent Architect Stack is an open-source umbrella of independently installable modules that grow with your agent.</span></p>
       <div class="cta">
         <a href="#quickstart" class="btn btn-primary">Get the Memory branch →</a>
         <a href="#branches" class="btn btn-secondary">See all branches</a>
       </div>
       <div class="badges">
         <span class="badge badge-license">⚖ Apache 2.0</span>
-        <span class="badge badge-status">🚀 Live — Memory v3.6.1</span>
+        <span class="badge badge-status">🚀 Live — Memory v3.6.2</span>
         <span class="badge badge-branches">🌿 2 active · more planned</span>
       </div>
       <p class="maker-line">Built by <strong>PDuk Brainworks</strong> — an independent studio building modular infrastructure for AI agents.</p>
@@ -457,7 +463,7 @@
   <section class="alt">
     <div class="container">
       <h2>The Architecture</h2>
-      <p class="section-intro">One umbrella. Multiple peer branches. An Orchestrator above. Branches grow over time; you install what you need.</p>
+      <p class="section-intro" style="max-width:none;"><span style="display:block;font-size:1.18rem;color:var(--ink);font-weight:500;line-height:1.85;">One umbrella.<br>Multiple peer branches.<br>An Orchestrator above.</span><span style="display:block;margin-top:14px;color:var(--muted);">Branches grow over time — you install what you need.</span></p>
 
       <div class="tree">
         <div class="tree-node umbrella">
@@ -473,7 +479,7 @@
         <div class="tree-branches">
           <div class="tree-branch">
             <div class="tree-branch-name">Memory</div>
-            <div class="tree-branch-meta">UMS v3.6.1 ✅</div>
+            <div class="tree-branch-meta">UMS v3.6.2 ✅</div>
           </div>
           <div class="tree-branch">
             <div class="tree-branch-name">Security</div>
@@ -491,7 +497,7 @@
   <section id="branches">
     <div class="container">
       <h2>Current Branches</h2>
-      <p class="section-intro">Each branch is a standalone module. Install one, install some, install all. They share conventions but have no hard runtime dependencies. The list below is the current state — more branches are added as they're developed.</p>
+      <p class="section-intro">Each branch is a standalone module — install one, some, or all. They share conventions, not runtime dependencies. More are added as they're built.</p>
 
       <div class="branches-grid">
 
@@ -508,12 +514,12 @@
           <div class="meta">
             <strong>Repo:</strong> <a href="https://github.com/esoteric1entity/ultimate-memory-stack">esoteric1entity/ultimate-memory-stack</a><br>
             <strong>License:</strong> Apache-2.0<br>
-            <strong>Status:</strong> v3.6.1 general-edition ready
+            <strong>Status:</strong> v3.6.2 general-edition ready
           </div>
         </div>
 
         <div class="branch-card">
-          <h3>Security <span class="status-pill status-prerelease">Release imminent</span></h3>
+          <h3>Security <span class="status-pill status-prerelease">In development</span></h3>
           <p class="branch-tagline">8-layer defensive overlay for AI agents: skill vetting, input sanitization, runtime hooks, network egress, audit.</p>
           <ul>
             <li>3-tier automated + 5-layer manual escalation for new skills</li>
@@ -523,9 +529,9 @@
             <li>Anti-prompt-injection via structured output enforcement</li>
           </ul>
           <div class="meta">
-            <strong>Repo:</strong> esoteric1entity/agent-shield — <em>release imminent</em><br>
+            <strong>Repo:</strong> esoteric1entity/agent-shield — <em>in development</em><br>
             <strong>License:</strong> Apache-2.0<br>
-            <strong>Status:</strong> v0.1.0 alpha — Layers 1 + 4 complete &amp; tested (vetting scanner + runtime hooks); release imminent, further layers in development
+            <strong>Status:</strong> v0.1.0 alpha — Layers 1 + 4 complete &amp; tested (vetting scanner + runtime hooks); in development, further layers building
           </div>
         </div>
 
@@ -547,7 +553,7 @@
         <div class="why-card">
           <div class="icon">2</div>
           <h4>Independent versioning</h4>
-          <p>Memory v3.6.1 doesn't have to wait for Security v0.2.0. Each branch ships on its own timeline. Compatible versions are documented per release.</p>
+          <p>Memory v3.6.2 doesn't have to wait for Security v0.2.0. Each branch ships on its own timeline. Compatible versions are documented per release.</p>
         </div>
         <div class="why-card">
           <div class="icon">3</div>
@@ -561,8 +567,10 @@
   <section id="influences">
     <div class="container">
       <h2>Original Work &amp; Influences</h2>
-      <p class="section-intro">No stack is built in a vacuum. Below is a candid account of what's original to this project, alongside the upstream work the Agent Architect Stack builds on — Obsidian, Microsoft Research, the Linux kernel's contribution conventions, and the broader agent-memory tradition.</p>
-      <p class="section-intro"><strong>Where it came from.</strong> The architecture itself is original to esoteric1entity — a sustained personal design effort begun in early 2026, built on prior inspirations from AI/ML study (the CalTech CTME AIML program, 2025) and discussions with <a href="https://github.com/angiexu25" target="_blank" rel="noopener">@angiexu25</a>. It was first deployed as the maker's own agent stack and matured across directed agents on private hardware. The Memory and Security branches below are its descendants, not its source.</p>
+      <div style="max-width:64ch;margin:0 auto;text-align:left;">
+        <p class="section-intro" style="text-align:left;max-width:none;margin-bottom:var(--s4);">No stack is built in a vacuum — here's a candid account of what's original to this project and the upstream work it builds on.</p>
+        <p class="section-intro" style="text-align:left;max-width:none;margin-bottom:0;"><strong style="color:var(--brand-strong);">Where it came from.</strong> The architecture is original to esoteric1entity — a sustained personal design effort begun in early 2026, drawing on prior studies, practices, and influences (2025). It was first deployed as the maker's own agent stack and matured across directed agents on private hardware. The Memory and Security branches below are its descendants, not its source.</p>
+      </div>
 
       <table class="influences-table">
         <thead>
@@ -642,7 +650,7 @@
   <section id="quickstart">
     <div class="container">
       <h2>Quick Start</h2>
-      <p class="section-intro">Four ways in — pick your door. Same foundation underneath: detect your harness, confirm the target, install, verify. Security branch install instructions ship with the agent-shield release (imminent).</p>
+      <p class="section-intro">Four ways in — pick your door; same foundation underneath: detect, confirm, install, verify. Security-branch install ships with the agent-shield release.</p>
 
       <div class="code-head">Door 1 — Script (Linux / macOS / WSL · Windows)</div>
       <pre class="term"><span class="bar"><i class="r"></i><i class="y"></i><i class="g"></i></span><code>git clone https://github.com/esoteric1entity/ultimate-memory-stack.git
@@ -681,20 +689,18 @@ cd /path/to/your/workspace            <span class="c"># where the memory stack s
   <section id="status" class="alt">
     <div class="container">
       <h2>Project Status</h2>
-      <p class="section-intro">Memory branch v3.6.1 is live — a data-safety + install-UX patch over the first public release (v3.6.0). The Security branch follows imminently; its repo opens once final QA completes.</p>
+      <p class="section-intro">Memory branch v3.6.2 is live — a harness-messaging + docs-consolidation cleanup over v3.6.1. The Security branch is in development; its repo opens once final QA completes.</p>
 
       <table class="status-table">
         <thead>
           <tr><th>Item</th><th>Status</th></tr>
         </thead>
         <tbody>
-          <tr><td>Memory branch v3.6.1</td><td>✅ Released</td></tr>
-          <tr><td>Security branch — Layers 1 + 4 (v0.1.0 — vetting scanner + runtime hooks)</td><td>🟡 Complete &amp; tested — release imminent</td></tr>
-          <tr><td>Security branch — Layers 0, 2–3 &amp; 5–7</td><td>⏳ In development</td></tr>
+          <tr><td>Memory branch v3.6.2</td><td>✅ Update Released · 2026-06-16</td></tr>
+          <tr><td>Security branch — agent-shield</td><td>⏳ In development</td></tr>
           <tr><td>Future branches</td><td>🟡 In design</td></tr>
         </tbody>
       </table>
-      <p class="section-intro" style="margin-top: var(--s5); margin-bottom: 0;">Last updated 2026-06-12.</p>
     </div>
   </section>
 
