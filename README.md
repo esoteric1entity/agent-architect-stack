@@ -85,7 +85,7 @@ The flagship. Gives AI agents **persistent memory across sessions** — knowledg
 | Core stack + install engine | The memory vault scaffold, protocol auto-registration, schemas, templates, wizard, and `verify.sh` | A — core |
 | `/config-obsidian-vault` | Obsidian-based personal-knowledge-management interface | B — primary |
 | `/install-graphiti` | Knowledge graph over your entities + relationships + temporal facts | C — opt-in |
-| `/install-graphify` | Code symbol graph (functions, classes, imports) across 19+ languages | C — opt-in |
+| `/install-graphify` | Code symbol graph (functions, classes, imports) across 31 languages | C — opt-in |
 | `/install-llmlingua` | Prompt compression at a quality-preserving threshold | C — opt-in |
 
 - **Repo:** [esoteric1entity/ultimate-memory-stack](https://github.com/esoteric1entity/ultimate-memory-stack)
