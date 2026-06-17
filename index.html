@@ -252,9 +252,6 @@
     .branch-card li:last-child { border-bottom: none; }
     .branch-card .meta { font-size: 0.85rem; color: var(--soft); margin-top: var(--s4); padding-top: var(--s4); border-top: 1px solid var(--surface-alt); }
     .branch-card .meta strong { color: var(--muted); }
-    .branch-mystery { border: 2px dashed var(--line-strong); background: linear-gradient(135deg, var(--surface) 0%, var(--violet-soft) 100%); }
-    .branch-mystery .branch-tagline { font-style: italic; }
-    .branch-mystery li::before { color: var(--fut); }
 
     /* ---- Why pick-and-choose ---- */
     .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s5); }
@@ -300,7 +297,7 @@
     .influences-table td.rail span { display: inline-block; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em; white-space: nowrap; }
     .influences-table tr.g-umbrella td { background: rgba(45,212,191,0.055); }
     .influences-table tr.g-memory td { background: rgba(45,212,191,0.03); }
-    .influences-table tr.g-security td { background: rgba(45,212,191,0.012); }
+    .influences-table tr.g-security td { background: rgba(45,212,191,0.022); }
     .influences-table td.rail-umbrella { color: var(--brand); border-right: 2px solid var(--brand); }
     .influences-table td.rail-memory { color: var(--brand-strong); border-right: 2px solid var(--brand-strong); }
     .influences-table td.rail-security { color: var(--soft); border-right: 2px solid var(--soft); }
@@ -366,7 +363,6 @@
       box-shadow: 0 0 26px rgba(45,212,191,0.18);
     }
     .tree-node.umbrella .node-label { color: var(--muted); }
-    .branch-mystery { background: linear-gradient(135deg, var(--surface) 0%, rgba(167,139,250,0.10) 100%); }
 
     /* Hero — dark atmospheric backdrop (CSS-only, no external image) */
     .hero {
@@ -414,7 +410,7 @@
       <div class="logo-hero"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 2 28 9 28 23 16 30 4 23 4 9Z" stroke="#2dd4bf" stroke-width="1.4" fill="rgba(45,212,191,0.07)"/><circle cx="16" cy="11" r="2.1" fill="#2dd4bf"/><circle cx="11" cy="20" r="2.1" fill="#5eead4"/><circle cx="21" cy="20" r="2.1" fill="#fbbf24"/><path d="M16 11 11 20M16 11 21 20M11 20 21 20" stroke="#2dd4bf" stroke-width="1.1" opacity="0.6"/></svg></div>
       <span class="eyebrow">Open source · Apache 2.0 · Now live</span>
       <h1>Modular Infrastructure<span class="h1-for">for</span>AI Agents</h1>
-      <p class="tagline"><span class="tag-lead">Persistent memory, secure runtime, and more.<br>Install what you need, when you need it.</span><br><span class="tag-sub">The Agent Architect Stack is an open-source umbrella of independently installable modules that grow with your agent.</span></p>
+      <p class="tagline"><span class="tag-lead">Persistent memory, secure runtime, and more.<br>Install what you need, when you need it.</span><span class="tag-sub">The Agent Architect Stack is an open-source umbrella of independently installable modules that grow with your agent.</span></p>
       <div class="cta">
         <a href="#quickstart" class="btn btn-primary">Get the Memory branch →</a>
         <a href="#branches" class="btn btn-secondary">See all branches</a>
@@ -606,7 +602,7 @@
           <tr class="g-memory">
             <td class="rail rail-memory" rowspan="7"><span>MEMORY</span></td>
             <td class="name">Memory architecture <em>(core)</em></td>
-            <td>The 7-layer architecture with <strong>tiered deployment markers</strong> (features activate as infrastructure unblocks), bi-temporal supersession, compliance presets (none / healthcare / enterprise / custom), and the audit + quarantine workflow</td>
+            <td>The 7-layer architecture with <strong>tiered deployment markers</strong> (features activate as infrastructure unblocks), bi-temporal supersession, compliance presets (none / enterprise / custom; healthcare reserved for a future institutional edition), and the audit + quarantine workflow</td>
             <td><span class="pill-original">Original</span></td>
           </tr>
           <tr class="g-memory">
@@ -686,8 +682,8 @@ cd /path/to/your/workspace            <span class="c"># where the memory stack s
       <p class="section-intro" style="font-size:0.8rem; max-width:none; text-align:left; margin-top:-16px;"><em>Note:</em> Existing <code>memory/</code> store in that project? <strong>Back it up first</strong> — or use the script/agent door, which preserves it automatically.</p>
 
       <div class="code-head">Door 4 — no tooling at all</div>
-      <p class="section-intro" style="max-width:none;text-align:left;">Drag the <code>common-specs/</code> and <code>general-edition/</code> folders into your workspace, then paste the activation prompt from <code>common-specs/BOOTSTRAP_PROMPT.md</code> (its "The Activation Prompt" section) into your agent — it runs the setup wizard. Full manual steps: <code>INSTALL.md</code>.</p>
-      <p class="section-intro">Whatever the door, the installer refuses to mix your memory into the package tree and records exactly what it did in a manifest.</p>
+      <p class="section-intro" style="max-width:none;text-align:left;">Drag the <code>common-specs/</code> and <code>general-edition/</code> folders into your workspace, then paste <a href="https://github.com/esoteric1entity/ultimate-memory-stack/blob/main/common-specs/BOOTSTRAP_PROMPT.md#the-activation-prompt" target="_blank" rel="noopener">The Prompt</a> into your agent — it runs the setup wizard. Full manual steps: the <a href="https://github.com/esoteric1entity/ultimate-memory-stack/blob/main/INSTALL.md" target="_blank" rel="noopener">Install Guide</a>.</p>
+      <p class="section-outro">Whatever the door, the installer refuses to mix your memory into the package tree and records exactly what it did in a manifest.</p>
     </div>
   </section>
 

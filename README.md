@@ -5,8 +5,8 @@
 > *A **PDuk Brainworks** project. Apache-2.0 - (c) 2026 esoteric1entity.*
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Status: Memory live](https://img.shields.io/badge/Memory-v3.6.0%20live-brightgreen.svg)](#project-status)
-[![Status: Security imminent](https://img.shields.io/badge/Security-release%20imminent-yellow.svg)](#project-status)
+[![Status: Memory live](https://img.shields.io/badge/Memory-v3.6.2%20live-brightgreen.svg)](#project-status)
+[![Status: Security in development](https://img.shields.io/badge/Security-in%20development-yellow.svg)](#project-status)
 [![Branches: 2--active](https://img.shields.io/badge/Branches-2%20active-lightgrey.svg)](#branches)
 
 **🌐 Live site:** [esoteric1entity.github.io/agent-architect-stack](https://esoteric1entity.github.io/agent-architect-stack/)
@@ -19,8 +19,8 @@ The **Agent Architect Stack** is an open-source umbrella of **independently inst
 
 | Branch | What it does | Status | Repo |
 |---|---|---|---|
-| **Memory** (Ultimate Memory Stack) | Persistent memory + knowledge graphs + Obsidian vault + prompt compression | ✅ **Live** — v3.6.0 | [esoteric1entity/ultimate-memory-stack](https://github.com/esoteric1entity/ultimate-memory-stack) |
-| **Security** (agent-shield) | 8-layer defensive overlay: skill vetting, input sanitization, runtime hooks, network egress, audit logging | 🟡 **Release imminent** — v0.1.0 alpha (Layers 1 + 4 complete & tested); further layers in development | esoteric1entity/agent-shield — *release imminent* |
+| **Memory** (Ultimate Memory Stack) | Persistent memory + knowledge graphs + Obsidian vault + prompt compression | ✅ **Live** — v3.6.2 | [esoteric1entity/ultimate-memory-stack](https://github.com/esoteric1entity/ultimate-memory-stack) |
+| **Security** (agent-shield) | 8-layer defensive overlay: skill vetting, input sanitization, runtime hooks, network egress, audit logging | 🟡 **In development** — v0.1.0 alpha (Layers 1 + 4 complete & tested); further layers building | esoteric1entity/agent-shield — *in development* |
 
 **Pick-and-choose.** You can install just Memory, just Security, or both. They share conventions (config formats, audit log schema) but **no hard runtime dependency** — per the modular-consumer principle.
 
@@ -90,10 +90,10 @@ The flagship. Gives AI agents **persistent memory across sessions** — knowledg
 
 - **Repo:** [esoteric1entity/ultimate-memory-stack](https://github.com/esoteric1entity/ultimate-memory-stack)
 - **License:** Apache-2.0
-- **Status:** v3.6.0 — live
+- **Status:** v3.6.2 — live
 
 
-### Security (agent-shield) — 🟡 Release imminent
+### Security (agent-shield) — 🟡 In development
 
 An **8-layer defensive overlay** for AI agents. Sits between your agent and the outside world (skills, network, file system, tool calls) and inspects, sanitizes, audits, and blocks as needed.
 
@@ -110,22 +110,22 @@ The 8 layers:
 | 6 | Audit logging | Append-only JSONL with SHA-256 chain integrity |
 | 7 | Configuration | Layer-7 audit config + cross-addon contract |
 
-- **Repo:** esoteric1entity/agent-shield — *release imminent*
+- **Repo:** esoteric1entity/agent-shield — *in development*
 - **License:** Apache-2.0
 - **Status:** v0.1.0 alpha — Layers 1 (skill/tool vetting) + 4 (bash_guard + write_guard) complete & tested, covered by Python + bash + cross-platform-equivalence tests; the other six layers are designed and roadmapped
-- **Roadmap:** ships with the agent-shield repo (release imminent)
+- **Roadmap:** ships with the agent-shield repo (in development)
 
 
 ---
 
 ## Project status
 
-**Memory branch v3.6.0 is live** — the first public release. The Security branch follows imminently; its repo opens once final QA completes.
+**Memory branch v3.6.2 is live.** The Security branch is in development; its repo opens once final QA completes.
 
 | Item | Status |
 |---|---|
-| Memory branch v3.6.0 | ✅ Live |
-| Security branch — Layers 1 + 4 (v0.1.0 — vetting scanner + runtime hooks) | 🟡 Complete & tested — release imminent |
+| Memory branch v3.6.2 | ✅ Live |
+| Security branch — Layers 1 + 4 (v0.1.0 — vetting scanner + runtime hooks) | 🟡 Complete & tested — in development |
 | Security branch — Layers 0, 2–3 & 5–7 | ⏳ In development |
 | Umbrella landing page (this) | ✅ Complete |
 | Umbrella name + brand | ✅ Locked: PDuk Brainworks / The Agent Architect Stack |
@@ -134,7 +134,7 @@ The 8 layers:
 
 ## Authoring process
 
-The architecture itself is **original to esoteric1entity** — a sustained personal design effort begun in early 2026, built on prior AI/ML study (the CalTech CTME AIML program, 2025), and first deployed as the maker's own agent stack. The Memory and Security branches are **descendants of that original design, not its source.**
+The architecture itself is **original to esoteric1entity** — a sustained personal design effort begun in early 2026, drawing on prior studies, practices, and influences (2025), and first deployed as the maker's own agent stack. The Memory and Security branches are **descendants of that original design, not its source.**
 
 This stack was built using **multiple AI agents across multiple machines, working alongside the human designer** — with cross-agent peer review at each step (the Tribunal Pattern). Every architectural decision is captured in a decision-log entry with full documentation discipline (purpose / rationale / sound reasoning / scope CAN / scope CANNOT).
 
@@ -149,7 +149,7 @@ The same discipline applies to code quality: releases are developed test-first, 
 - The personal-content boundary (what does NOT go in public repos)
 - The Tribunal Pattern (cross-deployment peer review)
 - **Memory branch** — [`ultimate-memory-stack`](https://github.com/esoteric1entity/ultimate-memory-stack)
-- **agent-shield** — `agent-shield` (release imminent)
+- **agent-shield** — `agent-shield` (in development)
 
 ---
 
