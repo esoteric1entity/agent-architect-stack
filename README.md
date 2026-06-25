@@ -143,6 +143,7 @@ The 8 layers:
 | Memory branch — Ultimate Memory Stack | ✅ Released · v3.6.2 · 2026-06-16 · [GitHub](https://github.com/esoteric1entity/ultimate-memory-stack) · *(Classified: next release in development)* |
 | Security branch — agent-shield | ✅ Released · v0.2.0 alpha · 2026-06-24 · [PyPI](https://pypi.org/project/ai-agent-shield/) · [GitHub](https://github.com/esoteric1entity/agent-shield) |
 | Security branch — Layers 0 & 5 | 🟡 Roadmapped |
+| Future branches | 🟡 In ideation & design |
 | Umbrella landing page (this) | ✅ Complete |
 | Umbrella name + brand | ✅ Locked: PDuk Brainworks / The Agent Architect Stack |
 
