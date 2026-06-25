@@ -192,6 +192,14 @@
       border-left: 4px solid var(--brand); border-radius: var(--radius);
       padding: var(--s6); box-shadow: var(--shadow-sm);
     }
+    .what-card:nth-child(3) {
+      grid-column: 1 / -1;
+      background: var(--surface); border: 1px solid var(--line);
+      border-left: 4px solid var(--brand); border-radius: var(--radius);
+      padding: var(--s6);
+    }
+    .what-card:nth-child(3) h3 { margin-bottom: var(--s3); }
+    .what-card:nth-child(3) ul { column-count: 2; column-gap: var(--s6); }
     .what-card:nth-child(4) {
       grid-column: 1 / -1;
       background: var(--brand-soft); border: 1px solid var(--brand-ring); border-left: 4px solid var(--brand);
@@ -410,15 +418,15 @@
       <div class="logo-hero"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 2 28 9 28 23 16 30 4 23 4 9Z" stroke="#2dd4bf" stroke-width="1.4" fill="rgba(45,212,191,0.07)"/><circle cx="16" cy="11" r="2.1" fill="#2dd4bf"/><circle cx="11" cy="20" r="2.1" fill="#5eead4"/><circle cx="21" cy="20" r="2.1" fill="#fbbf24"/><path d="M16 11 11 20M16 11 21 20M11 20 21 20" stroke="#2dd4bf" stroke-width="1.1" opacity="0.6"/></svg></div>
       <span class="eyebrow">Open source · Apache 2.0 · Now live</span>
       <h1>Modular Infrastructure<span class="h1-for">for</span>AI Agents</h1>
-      <p class="tagline"><span class="tag-lead">Persistent memory, secure runtime, and more.<br>Install what you need, when you need it.</span><span class="tag-sub">The Agent Architect Stack is an open-source umbrella of independently installable modules that grow with your agent.</span></p>
+      <p class="tagline"><span class="tag-lead"><em>Enhanced</em> persistent memory, secure runtime, and more.<br>Install what you need, when you need it.</span><span class="tag-sub" style="max-width:none;">The Agent Architect Stack is an open-source umbrella of independently installable modules that grow with your agent. Built-in harness memory is session-bound and opaque; this stack gives you durable, inspectable infrastructure you actually own.</span></p>
       <div class="cta">
         <a href="#quickstart" class="btn btn-primary">Get the Memory branch →</a>
         <a href="#branches" class="btn btn-secondary">See all branches</a>
       </div>
       <div class="badges">
         <span class="badge badge-license">⚖ Apache 2.0</span>
-        <span class="badge badge-status">🚀 Live — Memory v3.6.2</span>
-        <span class="badge badge-branches">🌿 2 active · more planned</span>
+        <span class="badge badge-status">🚀 Live — 2 Branches</span>
+        <span class="badge badge-branches">🌿 Memory + Security · more planned</span>
       </div>
       <p class="maker-line">Built by <strong>PDuk Brainworks</strong> — an independent studio building modular infrastructure for AI agents.</p>
     </div>
@@ -427,7 +435,7 @@
   <section class="what" id="what">
     <div class="container">
       <h2>The Premise</h2>
-      <p class="section-intro">A clear statement of purpose, the problems we plan to solve, and what makes this stack different from anything else in the agent-infrastructure space.</p>
+      <p class="section-intro" style="max-width:none; text-wrap:wrap;">A clear statement of purpose, the problems we plan to solve, and what makes this stack different from anything else in the agent-infrastructure space.</p>
 
       <div class="what-grid">
         <div class="what-card">
@@ -447,8 +455,9 @@
           <h3>What makes this stack unique</h3>
           <ul>
             <li><strong>Pick-and-choose installation.</strong> Install one branch, install some, install all. No forced dependencies, no monolithic install. Each branch is independently versioned.</li>
+            <li><strong>Beyond built-in context.</strong> Harness memory is session-bound and opaque. The Memory branch gives you a persistent, human-readable vault + knowledge graph that survives restarts, moves across machines, and is structured for cross-agent reuse — not just the last N turns of chat.</li>
             <li><strong>Data lives in files you own.</strong> The Memory branch stores everything as plain Markdown + JSON in a vault you can open in Obsidian, grep, version-control, and back up with <code>cp -r</code>. No proprietary database, no vendor lock-in.</li>
-            <li><strong>Defense by design, not just by theory.</strong> The Security branch's architecture spans 8 layers; v0.1 ships <strong>Layer 1 — skill/tool vetting</strong> (a static, read-only scanner with a 3-tier verdict) and <strong>Layer 4 — runtime hooks</strong> (<code>bash_guard</code> + <code>write_guard</code>), covered by an extensive test suite (guard logic, the bash sources, cross-platform equivalence, and the vetting corpus). The other six layers are designed and roadmapped.</li>
+            <li><strong>Defense by design, not just by theory.</strong> The Security branch's architecture spans 8 layers; v0.2.0 ships <strong>Layers 1, 2, 3, 4, 6, and 7</strong> (skill/tool vetting, input sanitization, structured-output enforcement, runtime hooks, audit logging, and configuration), covered by an extensive test suite. Layers 0 (cron rotation) and 5 (network egress) are designed and roadmapped.</li>
             <li><strong>Schema-enforced memory hygiene.</strong> Decisions, learnings, and daily logs all follow documented schemas with lint tools that surface problems for human review (never auto-mutate — surface-only by design).</li>
             <li><strong>Architected by hand. Built with agents, for agents.</strong> The v0 release is the collective work of multiple agent sessions across multiple machines under human direction — a meta-demonstration of the cross-agent collaboration the stack itself enables.</li>
           </ul>
@@ -484,11 +493,11 @@
           </div>
           <div class="tree-branch">
             <div class="tree-branch-name">Security</div>
-            <div class="tree-branch-meta">agent-shield v0.1.0 🟡</div>
+            <div class="tree-branch-meta">agent-shield v0.2.0 ✅</div>
           </div>
           <div class="tree-branch" style="opacity:0.45;">
             <div class="tree-branch-name">…</div>
-            <div class="tree-branch-meta">more in development</div>
+            <div class="tree-branch-meta">more branches planned</div>
           </div>
         </div>
       </div>
@@ -498,12 +507,12 @@
   <section id="branches">
     <div class="container">
       <h2>Current Branches</h2>
-      <p class="section-intro">Each branch is a standalone module — install one, some, or all. They share conventions, not runtime dependencies. More are added as they're built.</p>
+      <p class="section-intro" style="max-width:none; text-wrap:wrap;">Each branch is a standalone module.<br>Install one, some, or all. They share conventions, not runtime dependencies.<br>More are added as they're built.</p>
 
       <div class="branches-grid">
 
         <div class="branch-card">
-          <h3>Memory <span class="status-pill status-ready">Ready</span></h3>
+          <h3>Memory <span class="status-pill status-ready">Released</span></h3>
           <p class="branch-tagline">Persistent memory + knowledge graphs + Obsidian vault + prompt compression.</p>
           <ul>
             <li>Survives context resets (your agent remembers between sessions)</li>
@@ -520,7 +529,7 @@
         </div>
 
         <div class="branch-card">
-          <h3>Security <span class="status-pill status-prerelease">In development</span></h3>
+          <h3>Security <span class="status-pill status-ready">Released</span></h3>
           <p class="branch-tagline">8-layer defensive overlay for AI agents: skill vetting, input sanitization, runtime hooks, network egress, audit.</p>
           <ul>
             <li>3-tier automated + 5-layer manual escalation for new skills</li>
@@ -530,9 +539,9 @@
             <li>Anti-prompt-injection via structured output enforcement</li>
           </ul>
           <div class="meta">
-            <strong>Repo:</strong> esoteric1entity/agent-shield — <em>in development</em><br>
+            <strong>Repo:</strong> <a href="https://github.com/esoteric1entity/agent-shield" target="_blank" rel="noopener">esoteric1entity/agent-shield</a> — public<br>
             <strong>License:</strong> Apache-2.0<br>
-            <strong>Status:</strong> v0.1.0 alpha — Layers 1 + 4 complete &amp; tested (vetting scanner + runtime hooks); in development, further layers building
+            <strong>Status:</strong> v0.2.0 alpha — Layers 1, 2, 3, 4, 6 &amp; 7 shipped (vetting, sanitize, structured prompts, runtime hooks, audit, config); Layers 0 &amp; 5 roadmapped
           </div>
         </div>
 
@@ -543,7 +552,7 @@
   <section id="why" class="alt">
     <div class="container">
       <h2><em>You</em> Choose</h2>
-      <p class="section-intro">The modular consumer principle: you get exactly what you need, with zero lock-in. The branches share conventions, not dependencies.</p>
+      <p class="section-intro" style="max-width:none;">The modular consumer principle: you get exactly what you need, with zero lock-in. The branches share conventions, not dependencies.</p>
 
       <div class="why-grid">
         <div class="why-card">
@@ -554,7 +563,7 @@
         <div class="why-card">
           <div class="icon">2</div>
           <h4>Independent versioning</h4>
-          <p>Memory v3.6.2 doesn't have to wait for Security v0.2.0. Each branch ships on its own timeline. Compatible versions are documented per release.</p>
+          <p>Memory v3.6.2 and Security v0.2.0 ship on their own timelines. You can install either branch today. Compatible versions are documented per release.</p>
         </div>
         <div class="why-card">
           <div class="icon">3</div>
@@ -651,10 +660,26 @@
   <section id="quickstart">
     <div class="container">
       <h2>Quick Start</h2>
-      <p class="section-intro">Four ways in — pick your door; same foundation underneath: detect, confirm, install, verify. <em>(The Security branch will ship its own installer with the agent-shield release.)</em></p>
+      <p class="section-intro" style="max-width:none;">Two branches, two install paths. Pick the branch you want; each is independent.</p>
 
-      <div class="code-head">Door 1 — Script (Linux / macOS / WSL · Windows)</div>
-      <pre class="term"><span class="bar"><i class="r"></i><i class="y"></i><i class="g"></i></span><code>git clone https://github.com/esoteric1entity/ultimate-memory-stack.git
+      <div style="border-left: 3px solid var(--brand); padding-left: 24px; margin-bottom: 48px;">
+        <h3 style="margin-top:0;">Security branch</h3>
+        <p style="color:var(--muted); margin-bottom:var(--s4); margin-top:-0.5rem; font-size:0.95rem;">One-line install</p>
+        <pre class="term"><span class="bar"><i class="r"></i><i class="y"></i><i class="g"></i></span><code>pip install ai-agent-shield
+
+<span class="c"># Verify the install</span>
+python -c "import agent_shield; print(agent_shield.__version__)"
+
+<span class="c"># Then wire the guards into your harness (consent-gated):</span>
+<span class="c"># https://github.com/esoteric1entity/agent-shield/blob/main/INSTALL_AGENT.md</span></code></pre>
+      </div>
+
+      <div style="border-left: 3px solid var(--brand-strong); padding-left: 24px;">
+        <h3 style="margin-top:0;">Memory branch</h3>
+        <p style="color:var(--muted); margin-bottom:var(--s4); margin-top:-0.5rem; font-size:0.95rem;">Four ways in — Install the Ultimate Memory Stack however you prefer:</p>
+
+        <div class="code-head">Door 1 — Script (Linux / macOS / WSL · Windows)</div>
+        <pre class="term"><span class="bar"><i class="r"></i><i class="y"></i><i class="g"></i></span><code>git clone https://github.com/esoteric1entity/ultimate-memory-stack.git
 
 cd /path/to/your/workspace            <span class="c"># where the memory stack should live</span>
 /path/to/ultimate-memory-stack/setup-memory-stack.sh    <span class="c"># or: --target &lt;dir&gt;</span>
@@ -663,15 +688,15 @@ cd /path/to/your/workspace            <span class="c"># where the memory stack s
 <span class="c"># Flags: --minimal · --addon &lt;name&gt; · --no-templater · --compliance=&lt;preset&gt; · --yes</span>
 <span class="c"># Windows: setup-memory-stack.ps1 (same options, PowerShell-style: -Minimal, -Addon, -Compliance …; needs Python 3.8+)</span></code></pre>
 
-      <div class="code-head">Door 2 — Tell your agent (any harness)</div>
-      <pre class="term"><span class="bar"><i class="r"></i><i class="y"></i><i class="g"></i></span><code>git clone https://github.com/esoteric1entity/ultimate-memory-stack.git
+        <div class="code-head">Door 2 — Tell your agent (any harness)</div>
+        <pre class="term"><span class="bar"><i class="r"></i><i class="y"></i><i class="g"></i></span><code>git clone https://github.com/esoteric1entity/ultimate-memory-stack.git
 
 <span class="c"># Then tell your agent — Claude Code, OpenClaw, or any capable harness:</span>
 <span class="c">#   "Install this — read INSTALL_AGENT.md and follow it."</span></code></pre>
 
-      <div class="code-head">Door 3 — Claude Code marketplace</div>
-      <p class="section-intro" style="font-size:0.8rem; max-width:none; margin-bottom:0.6rem;">⚠️ Run these <strong>inside Claude Code</strong>, not your shell — Claude Code must be installed &amp; authenticated.</p>
-      <pre class="term"><span class="bar"><i class="r"></i><i class="y"></i><i class="g"></i></span><code><span class="c"># 1. In Claude Code — add the marketplace + install the plugin</span>
+        <div class="code-head">Door 3 — Claude Code marketplace</div>
+        <p class="section-intro" style="font-size:0.8rem; max-width:none; margin-bottom:0.6rem;">⚠️ Run these <strong>inside Claude Code</strong>, not your shell — Claude Code must be installed &amp; authenticated.</p>
+        <pre class="term"><span class="bar"><i class="r"></i><i class="y"></i><i class="g"></i></span><code><span class="c"># 1. In Claude Code — add the marketplace + install the plugin</span>
 /plugin marketplace add esoteric1entity/ultimate-memory-stack
 /plugin install ultimate-memory-stack@ultimate-memory-stack
 
@@ -679,10 +704,11 @@ cd /path/to/your/workspace            <span class="c"># where the memory stack s
 <span class="c"># 3. In your shell: cd to the project where the memory should live</span>
 <span class="c"># 4. Relaunch Claude Code from inside that directory, then run:</span>
 /install-ultimate-memory-stack</code></pre>
-      <p class="section-intro" style="font-size:0.8rem; max-width:none; text-align:left; margin-top:-16px;"><em>Note:</em> Existing <code>memory/</code> store in that project? <strong>Back it up first</strong> — or use the script/agent door, which preserves it automatically.</p>
+        <p class="section-intro" style="font-size:0.8rem; max-width:none; text-align:left; margin-top:-16px;"><em>Note:</em> Existing <code>memory/</code> store in that project? <strong>Back it up first</strong> — or use the script/agent door, which preserves it automatically.</p>
 
-      <div class="code-head">Door 4 — no tooling at all</div>
-      <p class="section-intro" style="max-width:none;text-align:left;">Drag the <code>common-specs/</code> and <code>general-edition/</code> folders into your workspace, then <span style="white-space:nowrap">paste <a href="https://github.com/esoteric1entity/ultimate-memory-stack/blob/main/common-specs/BOOTSTRAP_PROMPT.md#the-activation-prompt" target="_blank" rel="noopener">The Prompt</a></span> into your agent — it runs the setup wizard. Full manual steps: the <a href="https://github.com/esoteric1entity/ultimate-memory-stack/blob/main/INSTALL.md" target="_blank" rel="noopener">Install Guide</a>.</p>
+        <div class="code-head">Door 4 — no tooling at all</div>
+        <p class="section-intro" style="max-width:none;text-align:left;">Drag the <code>common-specs/</code> and <code>general-edition/</code> folders into your workspace, then <span style="white-space:nowrap">paste <a href="https://github.com/esoteric1entity/ultimate-memory-stack/blob/main/common-specs/BOOTSTRAP_PROMPT.md#the-activation-prompt" target="_blank" rel="noopener">The Prompt</a></span> into your agent — it runs the setup wizard. Full manual steps: the <a href="https://github.com/esoteric1entity/ultimate-memory-stack/blob/main/INSTALL.md" target="_blank" rel="noopener">Install Guide</a>.</p>
+      </div>
       <p class="section-outro">Whatever the door, the installer refuses to mix your memory into the package tree and records exactly what it did in a manifest.</p>
     </div>
   </section>
@@ -690,15 +716,15 @@ cd /path/to/your/workspace            <span class="c"># where the memory stack s
   <section id="status" class="alt">
     <div class="container">
       <h2>Project Status</h2>
-      <p class="section-intro">Memory branch v3.6.2 is live — a harness-messaging + docs-consolidation cleanup over v3.6.1. The Security branch is in development; its repo opens once final QA completes.</p>
+      <p class="section-intro" style="max-width:none;">Memory branch v3.6.2 is live. Security branch v0.2.0 alpha is released and available on PyPI.</p>
 
       <table class="status-table">
         <thead>
           <tr><th>Item</th><th>Status</th></tr>
         </thead>
         <tbody>
-          <tr><td>Memory branch v3.6.2</td><td>✅ Update Released · 2026-06-16</td></tr>
-          <tr><td>Security branch — agent-shield</td><td>⏳ In development</td></tr>
+          <tr><td>Memory branch — Ultimate Memory Stack</td><td>✅ Released · v3.6.2 · 2026-06-16 · <a href="https://github.com/esoteric1entity/ultimate-memory-stack" target="_blank" rel="noopener">GitHub</a> <em style="color:var(--soft);font-size:0.9em;">(Classified: next release in development)</em></td></tr>
+          <tr><td>Security branch — agent-shield</td><td>✅ Released · v0.2.0 alpha · 2026-06-24 · <a href="https://pypi.org/project/ai-agent-shield/" target="_blank" rel="noopener">PyPI</a> · <a href="https://github.com/esoteric1entity/agent-shield" target="_blank" rel="noopener">GitHub</a></td></tr>
           <tr><td>Future branches</td><td>🟡 In design</td></tr>
         </tbody>
       </table>

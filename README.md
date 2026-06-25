@@ -1,13 +1,15 @@
 # The Agent Architect Stack
 
-> **Modular infrastructure for AI agents. Memory, security, and more — install what you need, when you need it.**
+> **Modular infrastructure for AI agents. *Enhanced* persistent memory, secure runtime, and more — install what you need, when you need it.**
+>
+> Built-in harness memory is session-bound and opaque; this stack gives you durable, inspectable infrastructure you actually own.
 >
 > *A **PDuk Brainworks** project. Apache-2.0 - (c) 2026 esoteric1entity.*
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Status: Memory live](https://img.shields.io/badge/Memory-v3.6.2%20live-brightgreen.svg)](#project-status)
-[![Status: Security in development](https://img.shields.io/badge/Security-in%20development-yellow.svg)](#project-status)
-[![Branches: 2--active](https://img.shields.io/badge/Branches-2%20active-lightgrey.svg)](#branches)
+[![Status: Security released](https://img.shields.io/badge/Security-v0.2.0%20released-brightgreen.svg)](https://pypi.org/project/ai-agent-shield/)
+[![Branches: 2 active](https://img.shields.io/badge/Branches-2%20active-lightgrey.svg)](#branches)
 
 **🌐 Live site:** [esoteric1entity.github.io/agent-architect-stack](https://esoteric1entity.github.io/agent-architect-stack/)
 
@@ -19,8 +21,8 @@ The **Agent Architect Stack** is an open-source umbrella of **independently inst
 
 | Branch | What it does | Status | Repo |
 |---|---|---|---|
-| **Memory** (Ultimate Memory Stack) | Persistent memory + knowledge graphs + Obsidian vault + prompt compression | ✅ **Live** — v3.6.2 | [esoteric1entity/ultimate-memory-stack](https://github.com/esoteric1entity/ultimate-memory-stack) |
-| **Security** (agent-shield) | 8-layer defensive overlay: skill vetting, input sanitization, runtime hooks, network egress, audit logging | 🟡 **In development** — v0.1.0 alpha (Layers 1 + 4 complete & tested); further layers building | esoteric1entity/agent-shield — *in development* |
+| **Memory** (Ultimate Memory Stack) | *Enhanced* persistent memory + knowledge graphs + Obsidian vault + prompt compression | ✅ **Released** — v3.6.2 | [esoteric1entity/ultimate-memory-stack](https://github.com/esoteric1entity/ultimate-memory-stack) |
+| **Security** (agent-shield) | 8-layer defensive overlay: skill vetting, input sanitization, runtime hooks, network egress, audit logging | ✅ **Released** — v0.2.0 alpha (Layers 1, 2, 3, 4, 6 & 7 shipped); Layers 0 & 5 roadmapped | [esoteric1entity/agent-shield](https://github.com/esoteric1entity/agent-shield) — public · [PyPI](https://pypi.org/project/ai-agent-shield/) |
 
 **Pick-and-choose.** You can install just Memory, just Security, or both. They share conventions (config formats, audit log schema) but **no hard runtime dependency** — per the modular-consumer principle.
 
@@ -46,7 +48,9 @@ If you've ever thought "I wish this agent framework had a real memory layer" or 
 
 ---
 
-## Quick start (Memory branch, the breadwinner)
+## Quick start
+
+### Memory branch (the breadwinner)
 
 ```bash
 # Clone the Memory branch repo
@@ -62,6 +66,18 @@ cd /path/to/your/workspace            # where the memory stack should live
 # Windows: setup-memory-stack.ps1 (same options, PowerShell-style: -Minimal, -Addon, -Compliance …; needs Python 3.8+)
 ```
 
+### Security branch (agent-shield)
+
+```bash
+# Install from PyPI
+pip install ai-agent-shield
+
+# Verify
+python -c "import agent_shield; print(agent_shield.__version__)"
+```
+
+Then wire the guards into your harness — see [INSTALL_AGENT.md](https://github.com/esoteric1entity/agent-shield/blob/main/INSTALL_AGENT.md) for consent-gated steps and verification.
+
 **~5 minutes to a working memory layer.** The installer auto-detects whether you're running Claude Code, OpenClaw, or another harness; installs the Skills into the right location; and verifies the install end-to-end.
 
 For modular install options:
@@ -76,7 +92,7 @@ For modular install options:
 
 ## Branches
 
-### Memory (Ultimate Memory Stack) — ✅ Ready
+### Memory (Ultimate Memory Stack) — ✅ Released
 
 The flagship. Gives AI agents **persistent memory across sessions** — knowledge that survives context resets, gets searchable as a graph, and stays organized in a human-readable vault.
 
@@ -90,43 +106,43 @@ The flagship. Gives AI agents **persistent memory across sessions** — knowledg
 
 - **Repo:** [esoteric1entity/ultimate-memory-stack](https://github.com/esoteric1entity/ultimate-memory-stack)
 - **License:** Apache-2.0
-- **Status:** v3.6.2 — live
+- **Status:** v3.6.2 — released · 2026-06-16
 
 
-### Security (agent-shield) — 🟡 In development
+### Security (agent-shield) — ✅ Released
 
 An **8-layer defensive overlay** for AI agents. Sits between your agent and the outside world (skills, network, file system, tool calls) and inspects, sanitizes, audits, and blocks as needed.
 
 The 8 layers:
 
-| # | Layer | What it does |
-|---|---|---|
-| 0 | Cron rotation | Automated schedule for hygiene tasks (audit rotation, key rotation) |
-| 1 | Skill vetting | 3-tier automated + 5-layer manual escalation for any new Skill/tool |
-| 2 | Input sanitization | 4-layer sanitization (structural, content, encoding, context) |
-| 3 | Structured prompts | Anti-prompt-injection via structured output enforcement |
-| 4 | Runtime hooks | Bash + write guards (Python ports of the original bash hooks) |
-| 5 | Network egress | Ollama proxy + URL allowlist + rate limiting |
-| 6 | Audit logging | Append-only JSONL with SHA-256 chain integrity |
-| 7 | Configuration | Layer-7 audit config + cross-addon contract |
+| # | Layer | What it does | Status |
+|---|---|---|---|
+| 0 | Cron rotation | Automated schedule for hygiene tasks (audit rotation, key rotation) | 🟡 Roadmapped |
+| 1 | Skill vetting | 3-tier automated + 5-layer manual escalation for any new Skill/tool | ✅ Shipped in v0.2.0 |
+| 2 | Input sanitization | 4-layer sanitization (structural, content, encoding, context) | ✅ Shipped in v0.2.0 |
+| 3 | Structured prompts | Anti-prompt-injection via structured output enforcement | ✅ Shipped in v0.2.0 |
+| 4 | Runtime hooks | Bash + write guards (Python ports of the original bash hooks) | ✅ Shipped in v0.2.0 |
+| 5 | Network egress | Ollama proxy + URL allowlist + rate limiting | 🟡 Roadmapped |
+| 6 | Audit logging | Append-only JSONL with SHA-256 chain integrity | ✅ Shipped in v0.2.0 |
+| 7 | Configuration | Layer-7 audit config + cross-addon contract | ✅ Shipped in v0.2.0 |
 
-- **Repo:** esoteric1entity/agent-shield — *in development*
+- **Repo:** [esoteric1entity/agent-shield](https://github.com/esoteric1entity/agent-shield) — public
+- **PyPI:** [ai-agent-shield](https://pypi.org/project/ai-agent-shield/) — `pip install ai-agent-shield`
 - **License:** Apache-2.0
-- **Status:** v0.1.0 alpha — Layers 1 (skill/tool vetting) + 4 (bash_guard + write_guard) complete & tested, covered by Python + bash + cross-platform-equivalence tests; the other six layers are designed and roadmapped
-- **Roadmap:** ships with the agent-shield repo (in development)
+- **Status:** v0.2.0 alpha — Layers 1, 2, 3, 4, 6 & 7 shipped; Layers 0 & 5 roadmapped
 
 
 ---
 
 ## Project status
 
-**Memory branch v3.6.2 is live.** The Security branch is in development; its repo opens once final QA completes.
+**Memory branch v3.6.2 is live.** **Security branch v0.2.0 alpha is released** and available on [PyPI](https://pypi.org/project/ai-agent-shield/).
 
 | Item | Status |
 |---|---|
-| Memory branch v3.6.2 | ✅ Live |
-| Security branch — Layers 1 + 4 (v0.1.0 — vetting scanner + runtime hooks) | 🟡 Complete & tested — in development |
-| Security branch — Layers 0, 2–3 & 5–7 | ⏳ In development |
+| Memory branch — Ultimate Memory Stack | ✅ Released · v3.6.2 · 2026-06-16 · [GitHub](https://github.com/esoteric1entity/ultimate-memory-stack) · *(Classified: next release in development)* |
+| Security branch — agent-shield | ✅ Released · v0.2.0 alpha · 2026-06-24 · [PyPI](https://pypi.org/project/ai-agent-shield/) · [GitHub](https://github.com/esoteric1entity/agent-shield) |
+| Security branch — Layers 0 & 5 | 🟡 Roadmapped |
 | Umbrella landing page (this) | ✅ Complete |
 | Umbrella name + brand | ✅ Locked: PDuk Brainworks / The Agent Architect Stack |
 
@@ -149,7 +165,7 @@ The same discipline applies to code quality: releases are developed test-first, 
 - The personal-content boundary (what does NOT go in public repos)
 - The Tribunal Pattern (cross-deployment peer review)
 - **Memory branch** — [`ultimate-memory-stack`](https://github.com/esoteric1entity/ultimate-memory-stack)
-- **agent-shield** — `agent-shield` (in development)
+- **agent-shield** — [`agent-shield`](https://github.com/esoteric1entity/agent-shield) v0.2.0 on [PyPI](https://pypi.org/project/ai-agent-shield/)
 
 ---
 
