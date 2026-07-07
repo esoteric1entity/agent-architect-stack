@@ -8,10 +8,11 @@
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
 [![Status: Memory live](https://img.shields.io/badge/Memory-v3.6.2%20live-brightgreen.svg)](#project-status)
-[![Status: Security released](https://img.shields.io/badge/Security-v0.2.0%20released-brightgreen.svg)](https://pypi.org/project/ai-agent-shield/)
+[![Status: Security released](https://img.shields.io/badge/Security-v0.2.1%20released-brightgreen.svg)](https://pypi.org/project/ai-agent-shield/)
 [![Branches: 2 active](https://img.shields.io/badge/Branches-2%20active-lightgrey.svg)](#branches)
 
 **🌐 Live site:** [esoteric1entity.github.io/agent-architect-stack](https://esoteric1entity.github.io/agent-architect-stack/)
+**Explore:** [Mission](https://esoteric1entity.github.io/agent-architect-stack/mission.html) · [Ecosystem](https://esoteric1entity.github.io/agent-architect-stack/ecosystem.html) (curated, vetted tools directory) · [Contributors](https://esoteric1entity.github.io/agent-architect-stack/contributors.html)
 
 ---
 
@@ -22,7 +23,7 @@ The **Agent Architect Stack** is an open-source umbrella of **independently inst
 | Branch | What it does | Status | Repo |
 |---|---|---|---|
 | **Memory** (Ultimate Memory Stack) | *Enhanced* persistent memory + knowledge graphs + Obsidian vault + prompt compression | ✅ **Released** — v3.6.2 | [esoteric1entity/ultimate-memory-stack](https://github.com/esoteric1entity/ultimate-memory-stack) |
-| **Security** (agent-shield) | 8-layer defensive overlay: skill vetting, input sanitization, runtime hooks, network egress, audit logging | ✅ **Released** — v0.2.0 alpha (Layers 1, 2, 3, 4, 6 & 7 shipped); Layers 0 & 5 roadmapped | [esoteric1entity/agent-shield](https://github.com/esoteric1entity/agent-shield) — public · [PyPI](https://pypi.org/project/ai-agent-shield/) |
+| **Security** (agent-shield) | 8-layer defensive overlay: skill vetting, input sanitization, runtime hooks, network egress, audit logging | ✅ **Released** — v0.2.1 alpha (Layers 1, 2, 3, 4, 6 & 7 shipped); Layers 0 & 5 roadmapped | [esoteric1entity/agent-shield](https://github.com/esoteric1entity/agent-shield) — public · [PyPI](https://pypi.org/project/ai-agent-shield/) |
 
 **Pick-and-choose.** You can install just Memory, just Security, or both. They share conventions (config formats, audit log schema) but **no hard runtime dependency** — per the modular-consumer principle.
 
@@ -118,30 +119,30 @@ The 8 layers:
 | # | Layer | What it does | Status |
 |---|---|---|---|
 | 0 | Cron rotation | Automated schedule for hygiene tasks (audit rotation, key rotation) | 🟡 Roadmapped |
-| 1 | Skill vetting | 3-tier automated + 5-layer manual escalation for any new Skill/tool | ✅ Shipped in v0.2.0 |
-| 2 | Input sanitization | 4-layer sanitization (structural, content, encoding, context) | ✅ Shipped in v0.2.0 |
-| 3 | Structured prompts | Anti-prompt-injection via structured output enforcement | ✅ Shipped in v0.2.0 |
-| 4 | Runtime hooks | Bash + write guards (Python ports of the original bash hooks) | ✅ Shipped in v0.2.0 |
+| 1 | Skill vetting | 3-tier automated + 5-layer manual escalation for any new Skill/tool | ✅ Shipped |
+| 2 | Input sanitization | 4-layer sanitization (structural, content, encoding, context) | ✅ Shipped |
+| 3 | Structured prompts | Anti-prompt-injection via structured output enforcement | ✅ Shipped |
+| 4 | Runtime hooks | Bash + write guards (Python ports of the original bash hooks) | ✅ Shipped |
 | 5 | Network egress | Ollama proxy + URL allowlist + rate limiting | 🟡 Roadmapped |
-| 6 | Audit logging | Append-only JSONL with SHA-256 chain integrity | ✅ Shipped in v0.2.0 |
-| 7 | Configuration | Layer-7 audit config + cross-addon contract | ✅ Shipped in v0.2.0 |
+| 6 | Audit logging | Append-only JSONL with SHA-256 chain integrity | ✅ Shipped |
+| 7 | Configuration | Layer-7 audit config + cross-addon contract | ✅ Shipped |
 
 - **Repo:** [esoteric1entity/agent-shield](https://github.com/esoteric1entity/agent-shield) — public
 - **PyPI:** [ai-agent-shield](https://pypi.org/project/ai-agent-shield/) — `pip install ai-agent-shield`
 - **License:** Apache-2.0
-- **Status:** v0.2.0 alpha — Layers 1, 2, 3, 4, 6 & 7 shipped; Layers 0 & 5 roadmapped
+- **Status:** v0.2.1 alpha — Layers 1, 2, 3, 4, 6 & 7 shipped; Layers 0 & 5 roadmapped
 
 
 ---
 
 ## Project status
 
-**Memory branch v3.6.2 is live.** **Security branch v0.2.0 alpha is released** and available on [PyPI](https://pypi.org/project/ai-agent-shield/).
+**Memory branch v3.6.2 is live.** **Security branch v0.2.1 alpha is released** and available on [PyPI](https://pypi.org/project/ai-agent-shield/).
 
 | Item | Status |
 |---|---|
-| Memory branch — Ultimate Memory Stack | ✅ Released · v3.6.2 · 2026-06-16 · [GitHub](https://github.com/esoteric1entity/ultimate-memory-stack) · *(Classified: next release in development)* |
-| Security branch — agent-shield | ✅ Released · v0.2.0 alpha · 2026-06-24 · [PyPI](https://pypi.org/project/ai-agent-shield/) · [GitHub](https://github.com/esoteric1entity/agent-shield) |
+| Memory branch — Ultimate Memory Stack | ✅ Released · v3.6.2 · 2026-06-16 · [GitHub](https://github.com/esoteric1entity/ultimate-memory-stack) · *(Next release in progress)* |
+| Security branch — agent-shield | ✅ Released · v0.2.1 alpha · 2026-07-05 · [PyPI](https://pypi.org/project/ai-agent-shield/) · [GitHub](https://github.com/esoteric1entity/agent-shield) |
 | Security branch — Layers 0 & 5 | 🟡 Roadmapped |
 | Future branches | 🟡 In ideation & design |
 | Umbrella landing page (this) | ✅ Complete |
@@ -166,7 +167,8 @@ The same discipline applies to code quality: releases are developed test-first, 
 - The personal-content boundary (what does NOT go in public repos)
 - The Tribunal Pattern (cross-deployment peer review)
 - **Memory branch** — [`ultimate-memory-stack`](https://github.com/esoteric1entity/ultimate-memory-stack)
-- **agent-shield** — [`agent-shield`](https://github.com/esoteric1entity/agent-shield) v0.2.0 on [PyPI](https://pypi.org/project/ai-agent-shield/)
+- **agent-shield** — [`agent-shield`](https://github.com/esoteric1entity/agent-shield) v0.2.1 on [PyPI](https://pypi.org/project/ai-agent-shield/)
+- **Ecosystem directory** — curated, vetted tools & resources across the AI-agent space; see the [Ecosystem page](https://esoteric1entity.github.io/agent-architect-stack/ecosystem.html)
 
 ---
 
