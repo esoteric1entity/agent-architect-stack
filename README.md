@@ -1,8 +1,12 @@
 # The Agent Architect Stack
 
-> **Modular infrastructure for AI agents. *Enhanced* persistent memory, secure runtime, and more — install what you need, when you need it.**
+> **Modular Infrastructure for AI Agents**
 >
-> Built-in harness memory is session-bound and opaque; this stack gives you durable, inspectable infrastructure you actually own.
+> A memory vault that grows into a knowledge graph, your agent's *second brain*, and a security runtime — with more to come. Install what you need, when you need it.
+>
+> **Own the memory. Own the guardrails. Own the *edge*.**
+>
+> Choose your harness. Built for Claude Code & OpenClaw variants today!
 >
 > *A **PDuk Brainworks** project. Apache-2.0 - (c) 2026 esoteric1entity.*
 
@@ -51,21 +55,56 @@ If you've ever thought "I wish this agent framework had a real memory layer" or 
 
 ## Quick start
 
-### Memory branch (the breadwinner)
+Two branches, two install paths. Pick the branch you want; each is independent.
+
+### Memory branch — four ways in
+
+**Door 1 — Script (Linux / macOS / WSL · Windows)**
 
 ```bash
-# Clone the Memory branch repo
 git clone https://github.com/esoteric1entity/ultimate-memory-stack.git
 
-# Install (Linux / macOS / WSL)
 cd /path/to/your/workspace            # where the memory stack should live
 /path/to/ultimate-memory-stack/setup-memory-stack.sh    # or: --target <dir>
-
-# Verify
 /path/to/ultimate-memory-stack/verify.sh
 
+# Flags: --minimal · --addon <name> · --no-templater · --compliance=<preset> · --yes
 # Windows: setup-memory-stack.ps1 (same options, PowerShell-style: -Minimal, -Addon, -Compliance …; needs Python 3.8+)
 ```
+
+**Door 2 — Tell your agent (any harness)**
+
+```bash
+git clone https://github.com/esoteric1entity/ultimate-memory-stack.git
+
+# Then tell your agent — Claude Code, OpenClaw, or any capable harness:
+#   "Install this — read INSTALL_AGENT.md and follow it."
+```
+
+**Door 3 — Claude Code marketplace**
+
+> Run these inside Claude Code, not your shell — Claude Code must be installed & authenticated.
+
+```bash
+# 1. In Claude Code — add the marketplace + install the plugin
+/plugin marketplace add esoteric1entity/ultimate-memory-stack
+/plugin install ultimate-memory-stack@ultimate-memory-stack
+
+# 2. Exit Claude Code (/exit or Ctrl-D)
+# 3. In your shell: cd to the project where the memory should live
+# 4. Relaunch Claude Code from inside that directory, then run:
+/install-ultimate-memory-stack
+```
+
+> Note: existing `memory/` store in that project? Back it up first — or use the script/agent door, which preserves it automatically.
+
+**Door 4 — no tooling at all**
+
+Drag the `common-specs/` and `general-edition/` folders into your workspace, then paste [The Prompt](https://github.com/esoteric1entity/ultimate-memory-stack/blob/main/common-specs/BOOTSTRAP_PROMPT.md#the-activation-prompt) into your agent — it runs the setup wizard. Full manual steps: the [Install Guide](https://github.com/esoteric1entity/ultimate-memory-stack/blob/main/INSTALL.md).
+
+Whatever the door, the installer refuses to mix your memory into the package tree and records exactly what it did in a manifest.
+
+**~5 minutes to a working memory layer.** The installer auto-detects whether you're running Claude Code, OpenClaw, or another harness; installs the Skills into the right location; and verifies the install end-to-end.
 
 ### Security branch (agent-shield)
 
@@ -78,16 +117,6 @@ python -c "import agent_shield; print(agent_shield.__version__)"
 ```
 
 Then wire the guards into your harness — see [INSTALL_AGENT.md](https://github.com/esoteric1entity/agent-shield/blob/main/INSTALL_AGENT.md) for consent-gated steps and verification.
-
-**~5 minutes to a working memory layer.** The installer auto-detects whether you're running Claude Code, OpenClaw, or another harness; installs the Skills into the right location; and verifies the install end-to-end.
-
-For modular install options:
-
-```bash
-/path/to/ultimate-memory-stack/setup-memory-stack.sh --minimal              # core only
-/path/to/ultimate-memory-stack/setup-memory-stack.sh --addon memory-vault   # add a specific addon
-/path/to/ultimate-memory-stack/setup-memory-stack.sh --no-templater         # skip Templater auto-enable
-```
 
 ---
 
