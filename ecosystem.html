@@ -1,0 +1,725 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Ecosystem · PDuk Brainworks — Agent Architect Stack</title>
+  <meta name="description" content="Harnesses, models, and hardware in the agent ecosystem worth knowing about — curated, categorized, no hype.">
+  <style>
+    /* =========================================================
+       Agent Architect Stack — Landing Page v0.1 (polished)
+       Refined through tribunal review, 2026-06.
+       - Self-contained: NO JS, NO external resources (system fonts, CSS-only backdrop)
+       - Dark theme — Brainworks aesthetic; light mode deferred
+       - Copy and visual treatment elevated to dev-tool-debut quality
+       - Brand tokens (§--brand*) are name-agnostic: swap ~8 vars to rebrand
+       - Content boundary: no personal/business content
+       ========================================================= */
+
+    :root {
+      /* --- DARK theme — Brainworks / skunkworks aesthetic (cockpit-at-night) --- */
+      --brand:        #2dd4bf;   /* bright teal — pops on near-black (~9:1 AAA) */
+      --brand-strong: #5eead4;   /* hover (lighter on dark) */
+      --brand-soft:   rgba(45,212,191,0.12);
+      --brand-ring:   #2dd4bf;
+      --accent:       #fbbf24;   /* amber */
+      --accent-soft:  rgba(251,191,36,0.12);
+      --violet:       #a78bfa;
+      --violet-soft:  rgba(167,139,250,0.14);
+
+      --ink:        #e9f2ef;     /* light text on dark — ~16:1 */
+      --muted:      #9fb4ae;     /* secondary — ~7:1 (AA) */
+      --soft:       #76918a;
+      --line:       #1f2c29;     /* borders */
+      --line-strong:#33473f;
+      --bg:         #080d0c;     /* near-black, faint teal cast */
+      --surface:    #0f1716;     /* cards */
+      --surface-alt:#0b1211;     /* alternating sections */
+      --code-bg:    #060c0b;     /* terminal surface */
+      --code-fg:    #d6e6e2;
+
+      --ok:   #5eead4; --ok-bg: rgba(45,212,191,0.14); --ok-bd: rgba(45,212,191,0.45);
+      --warn: #fcd34d; --warn-bg: rgba(251,191,36,0.14); --warn-bd: rgba(251,191,36,0.45);
+      --fut:  #c4b5fd; --fut-bg: rgba(167,139,250,0.14); --fut-bd: rgba(167,139,250,0.45);
+
+      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+      --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
+
+      /* --- spacing scale (replaces flat 24px) --- */
+      --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px; --s5: 24px;
+      --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
+
+      --radius: 10px;
+      --radius-sm: 7px;
+      --max: 1120px;
+      --shadow-sm: 0 1px 2px rgba(0,0,0,.45);
+      --shadow-md: 0 8px 24px rgba(0,0,0,.55);
+      --shadow-lg: 0 16px 48px rgba(0,0,0,.65), 0 0 0 1px rgba(45,212,191,0.14);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: var(--font-sans);
+      color: var(--ink);
+      background: var(--bg);
+      line-height: 1.65;
+      -webkit-font-smoothing: antialiased;
+      text-rendering: optimizeLegibility;
+    }
+
+    a { color: var(--brand); text-decoration: none; }
+    a:hover { color: var(--brand-strong); text-decoration: underline; }
+
+    /* visible focus for keyboard users */
+    a:focus-visible, .btn:focus-visible, .skip:focus-visible {
+      outline: 3px solid var(--brand-ring);
+      outline-offset: 2px;
+      border-radius: 4px;
+    }
+
+    code {
+      font-family: var(--font-mono);
+      font-size: 0.9em;
+      background: var(--brand-soft);
+      color: var(--brand-strong);
+      padding: 0.12em 0.4em;
+      border-radius: 5px;
+    }
+
+    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--s5); }
+
+    /* skip link */
+    .skip {
+      position: absolute; left: -9999px; top: 8px; z-index: 100;
+      background: var(--surface); color: var(--ink); border: 1px solid var(--brand-ring);
+      padding: 10px 16px; border-radius: var(--radius-sm);
+    }
+    .skip:focus { left: 16px; }
+
+    /* ---- Header / nav ---- */
+    header {
+      border-bottom: 1px solid var(--line);
+      background: rgba(255,255,255,0.85);
+      backdrop-filter: saturate(140%) blur(8px);
+      position: sticky; top: 0; z-index: 10;
+    }
+    .nav-inner {
+      display: flex; align-items: center; justify-content: space-between;
+      padding: var(--s4) var(--s5); max-width: var(--max); margin: 0 auto;
+    }
+    .brand { font-weight: 800; font-size: 1.05rem; color: var(--ink); letter-spacing: -0.01em; }
+    .brand .glyph { color: var(--brand); }
+    .nav-links { display: flex; align-items: center; gap: var(--s5); font-size: 0.95rem; }
+    .nav-links a { color: var(--muted); font-weight: 500; }
+    .nav-links a:hover { color: var(--brand); text-decoration: none; }
+
+    /* ---- Hero ---- */
+    .hero {
+      position: relative;
+      padding: var(--s9) 0 var(--s8);
+      text-align: center;
+      overflow: hidden;
+      background:
+        radial-gradient(60% 50% at 50% 0%, rgba(15,118,110,0.08) 0%, rgba(15,118,110,0) 70%),
+        linear-gradient(180deg, var(--surface-alt) 0%, #ffffff 70%);
+    }
+    /* CSS-only dot grid backdrop (no image) */
+    .hero::before {
+      content: ""; position: absolute; inset: 0; z-index: 0;
+      background-image: radial-gradient(rgba(15,118,110,0.10) 1px, transparent 1px);
+      background-size: 22px 22px;
+      -webkit-mask-image: radial-gradient(70% 60% at 50% 30%, #000 0%, transparent 75%);
+              mask-image: radial-gradient(70% 60% at 50% 30%, #000 0%, transparent 75%);
+    }
+    .hero .container { position: relative; z-index: 1; }
+    .eyebrow {
+      display: inline-block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em;
+      text-transform: uppercase; color: var(--brand-strong);
+      background: var(--brand-soft); border: 1px solid var(--brand-ring);
+      padding: 5px 12px; border-radius: 999px; margin-bottom: var(--s5);
+    }
+    .hero h1 {
+      font-size: 3.75rem; font-weight: 800; line-height: 1.05;
+      letter-spacing: -0.03em; margin-bottom: var(--s5);
+      max-width: none; margin-left: auto; margin-right: auto;
+    }
+    .hero h1 .h1-for {
+      display: block; font-size: 1.05rem; font-weight: 400; font-style: italic;
+      color: var(--soft); letter-spacing: 0.02em; line-height: 1.1; margin: 6px 0;
+    }
+    .hero .tagline {
+      font-size: 1.3rem; color: var(--muted); max-width: 62ch;
+      margin: 0 auto var(--s7); line-height: 1.55;
+    }
+    .hero .tagline .tag-lead { font-size: 1.25rem; font-weight: 500; color: var(--ink); line-height: 1.5; }
+    .hero .tagline .tag-sub { display: inline-block; margin-top: 14px; font-size: 0.95rem; color: var(--muted); max-width: 58ch; }
+    .hero .cta { display: flex; gap: var(--s4); justify-content: center; flex-wrap: wrap; }
+
+    .btn {
+      display: inline-flex; align-items: center; justify-content: center;
+      min-height: 46px; padding: 12px 26px; border-radius: var(--radius-sm);
+      font-weight: 650; font-size: 1rem; cursor: pointer; white-space: nowrap;
+      border: 1px solid transparent; transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
+      background-image: linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 45%);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.12) inset, 0 1px 2px rgba(0,0,0,0.35);
+    }
+    .btn-primary { background-color: var(--brand); color: #fff; box-shadow: 0 1px 0 rgba(255,255,255,0.22) inset, var(--shadow-sm); }
+    .btn-primary:hover { background-color: var(--brand-strong); color: #fff; text-decoration: none; transform: translateY(-1px); box-shadow: 0 1px 0 rgba(255,255,255,0.26) inset, var(--shadow-md); }
+    .btn-primary:active { transform: translateY(0) scale(0.98); box-shadow: 0 1px 0 rgba(255,255,255,0.14) inset, var(--shadow-sm); }
+    .btn-secondary { background-color: var(--surface); color: var(--ink); border-color: var(--line-strong); }
+    .btn-secondary:hover { background-color: var(--surface-alt); color: var(--ink); text-decoration: none; transform: translateY(-1px); }
+    .btn-secondary:active { transform: translateY(0) scale(0.98); }
+
+    .badges { display: flex; gap: var(--s2); justify-content: center; margin-top: var(--s6); flex-wrap: wrap; }
+    .badge {
+      display: inline-flex; align-items: center; gap: 6px;
+      padding: 5px 13px; border-radius: 999px; font-size: 0.8rem; font-weight: 600;
+      border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+    }
+    .badge-license { background: var(--brand-soft); color: var(--brand-strong); border-color: var(--brand-ring); }
+    .badge-status  { background: var(--ok-bg); color: var(--ok); border-color: var(--ok-bd); }
+    .badge-branches{ background: var(--surface-alt); color: var(--soft); border-color: var(--line); }
+
+    /* ---- Section common ---- */
+    section { padding: var(--s9) 0; }
+    section.alt { background: var(--surface-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
+    section h2 { font-size: 2.25rem; font-weight: 750; letter-spacing: -0.02em; margin-bottom: var(--s4); text-align: center; }
+    section .section-intro { font-size: 1.1rem; color: var(--muted); max-width: 68ch; margin: 0 auto var(--s7); text-align: center; text-wrap: balance; }
+
+    /* ---- What this is ---- */
+    .what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); }
+    .what-card {
+      background: var(--surface); border: 1px solid var(--line);
+      border-left: 4px solid var(--brand); border-radius: var(--radius);
+      padding: var(--s6); box-shadow: var(--shadow-sm);
+    }
+    .what-card:nth-child(3) {
+      grid-column: 1 / -1;
+      background: var(--surface); border: 1px solid var(--line);
+      border-left: 4px solid var(--brand); border-radius: var(--radius);
+      padding: var(--s6);
+    }
+    .what-card:nth-child(3) h3 { margin-bottom: var(--s3); }
+    .what-card:nth-child(3) ul { column-count: 2; column-gap: var(--s6); }
+    .what-card:nth-child(4) {
+      grid-column: 1 / -1;
+      background: var(--brand-soft); border: 1px solid var(--brand-ring); border-left: 4px solid var(--brand);
+      text-align: center;
+    }
+    .what-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: var(--s3); }
+    .what-card p { color: var(--muted); font-size: 0.97rem; margin-bottom: var(--s2); }
+    .what-card ul { list-style: none; margin-top: var(--s2); }
+    .what-card li { padding: var(--s2) 0; border-bottom: 1px solid var(--surface-alt); color: var(--muted); font-size: 0.95rem; }
+    .what-card li:last-child { border-bottom: none; }
+    .what-card li strong, .what-card em { color: var(--ink); font-style: normal; font-weight: 650; }
+    .what-card:nth-child(4) p { color: var(--ink); }
+
+    /* ---- Architecture tree ---- */
+    .tree { display: flex; flex-direction: column; align-items: center; gap: var(--s5); padding: var(--s5) 0; }
+    .tree-node {
+      padding: var(--s3) var(--s5); background: var(--surface); border: 1px solid var(--line-strong);
+      border-radius: var(--radius); text-align: center; min-width: 220px; box-shadow: var(--shadow-sm);
+    }
+    .tree-node.umbrella { background: var(--ink); color: #fff; border-color: var(--ink); font-weight: 750; font-size: 1.1rem; letter-spacing: -0.01em; }
+    .tree-node.orchestrator { background: var(--brand); color: #fff; border-color: var(--brand); font-weight: 650; }
+    .tree-node .node-label { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
+    .tree-node.umbrella .node-label { color: rgba(255,255,255,0.72); }
+    .tree-node.orchestrator .node-label { color: rgba(255,255,255,0.85); }
+    .tree-connector { width: 2px; height: var(--s5); background: var(--line-strong); }
+    .tree-branches { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s4); width: 100%; max-width: 900px; position: relative; }
+    .tree-branches::before {
+      content: ""; position: absolute; top: calc(-1 * var(--s5)); left: 16.67%; right: 16.67%;
+      height: 2px; background: var(--line-strong);
+    }
+    .tree-branch {
+      position: relative; padding: var(--s4); background: var(--surface);
+      border: 1px solid var(--line); border-radius: var(--radius); text-align: center; box-shadow: var(--shadow-sm);
+    }
+    .tree-branch::before {
+      content: ""; position: absolute; top: calc(-1 * var(--s5)); left: 50%; transform: translateX(-50%);
+      width: 2px; height: var(--s5); background: var(--line-strong);
+    }
+    .tree-branch-name { font-weight: 700; font-size: 1rem; }
+    .tree-branch-meta { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
+
+    /* ---- Branch cards ---- */
+    .branches-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s5); }
+    .branch-card {
+      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
+      padding: var(--s6); box-shadow: var(--shadow-sm); transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .branch-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
+    .branch-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: var(--s2); display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; }
+    .branch-card .branch-tagline { color: var(--muted); font-size: 1rem; margin-bottom: var(--s4); }
+    .status-pill { display: inline-block; padding: 3px 11px; border-radius: 999px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+    .status-ready { background: var(--ok-bg); color: var(--ok); border: 1px solid var(--ok-bd); }
+    .status-prerelease { background: var(--warn-bg); color: var(--warn); border: 1px solid var(--warn-bd); }
+    .status-future { background: var(--fut-bg); color: var(--fut); border: 1px solid var(--fut-bd); }
+    .branch-card ul { list-style: none; margin: var(--s4) 0; }
+    .branch-card li { padding: var(--s2) 0; border-bottom: 1px solid var(--surface-alt); font-size: 0.94rem; padding-left: 22px; position: relative; }
+    .branch-card li::before { content: "▸"; color: var(--brand); position: absolute; left: 0; }
+    .branch-card li:last-child { border-bottom: none; }
+    .branch-card .meta { font-size: 0.85rem; color: var(--soft); margin-top: var(--s4); padding-top: var(--s4); border-top: 1px solid var(--surface-alt); }
+    .branch-card .meta strong { color: var(--muted); }
+
+    /* ---- Why pick-and-choose ---- */
+    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s5); }
+    .why-card { padding: var(--s5); text-align: center; }
+    .why-card .icon {
+      width: 44px; height: 44px; border-radius: var(--radius-sm);
+      background: var(--brand); color: #fff; display: flex; align-items: center; justify-content: center;
+      font-weight: 800; font-size: 1.2rem; margin: 0 auto var(--s4); box-shadow: var(--shadow-sm);
+    }
+    .why-card h4 { font-size: 1.12rem; font-weight: 700; margin-bottom: var(--s2); }
+    .why-card p { color: var(--muted); font-size: 0.96rem; }
+
+    /* ---- Code blocks (terminal feel) ---- */
+    .code-head { font-size: 0.95rem; font-weight: 650; margin-bottom: var(--s3); }
+    pre.term {
+      background: var(--code-bg); color: var(--code-fg); border-radius: var(--radius);
+      padding: 0; overflow: hidden; margin-bottom: var(--s5); box-shadow: var(--shadow-md);
+      border: 1px solid #082b27;
+    }
+    pre.term .bar { display: flex; gap: 7px; padding: 12px 16px; background: #0a1916; border-bottom: 1px solid #082b27; }
+    pre.term .bar i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
+    pre.term .bar .r { background: #ff5f56; } pre.term .bar .y { background: #ffbd2e; } pre.term .bar .g { background: #27c93f; }
+    pre.term code { display: block; background: transparent; color: var(--code-fg); padding: 18px 20px; font-size: 0.9rem; line-height: 1.7; overflow-x: auto; }
+    pre.term code .c { color: #6fae9f; } /* comments */
+
+    /* ---- Status table ---- */
+    .status-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
+    .status-table th { text-align: left; padding: 14px 18px; background: var(--brand-soft); color: var(--brand-strong); font-size: 0.95rem; border-bottom: 1px solid var(--line); }
+    .status-table td { padding: 13px 18px; border-bottom: 1px solid var(--surface-alt); }
+    .status-table tr:nth-child(even) td { background: var(--surface-alt); }
+    .status-table tr:last-child td { border-bottom: none; }
+
+    /* Original Work & Influences table — vertical group rail + tonal tints */
+    .influences-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: var(--s5); table-layout: fixed; }
+    .influences-table th { text-align: left; padding: 14px 16px; background: var(--brand-soft); color: var(--brand-strong); font-size: 0.92rem; border-bottom: 1px solid var(--line); font-weight: 650; }
+    .influences-table th.th-rail { width: 38px; padding: 0; }
+    .influences-table th.th-component { width: 20%; }
+    .influences-table th.th-origin { width: 21%; text-align: center; }
+    .influences-table td { padding: 14px 16px; border-bottom: 1px solid var(--surface-alt); font-size: 0.92rem; color: var(--muted); vertical-align: middle; line-height: 1.55; }
+    .influences-table td:last-child { text-align: center; }
+    .influences-table td.name { color: var(--ink); font-weight: 600; }
+    .influences-table td.rail { padding: 10px 5px; text-align: center; vertical-align: middle; }
+    .influences-table td.rail span { display: inline-block; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em; white-space: nowrap; }
+    .influences-table tr.g-umbrella td { background: rgba(45,212,191,0.055); }
+    .influences-table tr.g-memory td { background: rgba(45,212,191,0.03); }
+    .influences-table tr.g-security td { background: rgba(45,212,191,0.022); }
+    .influences-table td.rail-umbrella { color: var(--brand); border-right: 2px solid var(--brand); }
+    .influences-table td.rail-memory { color: var(--brand-strong); border-right: 2px solid var(--brand-strong); }
+    .influences-table td.rail-security { color: var(--soft); border-right: 2px solid var(--soft); }
+    .influences-table .pill-original { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; background: var(--brand); color: #04342c; }
+    .influences-table tr:last-child td { border-bottom: none; }
+    .influences-table strong { color: var(--brand-strong); font-weight: 650; }
+    .influences-table em { color: var(--ink); font-style: normal; }
+    .section-outro { margin-top: var(--s7); font-style: italic; color: var(--muted); text-align: center; max-width: 720px; margin-left: auto; margin-right: auto; }
+    /* Original Work intro — full-width editorial prose (spans the page; no orphan last-words) */
+    .influences-intro { max-width: none; margin: 0 0 var(--s7); text-align: left; }
+    .influences-intro p { font-size: 1.1rem; color: var(--muted); line-height: 1.65; text-wrap: pretty; }
+    .influences-intro p:first-child { margin-bottom: var(--s4); }
+    .influences-intro strong { color: var(--brand-strong); font-weight: 650; }
+
+    /* ---- Footer ---- */
+    footer { border-top: 1px solid var(--line); padding: var(--s7) 0; background: var(--surface-alt); color: var(--soft); font-size: 0.9rem; }
+    footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--s4); }
+    footer .footer-links { display: flex; gap: var(--s5); }
+    footer .creds { margin-top: var(--s2); font-size: 0.82rem; color: var(--soft); }
+    footer .creds span { color: var(--brand-strong); font-weight: 600; }
+    footer .thanks { margin-top: var(--s2); font-size: 0.82rem; color: var(--soft); }
+    footer .thanks a { color: var(--brand); text-decoration: none; }
+    footer .thanks a:hover { text-decoration: underline; }
+
+    /* ---- Responsive: tablet (1024) + mobile (768) ---- */
+    @media (max-width: 1024px) {
+      .hero h1 { font-size: 2.9rem; }
+      .branches-grid, .why-grid { grid-template-columns: repeat(2, 1fr); }
+      .tree-branches { grid-template-columns: repeat(2, 1fr); }
+      .tree-branches::before { display: none; }
+      .tree-branch::before { display: none; }
+    }
+    @media (max-width: 768px) {
+      :root { --s9: 64px; --s8: 48px; }
+      .hero h1 { font-size: 1.85rem; }
+      .hero .tagline { font-size: 1.08rem; }
+      .what-grid, .branches-grid, .why-grid, .tree-branches { grid-template-columns: 1fr; }
+      .influences-table { font-size: 0.85rem; }
+      .influences-table th, .influences-table td { padding: 10px 12px; }
+      .influences-table td.rail { padding: 8px 3px; }
+      .influences-table th.th-component { width: 24%; }
+      .what-card:nth-child(4) { grid-column: 1; }
+      .nav-links { display: none; }
+      footer .container { flex-direction: column; align-items: flex-start; }
+    }
+
+    /* ---- Reduced motion ---- */
+    @media (prefers-reduced-motion: reduce) {
+      html { scroll-behavior: auto; }
+      *, *::before, *::after { transition: none !important; }
+      .btn:hover, .branch-card:hover { transform: none !important; }
+    }
+
+    /* ===================== DARK-THEME OVERRIDES ===================== */
+    /* token flip handles ~90%; these fix hardcoded-light values + #fff-on-brand */
+    header { background: rgba(8,13,12,0.82); }
+    .btn-primary, .btn-primary:hover { color: #06100e; }   /* dark text on bright teal */
+    .why-card .icon { color: #06100e; }
+    .tree-node.orchestrator { color: #06100e; }
+    .tree-node.orchestrator .node-label { color: rgba(6,16,14,0.72); }
+    .tree-node.umbrella {
+      background: rgba(45,212,191,0.10); border-color: var(--brand); color: var(--ink);
+      box-shadow: 0 0 26px rgba(45,212,191,0.18);
+    }
+    .tree-node.umbrella .node-label { color: var(--muted); }
+
+    /* Hero — dark atmospheric backdrop (CSS-only, no external image) */
+    .hero {
+      background:
+        radial-gradient(45% 42% at 50% 6%, rgba(45,212,191,0.18) 0%, rgba(45,212,191,0) 70%),
+        radial-gradient(55% 50% at 88% 0%, rgba(167,139,250,0.10) 0%, rgba(167,139,250,0) 60%),
+        linear-gradient(180deg, #0a1312 0%, var(--bg) 60%);
+    }
+    .hero::before {
+      background-image: radial-gradient(rgba(45,212,191,0.16) 1px, transparent 1px);
+      background-size: 26px 26px;
+    }
+
+    /* Brainworks inline-SVG logo mark */
+    .logo { display: inline-flex; align-items: center; gap: 10px; }
+    .logo svg { width: 26px; height: 26px; flex: none; }
+    .logo-hero { display: flex; justify-content: center; margin-bottom: var(--s5); }
+    .logo-hero svg { width: 66px; height: 66px; filter: drop-shadow(0 0 16px rgba(45,212,191,0.45)); }
+    .maker-line { font-size: 0.95rem; color: var(--muted); margin-top: var(--s5); }
+    .maker-line strong { color: var(--brand-strong); font-weight: 700; letter-spacing: 0.01em; }
+
+    /* Mission nav pill (matches index.html) */
+    .nav-links .nav-mission {
+      color: var(--accent); font-weight: 700; white-space: nowrap; flex: none;
+      padding: 3px 12px; border: 1px solid var(--warn-bd); border-radius: 999px;
+      background-color: var(--accent-soft);
+      background-image: linear-gradient(180deg, rgba(255,255,255,0.16) 0%, rgba(255,255,255,0) 55%);
+      box-shadow: 0 1px 0 rgba(255,255,255,0.15) inset, 0 1px 3px rgba(0,0,0,0.25);
+      position: relative; overflow: hidden; transition: transform .15s ease, box-shadow .15s ease;
+    }
+    .nav-links .nav-mission:hover { color: #fde68a; border-color: var(--accent); text-decoration: none; transform: translateY(-1px); box-shadow: 0 1px 0 rgba(255,255,255,0.2) inset, 0 3px 8px rgba(0,0,0,0.3); }
+    .nav-mission::after {
+      content: ""; position: absolute; top: 0; left: -80%;
+      width: 55%; height: 100%;
+      background: linear-gradient(105deg, transparent 0%, rgba(253,230,138,0.35) 50%, transparent 100%);
+      transform: skewX(-20deg);
+      animation: mission-glint 7s ease-in-out infinite;
+      pointer-events: none;
+    }
+    /* Ecosystem nav pill — modest violet accent, no glint (Mission stays the one animated pill) */
+    .nav-links .nav-ecosystem {
+      color: var(--violet); font-weight: 650; white-space: nowrap; flex: none;
+      padding: 3px 12px; border: 1px solid rgba(167,139,250,0.4); border-radius: 999px;
+      background-color: var(--violet-soft);
+      background-image: linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0) 55%);
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
+    }
+    .nav-links .nav-ecosystem:hover { color: #c9bffc; border-color: var(--violet); text-decoration: none; transform: translateY(-1px); box-shadow: 0 3px 8px rgba(0,0,0,0.25); }
+
+    /* Contributors nav pill — neutral outlined "button", no color accent (Mission = gold, Ecosystem = violet, this = plain) */
+    .nav-links .nav-contributors {
+      font-weight: 600; white-space: nowrap; flex: none;
+      padding: 3px 12px; border: 1px solid var(--line-strong); border-radius: 999px;
+      background-color: var(--surface);
+      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, color .15s ease;
+    }
+    .nav-links .nav-contributors:hover { color: var(--brand); border-color: var(--brand-ring); text-decoration: none; transform: translateY(-1px); box-shadow: 0 3px 8px rgba(0,0,0,0.2); }
+
+    @keyframes mission-glint {
+      0%, 86% { left: -80%; }
+      96%, 100% { left: 130%; }
+    }
+    @media (prefers-reduced-motion: reduce) { .nav-mission::after { animation: none; } }
+
+    /* Mission layout: text + sticky anthem player; collapses on small screens */
+    .mission-layout { display: grid; grid-template-columns: minmax(0,1fr) 400px; gap: var(--s7); align-items: start; }
+    .anthem-sticky { position: sticky; top: var(--s5); }
+    .anthem-frame { min-height: 200px; } /* YouTube ToS floor: player never below 200px tall; letterboxes on narrow screens */
+    @media (max-width: 860px) {
+      .mission-layout { grid-template-columns: 1fr; }
+      .anthem-sticky { position: static; order: -1; }
+    }
+
+    /* Ecosystem page: collapsible categories (native <details>, no JS) + jump nav */
+    .eco-jumpnav { display: flex; flex-wrap: wrap; gap: var(--s2); margin-bottom: var(--s7); }
+    .eco-jumpnav a {
+      font-size: 0.85rem; padding: 5px 13px; border-radius: 999px;
+      border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+    }
+    .eco-jumpnav a:hover { color: var(--brand); border-color: var(--brand-ring); text-decoration: none; }
+    details > summary { list-style: none; }
+    details > summary::-webkit-details-marker { display: none; }
+    details > summary::before {
+      content: "▸"; display: inline-block; color: var(--soft);
+      transition: transform .15s ease; margin-right: 2px;
+    }
+    details[open] > summary::before { transform: rotate(90deg); }
+  </style>
+</head>
+<body>
+
+  <a href="#main" class="skip">Skip to content</a>
+
+  <header>
+    <div class="nav-inner">
+      <a href="index.html" class="brand logo"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 2 28 9 28 23 16 30 4 23 4 9Z" stroke="#2dd4bf" stroke-width="1.6" fill="rgba(45,212,191,0.07)"/><circle cx="16" cy="11" r="2.1" fill="#2dd4bf"/><circle cx="11" cy="20" r="2.1" fill="#5eead4"/><circle cx="21" cy="20" r="2.1" fill="#fbbf24"/><path d="M16 11 11 20M16 11 21 20M11 20 21 20" stroke="#2dd4bf" stroke-width="1.2" opacity="0.6"/></svg> PDuk Brainworks <span style="color:var(--muted);font-weight:500;font-size:0.82rem;">/ Agent Architect Stack</span></a>
+      <nav class="nav-links" aria-label="Primary">
+        <a href="mission.html" class="nav-mission">✦ Mission</a>
+        <a href="index.html#branches">Branches</a>
+        <a href="index.html#quickstart">Quick Start</a>
+        <a href="index.html#status">Status</a>
+        <a href="ecosystem.html" class="nav-ecosystem" aria-current="page">Ecosystem</a>
+        <a href="contributors.html" class="nav-contributors">Contributors</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+
+  <section class="hero" style="padding-bottom: var(--s7);">
+    <div class="container">
+      <span class="eyebrow">Ecosystem</span>
+      <h1 style="font-size:2.9rem;">What we're <em style="color:var(--brand);">watching</em>.</h1>
+      <p class="tagline" style="margin-bottom:0;"><span class="tag-sub" style="max-width:none;"><a href="index.html">← Back to the stack</a></span></p>
+    </div>
+  </section>
+
+  <section>
+    <div class="container" style="max-width:860px;">
+      <p style="font-size:1.08rem; line-height:1.75; color:var(--muted); margin-bottom:var(--s5);">Harnesses, models, and hardware in the agent ecosystem worth knowing about. Some of this we run ourselves; the rest we've checked out and found legitimate — real, functioning, and worth your time. We don't list vaporware, and nobody pays to be on this page.</p>
+
+      <nav class="eco-jumpnav" aria-label="Jump to category">
+        <a href="#harnesses">Harnesses</a>
+        <a href="#models">Models &amp; inference</a>
+        <a href="#marketplaces">Marketplaces &amp; Skill Hubs</a>
+        <a href="#developer-platforms">Developer Platforms</a>
+        <a href="#context-retrieval">Context &amp; Retrieval</a>
+        <a href="#biotech">Biotech &amp; Life Sciences</a>
+        <a href="#benchmarks">Benchmarks</a>
+        <a href="#hardware">Hardware</a>
+        <a href="#learning">Learning</a>
+      </nav>
+
+      <details open id="harnesses" style="margin-bottom:var(--s7);">
+        <summary style="cursor:pointer; list-style:none; display:flex; align-items:baseline; gap:10px;"><h2 style="font-size:1.4rem; margin-bottom:var(--s2);">Harnesses</h2><span style="color:var(--soft); font-size:0.85rem; font-weight:400;">(5)</span></summary>
+        <p style="color:var(--soft); font-size:0.9rem; margin-bottom:var(--s5);">The agent runtimes that drive tool calls, memory, and channels — this stack is built to work with any of them.</p>
+
+        <div style="display:grid; gap:var(--s4);">
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://claude.com/product/claude-code" target="_blank" rel="noopener">Claude Code</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">The honest admission: this entire stack is built and shipped inside it, every day. Big-company product, undeniably the tool in our own hands.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener">OpenClaw</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">The harness we build our own adapters against — both Memory and Security branches ship official OpenClaw integrations.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes Agent</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">Nous Research's memory-first alternative — agents that build and refine their own skills over time. MIT-licensed.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://opencode.ai/" target="_blank" rel="noopener">OpenCode</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">A terminal-native coding agent — MIT-licensed, LSP-aware, works with any model provider you point it at.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.nvidia.com/en-us/ai/nemoclaw/" target="_blank" rel="noopener">NemoClaw</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">NVIDIA's hardened wrapper around OpenClaw — sandboxes the agent inside OpenShell, supports Hermes as an alternate agent too.</p>
+          </div>
+        </div>
+      </details>
+
+      <details open id="models" style="margin-bottom:var(--s7);">
+        <summary style="cursor:pointer; list-style:none; display:flex; align-items:baseline; gap:10px;"><h2 style="font-size:1.4rem; margin-bottom:var(--s2);">Models &amp; inference</h2><span style="color:var(--soft); font-size:0.85rem; font-weight:400;">(7)</span></summary>
+        <p style="color:var(--soft); font-size:0.9rem; margin-bottom:var(--s5);">Where the actual reasoning comes from, and how it gets served.</p>
+
+        <div style="display:grid; gap:var(--s4);">
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://ollama.com/" target="_blank" rel="noopener">Ollama</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">The local model runtime we actually use in our own benchmark work.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://github.com/ggml-org/llama.cpp" target="_blank" rel="noopener">llama.cpp</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">The C/C++ engine underneath most local-inference tools, Ollama included — this is literally what our own benchmark study's quantization work runs on.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://vllm.ai/" target="_blank" rel="noopener">vLLM</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">The production-grade serving engine — PagedAttention and continuous batching for squeezing real throughput out of a GPU fleet.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://openrouter.ai/" target="_blank" rel="noopener">OpenRouter</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">One API, 400+ models — useful when you don't want to hardcode a single provider.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://huggingface.co/" target="_blank" rel="noopener">Hugging Face</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">The model and dataset hub — where most open weights actually live.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://groq.com/" target="_blank" rel="noopener">Groq</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">LPU-based cloud inference — purpose-built silicon for fast, cheap token generation, not a repackaged GPU.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://developer.nvidia.com/topics/ai/nemotron" target="_blank" rel="noopener">NVIDIA Nemotron</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">NVIDIA's open model family, open weights and training recipes, tuned for agentic workloads and local deployment.</p>
+          </div>
+        </div>
+      </details>
+
+      <details open id="marketplaces" style="margin-bottom:var(--s7);">
+        <summary style="cursor:pointer; list-style:none; display:flex; align-items:baseline; gap:10px;"><h2 style="font-size:1.4rem; margin-bottom:var(--s2);">Marketplaces &amp; Skill Hubs</h2><span style="color:var(--soft); font-size:0.85rem; font-weight:400;">(2)</span></summary>
+        <p style="color:var(--soft); font-size:0.9rem; margin-bottom:var(--s5);">Where you get skills and plugins once the harness is running.</p>
+
+        <div style="display:grid; gap:var(--s4);">
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://clawhub.ai/" target="_blank" rel="noopener">ClawHub</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">The community skills distribution hub for OpenClaw — where we're planning to publish this stack's own skills next.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://code.claude.com/docs/en/plugin-marketplaces" target="_blank" rel="noopener">Claude Code Plugin Marketplace</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">Anthropic's native plugin/marketplace mechanism — it's literally how the Memory branch installs today (<code>/plugin marketplace add</code>).</p>
+          </div>
+        </div>
+      </details>
+
+      <details open id="developer-platforms" style="margin-bottom:var(--s7);">
+        <summary style="cursor:pointer; list-style:none; display:flex; align-items:baseline; gap:10px;"><h2 style="font-size:1.4rem; margin-bottom:var(--s2);">Developer Platforms</h2><span style="color:var(--soft); font-size:0.85rem; font-weight:400;">(2)</span></summary>
+        <p style="color:var(--soft); font-size:0.9rem; margin-bottom:var(--s5);">Where you actually go to build — API access, docs, and dev programs.</p>
+
+        <div style="display:grid; gap:var(--s4);">
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand-strong); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://platform.claude.com/" target="_blank" rel="noopener">Claude Developer Platform</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">Anthropic's own API and developer platform — the one this entire stack is built to run on top of.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand-strong); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://developer.amd.com/" target="_blank" rel="noopener">AMD Developer</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">Free AI developer program — ROCm tooling, cloud credits, and training for building on AMD hardware.</p>
+          </div>
+        </div>
+      </details>
+
+      <details open id="context-retrieval" style="margin-bottom:var(--s7);">
+        <summary style="cursor:pointer; list-style:none; display:flex; align-items:baseline; gap:10px;"><h2 style="font-size:1.4rem; margin-bottom:var(--s2);">Context &amp; Retrieval</h2><span style="color:var(--soft); font-size:0.85rem; font-weight:400;">(4)</span></summary>
+        <p style="color:var(--soft); font-size:0.9rem; margin-bottom:var(--s5);">Getting the right context to the model, not just more of it — whether that's a tool call or a retrieved chunk.</p>
+
+        <div style="display:grid; gap:var(--s4);">
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener">Model Context Protocol (MCP)</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">The open standard for connecting agents to tools and data — this stack is hook-based rather than MCP-based by design, but it's the protocol most of the ecosystem is converging on.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.llamaindex.ai/" target="_blank" rel="noopener">LlamaIndex</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">The leading RAG-specific framework — indexing, retrieval, and query pipelines built for exactly this job.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.anthropic.com/engineering/contextual-retrieval" target="_blank" rel="noopener">Contextual Retrieval</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">Anthropic's technique for fixing RAG's biggest failure mode — chunks that lose their surrounding context. Directly relevant to how the Memory branch thinks about retrieval.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.langchain.com/" target="_blank" rel="noopener">LangChain</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">The broadest framework in the space — not RAG-only, but its retrieval tooling is where most people first encounter the pattern.</p>
+          </div>
+        </div>
+      </details>
+
+      <details open id="biotech" style="margin-bottom:var(--s7);">
+        <summary style="cursor:pointer; list-style:none; display:flex; align-items:baseline; gap:10px;"><h2 style="font-size:1.4rem; margin-bottom:var(--s2);">Biotech &amp; Life Sciences</h2><span style="color:var(--soft); font-size:0.85rem; font-weight:400;">(2)</span></summary>
+        <p style="color:var(--soft); font-size:0.9rem; margin-bottom:var(--s5);">Where agent infrastructure meets the lab bench.</p>
+
+        <div style="display:grid; gap:var(--s4);">
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand-strong); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://github.com/wu-yc/LabClaw" target="_blank" rel="noopener">LabClaw</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">An operating layer for LabOS, built for the Stanford–Princeton line of AI co-scientist work — agents doing real lab research, not just suggesting it.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand-strong); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.youtube.com/watch?v=RNY0p5wL4AA" target="_blank" rel="noopener">BIO26 Healthcare Special Address</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">NVIDIA's Kimberly Powell at BIO International Convention 2026, on the BioNeMo Agent Toolkit and the shift from AI that suggests science to AI that runs it.</p>
+          </div>
+        </div>
+      </details>
+
+      <details open id="benchmarks" style="margin-bottom:var(--s7);">
+        <summary style="cursor:pointer; list-style:none; display:flex; align-items:baseline; gap:10px;"><h2 style="font-size:1.4rem; margin-bottom:var(--s2);">Benchmarks</h2><span style="color:var(--soft); font-size:0.85rem; font-weight:400;">(1)</span></summary>
+        <p style="color:var(--soft); font-size:0.9rem; margin-bottom:var(--s5);">How you tell a capable agent from a confident one.</p>
+
+        <div style="display:grid; gap:var(--s4);">
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.swebench.com/" target="_blank" rel="noopener">SWE-bench</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">The standard for measuring whether an agent can actually fix real GitHub issues, not just talk convincingly about code.</p>
+          </div>
+        </div>
+      </details>
+
+      <details open id="hardware" style="margin-bottom:var(--s6);">
+        <summary style="cursor:pointer; list-style:none; display:flex; align-items:baseline; gap:10px;"><h2 style="font-size:1.4rem; margin-bottom:var(--s2);">Hardware for local AI</h2><span style="color:var(--soft); font-size:0.85rem; font-weight:400;">(3)</span></summary>
+        <p style="color:var(--soft); font-size:0.9rem; margin-bottom:var(--s5);">For running real models on your own machine, not a rented one.</p>
+
+        <div style="display:grid; gap:var(--s4);">
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.nvidia.com/en-us/products/workstations/dgx-spark/" target="_blank" rel="noopener">NVIDIA DGX Spark</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">A desktop-sized AI supercomputer — for running real local models, not toy demos.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.amd.com/en/products/processors/desktops/ryzen/ryzen-ai-halo.html" target="_blank" rel="noopener">AMD Ryzen AI Max</a> <span style="color:var(--soft); font-weight:400; font-size:0.85rem;">("Strix Halo")</span></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">128GB unified memory in a desktop APU — a serious x86 option for local inference.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.apple.com/mac-studio/" target="_blank" rel="noopener">Mac Studio</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">Apple Silicon with genuinely high unified memory — built for workloads like this, not just video editing. (The Mac Mini is the wrong pick here: not enough memory bandwidth for real local models.)</p>
+          </div>
+        </div>
+      </details>
+
+      <details open id="learning" style="margin-bottom:var(--s6);">
+        <summary style="cursor:pointer; list-style:none; display:flex; align-items:baseline; gap:10px;"><h2 style="font-size:1.4rem; margin-bottom:var(--s2);">Learning</h2><span style="color:var(--soft); font-size:0.85rem; font-weight:400;">(4)</span></summary>
+        <p style="color:var(--soft); font-size:0.9rem; margin-bottom:var(--s5);">Free courses that actually issue a certificate — not just a "you watched the video" badge. Paid options may get their own list later.</p>
+
+        <div style="display:grid; gap:var(--s4);">
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand-strong); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://anthropic.skilljar.com/" target="_blank" rel="noopener">Anthropic Academy</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">Free courses on Claude, the API, Model Context Protocol, and Claude Code itself — straight from the source, certificates included.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand-strong); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.nvidia.com/en-us/training/self-paced-courses/" target="_blank" rel="noopener">NVIDIA Deep Learning Institute — Free Courses</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">Self-paced AI and accelerated-computing courses; select ones issue an NVIDIA DLI certificate on completion.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand-strong); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.cloudskillsboost.google/course_templates/536" target="_blank" rel="noopener">Google Cloud — Introduction to Generative AI</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">A ~45-minute no-cost primer; stack it with two more free courses for the full Generative AI Fundamentals skill badge.</p>
+          </div>
+          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand-strong); border-radius:var(--radius); padding:var(--s4) var(--s5);">
+            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.kaggle.com/learn" target="_blank" rel="noopener">Kaggle Learn</a></h3>
+            <p style="color:var(--muted); font-size:0.92rem;">Genuinely 100% free, no paywall trick — real Python notebooks, real model calls, certificates on completion.</p>
+          </div>
+        </div>
+      </details>
+
+      <p style="font-size:0.9rem; color:var(--soft); border-top:1px solid var(--line); padding-top:var(--s5);">This list grows as we vet more of it — it isn't only repos. Theses, papers, and ideas that genuinely improve how agents work belong here too. Got something we should look at? <a href="https://github.com/esoteric1entity" target="_blank" rel="noopener">Talk to us →</a></p>
+    </div>
+  </section>
+
+  </main>
+
+  <footer>
+    <div class="container">
+      <div>
+        <strong>PDuk Brainworks</strong> 🧬 · Agent Architect Stack — Apache-2.0 — © 2026 esoteric1entity. A PDuk Brainworks project<br>
+        <span style="font-size: 0.85rem;">Part of a larger research program on agent infrastructure. Public launch: 2026-06-12.</span>
+        <div class="creds">This page: one HTML file · no JavaScript · no trackers · links out to third parties, nothing embedded.</div>
+      </div>
+      <div class="footer-links">
+        <a href="index.html">← Main page</a>
+        <a href="https://github.com/esoteric1entity" target="_blank" rel="noopener">GitHub</a>
+        <a href="https://thepdukedge.substack.com/" target="_blank" rel="noopener">PDuk Edge ↗</a>
+      </div>
+    </div>
+  </footer>
+
+</body>
+</html>
