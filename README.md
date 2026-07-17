@@ -11,7 +11,7 @@
 > *A **PDuk Brainworks** project. Apache-2.0 - (c) 2026 esoteric1entity.*
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Status: Memory live](https://img.shields.io/badge/Memory-v3.6.2%20live-brightgreen.svg)](#project-status)
+[![Status: Memory live](https://img.shields.io/badge/Memory-v4.0.0%20live-brightgreen.svg)](#project-status)
 [![Status: Security released](https://img.shields.io/badge/Security-v0.2.1%20released-brightgreen.svg)](https://pypi.org/project/ai-agent-shield/)
 [![Branches: 2 active](https://img.shields.io/badge/Branches-2%20active-lightgrey.svg)](#branches)
 
@@ -26,7 +26,7 @@ The **Agent Architect Stack** is an open-source umbrella of **independently inst
 
 | Branch | What it does | Status | Repo |
 |---|---|---|---|
-| **Memory** (Ultimate Memory Stack) | *Enhanced* persistent memory + knowledge graphs + Obsidian vault + prompt compression | ✅ **Released** — v3.6.2 | [esoteric1entity/ultimate-memory-stack](https://github.com/esoteric1entity/ultimate-memory-stack) |
+| **Memory** (Ultimate Memory Stack) | *Enhanced* persistent memory + knowledge graphs + Obsidian vault + prompt compression | ✅ **Released** — v4.0.0 | [esoteric1entity/ultimate-memory-stack](https://github.com/esoteric1entity/ultimate-memory-stack) |
 | **Security** (agent-shield) | 8-layer defensive overlay: skill vetting, input sanitization, runtime hooks, network egress, audit logging | ✅ **Released** — v0.2.1 alpha (Layers 1, 2, 3, 4, 6 & 7 shipped); Layers 0 & 5 roadmapped | [esoteric1entity/agent-shield](https://github.com/esoteric1entity/agent-shield) — public · [PyPI](https://pypi.org/project/ai-agent-shield/) |
 
 **Pick-and-choose.** You can install just Memory, just Security, or both. They share conventions (config formats, audit log schema) but **no hard runtime dependency** — per the modular-consumer principle.
@@ -136,7 +136,7 @@ The flagship. Gives AI agents **persistent memory across sessions** — knowledg
 
 - **Repo:** [esoteric1entity/ultimate-memory-stack](https://github.com/esoteric1entity/ultimate-memory-stack)
 - **License:** Apache-2.0
-- **Status:** v3.6.2 — released · 2026-06-16
+- **Status:** v4.0.0 — released · 2026-07-16
 
 
 ### Security (agent-shield) — ✅ Released
@@ -166,11 +166,11 @@ The 8 layers:
 
 ## Project status
 
-**Memory branch v3.6.2 is live.** **Security branch v0.2.1 alpha is released** and available on [PyPI](https://pypi.org/project/ai-agent-shield/).
+**Memory branch v4.0.0 is live.** **Security branch v0.2.1 alpha is released** and available on [PyPI](https://pypi.org/project/ai-agent-shield/).
 
 | Item | Status |
 |---|---|
-| Memory branch — Ultimate Memory Stack | ✅ Released · v3.6.2 · 2026-06-16 · [GitHub](https://github.com/esoteric1entity/ultimate-memory-stack) · *(Next release in progress)* |
+| Memory branch — Ultimate Memory Stack | ✅ Released · v4.0.0 · 2026-07-16 · [GitHub](https://github.com/esoteric1entity/ultimate-memory-stack) |
 | Security branch — agent-shield | ✅ Released · v0.2.1 alpha · 2026-07-05 · [PyPI](https://pypi.org/project/ai-agent-shield/) · [GitHub](https://github.com/esoteric1entity/agent-shield) |
 | Security branch — Layers 0 & 5 | 🟡 Roadmapped |
 | Future branches | 🟡 In ideation & design |
