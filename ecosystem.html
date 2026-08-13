@@ -1,414 +1,46 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Ecosystem · PDuk Brainworks — Agent Architect Stack</title>
-  <meta name="description" content="Harnesses, models, and hardware in the agent ecosystem worth knowing about — curated, categorized, no hype.">
-  <style>
-    /* =========================================================
-       Agent Architect Stack — Landing Page v0.1 (polished)
-       Refined through tribunal review, 2026-06.
-       - Self-contained: NO JS, NO external resources (system fonts, CSS-only backdrop)
-       - Dark theme — Brainworks aesthetic; light mode deferred
-       - Copy and visual treatment elevated to dev-tool-debut quality
-       - Brand tokens (§--brand*) are name-agnostic: swap ~8 vars to rebrand
-       - Content boundary: no personal/business content
-       ========================================================= */
-
-    :root {
-      /* --- DARK theme — Brainworks / skunkworks aesthetic (cockpit-at-night) --- */
-      --brand:        #2dd4bf;   /* bright teal — pops on near-black (~9:1 AAA) */
-      --brand-strong: #5eead4;   /* hover (lighter on dark) */
-      --brand-soft:   rgba(45,212,191,0.12);
-      --brand-ring:   #2dd4bf;
-      --accent:       #fbbf24;   /* amber */
-      --accent-soft:  rgba(251,191,36,0.12);
-      --violet:       #a78bfa;
-      --violet-soft:  rgba(167,139,250,0.14);
-
-      --ink:        #e9f2ef;     /* light text on dark — ~16:1 */
-      --muted:      #9fb4ae;     /* secondary — ~7:1 (AA) */
-      --soft:       #76918a;
-      --line:       #1f2c29;     /* borders */
-      --line-strong:#33473f;
-      --bg:         #080d0c;     /* near-black, faint teal cast */
-      --surface:    #0f1716;     /* cards */
-      --surface-alt:#0b1211;     /* alternating sections */
-      --code-bg:    #060c0b;     /* terminal surface */
-      --code-fg:    #d6e6e2;
-
-      --ok:   #5eead4; --ok-bg: rgba(45,212,191,0.14); --ok-bd: rgba(45,212,191,0.45);
-      --warn: #fcd34d; --warn-bg: rgba(251,191,36,0.14); --warn-bd: rgba(251,191,36,0.45);
-      --fut:  #c4b5fd; --fut-bg: rgba(167,139,250,0.14); --fut-bd: rgba(167,139,250,0.45);
-
-      --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-      --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
-
-      /* --- spacing scale (replaces flat 24px) --- */
-      --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px; --s5: 24px;
-      --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
-
-      --radius: 10px;
-      --radius-sm: 7px;
-      --max: 1120px;
-      --shadow-sm: 0 1px 2px rgba(0,0,0,.45);
-      --shadow-md: 0 8px 24px rgba(0,0,0,.55);
-      --shadow-lg: 0 16px 48px rgba(0,0,0,.65), 0 0 0 1px rgba(45,212,191,0.14);
-    }
-
-    * { box-sizing: border-box; margin: 0; padding: 0; }
-
-    html { scroll-behavior: smooth; }
-
-    body {
-      font-family: var(--font-sans);
-      color: var(--ink);
-      background: var(--bg);
-      line-height: 1.65;
-      -webkit-font-smoothing: antialiased;
-      text-rendering: optimizeLegibility;
-    }
-
-    a { color: var(--brand); text-decoration: none; }
-    a:hover { color: var(--brand-strong); text-decoration: underline; }
-
-    /* visible focus for keyboard users */
-    a:focus-visible, .btn:focus-visible, .skip:focus-visible {
-      outline: 3px solid var(--brand-ring);
-      outline-offset: 2px;
-      border-radius: 4px;
-    }
-
-    code {
-      font-family: var(--font-mono);
-      font-size: 0.9em;
-      background: var(--brand-soft);
-      color: var(--brand-strong);
-      padding: 0.12em 0.4em;
-      border-radius: 5px;
-    }
-
-    .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--s5); }
-
-    /* skip link */
-    .skip {
-      position: absolute; left: -9999px; top: 8px; z-index: 100;
-      background: var(--surface); color: var(--ink); border: 1px solid var(--brand-ring);
-      padding: 10px 16px; border-radius: var(--radius-sm);
-    }
-    .skip:focus { left: 16px; }
-
-    /* ---- Header / nav ---- */
-    header {
-      border-bottom: 1px solid var(--line);
-      background: rgba(255,255,255,0.85);
-      backdrop-filter: saturate(140%) blur(8px);
-      position: sticky; top: 0; z-index: 10;
-    }
-    .nav-inner {
-      display: flex; align-items: center; justify-content: space-between;
-      padding: var(--s4) var(--s5); max-width: var(--max); margin: 0 auto;
-    }
-    .brand { font-weight: 800; font-size: 1.05rem; color: var(--ink); letter-spacing: -0.01em; }
-    .brand .glyph { color: var(--brand); }
-    .nav-links { display: flex; align-items: center; gap: var(--s5); font-size: 0.95rem; }
-    .nav-links a { color: var(--muted); font-weight: 500; }
-    .nav-links a:hover { color: var(--brand); text-decoration: none; }
-
-    /* ---- Hero ---- */
-    .hero {
-      position: relative;
-      padding: var(--s9) 0 var(--s8);
-      text-align: center;
-      overflow: hidden;
-      background:
-        radial-gradient(60% 50% at 50% 0%, rgba(15,118,110,0.08) 0%, rgba(15,118,110,0) 70%),
-        linear-gradient(180deg, var(--surface-alt) 0%, #ffffff 70%);
-    }
-    /* CSS-only dot grid backdrop (no image) */
-    .hero::before {
-      content: ""; position: absolute; inset: 0; z-index: 0;
-      background-image: radial-gradient(rgba(15,118,110,0.10) 1px, transparent 1px);
-      background-size: 22px 22px;
-      -webkit-mask-image: radial-gradient(70% 60% at 50% 30%, #000 0%, transparent 75%);
-              mask-image: radial-gradient(70% 60% at 50% 30%, #000 0%, transparent 75%);
-    }
-    .hero .container { position: relative; z-index: 1; }
-    .eyebrow {
-      display: inline-block; font-size: 0.8rem; font-weight: 700; letter-spacing: 0.08em;
-      text-transform: uppercase; color: var(--brand-strong);
-      background: var(--brand-soft); border: 1px solid var(--brand-ring);
-      padding: 5px 12px; border-radius: 999px; margin-bottom: var(--s5);
-    }
-    .hero h1 {
-      font-size: 3.75rem; font-weight: 800; line-height: 1.05;
-      letter-spacing: -0.03em; margin-bottom: var(--s5);
-      max-width: none; margin-left: auto; margin-right: auto;
-    }
-    .hero h1 .h1-for {
-      display: block; font-size: 1.05rem; font-weight: 400; font-style: italic;
-      color: var(--soft); letter-spacing: 0.02em; line-height: 1.1; margin: 6px 0;
-    }
-    .hero .tagline {
-      font-size: 1.3rem; color: var(--muted); max-width: 62ch;
-      margin: 0 auto var(--s7); line-height: 1.55;
-    }
-    .hero .tagline .tag-lead { font-size: 1.25rem; font-weight: 500; color: var(--ink); line-height: 1.5; }
-    .hero .tagline .tag-sub { display: inline-block; margin-top: 14px; font-size: 0.95rem; color: var(--muted); max-width: 58ch; }
-    .hero .cta { display: flex; gap: var(--s4); justify-content: center; flex-wrap: wrap; }
-
-    .btn {
-      display: inline-flex; align-items: center; justify-content: center;
-      min-height: 46px; padding: 12px 26px; border-radius: var(--radius-sm);
-      font-weight: 650; font-size: 1rem; cursor: pointer; white-space: nowrap;
-      border: 1px solid transparent; transition: transform .15s ease, background .15s ease, box-shadow .15s ease;
-      background-image: linear-gradient(180deg, rgba(255,255,255,0.14) 0%, rgba(255,255,255,0) 45%);
-      box-shadow: 0 1px 0 rgba(255,255,255,0.12) inset, 0 1px 2px rgba(0,0,0,0.35);
-    }
-    .btn-primary { background-color: var(--brand); color: #fff; box-shadow: 0 1px 0 rgba(255,255,255,0.22) inset, var(--shadow-sm); }
-    .btn-primary:hover { background-color: var(--brand-strong); color: #fff; text-decoration: none; transform: translateY(-1px); box-shadow: 0 1px 0 rgba(255,255,255,0.26) inset, var(--shadow-md); }
-    .btn-primary:active { transform: translateY(0) scale(0.98); box-shadow: 0 1px 0 rgba(255,255,255,0.14) inset, var(--shadow-sm); }
-    .btn-secondary { background-color: var(--surface); color: var(--ink); border-color: var(--line-strong); }
-    .btn-secondary:hover { background-color: var(--surface-alt); color: var(--ink); text-decoration: none; transform: translateY(-1px); }
-    .btn-secondary:active { transform: translateY(0) scale(0.98); }
-
-    .badges { display: flex; gap: var(--s2); justify-content: center; margin-top: var(--s6); flex-wrap: wrap; }
-    .badge {
-      display: inline-flex; align-items: center; gap: 6px;
-      padding: 5px 13px; border-radius: 999px; font-size: 0.8rem; font-weight: 600;
-      border: 1px solid var(--line); background: var(--surface); color: var(--muted);
-    }
-    .badge-license { background: var(--brand-soft); color: var(--brand-strong); border-color: var(--brand-ring); }
-    .badge-status  { background: var(--ok-bg); color: var(--ok); border-color: var(--ok-bd); }
-    .badge-branches{ background: var(--surface-alt); color: var(--soft); border-color: var(--line); }
-
-    /* ---- Section common ---- */
-    section { padding: var(--s9) 0; }
-    section.alt { background: var(--surface-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
-    section h2 { font-size: 2.25rem; font-weight: 750; letter-spacing: -0.02em; margin-bottom: var(--s4); text-align: center; }
-    section .section-intro { font-size: 1.1rem; color: var(--muted); max-width: 68ch; margin: 0 auto var(--s7); text-align: center; text-wrap: balance; }
-
-    /* ---- What this is ---- */
-    .what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); }
-    .what-card {
-      background: var(--surface); border: 1px solid var(--line);
-      border-left: 4px solid var(--brand); border-radius: var(--radius);
-      padding: var(--s6); box-shadow: var(--shadow-sm);
-    }
-    .what-card:nth-child(3) {
-      grid-column: 1 / -1;
-      background: var(--surface); border: 1px solid var(--line);
-      border-left: 4px solid var(--brand); border-radius: var(--radius);
-      padding: var(--s6);
-    }
-    .what-card:nth-child(3) h3 { margin-bottom: var(--s3); }
-    .what-card:nth-child(3) ul { column-count: 2; column-gap: var(--s6); }
-    .what-card:nth-child(4) {
-      grid-column: 1 / -1;
-      background: var(--brand-soft); border: 1px solid var(--brand-ring); border-left: 4px solid var(--brand);
-      text-align: center;
-    }
-    .what-card h3 { font-size: 1.2rem; font-weight: 700; margin-bottom: var(--s3); }
-    .what-card p { color: var(--muted); font-size: 0.97rem; margin-bottom: var(--s2); }
-    .what-card ul { list-style: none; margin-top: var(--s2); }
-    .what-card li { padding: var(--s2) 0; border-bottom: 1px solid var(--surface-alt); color: var(--muted); font-size: 0.95rem; }
-    .what-card li:last-child { border-bottom: none; }
-    .what-card li strong, .what-card em { color: var(--ink); font-style: normal; font-weight: 650; }
-    .what-card:nth-child(4) p { color: var(--ink); }
-
-    /* ---- Architecture tree ---- */
-    .tree { display: flex; flex-direction: column; align-items: center; gap: var(--s5); padding: var(--s5) 0; }
-    .tree-node {
-      padding: var(--s3) var(--s5); background: var(--surface); border: 1px solid var(--line-strong);
-      border-radius: var(--radius); text-align: center; min-width: 220px; box-shadow: var(--shadow-sm);
-    }
-    .tree-node.umbrella { background: var(--ink); color: #fff; border-color: var(--ink); font-weight: 750; font-size: 1.1rem; letter-spacing: -0.01em; }
-    .tree-node.orchestrator { background: var(--brand); color: #fff; border-color: var(--brand); font-weight: 650; }
-    .tree-node .node-label { font-size: 0.85rem; color: var(--muted); margin-top: 4px; }
-    .tree-node.umbrella .node-label { color: rgba(255,255,255,0.72); }
-    .tree-node.orchestrator .node-label { color: rgba(255,255,255,0.85); }
-    .tree-connector { width: 2px; height: var(--s5); background: var(--line-strong); }
-    .tree-branches { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s4); width: 100%; max-width: 900px; position: relative; }
-    .tree-branches::before {
-      content: ""; position: absolute; top: calc(-1 * var(--s5)); left: 16.67%; right: 16.67%;
-      height: 2px; background: var(--line-strong);
-    }
-    .tree-branch {
-      position: relative; padding: var(--s4); background: var(--surface);
-      border: 1px solid var(--line); border-radius: var(--radius); text-align: center; box-shadow: var(--shadow-sm);
-    }
-    .tree-branch::before {
-      content: ""; position: absolute; top: calc(-1 * var(--s5)); left: 50%; transform: translateX(-50%);
-      width: 2px; height: var(--s5); background: var(--line-strong);
-    }
-    .tree-branch-name { font-weight: 700; font-size: 1rem; }
-    .tree-branch-meta { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
-
-    /* ---- Branch cards ---- */
-    .branches-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s5); }
-    .branch-card {
-      background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
-      padding: var(--s6); box-shadow: var(--shadow-sm); transition: transform .15s ease, box-shadow .15s ease;
-    }
-    .branch-card:hover { box-shadow: var(--shadow-lg); transform: translateY(-3px); }
-    .branch-card h3 { font-size: 1.3rem; font-weight: 700; margin-bottom: var(--s2); display: flex; align-items: center; gap: var(--s3); flex-wrap: wrap; }
-    .branch-card .branch-tagline { color: var(--muted); font-size: 1rem; margin-bottom: var(--s4); }
-    .status-pill { display: inline-block; padding: 3px 11px; border-radius: 999px; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
-    .status-ready { background: var(--ok-bg); color: var(--ok); border: 1px solid var(--ok-bd); }
-    .status-prerelease { background: var(--warn-bg); color: var(--warn); border: 1px solid var(--warn-bd); }
-    .status-future { background: var(--fut-bg); color: var(--fut); border: 1px solid var(--fut-bd); }
-    .branch-card ul { list-style: none; margin: var(--s4) 0; }
-    .branch-card li { padding: var(--s2) 0; border-bottom: 1px solid var(--surface-alt); font-size: 0.94rem; padding-left: 22px; position: relative; }
-    .branch-card li::before { content: "▸"; color: var(--brand); position: absolute; left: 0; }
-    .branch-card li:last-child { border-bottom: none; }
-    .branch-card .meta { font-size: 0.85rem; color: var(--soft); margin-top: var(--s4); padding-top: var(--s4); border-top: 1px solid var(--surface-alt); }
-    .branch-card .meta strong { color: var(--muted); }
-
-    /* ---- Why pick-and-choose ---- */
-    .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s5); }
-    .why-card { padding: var(--s5); text-align: center; }
-    .why-card .icon {
-      width: 44px; height: 44px; border-radius: var(--radius-sm);
-      background: var(--brand); color: #fff; display: flex; align-items: center; justify-content: center;
-      font-weight: 800; font-size: 1.2rem; margin: 0 auto var(--s4); box-shadow: var(--shadow-sm);
-    }
-    .why-card h4 { font-size: 1.12rem; font-weight: 700; margin-bottom: var(--s2); }
-    .why-card p { color: var(--muted); font-size: 0.96rem; }
-
-    /* ---- Code blocks (terminal feel) ---- */
-    .code-head { font-size: 0.95rem; font-weight: 650; margin-bottom: var(--s3); }
-    pre.term {
-      background: var(--code-bg); color: var(--code-fg); border-radius: var(--radius);
-      padding: 0; overflow: hidden; margin-bottom: var(--s5); box-shadow: var(--shadow-md);
-      border: 1px solid #082b27;
-    }
-    pre.term .bar { display: flex; gap: 7px; padding: 12px 16px; background: #0a1916; border-bottom: 1px solid #082b27; }
-    pre.term .bar i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
-    pre.term .bar .r { background: #ff5f56; } pre.term .bar .y { background: #ffbd2e; } pre.term .bar .g { background: #27c93f; }
-    pre.term code { display: block; background: transparent; color: var(--code-fg); padding: 18px 20px; font-size: 0.9rem; line-height: 1.7; overflow-x: auto; }
-    pre.term code .c { color: #6fae9f; } /* comments */
-
-    /* ---- Status table ---- */
-    .status-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
-    .status-table th { text-align: left; padding: 14px 18px; background: var(--brand-soft); color: var(--brand-strong); font-size: 0.95rem; border-bottom: 1px solid var(--line); }
-    .status-table td { padding: 13px 18px; border-bottom: 1px solid var(--surface-alt); }
-    .status-table tr:nth-child(even) td { background: var(--surface-alt); }
-    .status-table tr:last-child td { border-bottom: none; }
-
-    /* Original Work & Influences table — vertical group rail + tonal tints */
-    .influences-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: var(--s5); table-layout: fixed; }
-    .influences-table th { text-align: left; padding: 14px 16px; background: var(--brand-soft); color: var(--brand-strong); font-size: 0.92rem; border-bottom: 1px solid var(--line); font-weight: 650; }
-    .influences-table th.th-rail { width: 38px; padding: 0; }
-    .influences-table th.th-component { width: 20%; }
-    .influences-table th.th-origin { width: 21%; text-align: center; }
-    .influences-table td { padding: 14px 16px; border-bottom: 1px solid var(--surface-alt); font-size: 0.92rem; color: var(--muted); vertical-align: middle; line-height: 1.55; }
-    .influences-table td:last-child { text-align: center; }
-    .influences-table td.name { color: var(--ink); font-weight: 600; }
-    .influences-table td.rail { padding: 10px 5px; text-align: center; vertical-align: middle; }
-    .influences-table td.rail span { display: inline-block; writing-mode: vertical-rl; transform: rotate(180deg); font-size: 0.72rem; font-weight: 700; letter-spacing: 0.22em; white-space: nowrap; }
-    .influences-table tr.g-umbrella td { background: rgba(45,212,191,0.055); }
-    .influences-table tr.g-memory td { background: rgba(45,212,191,0.03); }
-    .influences-table tr.g-security td { background: rgba(45,212,191,0.022); }
-    .influences-table td.rail-umbrella { color: var(--brand); border-right: 2px solid var(--brand); }
-    .influences-table td.rail-memory { color: var(--brand-strong); border-right: 2px solid var(--brand-strong); }
-    .influences-table td.rail-security { color: var(--soft); border-right: 2px solid var(--soft); }
-    .influences-table .pill-original { display: inline-block; padding: 2px 10px; border-radius: 999px; font-size: 0.78rem; font-weight: 700; background: var(--brand); color: #04342c; }
-    .influences-table tr:last-child td { border-bottom: none; }
-    .influences-table strong { color: var(--brand-strong); font-weight: 650; }
-    .influences-table em { color: var(--ink); font-style: normal; }
-    .section-outro { margin-top: var(--s7); font-style: italic; color: var(--muted); text-align: center; max-width: 720px; margin-left: auto; margin-right: auto; }
-    /* Original Work intro — full-width editorial prose (spans the page; no orphan last-words) */
-    .influences-intro { max-width: none; margin: 0 0 var(--s7); text-align: left; }
-    .influences-intro p { font-size: 1.1rem; color: var(--muted); line-height: 1.65; text-wrap: pretty; }
-    .influences-intro p:first-child { margin-bottom: var(--s4); }
-    .influences-intro strong { color: var(--brand-strong); font-weight: 650; }
-
-    /* ---- Footer ---- */
-    footer { border-top: 1px solid var(--line); padding: var(--s7) 0; background: var(--surface-alt); color: var(--soft); font-size: 0.9rem; }
-    footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--s4); }
-    footer .footer-links { display: flex; gap: var(--s5); }
-    footer .creds { margin-top: var(--s2); font-size: 0.82rem; color: var(--soft); }
-    footer .creds span { color: var(--brand-strong); font-weight: 600; }
-    footer .thanks { margin-top: var(--s2); font-size: 0.82rem; color: var(--soft); }
-    footer .thanks a { color: var(--brand); text-decoration: none; }
-    footer .thanks a:hover { text-decoration: underline; }
-
-    /* ---- Responsive: tablet (1024) + mobile (768) ---- */
-    @media (max-width: 1024px) {
-      .hero h1 { font-size: 2.9rem; }
-      .branches-grid, .why-grid { grid-template-columns: repeat(2, 1fr); }
-      .tree-branches { grid-template-columns: repeat(2, 1fr); }
-      .tree-branches::before { display: none; }
-      .tree-branch::before { display: none; }
-    }
-    @media (max-width: 768px) {
-      :root { --s9: 64px; --s8: 48px; }
-      .hero h1 { font-size: 1.85rem; }
-      .hero .tagline { font-size: 1.08rem; }
-      .what-grid, .branches-grid, .why-grid, .tree-branches { grid-template-columns: 1fr; }
-      .influences-table { font-size: 0.85rem; }
-      .influences-table th, .influences-table td { padding: 10px 12px; }
-      .influences-table td.rail { padding: 8px 3px; }
-      .influences-table th.th-component { width: 24%; }
-      .what-card:nth-child(4) { grid-column: 1; }
-      .nav-inner { flex-wrap: wrap; row-gap: var(--s3); }
-      .nav-links {
-        display: flex; flex-wrap: wrap; justify-content: center;
-        width: 100%; gap: var(--s3) var(--s4); font-size: 0.95rem;
-      }
-      .nav-links a {
-        padding: 10px 6px; min-height: 44px;
-        display: inline-flex; align-items: center;
-      }
-      .nav-links a.nav-mission,
-      .nav-links a.nav-ecosystem,
-      .nav-links a.nav-contributors { padding: 10px 14px; min-height: 44px; }
-      footer .container { flex-direction: column; align-items: flex-start; }
-    }
-
-    /* ---- Reduced motion ---- */
-    @media (prefers-reduced-motion: reduce) {
-      html { scroll-behavior: auto; }
-      *, *::before, *::after { transition: none !important; }
-      .btn:hover, .branch-card:hover { transform: none !important; }
-    }
-
-    /* ===================== DARK-THEME OVERRIDES ===================== */
-    /* token flip handles ~90%; these fix hardcoded-light values + #fff-on-brand */
-    header { background: rgba(8,13,12,0.82); }
-    .btn-primary, .btn-primary:hover { color: #06100e; }   /* dark text on bright teal */
-    .why-card .icon { color: #06100e; }
-    .tree-node.orchestrator { color: #06100e; }
-    .tree-node.orchestrator .node-label { color: rgba(6,16,14,0.72); }
-    .tree-node.umbrella {
-      background: rgba(45,212,191,0.10); border-color: var(--brand); color: var(--ink);
-      box-shadow: 0 0 26px rgba(45,212,191,0.18);
-    }
-    .tree-node.umbrella .node-label { color: var(--muted); }
-
-    /* Hero — dark atmospheric backdrop (CSS-only, no external image) */
-    .hero {
-      background:
-        radial-gradient(45% 42% at 50% 6%, rgba(45,212,191,0.18) 0%, rgba(45,212,191,0) 70%),
-        radial-gradient(55% 50% at 88% 0%, rgba(167,139,250,0.10) 0%, rgba(167,139,250,0) 60%),
-        linear-gradient(180deg, #0a1312 0%, var(--bg) 60%);
-    }
-    .hero::before {
-      background-image: radial-gradient(rgba(45,212,191,0.16) 1px, transparent 1px);
-      background-size: 26px 26px;
-    }
-
-    /* Brainworks inline-SVG logo mark */
-    .logo { display: inline-flex; align-items: center; gap: 10px; }
-    .logo svg { width: 26px; height: 26px; flex: none; }
-    .logo-hero { display: flex; justify-content: center; margin-bottom: var(--s5); }
-    .logo-hero svg { width: 66px; height: 66px; filter: drop-shadow(0 0 16px rgba(45,212,191,0.45)); }
-    .maker-line { font-size: 0.95rem; color: var(--muted); margin-top: var(--s5); }
-    .maker-line strong { color: var(--brand-strong); font-weight: 700; letter-spacing: 0.01em; }
-
-    /* Mission nav pill (matches index.html) */
-    .nav-links .nav-mission {
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="Harnesses, models, and hardware in the agent ecosystem worth knowing about — curated, categorized, no hype.">
+<title>Ecosystem · PDuk Brainworks — Agent Architect Stack</title>
+<style>
+  :root{
+    --bg:#080d0c; --panel:#0c1211; --panel-2:#101917;
+    --line:rgba(255,255,255,.07); --line-2:rgba(255,255,255,.13);
+    --ink:#e8efed; --soft:#8b9c99; --dim:#61736f;
+    --brand:#2dd4bf; --brand-2:#5eead4; --violet:#a78bfa; --gold:#fbbf24; --rose:#fb7185; --sky:#7dd3fc; --amber:#f59e0b;
+    --s2:8px; --s3:16px; --s4:24px; --s5:40px; --s6:64px;
+    --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
+    /* accents the ported nav-pill CSS depends on, matched to index.html */
+    --accent:#fbbf24; --accent-soft:rgba(251,191,36,0.12); --warn-bd:rgba(251,191,36,0.45);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0; background:var(--bg); color:var(--ink);
+    font:15.5px/1.58 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif; -webkit-font-smoothing:antialiased}
+  a{color:var(--brand-2); text-decoration:none} a:hover{text-decoration:underline}
+  .container{max-width:1120px; margin:0 auto; padding:0 var(--s4)}
+  /* a11y set ported back from the live ecosystem.html, which already had all of this */
+  .skip{position:absolute; left:-9999px; top:8px; z-index:100; background:var(--panel-2); color:var(--ink);
+    border:1px solid var(--brand); padding:10px 16px; border-radius:6px}
+  .skip:focus{left:16px}
+  a:focus-visible, summary:focus-visible, .skip:focus-visible{outline:2px solid var(--brand); outline-offset:3px; border-radius:4px}
+  #f-all:focus-visible   ~ .filters label[for="f-all"],
+  #f-local:focus-visible ~ .filters label[for="f-local"],
+  #f-oss:focus-visible   ~ .filters label[for="f-oss"],
+  #f-mcp:focus-visible   ~ .filters label[for="f-mcp"],
+  #f-int:focus-visible   ~ .filters label[for="f-int"],
+  #f-rival:focus-visible ~ .filters label[for="f-rival"]{outline:2px solid var(--brand); outline-offset:3px}
+  header{border-bottom:1px solid var(--line); background:rgba(8,13,12,.9); backdrop-filter:blur(10px); position:sticky; top:0; z-index:60}
+  .nav-inner{max-width:1120px; margin:0 auto; padding:13px var(--s4); display:flex; align-items:center; justify-content:space-between; gap:var(--s3)}
+  .brand{display:flex; align-items:center; gap:9px; color:var(--ink); font-weight:600; font-size:.92rem}
+  .brand span{color:var(--soft); font-weight:400}
+  .nav-links{display:flex; gap:var(--s4); font-size:.88rem}
+  .nav-links a{color:var(--soft)} .nav-links a[aria-current]{color:var(--violet)}
+  /* nav pill styling, ported from index.html so the header matches the other three pages */
+.nav-links .nav-mission {
       color: var(--accent); font-weight: 700; white-space: nowrap; flex: none;
       padding: 3px 12px; border: 1px solid var(--warn-bd); border-radius: 999px;
       background-color: var(--accent-soft);
@@ -425,312 +57,772 @@
       animation: mission-glint 7s ease-in-out infinite;
       pointer-events: none;
     }
-    /* Ecosystem nav pill — modest violet accent, no glint (Mission stays the one animated pill) */
-    .nav-links .nav-ecosystem {
-      color: var(--violet); font-weight: 650; white-space: nowrap; flex: none;
-      padding: 3px 12px; border: 1px solid rgba(167,139,250,0.4); border-radius: 999px;
-      background-color: var(--violet-soft);
-      background-image: linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0) 55%);
-      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease;
-    }
-    .nav-links .nav-ecosystem:hover { color: #c9bffc; border-color: var(--violet); text-decoration: none; transform: translateY(-1px); box-shadow: 0 3px 8px rgba(0,0,0,0.25); }
-
-    /* Contributors nav pill — neutral outlined "button", no color accent (Mission = gold, Ecosystem = violet, this = plain) */
-    .nav-links .nav-contributors {
-      font-weight: 600; white-space: nowrap; flex: none;
-      padding: 3px 12px; border: 1px solid var(--line-strong); border-radius: 999px;
-      background-color: var(--surface);
-      transition: transform .15s ease, box-shadow .15s ease, border-color .15s ease, color .15s ease;
-    }
-    .nav-links .nav-contributors:hover { color: var(--brand); border-color: var(--brand-ring); text-decoration: none; transform: translateY(-1px); box-shadow: 0 3px 8px rgba(0,0,0,0.2); }
-
     @keyframes mission-glint {
       0%, 86% { left: -80%; }
       96%, 100% { left: 130%; }
     }
     @media (prefers-reduced-motion: reduce) { .nav-mission::after { animation: none; } }
 
-    /* Mission layout: text + sticky anthem player; collapses on small screens */
-    .mission-layout { display: grid; grid-template-columns: minmax(0,1fr) 400px; gap: var(--s7); align-items: start; }
-    .anthem-sticky { position: sticky; top: var(--s5); }
-    .anthem-frame { min-height: 200px; } /* YouTube ToS floor: player never below 200px tall; letterboxes on narrow screens */
-    @media (max-width: 860px) {
-      .mission-layout { grid-template-columns: 1fr; }
-      .anthem-sticky { position: static; order: -1; }
-    }
+  .hero{padding:var(--s6) 0 var(--s5); border-bottom:1px solid var(--line);
+    background:radial-gradient(900px 340px at 10% -15%, rgba(45,212,191,.10), transparent 62%)}
+  .eyebrow{font:11px/1 var(--mono); letter-spacing:.22em; text-transform:uppercase; color:var(--violet)}
+  h1{font-size:clamp(2.4rem,5.8vw,3.5rem); line-height:1.03; margin:var(--s3) 0; letter-spacing:-.025em}
+  h1 em{font-style:italic; color:var(--brand)}
+  .lede{max-width:64ch; color:var(--soft); font-size:1.02rem} .lede b{color:var(--ink)}
+  .stats{display:flex; gap:var(--s5); flex-wrap:wrap; margin-top:var(--s4); padding-top:var(--s4); border-top:1px solid var(--line)}
+  .stat .n{font:600 1.45rem/1 var(--mono); color:var(--brand); letter-spacing:-.02em}
+  .stat .l{font:10px/1.4 var(--mono); letter-spacing:.14em; text-transform:uppercase; color:var(--dim); margin-top:6px}
 
-    /* Ecosystem page: collapsible categories (native <details>, no JS) + jump nav */
-    .eco-jumpnav { display: flex; flex-wrap: wrap; gap: var(--s2); margin-bottom: var(--s7); }
-    .eco-jumpnav a {
-      font-size: 0.85rem; padding: 5px 13px; border-radius: 999px;
-      border: 1px solid var(--line); background: var(--surface); color: var(--muted);
-    }
-    .eco-jumpnav a:hover { color: var(--brand); border-color: var(--brand-ring); text-decoration: none; }
-    details > summary { list-style: none; }
-    details > summary::-webkit-details-marker { display: none; }
-    details > summary::before {
-      content: "▸"; display: inline-block; color: var(--soft);
-      transition: transform .15s ease; margin-right: 2px;
-    }
-    details[open] > summary::before { transform: rotate(90deg); }
-  </style>
+  input[name="f"]{position:absolute; opacity:0; pointer-events:none}
+  .filters{position:sticky; top:53px; z-index:50; background:rgba(8,13,12,.95); backdrop-filter:blur(8px);
+    border-bottom:1px solid var(--line); padding:11px 0}
+  .filters .container{display:flex; align-items:center; gap:var(--s3); flex-wrap:wrap}
+  .flabel{font:10px/1 var(--mono); letter-spacing:.16em; text-transform:uppercase; color:var(--dim)}
+  .chips{display:flex; gap:7px; flex-wrap:wrap}
+  .chips label{font:11px/1 var(--mono); letter-spacing:.05em; padding:7px 11px; border-radius:20px;
+    border:1px solid var(--line-2); color:var(--soft); cursor:pointer; user-select:none; transition:.12s}
+  .chips label:hover{border-color:var(--brand); color:var(--brand-2)}
+  #f-all:checked ~ .filters label[for="f-all"],
+  #f-local:checked ~ .filters label[for="f-local"],
+  #f-oss:checked ~ .filters label[for="f-oss"],
+  #f-mcp:checked ~ .filters label[for="f-mcp"],
+  #f-int:checked ~ .filters label[for="f-int"],
+  #f-rival:checked ~ .filters label[for="f-rival"]{background:rgba(45,212,191,.16); border-color:var(--brand); color:var(--brand)}
+  #f-local:checked ~ main .card:not(.t-local){display:none}
+  #f-oss:checked   ~ main .card:not(.t-oss){display:none}
+  #f-mcp:checked   ~ main .card:not(.t-mcp){display:none}
+  #f-int:checked   ~ main .card:not(.t-int){display:none}
+  #f-rival:checked ~ main .card:not(.t-rival){display:none}
+  #f-local:checked ~ main .subgroup:not(:has(.card.t-local)), #f-local:checked ~ main .stage:not(:has(.card.t-local)),
+  #f-oss:checked   ~ main .subgroup:not(:has(.card.t-oss)),   #f-oss:checked   ~ main .stage:not(:has(.card.t-oss)),
+  #f-mcp:checked   ~ main .subgroup:not(:has(.card.t-mcp)),   #f-mcp:checked   ~ main .stage:not(:has(.card.t-mcp)),
+  #f-int:checked   ~ main .subgroup:not(:has(.card.t-int)),   #f-int:checked   ~ main .stage:not(:has(.card.t-int)),
+  #f-rival:checked ~ main .subgroup:not(:has(.card.t-rival)), #f-rival:checked ~ main .stage:not(:has(.card.t-rival)){display:none}
+  /* the off-the-arc divider dies with the shelves it introduces */
+  #f-local:checked ~ main .arc-end:not(:has(~ .stage.s-dom .card.t-local)),
+  #f-oss:checked   ~ main .arc-end:not(:has(~ .stage.s-dom .card.t-oss)),
+  #f-mcp:checked   ~ main .arc-end:not(:has(~ .stage.s-dom .card.t-mcp)),
+  #f-int:checked   ~ main .arc-end:not(:has(~ .stage.s-dom .card.t-int)),
+  #f-rival:checked ~ main .arc-end:not(:has(~ .stage.s-dom .card.t-rival)){display:none}
+  .fnote{font:10px/1.4 var(--mono); color:var(--dim); margin-left:auto}
+  /* the shelf-collapse rules need :has(); without it the filters would leave empty shelf headings */
+  @supports not (selector(:has(*))){ .filters{display:none} }
+
+  .layout{display:grid; grid-template-columns:196px 1fr; gap:var(--s5); padding:var(--s5) 0 var(--s6)}
+  .rail{position:sticky; top:112px; align-self:start; font-size:.85rem}
+  .rail-title{font:10px/1 var(--mono); letter-spacing:.16em; text-transform:uppercase; color:var(--dim); margin-bottom:var(--s3)}
+  .rail a{display:flex; gap:9px; align-items:baseline; padding:5px 0; color:var(--soft)}
+  .rail a:hover{color:var(--brand-2); text-decoration:none}
+  .rail .n{font:10.5px/1.4 var(--mono); color:var(--dim); min-width:18px}
+  .rail a:hover .n{color:var(--brand)}
+  .rail .rule{height:1px; background:var(--line); margin:var(--s3) 0}
+  /* under an active filter most shelves are hidden, so the jump rail would point at nothing */
+  #f-local:checked ~ main .rail, #f-oss:checked ~ main .rail, #f-mcp:checked ~ main .rail,
+  #f-int:checked ~ main .rail, #f-rival:checked ~ main .rail{display:none}
+  #f-local:checked ~ main .layout, #f-oss:checked ~ main .layout, #f-mcp:checked ~ main .layout,
+  #f-int:checked ~ main .layout, #f-rival:checked ~ main .layout{grid-template-columns:1fr}
+
+  .stage{position:relative; padding-left:var(--s5); padding-bottom:var(--s5); scroll-margin-top:120px}
+  .stage::before{content:""; position:absolute; left:9px; top:24px; bottom:0; width:1px;
+    background:linear-gradient(to bottom,var(--line-2),transparent)}
+  .stage:last-of-type::before{display:none}
+  /* the arc ends at 14; the two domain shelves hang off it, so the connector stops */
+  .stage.s-dom::before, #voice::before{display:none}
+  .stage.s-dom .dot{border-style:dashed} .stage.s-dom .dot i{width:5px; height:5px}
+  .arc-end{display:flex; align-items:center; gap:12px; margin:0 0 var(--s5); padding-left:var(--s5);
+    font:10px/1 var(--mono); letter-spacing:.16em; text-transform:uppercase; color:var(--dim)}
+  .arc-end::after{content:""; flex:1; height:1px; background:var(--line)}
+  .dot{position:absolute; left:0; top:14px; width:19px; height:19px; border-radius:50%;
+    border:1px solid var(--line-2); background:var(--panel); display:grid; place-items:center}
+  .dot i{width:7px; height:7px; border-radius:50%; background:var(--brand); display:block}
+  .stage.s-mem .dot i{background:var(--violet)} .stage.s-sec .dot i{background:var(--rose)}
+  .stage.s-dom .dot i{background:var(--gold)}
+  .stage-head{display:flex; align-items:center; gap:11px; flex-wrap:wrap; margin-bottom:7px}
+  .code{font:11px/1 var(--mono); letter-spacing:.11em; color:var(--bg); background:var(--brand);
+    padding:6px 8px; border-radius:4px; font-weight:700}
+  .stage.s-mem .code{background:var(--violet)} .stage.s-sec .code{background:var(--rose)}
+  .stage.s-dom .code{background:var(--gold)}
+  .stage-head h2{font-size:1.3rem; margin:0; letter-spacing:-.012em}
+  .stage-q{color:var(--soft); font-size:.93rem; max-width:68ch; margin:0 0 var(--s3)}
+  .stage-q b{color:var(--ink); font-weight:600}
+
+  .subgroup + .subgroup{margin-top:20px}
+  .sublabel{display:flex; align-items:center; gap:10px; margin:0 0 9px;
+    font:10px/1 var(--mono); letter-spacing:.15em; text-transform:uppercase; color:var(--dim)}
+  .sublabel::after{content:""; flex:1; height:1px; background:var(--line)}
+  .sublabel .hint{text-transform:none; letter-spacing:.02em; color:#7d8f8c; font-size:10.5px}
+
+  .grid{display:grid; grid-template-columns:repeat(auto-fill,minmax(288px,1fr)); gap:11px}
+  .card{background:var(--panel); border:1px solid var(--line); border-radius:9px; padding:13px 15px;
+    display:flex; flex-direction:column; gap:7px; transition:.13s}
+  .card:hover{background:var(--panel-2); border-color:var(--line-2); transform:translateY(-1px)}
+  .card h3{margin:0; font-size:.96rem; font-weight:600}
+  .card h3 a{color:var(--ink)} .card h3 a:hover{color:var(--brand-2)}
+  .card p{margin:0; color:var(--soft); font-size:.84rem; line-height:1.5}
+  .card .caveat{color:var(--dim); font-size:.79rem; font-style:italic; display:block; margin-top:4px}
+  .tags{display:flex; gap:5px; flex-wrap:wrap; margin-top:auto; padding-top:5px}
+  .tag{font:9.5px/1 var(--mono); letter-spacing:.06em; padding:4px 6px; border-radius:4px;
+    border:1px solid var(--line-2); color:var(--dim)}
+  .tag.oss{color:var(--brand-2); border-color:rgba(94,234,212,.26)}
+  .tag.src{color:var(--amber); border-color:rgba(245,158,11,.3)}
+  .tag.local{color:var(--sky); border-color:rgba(125,211,252,.26)}
+  .tag.paid{color:var(--gold); border-color:rgba(251,191,36,.26)}
+  .tag.mcp{color:#c4b5fd; border-color:rgba(196,181,253,.34)}
+  .tag.mcpc{color:#8b9c99; border-color:rgba(196,181,253,.2)}
+  /* the two disclosure tags read as a different KIND of tag: dashed, unfilled, off-brand */
+  .tag.int{color:var(--soft); border-color:var(--line-2); border-style:dashed; background:none}
+  .tag.rival{color:var(--rose); border-color:rgba(251,113,133,.34); border-style:dashed; background:none}
+
+  .split{display:grid; grid-template-columns:1fr 1fr; gap:var(--s4); margin-top:var(--s4)}
+  .box{border:1px solid var(--line-2); border-radius:10px; padding:var(--s4); background:rgba(255,255,255,.012)}
+  .box.dashed{border-style:dashed}
+  /* provisional, not premium: dashed says "not listed yet"; a solid listed card still outranks it */
+  .bench{border:1px dashed rgba(45,212,191,.45); border-radius:8px;
+    background:rgba(45,212,191,.04); padding:14px 16px; margin-bottom:var(--s4)}
+  .bench-label{font:10px/1 var(--mono); letter-spacing:.15em; text-transform:uppercase; color:var(--brand); margin-bottom:8px}
+  .bench li b::after{content:"TESTING NEXT"; font:8.5px/1 var(--mono); letter-spacing:.1em; color:var(--brand);
+    border:1px solid rgba(45,212,191,.42); border-radius:3px; padding:3px 5px; margin-left:8px; vertical-align:2px}
+  .bench p.thesis{margin:0 0 10px; color:var(--soft); font-size:.85rem}
+  .bench ul{margin:0; padding-left:17px; font-size:.85rem; color:var(--soft)}
+  .bench li{margin-bottom:7px} .bench li b{color:var(--brand-2)} .bench li em{color:var(--dim); font-style:normal}
+  .box h2{font-size:1.05rem; margin:0 0 4px} .box .sub{color:var(--dim); font-size:.83rem; margin:0 0 var(--s3)}
+  .box ul{margin:0; padding-left:17px; font-size:.85rem; color:var(--soft)}
+  .box li{margin-bottom:7px} .box li b{color:var(--ink)} .box li em{color:var(--dim); font-style:normal}
+  footer{border-top:1px solid var(--line); padding:var(--s5) 0; color:var(--dim); font-size:.83rem}
+  .reviewed{font:11px/1.7 var(--mono); letter-spacing:.05em; color:var(--dim)}
+  .creds{color:var(--dim); font-size:.8rem; margin:0 0 var(--s3)}
+  .attrib{color:var(--soft); font-size:.85rem; margin:0 0 var(--s3)} .attrib strong{color:var(--ink)}
+  .footer-links{display:flex; gap:var(--s4); flex-wrap:wrap; margin-bottom:var(--s3); font-size:.9rem}
+  .footer-links a{color:var(--brand-2)}
+
+  @media (max-width:1024px){ .grid{grid-template-columns:repeat(auto-fill,minmax(250px,1fr))} }
+  @media (max-width:900px){
+    .layout{grid-template-columns:1fr}
+    .split{grid-template-columns:1fr} .fnote{display:none}
+    .stage{padding-left:var(--s4); scroll-margin-top:64px} .stage::before{left:7px} .dot{width:15px; height:15px}
+    /* one source of truth: the rail BECOMES the jump bar. No duplicated link list to hand-sync. */
+    header{position:static} .filters{position:static}
+    .rail{position:sticky; top:0; z-index:45; display:flex; gap:7px; overflow-x:auto; overscroll-behavior-x:contain;
+      margin:0 0 var(--s4); padding:8px 10px; background:rgba(11,17,16,.97); border:1px solid var(--line-2);
+      border-radius:999px; backdrop-filter:blur(8px)}
+    .rail-title{display:none}
+    .rail .rule{display:none}
+    .rail a{flex:0 0 auto; gap:6px; padding:0 12px; min-height:44px; align-items:center; white-space:nowrap;
+      border:1px solid var(--line-2); border-radius:999px; font-size:.84rem}
+  }
+  @media (max-width:768px){
+    .nav-inner{flex-wrap:wrap; row-gap:var(--s3); padding:11px var(--s4)}
+    .nav-links{flex-wrap:wrap; justify-content:center; width:100%; gap:var(--s2) var(--s3)}
+    .nav-links a{padding:10px 8px; min-height:44px; display:inline-flex; align-items:center}
+    .stats{gap:var(--s4)}
+    .footer-links{flex-direction:column; align-items:flex-start; gap:var(--s2)}
+  }
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto}
+    *,*::before,*::after{transition:none !important}
+    .card:hover{transform:none !important}
+  }
+</style>
 </head>
 <body>
+<a href="#main" class="skip">Skip to content</a>
 
-  <a href="#main" class="skip">Skip to content</a>
+<header>
+  <div class="nav-inner">
+    <a href="index.html" class="brand">
+      <svg width="25" height="25" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+        <path d="M16 2 28 9 28 23 16 30 4 23 4 9Z" stroke="#2dd4bf" stroke-width="1.6" fill="rgba(45,212,191,0.07)"/>
+        <circle cx="16" cy="11" r="2.1" fill="#2dd4bf"/><circle cx="11" cy="20" r="2.1" fill="#5eead4"/>
+        <circle cx="21" cy="20" r="2.1" fill="#fbbf24"/>
+        <path d="M16 11 11 20M16 11 21 20M11 20 21 20" stroke="#2dd4bf" stroke-width="1.2" opacity=".6"/>
+      </svg>
+      PDuk Brainworks <span>/ Agent Architect Stack</span>
+    </a>
+    <nav class="nav-links" aria-label="Primary">
+      <a href="mission.html" class="nav-mission">✦ Mission</a><a href="index.html#branches">Branches</a><a href="index.html#quickstart">Quick Start</a><a href="index.html#status">Status</a>
+      <a href="ecosystem.html" class="nav-ecosystem" aria-current="page">Ecosystem</a><a href="contributors.html" class="nav-contributors">Contributors</a>
+    </nav>
+  </div>
+</header>
 
-  <header>
-    <div class="nav-inner">
-      <a href="index.html" class="brand logo"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 2 28 9 28 23 16 30 4 23 4 9Z" stroke="#2dd4bf" stroke-width="1.6" fill="rgba(45,212,191,0.07)"/><circle cx="16" cy="11" r="2.1" fill="#2dd4bf"/><circle cx="11" cy="20" r="2.1" fill="#5eead4"/><circle cx="21" cy="20" r="2.1" fill="#fbbf24"/><path d="M16 11 11 20M16 11 21 20M11 20 21 20" stroke="#2dd4bf" stroke-width="1.2" opacity="0.6"/></svg> PDuk Brainworks <span style="color:var(--muted);font-weight:500;font-size:0.82rem;">/ Agent Architect Stack</span></a>
-      <nav class="nav-links" aria-label="Primary">
-        <a href="mission.html" class="nav-mission">✦ Mission</a>
-        <a href="index.html#branches">Branches</a>
-        <a href="index.html#quickstart">Quick Start</a>
-        <a href="index.html#status">Status</a>
-        <a href="ecosystem.html" class="nav-ecosystem" aria-current="page">Ecosystem</a>
-        <a href="contributors.html" class="nav-contributors">Contributors</a>
-      </nav>
+<section class="hero">
+  <div class="container">
+    <span class="eyebrow">Ecosystem</span>
+    <h1>What we're <em>watching</em>.</h1>
+    <p class="lede">Harnesses, models and hardware in the agent ecosystem worth knowing about. Some of this we run ourselves, some of it our own tools can plug into; the rest we've checked out and found legitimate — real, functioning, and worth your time. <b>We don't list vaporware, and nobody pays to be on this page.</b></p>
+    <div class="stats">
+      <div class="stat"><div class="n">139</div><div class="l">Entries</div></div>
+      <div class="stat"><div class="n">164</div><div class="l">Evaluated, Aug 2026</div></div>
+      <div class="stat"><div class="n">16</div><div class="l">Shelves</div></div>
+      <div class="stat"><div class="n">2026-08</div><div class="l">Last Reviewed</div></div>
     </div>
-  </header>
+  </div>
+</section>
 
-  <main id="main">
-
-  <section class="hero" style="padding-bottom: var(--s7);">
-    <div class="container">
-      <span class="eyebrow">Ecosystem</span>
-      <h1 style="font-size:2.9rem;">What we're <em style="color:var(--brand);">watching</em>.</h1>
-      <p class="tagline" style="margin-bottom:0;"><span class="tag-sub" style="max-width:none;"><a href="index.html">← Back to the stack</a></span></p>
+<section style="border-bottom:1px solid var(--line); padding:var(--s4) 0; background:rgba(255,255,255,.012)">
+  <div class="container">
+    <div style="font:10px/1 var(--mono); letter-spacing:.16em; text-transform:uppercase; color:var(--dim); margin-bottom:12px">Reading The Tags</div>
+    <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:10px var(--s4); font-size:.82rem; color:var(--soft)">
+      <div><span class="tag oss">OSS</span> &nbsp;a recognised open-source licence</div>
+      <div><span class="tag src">SOURCE-AVAILABLE</span> &nbsp;readable, but restricted — not open source</div>
+      <div><span class="tag local">LOCAL</span> &nbsp;runs on hardware you own</div>
+      <div><span class="tag paid">PAID</span> &nbsp;commercial, or free only up to a limit</div>
+      <div><span class="tag mcp">MCP SERVER</span> &nbsp;an agent can drive it directly</div>
+      <div><span class="tag mcpc">MCP CLIENT</span> &nbsp;it connects out to other servers — a different thing, and not what the filter finds</div>
+      <div><span class="tag int">INTEGRATED</span> &nbsp;<b style="color:var(--ink)">an optional UMS add-on</b></div>
+      <div><span class="tag rival">OVERLAPS</span> &nbsp;<b style="color:var(--ink)">an alternative to something we make</b></div>
+      <div style="color:var(--dim)">The last two are disclosures, not ratings. They mark where we have a stake, so you can discount us accordingly.</div>
     </div>
-  </section>
+  </div>
+</section>
 
-  <section>
-    <div class="container" style="max-width:860px;">
-      <p style="font-size:1.08rem; line-height:1.75; color:var(--muted); margin-bottom:var(--s5);">Harnesses, models, and hardware in the agent ecosystem worth knowing about. Some of this we run ourselves; the rest we've checked out and found legitimate — real, functioning, and worth your time. We don't list vaporware, and nobody pays to be on this page.</p>
+<input type="radio" name="f" id="f-all" checked>
+<input type="radio" name="f" id="f-local">
+<input type="radio" name="f" id="f-oss">
+<input type="radio" name="f" id="f-mcp">
+<input type="radio" name="f" id="f-int">
+<input type="radio" name="f" id="f-rival">
 
-      <nav class="eco-jumpnav" aria-label="Jump to category">
-        <a href="#harnesses">Harnesses</a>
-        <a href="#models">Models &amp; inference</a>
-        <a href="#marketplaces">Marketplaces &amp; Skill Hubs</a>
-        <a href="#developer-platforms">Developer Platforms</a>
-        <a href="#context-retrieval">Context &amp; Retrieval</a>
-        <a href="#biotech">Biotech &amp; Life Sciences</a>
-        <a href="#benchmarks">Benchmarks</a>
-        <a href="#hardware">Hardware</a>
-        <a href="#learning">Learning</a>
-      </nav>
-
-      <details open id="harnesses" style="margin-bottom:var(--s7);">
-        <summary style="cursor:pointer; list-style:none; display:flex; align-items:baseline; gap:10px;"><h2 style="font-size:1.4rem; margin-bottom:var(--s2);">Harnesses</h2><span style="color:var(--soft); font-size:0.85rem; font-weight:400;">(5)</span></summary>
-        <p style="color:var(--soft); font-size:0.9rem; margin-bottom:var(--s5);">The agent runtimes that drive tool calls, memory, and channels — this stack is built to work with any of them.</p>
-
-        <div style="display:grid; gap:var(--s4);">
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://claude.com/product/claude-code" target="_blank" rel="noopener">Claude Code</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">The honest admission: this entire stack is built and shipped inside it, every day. Big-company product, undeniably the tool in our own hands.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener">OpenClaw</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">The harness we build our own adapters against — both Memory and Security branches ship official OpenClaw integrations.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes Agent</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">Nous Research's memory-first alternative — agents that build and refine their own skills over time. MIT-licensed.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://opencode.ai/" target="_blank" rel="noopener">OpenCode</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">A terminal-native coding agent — MIT-licensed, LSP-aware, works with any model provider you point it at.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.nvidia.com/en-us/ai/nemoclaw/" target="_blank" rel="noopener">NemoClaw</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">NVIDIA's hardened wrapper around OpenClaw — sandboxes the agent inside OpenShell, supports Hermes as an alternate agent too.</p>
-          </div>
-        </div>
-      </details>
-
-      <details open id="models" style="margin-bottom:var(--s7);">
-        <summary style="cursor:pointer; list-style:none; display:flex; align-items:baseline; gap:10px;"><h2 style="font-size:1.4rem; margin-bottom:var(--s2);">Models &amp; inference</h2><span style="color:var(--soft); font-size:0.85rem; font-weight:400;">(7)</span></summary>
-        <p style="color:var(--soft); font-size:0.9rem; margin-bottom:var(--s5);">Where the actual reasoning comes from, and how it gets served.</p>
-
-        <div style="display:grid; gap:var(--s4);">
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://ollama.com/" target="_blank" rel="noopener">Ollama</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">The local model runtime we actually use in our own benchmark work.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://github.com/ggml-org/llama.cpp" target="_blank" rel="noopener">llama.cpp</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">The C/C++ engine underneath most local-inference tools, Ollama included — this is literally what our own benchmark study's quantization work runs on.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://vllm.ai/" target="_blank" rel="noopener">vLLM</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">The production-grade serving engine — PagedAttention and continuous batching for squeezing real throughput out of a GPU fleet.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://openrouter.ai/" target="_blank" rel="noopener">OpenRouter</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">One API, 400+ models — useful when you don't want to hardcode a single provider.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://huggingface.co/" target="_blank" rel="noopener">Hugging Face</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">The model and dataset hub — where most open weights actually live.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://groq.com/" target="_blank" rel="noopener">Groq</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">LPU-based cloud inference — purpose-built silicon for fast, cheap token generation, not a repackaged GPU.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://developer.nvidia.com/topics/ai/nemotron" target="_blank" rel="noopener">NVIDIA Nemotron</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">NVIDIA's open model family, open weights and training recipes, tuned for agentic workloads and local deployment.</p>
-          </div>
-        </div>
-      </details>
-
-      <details open id="marketplaces" style="margin-bottom:var(--s7);">
-        <summary style="cursor:pointer; list-style:none; display:flex; align-items:baseline; gap:10px;"><h2 style="font-size:1.4rem; margin-bottom:var(--s2);">Marketplaces &amp; Skill Hubs</h2><span style="color:var(--soft); font-size:0.85rem; font-weight:400;">(2)</span></summary>
-        <p style="color:var(--soft); font-size:0.9rem; margin-bottom:var(--s5);">Where you get skills and plugins once the harness is running.</p>
-
-        <div style="display:grid; gap:var(--s4);">
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://clawhub.ai/" target="_blank" rel="noopener">ClawHub</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">The community skills distribution hub for OpenClaw — where we're planning to publish this stack's own skills next.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://code.claude.com/docs/en/plugin-marketplaces" target="_blank" rel="noopener">Claude Code Plugin Marketplace</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">Anthropic's native plugin/marketplace mechanism — it's literally how the Memory branch installs today (<code>/plugin marketplace add</code>).</p>
-          </div>
-        </div>
-      </details>
-
-      <details open id="developer-platforms" style="margin-bottom:var(--s7);">
-        <summary style="cursor:pointer; list-style:none; display:flex; align-items:baseline; gap:10px;"><h2 style="font-size:1.4rem; margin-bottom:var(--s2);">Developer Platforms</h2><span style="color:var(--soft); font-size:0.85rem; font-weight:400;">(2)</span></summary>
-        <p style="color:var(--soft); font-size:0.9rem; margin-bottom:var(--s5);">Where you actually go to build — API access, docs, and dev programs.</p>
-
-        <div style="display:grid; gap:var(--s4);">
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand-strong); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://platform.claude.com/" target="_blank" rel="noopener">Claude Developer Platform</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">Anthropic's own API and developer platform — the one this entire stack is built to run on top of.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand-strong); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://developer.amd.com/" target="_blank" rel="noopener">AMD Developer</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">Free AI developer program — ROCm tooling, cloud credits, and training for building on AMD hardware.</p>
-          </div>
-        </div>
-      </details>
-
-      <details open id="context-retrieval" style="margin-bottom:var(--s7);">
-        <summary style="cursor:pointer; list-style:none; display:flex; align-items:baseline; gap:10px;"><h2 style="font-size:1.4rem; margin-bottom:var(--s2);">Context &amp; Retrieval</h2><span style="color:var(--soft); font-size:0.85rem; font-weight:400;">(4)</span></summary>
-        <p style="color:var(--soft); font-size:0.9rem; margin-bottom:var(--s5);">Getting the right context to the model, not just more of it — whether that's a tool call or a retrieved chunk.</p>
-
-        <div style="display:grid; gap:var(--s4);">
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://modelcontextprotocol.io/" target="_blank" rel="noopener">Model Context Protocol (MCP)</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">The open standard for connecting agents to tools and data — this stack is hook-based rather than MCP-based by design, but it's the protocol most of the ecosystem is converging on.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.llamaindex.ai/" target="_blank" rel="noopener">LlamaIndex</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">The leading RAG-specific framework — indexing, retrieval, and query pipelines built for exactly this job.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.anthropic.com/engineering/contextual-retrieval" target="_blank" rel="noopener">Contextual Retrieval</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">Anthropic's technique for fixing RAG's biggest failure mode — chunks that lose their surrounding context. Directly relevant to how the Memory branch thinks about retrieval.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.langchain.com/" target="_blank" rel="noopener">LangChain</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">The broadest framework in the space — not RAG-only, but its retrieval tooling is where most people first encounter the pattern.</p>
-          </div>
-        </div>
-      </details>
-
-      <details open id="biotech" style="margin-bottom:var(--s7);">
-        <summary style="cursor:pointer; list-style:none; display:flex; align-items:baseline; gap:10px;"><h2 style="font-size:1.4rem; margin-bottom:var(--s2);">Biotech &amp; Life Sciences</h2><span style="color:var(--soft); font-size:0.85rem; font-weight:400;">(2)</span></summary>
-        <p style="color:var(--soft); font-size:0.9rem; margin-bottom:var(--s5);">Where agent infrastructure meets the lab bench.</p>
-
-        <div style="display:grid; gap:var(--s4);">
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand-strong); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://github.com/wu-yc/LabClaw" target="_blank" rel="noopener">LabClaw</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">An operating layer for LabOS, built for the Stanford–Princeton line of AI co-scientist work — agents doing real lab research, not just suggesting it.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand-strong); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.youtube.com/watch?v=RNY0p5wL4AA" target="_blank" rel="noopener">BIO26 Healthcare Special Address</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">NVIDIA's Kimberly Powell at BIO International Convention 2026, on the BioNeMo Agent Toolkit and the shift from AI that suggests science to AI that runs it.</p>
-          </div>
-        </div>
-      </details>
-
-      <details open id="benchmarks" style="margin-bottom:var(--s7);">
-        <summary style="cursor:pointer; list-style:none; display:flex; align-items:baseline; gap:10px;"><h2 style="font-size:1.4rem; margin-bottom:var(--s2);">Benchmarks</h2><span style="color:var(--soft); font-size:0.85rem; font-weight:400;">(1)</span></summary>
-        <p style="color:var(--soft); font-size:0.9rem; margin-bottom:var(--s5);">How you tell a capable agent from a confident one.</p>
-
-        <div style="display:grid; gap:var(--s4);">
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--violet); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.swebench.com/" target="_blank" rel="noopener">SWE-bench</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">The standard for measuring whether an agent can actually fix real GitHub issues, not just talk convincingly about code.</p>
-          </div>
-        </div>
-      </details>
-
-      <details open id="hardware" style="margin-bottom:var(--s6);">
-        <summary style="cursor:pointer; list-style:none; display:flex; align-items:baseline; gap:10px;"><h2 style="font-size:1.4rem; margin-bottom:var(--s2);">Hardware for local AI</h2><span style="color:var(--soft); font-size:0.85rem; font-weight:400;">(3)</span></summary>
-        <p style="color:var(--soft); font-size:0.9rem; margin-bottom:var(--s5);">For running real models on your own machine, not a rented one.</p>
-
-        <div style="display:grid; gap:var(--s4);">
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.nvidia.com/en-us/products/workstations/dgx-spark/" target="_blank" rel="noopener">NVIDIA DGX Spark</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">A desktop-sized AI supercomputer — for running real local models, not toy demos.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.amd.com/en/products/processors/desktops/ryzen/ryzen-ai-halo.html" target="_blank" rel="noopener">AMD Ryzen AI Max</a> <span style="color:var(--soft); font-weight:400; font-size:0.85rem;">("Strix Halo")</span></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">128GB unified memory in a desktop APU — a serious x86 option for local inference.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--accent); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.apple.com/mac-studio/" target="_blank" rel="noopener">Mac Studio</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">Apple Silicon with genuinely high unified memory — built for workloads like this, not just video editing. (The Mac Mini is the wrong pick here: not enough memory bandwidth for real local models.)</p>
-          </div>
-        </div>
-      </details>
-
-      <details open id="learning" style="margin-bottom:var(--s6);">
-        <summary style="cursor:pointer; list-style:none; display:flex; align-items:baseline; gap:10px;"><h2 style="font-size:1.4rem; margin-bottom:var(--s2);">Learning</h2><span style="color:var(--soft); font-size:0.85rem; font-weight:400;">(4)</span></summary>
-        <p style="color:var(--soft); font-size:0.9rem; margin-bottom:var(--s5);">Free courses that actually issue a certificate — not just a "you watched the video" badge. Paid options may get their own list later.</p>
-
-        <div style="display:grid; gap:var(--s4);">
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand-strong); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://anthropic.skilljar.com/" target="_blank" rel="noopener">Anthropic Academy</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">Free courses on Claude, the API, Model Context Protocol, and Claude Code itself — straight from the source, certificates included.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand-strong); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.nvidia.com/en-us/training/self-paced-courses/" target="_blank" rel="noopener">NVIDIA Deep Learning Institute — Free Courses</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">Self-paced AI and accelerated-computing courses; select ones issue an NVIDIA DLI certificate on completion.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand-strong); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.cloudskillsboost.google/course_templates/536" target="_blank" rel="noopener">Google Cloud — Introduction to Generative AI</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">A ~45-minute no-cost primer; stack it with two more free courses for the full Generative AI Fundamentals skill badge.</p>
-          </div>
-          <div style="background:var(--surface); border:1px solid var(--line); border-left:3px solid var(--brand-strong); border-radius:var(--radius); padding:var(--s4) var(--s5);">
-            <h3 style="font-size:1.05rem; margin-bottom:4px;"><a href="https://www.kaggle.com/learn" target="_blank" rel="noopener">Kaggle Learn</a></h3>
-            <p style="color:var(--muted); font-size:0.92rem;">Genuinely 100% free, no paywall trick — real Python notebooks, real model calls, certificates on completion.</p>
-          </div>
-        </div>
-      </details>
-
-      <p style="font-size:0.9rem; color:var(--soft); border-top:1px solid var(--line); padding-top:var(--s5);">This list grows as we vet more of it — it isn't only repos. Theses, papers, and ideas that genuinely improve how agents work belong here too. Got something we should look at? <a href="https://github.com/esoteric1entity" target="_blank" rel="noopener">Talk to us →</a></p>
+<div class="filters">
+  <div class="container">
+    <span class="flabel">Filter</span>
+    <div class="chips">
+      <label for="f-all">ALL</label>
+      <label for="f-local">RUNS LOCALLY</label>
+      <label for="f-oss">OPEN SOURCE</label>
+      <label for="f-mcp">AGENT-DRIVABLE</label>
+      <label for="f-int">INTEGRATED</label>
+      <label for="f-rival">OVERLAPS</label>
     </div>
-  </section>
+    <span class="fnote">no javascript — CSS only</span>
+  </div>
+</div>
 
-  </main>
+<main id="main">
+  <div class="container layout">
+    <aside class="rail" aria-label="Jump to a shelf">
+      <div class="rail-title">The Arc</div>
+      <a href="#build"><span class="n">01</span> Build</a>
+      <a href="#orchestrate"><span class="n">02</span> Orchestrate</a>
+      <a href="#run"><span class="n">03</span> Run</a>
+      <a href="#metal"><span class="n">04</span> Metal</a>
+      <a href="#fleet"><span class="n">05</span> Fleet</a>
+      <a href="#interact"><span class="n">06</span> Interact</a>
+      <a href="#remember"><span class="n">07</span> Remember</a>
+      <a href="#retrieve"><span class="n">08</span> Retrieve</a>
+      <a href="#extend"><span class="n">09</span> Extend</a>
+      <a href="#constrain"><span class="n">10</span> Constrain</a>
+      <a href="#improve"><span class="n">11</span> Improve</a>
+      <a href="#verify"><span class="n">12</span> Verify</a>
+      <a href="#create"><span class="n">13</span> Create</a>
+      <a href="#voice"><span class="n">14</span> Voice</a>
+      <div class="rule"></div>
+      <a href="#biotech"><span class="n">◆</span> Biotech</a>
+      <a href="#learn"><span class="n">◆</span> Learn</a>
+      <a href="#watchlist"><span class="n">◆</span> Watchlist</a>
+    </aside>
 
-  <footer>
-    <div class="container">
-      <div>
-        <strong>PDuk Brainworks</strong> 🧬 · Agent Architect Stack — Apache-2.0 — © 2026 esoteric1entity. A PDuk Brainworks project<br>
-        <span style="font-size: 0.85rem;">Part of a larger research program on agent infrastructure. Public launch: 2026-06-12.</span>
-        <div class="creds">This page: one HTML file · no JavaScript · no trackers · links out to third parties, nothing embedded.</div>
+    <div>
+      <!-- 01 BUILD -->
+      <section class="stage" id="build">
+        <span class="dot"><i></i></span>
+        <div class="stage-head"><span class="code">01 BUILD</span><h2>Harnesses &amp; Agent Platforms</h2></div>
+        <p class="stage-q"><b>Which One Runs Your Agent?</b> Most of these run against local models and need no subscription; where one does not, its card says so.</p>
+        <div class="subgroup">
+          <div class="sublabel">Terminal &amp; CLI Agents</div>
+          <div class="grid">
+            <article class="card"><h3><a href="https://claude.com/product/claude-code" target="_blank" rel="noopener">Claude Code</a></h3><p>Anthropic's terminal-native coding agent, and the harness most of this stack is built against.</p><div class="tags"><span class="tag paid">COMMERCIAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener">OpenClaw</a></h3><p>Self-hosted multi-agent framework you run on your own box, with its own gateway and session model. Now under independent foundation governance.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss"><h3><a href="https://www.nvidia.com/en-us/ai/nemoclaw/" target="_blank" rel="noopener">NemoClaw</a></h3><p>NVIDIA’s hardened wrapper around OpenClaw — it sandboxes the agent inside OpenShell, and will run Hermes as an alternate agent.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://aider.chat/" target="_blank" rel="noopener">Aider</a></h3><p>A terminal pair programmer that edits files in your git repository and commits each change separately, using a repository map instead of loading the whole codebase.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/block/goose" target="_blank" rel="noopener">goose</a></h3><p>A local-first agent, CLI and desktop, reaching models and tools through MCP extensions and able to run entirely offline. Donated by Block to the Agentic AI Foundation, so no longer vendor-owned.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://opencode.ai/" target="_blank" rel="noopener">OpenCode</a></h3><p>A provider-agnostic terminal agent — the option if you want a daily driver that isn't tied to one vendor's model.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/cline/cline" target="_blank" rel="noopener">Cline</a></h3><p>Started as an editor extension and now ships a standalone CLI with a headless mode and an SDK for building your own agents, so it is no longer editor-only.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/QwenLM/qwen-code" target="_blank" rel="noopener">Qwen Code</a></h3><p>An open terminal agent forked from Google’s Gemini CLI and developed independently since. Tuned for Qwen models, but it will run against other endpoints.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss"><h3><a href="https://github.com/xai-org/grok-build" target="_blank" rel="noopener">Grok Build</a></h3><p>xAI’s terminal coding agent, against its hosted models — full-screen TUI, plan mode, parallel subagents, and MCP servers working out of the box. The Rust source is published.<span class="caveat">In July 2026 a researcher’s wire captures showed it packaging the entire tracked repository — git history and committed secrets included — and uploading it to xAI storage, even when told to read no files and with the “improve the model” toggle off. xAI mitigated it server-side within a day, without a formal advisory. Rotate anything it could have seen.</span></p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag paid">PAID MODELS</span><span class="tag mcpc">MCP CLIENT</span></div></article>
+            <article class="card t-oss"><h3><a href="https://pi.dev/" target="_blank" rel="noopener">Pi</a></h3><p>A deliberately small terminal harness: a handful of built-in tools, a short prompt, everything else added as extensions. The harness OpenClaw is built on.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">Autonomous &amp; Framework Agents</div>
+          <div class="grid">
+            <article class="card t-oss t-local"><h3><a href="https://github.com/All-Hands-AI/OpenHands" target="_blank" rel="noopener">OpenHands</a></h3><p>A self-hosted control centre for coding agents — it will take an issue, write the code, run the tests and open a pull request, and it drives other agents besides its own. Model-agnostic, so it runs against local endpoints too.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss"><h3><a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes Agent</a></h3><p>NousResearch's open agent framework — younger and faster-moving than the mature terminal tools above.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">Build Your Own <span class="hint">— APIs, SDKs and structured output</span></div>
+          <div class="grid">
+            <article class="card"><h3><a href="https://platform.claude.com/" target="_blank" rel="noopener">Claude Developer Platform</a></h3><p>The API and SDK surface for building agents directly, rather than sitting inside someone else's harness.</p><div class="tags"><span class="tag paid">COMMERCIAL</span></div></article>
+            <article class="card t-oss"><h3><a href="https://github.com/instructor-ai/instructor" target="_blank" rel="noopener">Instructor</a></h3><p>Makes a model return data that matches a schema you defined, retrying on validation failure instead of leaving you to parse prose.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/dottxt-ai/outlines" target="_blank" rel="noopener">Outlines</a></h3><p>Constrains generation so the output is structurally valid by construction rather than by retry — useful when you control the local inference stack.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 02 ORCHESTRATE -->
+      <section class="stage" id="orchestrate">
+        <span class="dot"><i></i></span>
+        <div class="stage-head"><span class="code">02 ORCHESTRATE</span><h2>Multi-Step &amp; Multi-Agent</h2></div>
+        <p class="stage-q"><b>One Agent Turn Is Easy. What Runs A Hundred Of Them, In Order, Without Losing State?</b> This is the most crowded corner of the field, and most builders do not need this layer until they do.</p>
+        <div class="subgroup">
+          <div class="sublabel">Graph &amp; Contract-First</div>
+          <div class="grid">
+            <article class="card t-oss t-local"><h3><a href="https://github.com/langchain-ai/langgraph" target="_blank" rel="noopener">LangGraph</a></h3><p>Graph-based orchestration where durable execution, streaming, human-in-the-loop and memory are runtime guarantees rather than things you bolt on. The default pick if you want explicit control over state.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">SELF-HOST</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://ai.pydantic.dev/" target="_blank" rel="noopener">PydanticAI</a></h3><p>Type contracts rather than a graph: you define what each step must return and the framework holds the model to it. The lighter option if a graph DSL feels like ceremony.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">SELF-HOST</span></div></article>
+            <article class="card t-oss"><h3><a href="https://developers.llamaindex.ai/python/framework/module_guides/workflow/" target="_blank" rel="noopener">LlamaIndex Workflows</a></h3><p>Event-driven orchestration from the LlamaIndex team, at its best when the pipeline is document- and retrieval-heavy rather than general-purpose.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">Role-Based &amp; Interoperability-First</div>
+          <div class="grid">
+            <article class="card t-oss"><h3><a href="https://github.com/crewAIInc/crewAI" target="_blank" rel="noopener">CrewAI</a></h3><p>Models a workflow as a crew of role-playing agents with assigned tasks. The most widely adopted framework in this style, and the fastest way to see a multi-agent system working.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
+            <article class="card t-oss"><h3><a href="https://github.com/ag2ai/ag2" target="_blank" rel="noopener">AG2</a></h3><p>The community continuation of AutoGen, with native MCP and agent-to-agent protocol support — the pick when you care most about talking to other systems.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag mcpc">MCP CLIENT</span></div></article>
+            <article class="card t-oss"><h3><a href="https://mastra.ai/" target="_blank" rel="noopener">Mastra</a></h3><p>A TypeScript-native agent framework, for when the rest of the project is already JavaScript and a Python orchestrator would be the odd one out.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 03 RUN -->
+      <section class="stage" id="run">
+        <span class="dot"><i></i></span>
+        <div class="stage-head"><span class="code">03 RUN</span><h2>Models &amp; Inference</h2></div>
+        <p class="stage-q"><b>Where Does The Model Actually Execute?</b> Local first; hosted where it earns its place.</p>
+        <div class="subgroup">
+          <div class="sublabel">Local Engines &amp; Runtimes</div>
+          <div class="grid">
+            <article class="card t-oss t-local"><h3><a href="https://ollama.com/" target="_blank" rel="noopener">Ollama</a></h3><p>The shortest path from nothing to a model running on your own machine, and increasingly an agent CLI in its own right. If you would rather click than type, the desktop apps that do the same job are on <a href="#interact">Interact</a>. If you already run it, UMS can point its optional memory add-ons at a local Ollama model for embeddings — one of two local options, and nothing in the stack installs it for you.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/ggml-org/llama.cpp" target="_blank" rel="noopener">llama.cpp</a></h3><p>The engine underneath most local LLM tooling. Its mixture-of-experts offload options let a large model run on one consumer GPU plus system RAM.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/kvcache-ai/ktransformers" target="_blank" rel="noopener">KTransformers</a></h3><p>Runs large mixture-of-experts models on a single consumer GPU plus system RAM by keeping the routed experts on the CPU. Backed by a published systems paper.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/ikawrakow/ik_llama.cpp" target="_blank" rel="noopener">ik_llama.cpp</a></h3><p>A llama.cpp fork for hybrid CPU/GPU inference of large mixture-of-experts models. One maintainer, CPU and CUDA only — a specialist tool, not a replacement.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/ml-explore/mlx" target="_blank" rel="noopener">MLX</a></h3><p>Apple's array framework for on-device training and inference, and the software half of what makes a Mac worth buying for this. No longer Apple-only — it now ships a CUDA backend that installs on Linux.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/ggml-org/llama.cpp/tree/master/tools/quantize" target="_blank" rel="noopener">llama.cpp quantize &amp; imatrix</a></h3><p>The tooling that converts full-precision weights to GGUF at a chosen bit depth, with importance-matrix calibration to decide what to keep sharp. This is how a model that would not fit ends up fitting.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">Serving At Scale</div>
+          <div class="grid">
+            <article class="card t-oss t-local"><h3><a href="https://vllm.ai/" target="_blank" rel="noopener">vLLM</a></h3><p>Throughput-focused serving for when one machine has to answer many requests at once.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/sgl-project/sglang" target="_blank" rel="noopener">SGLang</a></h3><p>Reuses shared prompt prefixes across requests — the common pattern in agent workloads, where system prompts and tool schemas repeat.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">Routing &amp; Gateways</div>
+          <div class="grid">
+            <article class="card t-oss t-local"><h3><a href="https://github.com/BerriAI/litellm" target="_blank" rel="noopener">LiteLLM</a></h3><p>One address your agents call, whichever provider or local box is answering behind it, with spend tracking if you are paying for any of them.<span class="caveat">MIT core plus a separately licensed enterprise directory; the boundary has been publicly disputed, so read the LICENSE before relying on a paid-tier feature.</span></p><div class="tags"><span class="tag oss">MIT core</span><span class="tag local">SELF-HOST</span></div></article>
+            <article class="card"><h3><a href="https://openrouter.ai/" target="_blank" rel="noopener">OpenRouter</a></h3><p>One API across many providers, with a rotating set of no-cost models. The daily cap rises permanently once you have ever added credit.</p><div class="tags"><span class="tag paid">FREE TIER</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">Hosted Access &amp; Model Hubs</div>
+          <div class="grid">
+            <article class="card"><h3><a href="https://groq.com/" target="_blank" rel="noopener">Groq</a></h3><p>Hosted inference notable for speed rather than headroom; no card required to start. Not xAI’s Grok — a different company.</p><div class="tags"><span class="tag paid">FREE TIER</span></div></article>
+            <article class="card"><h3><a href="https://www.cerebras.ai/inference" target="_blank" rel="noopener">Cerebras</a></h3><p>A no-card daily token allowance on unusually fast hardware, positioned by Cerebras itself as a development tier rather than a production one.</p><div class="tags"><span class="tag paid">FREE TIER</span></div></article>
+            <article class="card"><h3><a href="https://huggingface.co/" target="_blank" rel="noopener">Hugging Face</a></h3><p>Where the open weights live, along with the datasets and Spaces around them.</p><div class="tags"><span class="tag">HUB</span></div></article>
+            <article class="card"><h3><a href="https://developer.nvidia.com/topics/ai/nemotron" target="_blank" rel="noopener">NVIDIA Nemotron</a></h3><p>NVIDIA's open model family, tuned for reasoning and tool use, with recent releases aimed explicitly at a single desktop GPU.</p><div class="tags"><span class="tag">MODELS</span></div></article>
+            <article class="card"><h3><a href="https://github.com/mnfst/awesome-free-llm-apis" target="_blank" rel="noopener">Free-Provider List</a></h3><p>A community-maintained, frequently refreshed table of free-tier API providers. Terms in this corner of the market change often enough that a living list beats anything we could freeze here.</p><div class="tags"><span class="tag">LIST</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 04 METAL -->
+      <section class="stage" id="metal">
+        <span class="dot"><i></i></span>
+        <div class="stage-head"><span class="code">04 METAL</span><h2>Hardware &amp; Vendor Platforms</h2></div>
+        <p class="stage-q"><b>What Are You Running It On?</b> Entries name the platform, not one vendor's box — the same silicon usually ships in several.</p>
+        <div class="subgroup">
+          <div class="sublabel">Platforms <span class="hint">— the silicon, and everyone who ships a box around it</span></div>
+          <div class="grid">
+            <article class="card"><h3><a href="https://www.nvidia.com/en-us/products/workstations/dgx-spark/" target="_blank" rel="noopener">NVIDIA GB10 <span style="color:var(--soft);font-weight:400;font-size:.85rem">(DGX Spark platform)</span></a></h3><p>A desk-side class of machine with unified memory, for running and fine-tuning large models locally without a rack. NVIDIA's own DGX Spark is one of eight systems on this chip — Acer, ASUS, Dell, GIGABYTE, HP, Lenovo and MSI ship the rest.<span class="caveat">The silicon is identical across all of them; price, storage and support are not, and the spread between cheapest and dearest is roughly double.</span></p><div class="tags"><span class="tag">PLATFORM</span></div></article>
+            <article class="card"><h3><a href="https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html" target="_blank" rel="noopener">AMD Ryzen AI Max+ <span style="color:var(--soft);font-weight:400;font-size:.85rem">(Strix Halo)</span></a></h3><p>Unified-memory APUs that let a mid-range system hold models that would not fit in discrete VRAM, with most of the pool assignable to the GPU. Dozens of machines ship it; Framework Desktop is the most open and repairable.<span class="caveat">Memory is soldered, so buy the capacity you want up front. ROCm tooling still trails CUDA.</span></p><div class="tags"><span class="tag">PLATFORM</span></div></article>
+            <article class="card"><h3><a href="https://www.apple.com/mac/compare/" target="_blank" rel="noopener">Apple Silicon <span style="color:var(--soft);font-weight:400;font-size:.85rem">(Mac Studio, Mac mini)</span></a></h3><p>Unified memory makes large-model inference practical on a desktop that fits under a monitor. The choice across the Mac line is capacity and bandwidth, not a different platform.</p><div class="tags"><span class="tag">PLATFORM</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">Vendor Developer Platforms <span class="hint">— drivers, SDKs, reference material</span></div>
+          <div class="grid">
+            <article class="card"><h3><a href="https://developer.nvidia.com/" target="_blank" rel="noopener">NVIDIA Developer</a></h3><p>CUDA, drivers, SDKs and reference material — the enablement layer for NVIDIA hardware you own.</p><div class="tags"><span class="tag">DOCS / SDK</span></div></article>
+            <article class="card"><h3><a href="https://developer.amd.com/" target="_blank" rel="noopener">AMD Developer</a></h3><p>ROCm drivers, SDKs and reference material for running AI workloads on AMD hardware.</p><div class="tags"><span class="tag">DOCS / SDK</span></div></article>
+            <article class="card"><h3><a href="https://developer.apple.com/machine-learning/" target="_blank" rel="noopener">Apple Developer</a></h3><p>The Metal and Core ML documentation and tooling behind on-device inference, and the home of MLX.</p><div class="tags"><span class="tag">DOCS / SDK</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 05 FLEET -->
+      <section class="stage" id="fleet">
+        <span class="dot"><i></i></span>
+        <div class="stage-head"><span class="code">05 FLEET</span><h2>Self-Hosting &amp; Multi-Machine</h2></div>
+        <p class="stage-q"><b>Where Do Your Agents Live When They're Not On Your Laptop — And How Does One Machine Find Another Without Opening A Hole In Your Router?</b> Listed only where a tool does an agent-specific job.</p>
+        <div class="subgroup">
+          <div class="sublabel">Networking, Isolation &amp; Packaging</div>
+          <div class="grid">
+            <article class="card t-oss t-local"><h3><a href="https://www.proxmox.com/en/products/proxmox-virtual-environment/overview" target="_blank" rel="noopener">Proxmox VE</a></h3><p>Turns one always-on box into several isolated hosts, each running its own agent stack, with a whole GPU handed to whichever one needs it. Passing a consumer card through works; <em>splitting</em> one card across machines does not — that needs datacenter hardware and a licence.</p><div class="tags"><span class="tag oss">AGPLv3</span><span class="tag local">SELF-HOST</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/NVIDIA/nvidia-container-toolkit" target="_blank" rel="noopener">Docker + NVIDIA Container Toolkit</a></h3><p>The unit an agent actually ships in. Compose keeps one host's stack reproducible; the NVIDIA toolkit is what makes the GPU visible inside the container instead of stranded on the host.</p><div class="tags"><span class="tag oss">Toolkit Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://tailscale.com/" target="_blank" rel="noopener">Tailscale &amp; Headscale</a></h3><p>Puts your laptop and your home box on the same private network without forwarding a port. Run the coordinator yourself with Headscale if you would rather the connection metadata never left your hands.<span class="caveat">Tailscale is commercial with a free personal tier; Headscale is BSD-3.</span></p><div class="tags"><span class="tag oss">Headscale BSD-3</span><span class="tag paid">FREE TIER</span><span class="tag local">SELF-HOST</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">Routing, Sharing &amp; Watching</div>
+          <div class="grid">
+            <article class="card t-oss t-local"><h3><a href="https://github.com/mostlygeek/llama-swap" target="_blank" rel="noopener">llama-swap</a></h3><p>A single binary that loads and unloads local models on demand, so you are not running three inference processes at once burning VRAM you do not have.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/ggml-org/llama.cpp/blob/master/tools/rpc/README.md" target="_blank" rel="noopener">llama.cpp RPC Mode</a></h3><p>Already built in: point it at a second machine and that card's VRAM joins the same model load. Not secure by default — keep it on your own network, and run identical builds on every node or it will hang rather than run.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/henrygd/beszel" target="_blank" rel="noopener">Beszel</a></h3><p>One screen that answers one question across every box you own: is it still alive, and is the GPU actually being used.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">SELF-HOST</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 06 INTERACT -->
+      <section class="stage" id="interact">
+        <span class="dot"><i></i></span>
+        <div class="stage-head"><span class="code">06 INTERACT</span><h2>Front-Ends &amp; Local Interfaces</h2></div>
+        <p class="stage-q"><b>An Engine Is Not An Interface.</b> These sit on top of a local model and add chat, accounts, retrieval and MCP — the layer you hand to someone who will never open a terminal. The engines themselves are on <a href="#run">Run</a>.</p>
+        <div class="subgroup">
+          <div class="grid">
+            <article class="card t-local"><h3><a href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener">Open WebUI</a></h3><p>The most complete self-hosted chat front-end for local models, with document chat, multi-user accounts and MCP support.<span class="caveat">Source-available, not open source: its licence adds a branding restriction above a user threshold. Read it before deploying for an organisation.</span></p><div class="tags"><span class="tag src">SOURCE-AVAILABLE</span><span class="tag local">SELF-HOST</span><span class="tag mcpc">MCP CLIENT</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/danny-avila/LibreChat" target="_blank" rel="noopener">LibreChat</a></h3><p>A self-hosted, multi-provider chat interface with agents, file handling and MCP support, under a plain MIT licence.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">SELF-HOST</span><span class="tag mcpc">MCP CLIENT</span></div></article>
+            <article class="card t-local"><h3><a href="https://lmstudio.ai/" target="_blank" rel="noopener">LM Studio</a></h3><p>A polished desktop app for downloading and running local models, with an OpenAI-compatible server and MCP support. Closed source, free for personal use — the easiest on-ramp, stated plainly.</p><div class="tags"><span class="tag paid">CLOSED, FREE</span><span class="tag local">LOCAL</span><span class="tag mcpc">MCP CLIENT</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://jan.ai/" target="_blank" rel="noopener">Jan</a></h3><p>The open alternative in the same shape as LM Studio: a desktop app that runs models locally and exposes a local API.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://anythingllm.com/" target="_blank" rel="noopener">AnythingLLM</a></h3><p>A desktop and self-hosted app built around document workspaces, for when the job is mostly "chat with my own files".</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">SELF-HOST</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 07 REMEMBER -->
+      <section class="stage s-mem" id="remember">
+        <span class="dot"><i></i></span>
+        <div class="stage-head"><span class="code">07 REMEMBER</span><h2>Agent Memory</h2></div>
+        <p class="stage-q"><b>An Agent That Forgets Between Sessions Is A Demo, Not A Tool.</b> <b>This is the shelf where we have the most at stake:</b> some of these we integrate as optional add-ons, and some are alternatives to what we make. Both are marked. Judge them yourself.</p>
+        <div class="subgroup">
+          <div class="sublabel">What UMS Can Plug Into <span class="hint">— optional add-ons, not requirements</span></div>
+          <div class="grid">
+            <article class="card t-int t-oss t-local t-mcp"><h3><a href="https://github.com/getzep/graphiti" target="_blank" rel="noopener">Graphiti</a></h3><p>A knowledge-graph memory layer where every fact carries a validity period, so a changed fact closes the old one instead of overwriting it. Ships an MCP server. UMS can install it as an opt-in graph layer; nothing in the core requires it.</p><div class="tags"><span class="tag int">INTEGRATED</span><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span><span class="tag mcp">MCP SERVER</span></div></article>
+            <article class="card t-int t-oss t-local"><h3><a href="https://github.com/kuzudb/kuzu" target="_blank" rel="noopener">Kuzu</a></h3><p>An embedded graph database — roughly what SQLite is for relational data — which is what made a local graph backend practical with no server to administer. It is the default backend for the Graphiti add-on above, which also supports several others.<span class="caveat">Upstream is archived: the team was acquired and the repo is read-only after a final release. Existing versions still work, and a community fork continues the line.</span></p><div class="tags"><span class="tag int">INTEGRATED</span><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-int t-oss"><h3><a href="https://github.com/Graphify-Labs/graphify" target="_blank" rel="noopener">Graphify</a></h3><p>Builds a queryable symbol graph of a codebase — definitions, references and call sites across thirty-six languages — so an agent can ask where a function is used instead of grepping for it. One of the opt-in UMS add-ons.<span class="caveat">The PyPI package is <b>graphifyy</b>, with two y's. The single-y name is an unrelated package.</span></p><div class="tags"><span class="tag int">INTEGRATED</span><span class="tag oss">Apache-2.0</span></div></article>
+            <article class="card t-int t-oss"><h3><a href="https://github.com/microsoft/LLMLingua" target="_blank" rel="noopener">LLMLingua</a></h3><p>Prompt compression that shortens context without discarding the parts a model actually needs. Available as an opt-in UMS add-on.<span class="caveat">Quiet for the better part of a year — usable, but not actively developed.</span></p><div class="tags"><span class="tag int">INTEGRATED</span><span class="tag oss">MIT</span></div></article>
+            <article class="card t-int t-local"><h3><a href="https://obsidian.md/" target="_blank" rel="noopener">Obsidian</a></h3><p>A local markdown vault with wiki-links and a graph view. UMS memory files are written to be vault-compatible, so you can read your agent's memory in an ordinary editor — whether or not you ever open Obsidian.</p><div class="tags"><span class="tag int">INTEGRATED</span><span class="tag local">LOCAL</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">Alternatives To UMS <span class="hint">— honest competition</span></div>
+          <div class="grid">
+            <article class="card t-rival t-oss t-local t-mcp"><h3><a href="https://github.com/topoteretes/cognee" target="_blank" rel="noopener">cognee</a></h3><p>Turns an agent's documents and past conversations into a queryable knowledge graph plus vector store, served back through an MCP server. Graph-native where UMS is file-native — the closest direct alternative we found.</p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag oss">Apache-2.0</span><span class="tag local">SELF-HOST</span><span class="tag mcp">MCP SERVER</span></div></article>
+            <article class="card t-rival t-oss"><h3><a href="https://mem0.ai/" target="_blank" rel="noopener">Mem0</a></h3><p>Stores and retrieves facts about a user or project across sessions, hosted or self-hosted. Aimed at developers embedding memory inside an application rather than in a CLI harness.</p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag oss">Apache-2.0</span></div></article>
+            <article class="card t-rival t-oss"><h3><a href="https://www.letta.com/" target="_blank" rel="noopener">Letta</a></h3><p>A runtime for agents whose memory is tiered, with the agent itself deciding what to keep in context and what to page out to storage.</p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag oss">Apache-2.0</span></div></article>
+            <article class="card t-rival t-oss t-local"><h3><a href="https://supermemory.ai/" target="_blank" rel="noopener">Supermemory</a></h3><p>A memory layer with a local-first mode and direct plugins for several agent CLIs, including the ones we run.<span class="caveat">Its benchmark-leadership claims are self-reported; we have not seen an independent result.</span></p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 08 RETRIEVE -->
+      <section class="stage" id="retrieve">
+        <span class="dot"><i></i></span>
+        <div class="stage-head"><span class="code">08 RETRIEVE</span><h2>Context &amp; Retrieval</h2></div>
+        <p class="stage-q">Memory is what it knows about you. <b>Retrieval Is Everything Else It Has To Look Up.</b></p>
+        <div class="subgroup">
+          <div class="sublabel">Frameworks &amp; Methods</div>
+          <div class="grid">
+            <article class="card t-oss"><h3><a href="https://www.llamaindex.ai/" target="_blank" rel="noopener">LlamaIndex</a></h3><p>Connects your documents and data sources to a model in a form it can query.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
+            <article class="card t-oss"><h3><a href="https://www.langchain.com/" target="_blank" rel="noopener">LangChain</a></h3><p>The long-standing toolkit for chaining model calls, tools, and retrieval steps together.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
+            <article class="card"><h3><a href="https://www.anthropic.com/engineering/contextual-retrieval" target="_blank" rel="noopener">Contextual Retrieval</a></h3><p>Anthropic's write-up on prepending context to chunks before embedding them — a method, not a product, and one of the cheapest accuracy wins available.</p><div class="tags"><span class="tag">METHOD</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">Ingestion, Parsing &amp; Crawling</div>
+          <div class="grid">
+            <article class="card t-oss t-local"><h3><a href="https://github.com/docling-project/docling" target="_blank" rel="noopener">Docling</a></h3><p>Converts PDFs, office documents and scans into structured markdown for retrieval, keeping tables and reading order intact. Two competitors parse more accurately but carry revenue-gated commercial licences — this one does not.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/unclecode/crawl4ai" target="_blank" rel="noopener">Crawl4AI</a></h3><p>A self-hosted crawler that turns pages into clean Markdown for retrieval pipelines, with no per-request API billing.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-mcp t-oss"><h3><a href="https://github.com/firecrawl/firecrawl" target="_blank" rel="noopener">Firecrawl</a></h3><p>Crawling and extraction with an official MCP server, so an agent can fetch and structure a site mid-task.<span class="caveat">Core is AGPL-3.0 while the SDKs are MIT; the copyleft only bites if you modify and redistribute the self-hosted service.</span></p><div class="tags"><span class="tag oss">AGPL core</span><span class="tag mcp">MCP SERVER</span><span class="tag paid">HOSTED</span></div></article>
+            <article class="card t-oss"><h3><a href="https://github.com/StarTrail-org/PixelRAG" target="_blank" rel="noopener">PixelRAG</a></h3><p>Retrieves from rendered screenshots rather than parsed text, preserving the tables, charts and layout that HTML parsing drops. Costs more per query — a trade-off, not a straight upgrade.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">Embedded Vector Stores <span class="hint">— no server to administer</span></div>
+          <div class="grid">
+            <article class="card t-oss t-local"><h3><a href="https://github.com/lancedb/lancedb" target="_blank" rel="noopener">LanceDB</a></h3><p>An embedded vector database with disk-based indexes, so a retrieval store is a directory rather than a service you keep alive.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/asg017/sqlite-vec" target="_blank" rel="noopener">sqlite-vec</a></h3><p>Vector search as a SQLite extension — the smallest possible answer when the data already lives in a file next to your code.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 09 EXTEND -->
+      <section class="stage" id="extend">
+        <span class="dot"><i></i></span>
+        <div class="stage-head"><span class="code">09 EXTEND</span><h2>Protocols, Skills &amp; Reach</h2></div>
+        <p class="stage-q"><b>How Does It Touch The Outside World?</b></p>
+        <div class="subgroup">
+          <div class="sublabel">Protocols &amp; Standards</div>
+          <div class="grid">
+            <article class="card t-oss"><h3><a href="https://github.com/a2aproject/A2A" target="_blank" rel="noopener">A2A</a></h3><p>The agent-to-agent protocol, for one agent to discover and delegate to another — the sibling standard to MCP, under the same foundation.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
+            <article class="card"><h3><a href="https://modelcontextprotocol.io" target="_blank" rel="noopener">Model Context Protocol</a></h3><p>The open standard for connecting agents to tools and data sources, now governed by the Agentic AI Foundation under the Linux Foundation. <b>Our own security branch is hook-based rather than MCP-based by design</b> — it vets and sanitises MCP servers rather than being one.</p><div class="tags"><span class="tag">STANDARD</span></div></article>
+            <article class="card"><h3><a href="https://agentskills.io" target="_blank" rel="noopener">Agent Skills</a></h3><p>An open format for packaging agent capabilities as a folder with a SKILL.md file. Skills are plain text the agent will follow, so read one before you install it.</p><div class="tags"><span class="tag">STANDARD</span></div></article>
+            <article class="card t-oss"><h3><a href="https://agentclientprotocol.com" target="_blank" rel="noopener">Agent Client Protocol</a></h3><p>An open protocol from Zed and JetBrains for connecting any coding agent to any editor — the editor-side counterpart to MCP.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">Registries &amp; Skill Hubs</div>
+          <div class="grid">
+            <article class="card"><h3><a href="https://clawhub.ai/" target="_blank" rel="noopener">ClawHub</a></h3><p>Community registry of agent skills. Treat installs as code you are running: read before you trust.</p><div class="tags"><span class="tag">REGISTRY</span></div></article>
+            <article class="card"><h3><a href="https://code.claude.com/docs/en/plugin-marketplaces" target="_blank" rel="noopener">Claude Code Plugin Marketplace</a></h3><p>First-party plugin distribution for Claude Code, including self-hosted marketplaces you control.<span class="caveat">We ship UMS through one of these, so this is how our own install door works.</span></p><div class="tags"><span class="tag">REGISTRY</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">Browser &amp; Computer Use</div>
+          <div class="grid">
+            <article class="card t-oss t-local"><h3><a href="https://github.com/browser-use/browser-use" target="_blank" rel="noopener">browser-use</a></h3><p>Lets an agent operate a real Chromium browser from written instructions rather than hand-maintained selectors.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local t-mcp"><h3><a href="https://github.com/microsoft/playwright-mcp" target="_blank" rel="noopener">Playwright MCP</a></h3><p>Microsoft's own MCP server for driving a browser through the accessibility tree rather than screenshots — deterministic, and the natural build-and-test loop for anything an agent builds.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span><span class="tag mcp">MCP SERVER</span></div></article>
+            <article class="card t-oss t-local t-mcp"><h3><a href="https://github.com/ChromeDevTools/chrome-devtools-mcp" target="_blank" rel="noopener">Chrome DevTools MCP</a></h3><p>Google's MCP server exposing the DevTools protocol, so an agent can read the console, inspect network requests and profile a page it just changed.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span><span class="tag mcp">MCP SERVER</span></div></article>
+            <article class="card t-oss t-mcp"><h3><a href="https://github.com/Skyvern-AI/skyvern" target="_blank" rel="noopener">Skyvern</a></h3><p>Vision-driven browser automation: it looks at the rendered page rather than the DOM, which survives layout changes that break selector-based tools. A different bet from browser-use, not a duplicate.</p><div class="tags"><span class="tag oss">AGPL</span><span class="tag mcp">MCP SERVER</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">Platform Servers <span class="hint">— commercial tools an agent can drive</span></div>
+          <div class="grid">
+            <article class="card t-mcp"><h3><a href="https://github.com/github/github-mcp-server" target="_blank" rel="noopener">GitHub MCP Server</a></h3><p>First-party access to issues, pull requests, actions and code search, so an agent can work the repository rather than only the working copy.</p><div class="tags"><span class="tag mcp">MCP SERVER</span><span class="tag paid">FREE TIER</span></div></article>
+            <article class="card t-mcp"><h3><a href="https://docs.stripe.com/mcp" target="_blank" rel="noopener">Stripe MCP Server</a></h3><p>Official access to Stripe's API for building and testing billing flows.<span class="caveat">This one moves money. Keep it on test keys unless you have a deliberate reason not to, and never hand it credentials you would not hand a stranger.</span></p><div class="tags"><span class="tag mcp">MCP SERVER</span><span class="tag paid">COMMERCIAL</span></div></article>
+            <article class="card t-mcp t-oss"><h3><a href="https://supabase.com" target="_blank" rel="noopener">Supabase</a></h3><p>Postgres with auth and storage attached, and an official MCP server so an agent can query and migrate the database it is building against.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag mcp">MCP SERVER</span><span class="tag paid">FREE TIER</span></div></article>
+            <article class="card t-mcp"><h3><a href="https://www.cloudflare.com/" target="_blank" rel="noopener">Cloudflare</a></h3><p>Edge hosting with a permanent daily free allowance across a catalogue of open models, plus an official MCP server so an agent can manage the deployment it just made.</p><div class="tags"><span class="tag paid">FREE TIER</span><span class="tag mcp">MCP SERVER</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 10 CONSTRAIN -->
+      <section class="stage s-sec" id="constrain">
+        <span class="dot"><i></i></span>
+        <div class="stage-head"><span class="code">10 CONSTRAIN</span><h2>Security &amp; Sandboxing</h2></div>
+        <p class="stage-q"><b>Two Directions Of Risk.</b> An agent with tool access is a process that can delete things — and it is also a way in: a poisoned skill, an injected instruction hidden in a web page, an MCP server you did not read. This shelf covers both what an agent might do to you and what someone might do through it.</p>
+        <div class="subgroup">
+          <div class="sublabel">Guardrails &amp; Permissions</div>
+          <div class="grid">
+            <article class="card t-rival t-oss t-local"><h3><a href="https://github.com/always-further/nono" target="_blank" rel="noopener">nono</a></h3><p>Confines a CLI agent using the operating system's own sandboxing — Landlock, Seatbelt, WSL2 — so access is checked by the kernel rather than inside the agent's process. Ships profiles for Claude Code and OpenClaw.</p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-rival t-oss"><h3><a href="https://github.com/kenryu42/cc-safety-net" target="_blank" rel="noopener">cc-safety-net</a></h3><p>A pre-tool hook blocking destructive git and filesystem commands across a dozen agent CLIs. It does not enforce filesystem permissions, inspect network traffic, or contain a process — the authors say so plainly.</p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag oss">MIT</span></div></article>
+            <article class="card t-oss"><h3><a href="https://www.guardrailsai.com/" target="_blank" rel="noopener">Guardrails AI</a></h3><p>Validates model output against declared rules before it reaches your code, and the maintained answer in a category where several well-known projects have been archived.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">Sandboxed Execution</div>
+          <div class="grid">
+            <article class="card t-oss"><h3><a href="https://e2b.dev/" target="_blank" rel="noopener">E2B</a></h3><p>Runs model-generated code inside microVMs, so the isolation boundary is hardware virtualization rather than a shared kernel.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag paid">HOSTED</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/opensandbox-group/OpenSandbox" target="_blank" rel="noopener">OpenSandbox</a></h3><p>A self-hostable sandbox runtime with pluggable isolation behind one API, and signed release images.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">SELF-HOST</span></div></article>
+            <article class="card t-local t-mcp"><h3><a href="https://docs.docker.com/ai/mcp-catalog-and-toolkit/toolkit/" target="_blank" rel="noopener">Docker MCP Toolkit</a></h3><p>Runs MCP servers inside containers with scoped secrets, which matters because an MCP server is code you are running with your credentials.</p><div class="tags"><span class="tag local">LOCAL</span><span class="tag mcp">MCP RUNTIME</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">Red-Teaming &amp; Supply Chain</div>
+          <div class="grid">
+            <article class="card t-oss t-local"><h3><a href="https://github.com/NVIDIA/garak" target="_blank" rel="noopener">garak</a></h3><p>NVIDIA's scanner for probing a model with known attack patterns — prompt injection, jailbreaks, data leakage — and reporting what got through.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/microsoft/PyRIT" target="_blank" rel="noopener">PyRIT</a></h3><p>Microsoft's risk-identification toolkit for automating adversarial probes against a system you are building, rather than testing it by hand.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss"><h3><a href="https://github.com/meta-llama/PurpleLlama/tree/main/LlamaFirewall" target="_blank" rel="noopener">LlamaFirewall</a></h3><p>A layered scanner for agent inputs and outputs, aimed at prompt injection and unsafe tool calls.<span class="caveat">The scanner code is MIT; the separately distributed models carry their own community licence.</span></p><div class="tags"><span class="tag oss">MIT</span></div></article>
+            <article class="card"><h3><a href="https://github.com/snyk/agent-scan" target="_blank" rel="noopener">Snyk agent-scan</a></h3><p>Finds the MCP servers and skills installed on a machine and checks them for prompt injection, tool poisoning and credential handling. Snyk notes that scanning executes the commands defined in discovered MCP configs.</p><div class="tags"><span class="tag paid">FREE TIER</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 11 IMPROVE -->
+      <section class="stage" id="improve">
+        <span class="dot"><i></i></span>
+        <div class="stage-head"><span class="code">11 IMPROVE</span><h2>Fine-Tuning &amp; Reinforcement Learning</h2></div>
+        <p class="stage-q"><b>Running A Model Is Table Stakes. Making One Better At Your Job Is Not.</b> Everything here adapts a model that already exists — from scratch is on <a href="#learn">Learn</a>. Nearly all of it means a small adapter: full weights cost about sixteen gigabytes of VRAM per billion parameters, which prices out most consumer cards.</p>
+        <div class="subgroup">
+          <div class="sublabel">Fine-Tuning</div>
+          <div class="grid">
+            <article class="card t-oss t-local"><h3><a href="https://github.com/unslothai/unsloth" target="_blank" rel="noopener">Unsloth</a></h3><p>Fine-tunes open-weight models with custom kernels that cut training memory enough to work on a single consumer GPU, and exports to GGUF, safetensors or vLLM. It also does full-parameter fine-tuning in the same tool, not only adapters. The bundled Studio interface is separately licensed under a copyleft licence, which matters only if you redistribute it.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/hiyouga/LLaMA-Factory" target="_blank" rel="noopener">LLaMA-Factory</a></h3><p>A fine-tuning front end with both a command line and a web interface, covering a wide range of architectures with no training scripts to write. Switches between full, LoRA and QLoRA training with one config flag, and can use Unsloth underneath.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss"><h3><a href="https://github.com/arcee-ai/DistillKit" target="_blank" rel="noopener">DistillKit</a></h3><p>Distils a large model down into a smaller one that keeps more of its behaviour than fine-tuning alone would. The realistic middle path when adapting an existing model is not enough but training one from nothing is out of reach.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">Reinforcement Learning &amp; Environments</div>
+          <div class="grid">
+            <article class="card t-oss"><h3><a href="https://github.com/OpenPipe/ART" target="_blank" rel="noopener">OpenPipe ART</a></h3><p>Wraps reinforcement learning around agent code you already have: supply a trajectory and a reward instead of rewriting your agent to fit a trainer.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
+            <article class="card"><h3><a href="https://app.primeintellect.ai/dashboard/environments" target="_blank" rel="noopener">Environments Hub</a></h3><p>A community catalogue of ready-made reinforcement-learning environments, so you do not build reward-checking infrastructure from scratch. Environments, not weights, are the current bottleneck.</p><div class="tags"><span class="tag">REGISTRY</span></div></article>
+            <article class="card"><h3><a href="https://thinkingmachines.ai/tinker/" target="_blank" rel="noopener">Tinker</a></h3><p>A hosted API that runs post-training on someone else's hardware while you write the training loop. The trade is explicit: you give up owning the machine, in exchange for not needing one.</p><div class="tags"><span class="tag paid">HOSTED</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 12 VERIFY -->
+      <section class="stage" id="verify">
+        <span class="dot"><i></i></span>
+        <div class="stage-head"><span class="code">12 VERIFY</span><h2>Evaluation &amp; Observability</h2></div>
+        <p class="stage-q"><b>Did That Change Make It Better, Or Just Different?</b> The hardest question in agent work.</p>
+        <div class="subgroup">
+          <div class="sublabel">Testing Before You Ship</div>
+          <div class="grid">
+            <article class="card t-oss t-local"><h3><a href="https://github.com/promptfoo/promptfoo" target="_blank" rel="noopener">Promptfoo</a></h3><p>Runs evaluations and adversarial tests against prompts, agents and retrieval pipelines from the command line, with nothing required to leave the machine.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss"><h3><a href="https://inspect.aisi.org.uk/" target="_blank" rel="noopener">Inspect AI</a></h3><p>An evaluation framework from the UK AI Security Institute, used by several national safety institutes, with evaluations mapped to the OWASP agentic risk list.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">Seeing What Happened After</div>
+          <div class="grid">
+            <article class="card t-oss t-local"><h3><a href="https://github.com/langfuse/langfuse" target="_blank" rel="noopener">Langfuse</a></h3><p>Tracing, evaluation and prompt versioning for agent runs, built on OpenTelemetry. Open-core: the main codebase is MIT with separately licensed enterprise directories.</p><div class="tags"><span class="tag oss">MIT core</span><span class="tag local">SELF-HOST</span></div></article>
+            <article class="card t-mcp"><h3><a href="https://mcp.sentry.dev/" target="_blank" rel="noopener">Sentry</a></h3><p>Error tracking with an official MCP server, so an agent can pull the stack trace for the exception it is being asked to fix.<span class="caveat">The MCP server is source-available under a licence that converts to Apache-2.0 after two years — not open source today.</span></p><div class="tags"><span class="tag src">SOURCE-AVAILABLE</span><span class="tag mcp">MCP SERVER</span><span class="tag paid">FREE TIER</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/ryoppippi/ccusage" target="_blank" rel="noopener">ccusage</a></h3><p>Reads the local logs a coding agent already writes and tells you what a session actually cost. No account, no proxy, nothing leaves the machine.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">Benchmarks</div>
+          <div class="grid">
+            <article class="card t-oss"><h3><a href="https://www.swebench.com/" target="_blank" rel="noopener">SWE-bench</a></h3><p>The benchmark that made coding-agent claims comparable: real issues, real repositories, pass or fail.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
+            <article class="card t-oss"><h3><a href="https://www.tbench.ai/" target="_blank" rel="noopener">Terminal-Bench</a></h3><p>Containerized terminal tasks measuring whether an agent can operate a real shell, rather than only patch code.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 13 CREATE -->
+      <section class="stage" id="create">
+        <span class="dot"><i></i></span>
+        <div class="stage-head"><span class="code">13 CREATE</span><h2>Visual Media &amp; Design</h2></div>
+        <p class="stage-q">Media generation became scriptable. <b>What Can An Agent Drive, Rather Than A Person Click?</b></p>
+        <div class="subgroup">
+          <div class="sublabel">Local Pipelines &amp; Models</div>
+          <div class="grid">
+            <article class="card t-oss t-local"><h3><a href="https://github.com/comfyanonymous/ComfyUI" target="_blank" rel="noopener">ComfyUI</a></h3><p>A node-graph front end and backend for running image and video models locally, where each step of a pipeline is a node you can inspect, save and reuse. New open architectures usually arrive here first.</p><div class="tags"><span class="tag oss">GPL-3.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-mcp"><h3><a href="https://github.com/Comfy-Org/comfy-mcp" target="_blank" rel="noopener">Comfy MCP</a></h3><p>Comfy-Org's own MCP server, exposing generation, workflow search and job status as tools an agent can call.<span class="caveat">AGPL-3.0, with a paid commercial licence offered as the alternative — check which you need before building on it.</span></p><div class="tags"><span class="tag oss">AGPL-3.0</span><span class="tag mcp">MCP SERVER</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/Wan-Video/Wan2.2" target="_blank" rel="noopener">Wan</a></h3><p>Alibaba's open-weight text- and image-to-video model family, usable inside ComfyUI. The smaller variants target a high-end consumer card.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">Agent-Drivable Services <span class="hint">— design surfaces and hosted generation</span></div>
+          <div class="grid">
+            <article class="card t-mcp"><h3><a href="https://developers.figma.com/docs/figma-mcp-server/" target="_blank" rel="noopener">Figma Dev Mode MCP</a></h3><p>Figma's official MCP server lets an agent read a frame's structure, variables and components and generate code from it, and in beta write frames back to the canvas. Only worth it if you already design in Figma.<span class="caveat">Gating is strict: free and view-only seats get a handful of tool calls a month, which one design-to-code session exceeds. The local server needs a paid seat.</span></p><div class="tags"><span class="tag paid">PAID</span><span class="tag mcp">MCP SERVER</span></div></article>
+            <article class="card t-oss t-local t-mcp"><h3><a href="https://penpot.app" target="_blank" rel="noopener">Penpot</a></h3><p>A self-hostable design tool that stores work as real SVG and CSS rather than a proprietary format, with a small official MCP server. The no-lock-in counterpart to Figma.<span class="caveat">Its MCP surface is genuinely thinner, and models know its API less well. Listed as the self-hosted option, not as an equivalent.</span></p><div class="tags"><span class="tag oss">MPL-2.0</span><span class="tag local">SELF-HOST</span><span class="tag mcp">MCP SERVER</span></div></article>
+            <article class="card t-mcp"><h3><a href="https://mcp.higgsfield.ai" target="_blank" rel="noopener">Higgsfield MCP</a></h3><p>A hosted MCP server for image, video and audio models, plus a command-line tool for batch use. Commercial and credit-based, not open source.<span class="caveat">Disclosure: we use it for our own media work.</span></p><div class="tags"><span class="tag paid">PAID</span><span class="tag mcp">MCP SERVER</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- 14 VOICE -->
+      <section class="stage" id="voice">
+        <span class="dot"><i></i></span>
+        <div class="stage-head"><span class="code">14 VOICE</span><h2>Speech &amp; Audio</h2></div>
+        <p class="stage-q"><b>Both Directions: What An Agent Can Say, And What It Can Hear.</b> Each entry says which it does.</p>
+        <div class="subgroup">
+          <div class="grid">
+            <article class="card t-oss t-local"><h3><a href="https://github.com/resemble-ai/chatterbox" target="_blank" rel="noopener">Chatterbox</a></h3><p>Open-weight text-to-speech and voice cloning that runs on your own GPU and watermarks its output by default — the most permissive of the open speech options we checked.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/hexgrad/kokoro" target="_blank" rel="noopener">Kokoro</a></h3><p>A small text-to-speech model that runs acceptably on CPU alone, for when there is no GPU to spare. No voice cloning.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/SYSTRAN/faster-whisper" target="_blank" rel="noopener">faster-whisper &amp; WhisperX</a></h3><p>Speech-to-text: a re-implementation of Whisper that is markedly faster on a consumer card, with WhisperX adding word-level timing and speaker labels.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag oss">WhisperX BSD-2</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-mcp"><h3><a href="https://elevenlabs.io" target="_blank" rel="noopener">ElevenLabs</a></h3><p>Hosted speech synthesis, voice cloning, transcription and speech-to-speech, with an official MIT-licensed MCP server so an agent can call all of it directly. Widely treated as the quality bar for hosted speech.</p><div class="tags"><span class="tag paid">PAID</span><span class="tag mcp">MCP SERVER</span></div></article>
+            <article class="card t-mcp"><h3><a href="https://fish.audio" target="_blank" rel="noopener">Fish Audio</a></h3><p>Hosted text-to-speech and voice cloning with an official MCP server, so an agent can search the voice library, generate speech and transcribe without an API key sitting in config.<span class="caveat">Two caveats. The free tier is governed by a fair-use policy with no published threshold or reset cycle — validate on free, price on paid. And this is the hosted platform only: the open-weights repo is a separate thing under a research and non-commercial licence, whatever third-party sites claim.</span></p><div class="tags"><span class="tag paid">PAID</span><span class="tag mcp">MCP SERVER</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <div class="arc-end">Off The Arc — Domain Shelves</div>
+      <!-- BIOTECH -->
+      <section class="stage s-dom" id="biotech">
+        <span class="dot"><i></i></span>
+        <div class="stage-head"><span class="code">◆ DOMAIN</span><h2>Biotech &amp; Life Sciences</h2></div>
+        <p class="stage-q">A domain shelf, not a lifecycle stage — kept because it is the domain we know best. <b>Priority: Tools That Keep Genomic Data On Your Own Machine.</b></p>
+        <div class="subgroup">
+          <div class="grid">
+            <article class="card t-oss t-local"><h3><a href="https://github.com/ClawBio/ClawBio" target="_blank" rel="noopener">ClawBio</a></h3><p>Bioinformatics skills — pharmacogenomics, variant interpretation, single-cell analysis — running locally on OpenClaw, so genomic data stays on your machine.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card"><h3><a href="https://github.com/wu-yc/LabClaw" target="_blank" rel="noopener">LabClaw</a></h3><p>Agent tooling aimed at wet-lab and computational biology workflows.<span class="caveat">The README carries an MIT badge, but no licence file resolves in the repository. Ask before you build on it.</span></p><div class="tags"><span class="tag">LICENCE UNCONFIRMED</span></div></article>
+            <article class="card t-oss"><h3><a href="https://github.com/NVIDIA-BioNeMo/bionemo-recipes" target="_blank" rel="noopener">NVIDIA BioNeMo Recipes</a></h3><p>Worked LoRA fine-tuning recipes for biological foundation models such as ESM2 and Evo2, written to run on a single workstation GPU.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
+            <article class="card"><h3><a href="https://www.youtube.com/watch?v=RNY0p5wL4AA" target="_blank" rel="noopener">BIO26 Healthcare Special Address</a></h3><p>NVIDIA’s Kimberly Powell at the BIO International Convention, on the BioNeMo Agent Toolkit and the shift from AI that suggests science to AI that runs it.</p><div class="tags"><span class="tag">TALK</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <!-- LEARN -->
+      <section class="stage s-dom" id="learn">
+        <span class="dot"><i></i></span>
+        <div class="stage-head"><span class="code">◆ LEARN</span><h2>Learning</h2></div>
+        <p class="stage-q">Courses that teach. <b>Free Unless Noted.</b></p>
+        <div class="subgroup">
+          <div class="sublabel">First-Party Academies</div>
+          <div class="grid">
+            <article class="card"><h3><a href="https://anthropic.skilljar.com/" target="_blank" rel="noopener">Anthropic Academy</a></h3><p>First-party courses on building with Claude, the API and the agent SDK.</p><div class="tags"><span class="tag">FREE</span></div></article>
+            <article class="card"><h3><a href="https://learn.nvidia.com/self-paced-courses" target="_blank" rel="noopener">NVIDIA Deep Learning Institute</a></h3><p>Self-paced courses, a number of them free, including inference optimisation and deployment.</p><div class="tags"><span class="tag">FREE TIER</span></div></article>
+            <article class="card"><h3><a href="https://developer.amd.com/amd-ai-academy/" target="_blank" rel="noopener">AMD AI Academy</a></h3><p>Free self-paced courses and hands-on labs split into developer, GPU-kernel and infrastructure tracks, with a ROCm certification path added in 2026. Joining the developer program also comes with cloud credits.</p><div class="tags"><span class="tag">FREE</span><span class="tag">CERTIFICATION</span></div></article>
+            <article class="card"><h3><a href="https://higgsfield.ai/academy" target="_blank" rel="noopener">Higgsfield Academy</a></h3><p>Course library and walkthroughs for building video and image work with the platform's tools — scripting, shot lists, character consistency and the full pipeline. Free to browse; generation itself is credit-based. We are a paying customer of the platform it teaches.</p><div class="tags"><span class="tag">COURSES</span></div></article>
+          </div>
+        </div>
+        <div class="subgroup">
+          <div class="sublabel">End-To-End LLM Training <span class="hint">— understand the machine, not ship a model</span></div>
+          <div class="grid">
+            <article class="card t-oss"><h3><a href="https://github.com/karpathy/nanochat" target="_blank" rel="noopener">nanochat</a></h3><p>A full pretrain-to-chat pipeline in one readable codebase. The reference run wants a rented multi-GPU node for a few hours; a single 24&nbsp;GB card will do it slowly, and a mid-range consumer card sits below what the default configuration expects.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
+            <article class="card t-local"><h3><a href="https://gist.github.com/karpathy/8627fe009c40f57531cb18360106ce95" target="_blank" rel="noopener">microgpt</a></h3><p>Two hundred lines of dependency-free Python that train and run a tiny model in about a minute on a laptop CPU. Not a model you would use for anything — it is the whole algorithm, short enough to read start to finish.</p><div class="tags"><span class="tag">GIST</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card"><h3><a href="https://cs336.stanford.edu/" target="_blank" rel="noopener">Stanford CS336 — Language Modeling From Scratch</a></h3><p>A full-semester course where you implement tokenization, attention and a distributed training loop by hand rather than calling a library. Free to watch; doing the assignments yourself runs up real rented-GPU bills.</p><div class="tags"><span class="tag">FREE</span></div></article>
+            <article class="card"><h3><a href="https://huggingface.co/spaces/HuggingFaceTB/smol-training-playbook" target="_blank" rel="noopener">The Smol Training Playbook</a></h3><p>Hugging Face's account of what actually went wrong training a small model, including a run they restarted after burning through a trillion tokens. Reads like a field report rather than a paper.</p><div class="tags"><span class="tag">FREE</span></div></article>
+            <article class="card t-oss"><h3><a href="https://github.com/KellerJordan/modded-nanogpt" target="_blank" rel="noopener">modded-nanogpt</a></h3><p>An ongoing competition to train a small model to a fixed loss target as fast as possible. Worth knowing about without running it — several optimizer tricks now in general use were proven out here first.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
+          </div>
+        </div>
+
+        <div class="subgroup">
+          <div class="sublabel">Non-LLM Model Training <span class="hint">— vision, scientific, and everything that is not a chatbot</span></div>
+          <div class="grid">
+            <article class="card t-oss t-local"><h3><a href="https://docs.pytorch.org/tutorials/" target="_blank" rel="noopener">PyTorch</a></h3><p>The framework nearly everything else on this page already runs on. Its own tutorials walk through a training loop starting from a blank module, which is the place to learn what is actually happening before reaching for something higher-level.</p><div class="tags"><span class="tag oss">BSD-3</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://course.fast.ai/" target="_blank" rel="noopener">fastai — Practical Deep Learning For Coders</a></h3><p>A course built around training a working model in the first lesson and then working backwards into the theory. The library underneath it is still actively developed, and a second track covers building diffusion models from scratch.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/huggingface/pytorch-image-models" target="_blank" rel="noopener">timm</a></h3><p>The default starting point when the thing you are training is a vision model — a large collection of backbones with training scripts included, not just architecture definitions.<span class="caveat">The code is Apache-2.0, but a few individual pretrained weight sets carry their own non-commercial terms. Check the weights you use, not just the repository.</span></p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://scvi-tools.org/" target="_blank" rel="noopener">scvi-tools</a></h3><p>Trains probabilistic models directly on single-cell and spatial omics data, wrapping PyTorch in a workflow built around a real dataset rather than a benchmark. Runs on one GPU, and often without one.</p><div class="tags"><span class="tag oss">BSD-3</span><span class="tag local">LOCAL</span></div></article>
+          </div>
+        </div>
+
+        <div class="subgroup">
+          <div class="sublabel">Open Courses &amp; Fundamentals</div>
+          <div class="grid">
+            <article class="card"><h3><a href="https://www.skills.google/course_templates/536" target="_blank" rel="noopener">Google Cloud — Introduction To Generative AI</a></h3><p>A short primer for someone starting from zero.</p><div class="tags"><span class="tag">FREE</span></div></article>
+            <article class="card"><h3><a href="https://www.kaggle.com/learn" target="_blank" rel="noopener">Kaggle Learn</a></h3><p>Short practical micro-courses; the fastest on-ramp if you are starting from nothing.</p><div class="tags"><span class="tag">FREE</span></div></article>
+            <article class="card"><h3><a href="https://huggingface.co/learn/deep-rl-course/unit1/introduction" target="_blank" rel="noopener">Hugging Face Deep RL Course</a></h3><p>Hands-on reinforcement-learning fundamentals with runnable notebooks.</p><div class="tags"><span class="tag">FREE</span></div></article>
+          </div>
+        </div>
+      </section>
+
+      <div class="split" id="watchlist">
+        <div class="box dashed">
+          <h2>Watchlist</h2>
+          <p class="sub">Not listed yet — and exactly what would change our mind.</p>
+          <div class="bench">
+            <div class="bench-label">On Our Bench — Testing Next</div>
+            <p class="thesis">Two projects attacking the same wall from opposite ends: the model you want is bigger than the machine you have. One squeezes a larger model onto a single box; the other pools several boxes into one. We are watching both closely and want to test them.</p>
+            <ul>
+              <li><b>Colibri</b> — offloads to SSD rather than treating VRAM as the ceiling, so the size of model you can load stops being fixed by the card you own. The trade is speed: at the extreme it is measured in seconds per token, which makes it a can-it-run-at-all tool rather than an interactive one. <em>Needs: a third-party reproduction on a 12&nbsp;GB card, and enough of a track record to trust the project is not a spike.</em></li>
+              <li><b>exo</b> — pools several machines into a single inference cluster, so spare hardware adds up instead of sitting idle. <em>Needs: an official CUDA path — its README still says Linux runs on CPU only, with first-class acceleration on Apple Silicon.</em></li>
+            </ul>
+          </div>
+          <ul>
+            <li><b>TurboQuant</b> — Google's KV-cache quantization: about three bits per value, six times less cache memory, and no calibration step. If it lands, how much context fits on one consumer card changes materially. <em>Needs an upstream merge: Google published no code, llama.cpp has an open discussion and five competing forks, vLLM a feature request. Early forks trade the memory back for speed — one Metal run measured generation eight times slower than q8_0 at long context.</em></li>
+            <li><b>MemU</b> — plain-markdown agent memory, philosophically the closest thing to what we build. <em>Needs: a longer track record; it has only been public since early 2026.</em></li>
+            <li><b>k3s</b> — one control plane instead of three separately managed hosts. <em>Needs a fleet that has actually outgrown Compose.</em></li>
+            <li><b>Microsoft BitNet</b> — native 1-bit models rather than post-hoc quantization. <em>Needs a real trained model above 7B.</em></li>
+            <li><b>container-use</b> — a container and a git branch per agent. <em>Needs a stable release; it self-describes as experimental.</em></li>
+          </ul>
+        </div>
+        <div class="box">
+          <h2>Checked And Rejected</h2>
+          <p class="sub">Candidates we looked at and did not list. Going read-only is not on its own a reason — what matters is whether there is a maintained path forward.</p>
+          <ul>
+            <li><b>Daytona</b> — core development moved to a private codebase; the public repo will get no further updates. <em>It still looks active at a glance.</em></li>
+            <li><b>LLM Guard</b> — archived, along with its models. Guardrails AI is the maintained alternative.</li>
+            <li><b>GitHub Models</b> — retired. <em>Still listed as free across many directories.</em></li>
+            <li><b>PlayHT</b> — API sunset after acquisition; the domains no longer resolve.</li>
+            <li><b>Piper</b> — the original repo was archived and the maintained fork changed licence, which complicates bundling.</li>
+            <li><b>Automatic1111</b> — no meaningful activity in months; superseded in practice.</li>
+          </ul>
+        </div>
       </div>
-      <div class="footer-links">
-        <a href="index.html">← Main page</a>
-        <a href="https://github.com/esoteric1entity" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://thepdukedge.substack.com/" target="_blank" rel="noopener">PDuk Edge ↗</a>
-      </div>
     </div>
-  </footer>
+  </div>
+</main>
 
+<footer>
+  <div class="container">
+    <div class="attrib">
+      <strong>PDuk Brainworks</strong> 🧬 · Agent Architect Stack — Apache-2.0 — © 2026 esoteric1entity. A PDuk Brainworks project<br>
+      <span style="font-size:.85rem">Part of a larger research program on agent infrastructure. Public launch: 2026-06-12.</span>
+    </div>
+    <div class="footer-links">
+      <a href="index.html">← Back to the stack</a>
+      <a href="index.html#quickstart">Install the Memory branch</a>
+      <a href="index.html#branches">Install agent-shield</a>
+      <a href="https://github.com/esoteric1entity" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://thepdukedge.substack.com/" target="_blank" rel="noopener">PDuk Edge ↗</a>
+    </div>
+    <p class="creds">This page: one HTML file · no JavaScript · no trackers · links out to third parties, nothing embedded.</p>
+    <p class="reviewed">LAST REVIEWED 2026-08 · CANDIDATES CHECKED AGAINST PRIMARY SOURCES · LICENCES READ FROM THE LICENSE FILE, NOT FROM BADGES · ACCURATE AS OF THAT DATE — LICENCES AND MAINTENANCE STATUS CHANGE</p>
+    <p>Nobody pays to be on this page. If something here has gone stale or dead — or should be here and is not — <a href="https://github.com/esoteric1entity/agent-architect-stack/issues/new" target="_blank" rel="noopener">open an issue</a>.</p>
+  </div>
+</footer>
 </body>
 </html>
