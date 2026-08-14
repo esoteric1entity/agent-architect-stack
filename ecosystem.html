@@ -37,8 +37,12 @@
   .nav-inner{max-width:1120px; margin:0 auto; padding:13px var(--s4); display:flex; align-items:center; justify-content:space-between; gap:var(--s3)}
   .brand{display:flex; align-items:center; gap:9px; color:var(--ink); font-weight:600; font-size:.92rem}
   .brand span{color:var(--soft); font-weight:400}
-  .nav-links{display:flex; gap:var(--s4); font-size:.88rem}
+  .nav-links{display:flex; align-items:center; gap:var(--s4); font-size:.88rem}
   .nav-links a{color:var(--soft)} .nav-links a[aria-current]{color:var(--violet)}
+  .nav-links .nav-ecosystem, .nav-links .nav-contributors{padding:3px 12px; border:1px solid var(--line-2);
+    border-radius:999px; white-space:nowrap}
+  .nav-links .nav-ecosystem[aria-current]{color:var(--brand); border-color:rgba(45,212,191,.45);
+    background:rgba(45,212,191,.10)}
   /* nav pill styling, ported from index.html so the header matches the other three pages */
 .nav-links .nav-mission {
       color: var(--accent); font-weight: 700; white-space: nowrap; flex: none;
@@ -180,6 +184,11 @@
   .bench{border:1px dashed rgba(45,212,191,.45); border-radius:8px;
     background:rgba(45,212,191,.04); padding:14px 16px; margin-bottom:var(--s4)}
   .bench-label{font:10px/1 var(--mono); letter-spacing:.15em; text-transform:uppercase; color:var(--brand); margin-bottom:8px}
+  /* one gold card: the enterprise option exists, and we are not pretending otherwise */
+  .card.ent{border-color:rgba(251,191,36,.34); border-left:2px solid var(--gold);
+    background:linear-gradient(180deg, rgba(251,191,36,.05), rgba(251,191,36,.02))}
+  .card.ent:hover{border-color:rgba(251,191,36,.5)}
+  .tag.ent{color:var(--gold); border-color:rgba(251,191,36,.42); background:rgba(251,191,36,.08)}
   .bench li b::after{content:"TESTING NEXT"; font:8.5px/1 var(--mono); letter-spacing:.1em; color:var(--brand);
     border:1px solid rgba(45,212,191,.42); border-radius:3px; padding:3px 5px; margin-left:8px; vertical-align:2px}
   .bench p.thesis{margin:0 0 10px; color:var(--soft); font-size:.85rem}
@@ -251,7 +260,7 @@
     <h1>What we're <em>watching</em>.</h1>
     <p class="lede">Harnesses, models and hardware in the agent ecosystem worth knowing about. Some of this we run ourselves, some of it our own tools can plug into; the rest we've checked out and found legitimate — real, functioning, and worth your time. <b>We don't list vaporware, and nobody pays to be on this page.</b></p>
     <div class="stats">
-      <div class="stat"><div class="n">139</div><div class="l">Entries</div></div>
+      <div class="stat"><div class="n">141</div><div class="l">Entries</div></div>
       <div class="stat"><div class="n">164</div><div class="l">Evaluated, Aug 2026</div></div>
       <div class="stat"><div class="n">16</div><div class="l">Shelves</div></div>
       <div class="stat"><div class="n">2026-08</div><div class="l">Last Reviewed</div></div>
@@ -333,13 +342,13 @@
           <div class="grid">
             <article class="card"><h3><a href="https://claude.com/product/claude-code" target="_blank" rel="noopener">Claude Code</a></h3><p>Anthropic's terminal-native coding agent, and the harness most of this stack is built against.</p><div class="tags"><span class="tag paid">COMMERCIAL</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener">OpenClaw</a></h3><p>Self-hosted multi-agent framework you run on your own box, with its own gateway and session model. Now under independent foundation governance.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss"><h3><a href="https://www.nvidia.com/en-us/ai/nemoclaw/" target="_blank" rel="noopener">NemoClaw</a></h3><p>NVIDIA’s hardened wrapper around OpenClaw — it sandboxes the agent inside OpenShell, and will run Hermes as an alternate agent.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
+            <article class="card t-oss"><h3><a href="https://www.nvidia.com/en-us/ai/nemoclaw/" target="_blank" rel="noopener">NemoClaw</a></h3><p>NVIDIA’s open blueprints for running an agent under OpenShell policy controls. OpenClaw is the default, with Hermes and LangChain Deep Agents as alternates.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://aider.chat/" target="_blank" rel="noopener">Aider</a></h3><p>A terminal pair programmer that edits files in your git repository and commits each change separately, using a repository map instead of loading the whole codebase.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://github.com/block/goose" target="_blank" rel="noopener">goose</a></h3><p>A local-first agent, CLI and desktop, reaching models and tools through MCP extensions and able to run entirely offline. Donated by Block to the Agentic AI Foundation, so no longer vendor-owned.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://opencode.ai/" target="_blank" rel="noopener">OpenCode</a></h3><p>A provider-agnostic terminal agent — the option if you want a daily driver that isn't tied to one vendor's model.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://github.com/cline/cline" target="_blank" rel="noopener">Cline</a></h3><p>Started as an editor extension and now ships a standalone CLI with a headless mode and an SDK for building your own agents, so it is no longer editor-only.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://github.com/QwenLM/qwen-code" target="_blank" rel="noopener">Qwen Code</a></h3><p>An open terminal agent forked from Google’s Gemini CLI and developed independently since. Tuned for Qwen models, but it will run against other endpoints.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss"><h3><a href="https://github.com/xai-org/grok-build" target="_blank" rel="noopener">Grok Build</a></h3><p>xAI’s terminal coding agent, against its hosted models — full-screen TUI, plan mode, parallel subagents, and MCP servers working out of the box. The Rust source is published.<span class="caveat">In July 2026 a researcher’s wire captures showed it packaging the entire tracked repository — git history and committed secrets included — and uploading it to xAI storage, even when told to read no files and with the “improve the model” toggle off. xAI mitigated it server-side within a day, without a formal advisory. Rotate anything it could have seen.</span></p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag paid">PAID MODELS</span><span class="tag mcpc">MCP CLIENT</span></div></article>
+            <article class="card t-oss"><h3><a href="https://github.com/xai-org/grok-build" target="_blank" rel="noopener">Grok Build</a></h3><p>xAI’s terminal coding agent, against its hosted models — full-screen TUI, plan mode, parallel subagents, and MCP servers working out of the box. The Rust source is published.<span class="caveat">In July 2026 a researcher’s wire captures showed it packaging the entire tracked repository — git history and committed secrets included — and uploading it to xAI storage, even when told to read no files and with the “improve the model” toggle off. xAI mitigated it server-side within a day, without a formal advisory (<a href="https://thehackernews.com/2026/07/grok-build-uploads-entire-git.html" target="_blank" rel="noopener">reported here</a>). Rotate anything it could have seen.</span></p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag paid">PAID MODELS</span><span class="tag mcpc">MCP CLIENT</span></div></article>
             <article class="card t-oss"><h3><a href="https://pi.dev/" target="_blank" rel="noopener">Pi</a></h3><p>A deliberately small terminal harness: a handful of built-in tools, a short prompt, everything else added as extensions. The harness OpenClaw is built on.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
           </div>
         </div>
@@ -378,7 +387,7 @@
           <div class="grid">
             <article class="card t-oss"><h3><a href="https://github.com/crewAIInc/crewAI" target="_blank" rel="noopener">CrewAI</a></h3><p>Models a workflow as a crew of role-playing agents with assigned tasks. The most widely adopted framework in this style, and the fastest way to see a multi-agent system working.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
             <article class="card t-oss"><h3><a href="https://github.com/ag2ai/ag2" target="_blank" rel="noopener">AG2</a></h3><p>The community continuation of AutoGen, with native MCP and agent-to-agent protocol support — the pick when you care most about talking to other systems.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag mcpc">MCP CLIENT</span></div></article>
-            <article class="card t-oss"><h3><a href="https://mastra.ai/" target="_blank" rel="noopener">Mastra</a></h3><p>A TypeScript-native agent framework, for when the rest of the project is already JavaScript and a Python orchestrator would be the odd one out.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
+            <article class="card t-oss"><h3><a href="https://mastra.ai/" target="_blank" rel="noopener">Mastra</a></h3><p>A TypeScript-native agent framework, for when the rest of the project is already JavaScript and a Python orchestrator would be the odd one out.</p><div class="tags"><span class="tag oss">Apache-2.0 core</span></div></article>
           </div>
         </div>
       </section>
@@ -434,8 +443,9 @@
           <div class="sublabel">Platforms <span class="hint">— the silicon, and everyone who ships a box around it</span></div>
           <div class="grid">
             <article class="card"><h3><a href="https://www.nvidia.com/en-us/products/workstations/dgx-spark/" target="_blank" rel="noopener">NVIDIA GB10 <span style="color:var(--soft);font-weight:400;font-size:.85rem">(DGX Spark platform)</span></a></h3><p>A desk-side class of machine with unified memory, for running and fine-tuning large models locally without a rack. NVIDIA's own DGX Spark is one of eight systems on this chip — Acer, ASUS, Dell, GIGABYTE, HP, Lenovo and MSI ship the rest.<span class="caveat">The silicon is identical across all of them; price, storage and support are not, and the spread between cheapest and dearest is roughly double.</span></p><div class="tags"><span class="tag">PLATFORM</span></div></article>
-            <article class="card"><h3><a href="https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html" target="_blank" rel="noopener">AMD Ryzen AI Max+ <span style="color:var(--soft);font-weight:400;font-size:.85rem">(Strix Halo)</span></a></h3><p>Unified-memory APUs that let a mid-range system hold models that would not fit in discrete VRAM, with most of the pool assignable to the GPU. Dozens of machines ship it; Framework Desktop is the most open and repairable.<span class="caveat">Memory is soldered, so buy the capacity you want up front. ROCm tooling still trails CUDA.</span></p><div class="tags"><span class="tag">PLATFORM</span></div></article>
-            <article class="card"><h3><a href="https://www.apple.com/mac/compare/" target="_blank" rel="noopener">Apple Silicon <span style="color:var(--soft);font-weight:400;font-size:.85rem">(Mac Studio, Mac mini)</span></a></h3><p>Unified memory makes large-model inference practical on a desktop that fits under a monitor. The choice across the Mac line is capacity and bandwidth, not a different platform.</p><div class="tags"><span class="tag">PLATFORM</span></div></article>
+            <article class="card"><h3><a href="https://www.amd.com/en/products/processors/desktops/ryzen/ryzen-ai-halo.html" target="_blank" rel="noopener">AMD Ryzen AI Max+ <span style="color:var(--soft);font-weight:400;font-size:.85rem">(Strix Halo)</span></a></h3><p>Unified-memory APUs that let a mid-range system hold models that would not fit in discrete VRAM, with most of the pool assignable to the GPU. Dozens of machines ship it; Framework Desktop is the most open and repairable.<span class="caveat">Memory is soldered, so buy the capacity you want up front. ROCm tooling still trails CUDA.</span></p><div class="tags"><span class="tag">PLATFORM</span></div></article>
+            <article class="card"><h3><a href="https://www.apple.com/mac/" target="_blank" rel="noopener">Apple Silicon <span style="color:var(--soft);font-weight:400;font-size:.85rem">(Mac Studio, Mac mini)</span></a></h3><p>Unified memory makes large-model inference practical on a desktop that fits under a monitor. The choice across the Mac line is capacity and bandwidth, not a different platform.</p><div class="tags"><span class="tag">PLATFORM</span></div></article>
+            <article class="card ent"><h3><a href="https://www.nvidia.com/en-us/products/workstations/dgx-station/" target="_blank" rel="noopener">NVIDIA DGX Station</a></h3><p>748&nbsp;GB of coherent memory, models up to a trillion parameters. NVIDIA supplies the board and the OEMs build the machine; there is no published price.</p><div class="tags"><span class="tag ent">FOR ENTERPRISE</span></div></article>
           </div>
         </div>
         <div class="subgroup">
@@ -753,6 +763,7 @@
           <div class="sublabel">Non-LLM Model Training <span class="hint">— vision, scientific, and everything that is not a chatbot</span></div>
           <div class="grid">
             <article class="card t-oss t-local"><h3><a href="https://docs.pytorch.org/tutorials/" target="_blank" rel="noopener">PyTorch</a></h3><p>The framework nearly everything else on this page already runs on. Its own tutorials walk through a training loop starting from a blank module, which is the place to learn what is actually happening before reaching for something higher-level.</p><div class="tags"><span class="tag oss">BSD-3</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://www.tensorflow.org/" target="_blank" rel="noopener">TensorFlow &amp; Keras</a></h3><p>The other lineage, and still the common answer for edge and production serving. <a href="https://keras.io/" target="_blank" rel="noopener">Keras 3</a> runs on JAX, TensorFlow or PyTorch, so the same model code can be a PyTorch module or a TensorFlow SavedModel — the API outlives the framework choice.<span class="caveat">Pick the backend before importing Keras; it cannot be swapped afterwards. Legacy tf.keras now lives in its own repository.</span></p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://course.fast.ai/" target="_blank" rel="noopener">fastai — Practical Deep Learning For Coders</a></h3><p>A course built around training a working model in the first lesson and then working backwards into the theory. The library underneath it is still actively developed, and a second track covers building diffusion models from scratch.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://github.com/huggingface/pytorch-image-models" target="_blank" rel="noopener">timm</a></h3><p>The default starting point when the thing you are training is a vision model — a large collection of backbones with training scripts included, not just architecture definitions.<span class="caveat">The code is Apache-2.0, but a few individual pretrained weight sets carry their own non-commercial terms. Check the weights you use, not just the repository.</span></p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://scvi-tools.org/" target="_blank" rel="noopener">scvi-tools</a></h3><p>Trains probabilistic models directly on single-cell and spatial omics data, wrapping PyTorch in a workflow built around a real dataset rather than a benchmark. Runs on one GPU, and often without one.</p><div class="tags"><span class="tag oss">BSD-3</span><span class="tag local">LOCAL</span></div></article>
@@ -793,10 +804,10 @@
           <h2>Checked And Rejected</h2>
           <p class="sub">Candidates we looked at and did not list. Going read-only is not on its own a reason — what matters is whether there is a maintained path forward.</p>
           <ul>
-            <li><b>Daytona</b> — core development moved to a private codebase; the public repo will get no further updates. <em>It still looks active at a glance.</em></li>
+            <li><b>Daytona</b> — core development moved to a private codebase; no further public updates since July 2026. <em>It still looks active at a glance.</em></li>
             <li><b>LLM Guard</b> — archived, along with its models. Guardrails AI is the maintained alternative.</li>
             <li><b>GitHub Models</b> — retired. <em>Still listed as free across many directories.</em></li>
-            <li><b>PlayHT</b> — API sunset after acquisition; the domains no longer resolve.</li>
+            <li><b>PlayHT</b> — API sunset after acquisition.</li>
             <li><b>Piper</b> — the original repo was archived and the maintained fork changed licence, which complicates bundling.</li>
             <li><b>Automatic1111</b> — no meaningful activity in months; superseded in practice.</li>
           </ul>
