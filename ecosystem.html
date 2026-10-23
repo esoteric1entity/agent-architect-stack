@@ -260,7 +260,7 @@
     <h1>What we're <em>watching</em>.</h1>
     <p class="lede">Harnesses, models and hardware in the agent ecosystem worth knowing about. Some of this we run ourselves, some of it our own tools can plug into; the rest we've checked out and found legitimate — real, functioning, and worth your time. <b>We don't list vaporware, and nobody pays to be on this page.</b></p>
     <div class="stats">
-      <div class="stat"><div class="n">141</div><div class="l">Entries</div></div>
+      <div class="stat"><div class="n">140</div><div class="l">Entries</div></div>
       <div class="stat"><div class="n">164</div><div class="l">Evaluated, Aug 2026</div></div>
       <div class="stat"><div class="n">16</div><div class="l">Shelves</div></div>
       <div class="stat"><div class="n">2026-08</div><div class="l">Last Reviewed</div></div>
@@ -418,7 +418,6 @@
         <div class="subgroup">
           <div class="sublabel">Routing &amp; Gateways</div>
           <div class="grid">
-            <article class="card t-oss t-local"><h3><a href="https://github.com/BerriAI/litellm" target="_blank" rel="noopener">LiteLLM</a></h3><p>One address your agents call, whichever provider or local box is answering behind it, with spend tracking if you are paying for any of them.<span class="caveat">MIT core plus a separately licensed enterprise directory; the boundary has been publicly disputed, so read the LICENSE before relying on a paid-tier feature.</span></p><div class="tags"><span class="tag oss">MIT core</span><span class="tag local">SELF-HOST</span></div></article>
             <article class="card"><h3><a href="https://openrouter.ai/" target="_blank" rel="noopener">OpenRouter</a></h3><p>One API across many providers, with a rotating set of no-cost models. The daily cap rises permanently once you have ever added credit.</p><div class="tags"><span class="tag paid">FREE TIER</span></div></article>
           </div>
         </div>
@@ -804,6 +803,7 @@
           <h2>Checked And Rejected</h2>
           <p class="sub">Candidates we looked at and did not list. Going read-only is not on its own a reason — what matters is whether there is a maintained path forward.</p>
           <ul>
+            <li><b>LiteLLM</b>: malware that steals credentials shipped in its published releases twice in 2026, in two PyPI releases on 24 March and in version 1.107.0 on PyPI and its official Docker images on 21 October. Both were pulled within hours. The line between its MIT core and its commercial enterprise code is also publicly disputed. <em>Removed from the list on 2026-10-22.</em></li>
             <li><b>Daytona</b> — core development moved to a private codebase; no further public updates since July 2026. <em>It still looks active at a glance.</em></li>
             <li><b>LLM Guard</b> — archived, along with its models. Guardrails AI is the maintained alternative.</li>
             <li><b>GitHub Models</b> — retired. <em>Still listed as free across many directories.</em></li>
