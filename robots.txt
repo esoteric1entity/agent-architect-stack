@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://esoteric1entity.github.io/agent-architect-stack/sitemap.xml

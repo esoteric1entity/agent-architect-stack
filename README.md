@@ -2,224 +2,197 @@
 
 > **Modular Infrastructure for AI Agents**
 >
-> A memory vault that grows into a knowledge graph, your agent's *second brain*, and a security runtime — with more to come. Install what you need, when you need it.
+> A memory vault, your agent's *second brain*, and a security runtime, with more to come. Install what you need, when you need it.
 >
 > **Own the memory. Own the guardrails. Own the *edge*.**
 >
-> Choose your harness. Built for Claude Code & OpenClaw variants today!
 >
-> *A **PDuk Brainworks** project. Apache-2.0 - (c) 2026 esoteric1entity.*
+> Tested with Claude Code and OpenClaw. More harnesses planned.
+>
+> *A **PDuk Brainworks** project. (c) 2026 esoteric1entity.*
 
 [![License: Apache 2.0](https://img.shields.io/badge/License-Apache_2.0-blue.svg)](https://opensource.org/licenses/Apache-2.0)
-[![Status: Memory live](https://img.shields.io/badge/Memory-v4.0.0%20live-brightgreen.svg)](#project-status)
+[![Status: Memory released](https://img.shields.io/badge/Memory-v4.0.1%20released-brightgreen.svg)](#project-status)
 [![Status: Security released](https://img.shields.io/badge/Security-v0.2.1%20released-brightgreen.svg)](https://pypi.org/project/ai-agent-shield/)
-[![Branches: 2 active](https://img.shields.io/badge/Branches-2%20active-lightgrey.svg)](#branches)
 
-**🌐 Live site:** [esoteric1entity.github.io/agent-architect-stack](https://esoteric1entity.github.io/agent-architect-stack/)
-**Explore:** [Mission](https://esoteric1entity.github.io/agent-architect-stack/mission.html) · [Ecosystem](https://esoteric1entity.github.io/agent-architect-stack/ecosystem.html) (curated, vetted tools directory) · [Contributors](https://esoteric1entity.github.io/agent-architect-stack/contributors.html)
 
----
+**Live site:** [esoteric1entity.github.io/agent-architect-stack](https://esoteric1entity.github.io/agent-architect-stack/)
 
-## What it is
-
-The **Agent Architect Stack** is an open-source umbrella of **independently installable modules** for AI agents. Each module — called a *branch* — is a peer sibling that does one thing well. You install the branches you want; the others stay out of your way.
-
-| Branch | What it does | Status | Repo |
-|---|---|---|---|
-| **Memory** (Ultimate Memory Stack) | *Enhanced* persistent memory + knowledge graphs + Obsidian vault + prompt compression | ✅ **Released** — v4.0.0 | [esoteric1entity/ultimate-memory-stack](https://github.com/esoteric1entity/ultimate-memory-stack) |
-| **Security** (agent-shield) | 8-layer defensive overlay: skill vetting, input sanitization, runtime hooks, network egress, audit logging | ✅ **Released** — v0.2.1 alpha (Layers 1, 2, 3, 4, 6 & 7 shipped); Layers 0 & 5 roadmapped | [esoteric1entity/agent-shield](https://github.com/esoteric1entity/agent-shield) — public · [PyPI](https://pypi.org/project/ai-agent-shield/) |
-
-**Pick-and-choose.** You can install just Memory, just Security, or both. They share conventions (config formats, audit log schema) but **no hard runtime dependency** — per the modular-consumer principle.
-
-**Designed to work better together.** When you install both, Memory's audit logs feed Security's anomaly detection. When you install just one, that branch is the whole product.
+**Explore:** [Get Started](https://esoteric1entity.github.io/agent-architect-stack/get-started.html) · [How It Works](https://esoteric1entity.github.io/agent-architect-stack/how-it-works.html) · [Memory](https://esoteric1entity.github.io/agent-architect-stack/memory.html) · [Security](https://esoteric1entity.github.io/agent-architect-stack/security.html) · [Mission](https://esoteric1entity.github.io/agent-architect-stack/mission.html) · [Ecosystem](https://esoteric1entity.github.io/agent-architect-stack/ecosystem.html) (curated tools directory) · [Contributors](https://esoteric1entity.github.io/agent-architect-stack/contributors.html)
 
 ---
 
-## Why this exists
+## What It Is
 
-AI agents are powerful but stateless. They forget between sessions. They run with full tool access and no defensive layer. They drift in projects without structure. The Agent Architect Stack addresses each of those problems with a dedicated, focused module.
+The **Agent Architect Stack** is an open-source umbrella of **independently installable modules** for AI agents. Each module is a standalone tool that does one thing well. You install the tools you want; the others stay out of your way.
 
-We're not building a monolith. We're building a **growing tree of focused modules** that cooperate when installed together and stay out of the way when installed alone.
+| Tool | What It Does | Repo |
+|---|---|---|
+| **Memory** (Ultimate Memory Stack) | *Enhanced* persistent memory + Obsidian vault | [esoteric1entity/ultimate-memory-stack](https://github.com/esoteric1entity/ultimate-memory-stack) |
+| **Security** (agent-shield) | Defensive overlay: skill vetting, input sanitization, runtime hooks, network egress (designed but not built), audit logging | [esoteric1entity/agent-shield](https://github.com/esoteric1entity/agent-shield) · [PyPI](https://pypi.org/project/ai-agent-shield/) |
 
 ---
 
-## Who it's for
+## Why This Exists
 
-- **Agent developers** who want their agents to remember, defend, and stay organized across sessions
+AI agents are powerful but stateless. They forget between sessions. They run with full tool access and no defensive layer. They drift in projects without structure. Memory and Security address the first two; more tools are planned.
+
+We're not building a monolith. We're building a **growing tree of focused modules**.
+
+---
+
+## Who It's For
+
+- **Agent developers** who want their agents to remember and defend across sessions
 - **Open-source maintainers** who want clean, composable infrastructure instead of a one-size-fits-all framework
 - **Research labs and small teams** who need agent infrastructure they can audit, modify, and ship
 
-If you've ever thought "I wish this agent framework had a real memory layer" or "I wish there was a security layer between my agent and the network," this stack is for you.
+If you've ever thought "I wish this agent framework had a real memory layer," this stack is for you.
 
 ---
 
-## Quick start
+## Quick Start
 
-Two branches, two install paths. Pick the branch you want; each is independent.
+### Security Tool (agent-shield)
 
-### Memory branch — four ways in
 
-**Door 1 — Script (Linux / macOS / WSL · Windows)**
-
-```bash
-git clone https://github.com/esoteric1entity/ultimate-memory-stack.git
-
-cd /path/to/your/workspace            # where the memory stack should live
-/path/to/ultimate-memory-stack/setup-memory-stack.sh    # or: --target <dir>
-/path/to/ultimate-memory-stack/verify.sh
-
-# Flags: --minimal · --addon <name> · --no-templater · --compliance=<preset> · --yes
-# Windows: setup-memory-stack.ps1 (same options, PowerShell-style: -Minimal, -Addon, -Compliance …; needs Python 3.8+)
-```
-
-**Door 2 — Tell your agent (any harness)**
+Checks shell commands, and where file writes and edits go, before they run, once wired as a hook. In Claude Code, the PowerShell tool, file reads, web fetches, notebook edits and other tools are not checked. On Windows (not WSL), Claude Code often runs commands with that tool, and always does without Git Bash. It is a filter, not a sandbox. It does not stop prompt injection. [All known limits](https://esoteric1entity.github.io/agent-architect-stack/security.html#limits)
 
 ```bash
-git clone https://github.com/esoteric1entity/ultimate-memory-stack.git
-
-# Then tell your agent — Claude Code, OpenClaw, or any capable harness:
-#   "Install this — read INSTALL_AGENT.md and follow it."
+pip install ai-agent-shield==0.2.1
 ```
 
-**Door 3 — Claude Code marketplace**
 
-> Run these inside Claude Code, not your shell — Claude Code must be installed & authenticated.
+On macOS and Linux, install agent-shield in a virtual environment outside your project folder, and start Claude Code each time from a terminal where that environment is active. On any system, skip `pipx` and `uv tool` for now, and tell your assistant the same: the hooks can't find an install made that way.
+
+Then point your assistant at [INSTALL_AGENT.md](https://github.com/esoteric1entity/agent-shield/blob/v0.2.1/INSTALL_AGENT.md) in the repo on GitHub, since the PyPI install does not include that file. It wires the guards into Claude Code. After that, commands that match its list of dangerous patterns are blocked, those that match its list of risky ones are put to you, and everything else is left to your assistant's own permission settings.
+
+The guide's step 2 installs from GitHub main. You already have 0.2.1 from PyPI, so tell your assistant to skip that step.
+
+**Install check**
 
 ```bash
-# 1. In Claude Code — add the marketplace + install the plugin
-/plugin marketplace add esoteric1entity/ultimate-memory-stack
-/plugin install ultimate-memory-stack@ultimate-memory-stack
-
-# 2. Exit Claude Code (/exit or Ctrl-D)
-# 3. In your shell: cd to the project where the memory should live
-# 4. Relaunch Claude Code from inside that directory, then run:
-/install-ultimate-memory-stack
+echo '{"tool_input":{"file_path":"~/.claude/settings.json"}}' | python -m agent_shield.write_guard
 ```
 
-> Note: existing `memory/` store in that project? Back it up first — or use the script/agent door, which preserves it automatically.
+What it prints: a deny. Your settings file is not touched. This tests the file-edit guard only. [See all known limits](https://esoteric1entity.github.io/agent-architect-stack/security.html#limits).
 
-**Door 4 — no tooling at all**
-
-Drag the `common-specs/` and `general-edition/` folders into your workspace, then paste [The Prompt](https://github.com/esoteric1entity/ultimate-memory-stack/blob/main/common-specs/BOOTSTRAP_PROMPT.md#the-activation-prompt) into your agent — it runs the setup wizard. Full manual steps: the [Install Guide](https://github.com/esoteric1entity/ultimate-memory-stack/blob/main/INSTALL.md).
-
-Whatever the door, the installer refuses to mix your memory into the package tree and records exactly what it did in a manifest.
-
-**~5 minutes to a working memory layer.** The installer auto-detects whether you're running Claude Code, OpenClaw, or another harness; installs the Skills into the right location; and verifies the install end-to-end.
-
-### Security branch (agent-shield)
-
-```bash
-# Install from PyPI
-pip install ai-agent-shield
-
-# Verify
-python -c "import agent_shield; print(agent_shield.__version__)"
+```
+{"hookSpecificOutput": {"hookEventName": "PreToolUse", "permissionDecision": "deny", "permissionDecisionReason": "Cannot modify Claude settings.json (contains hook/permission configs)"}}
 ```
 
-Then wire the guards into your harness — see [INSTALL_AGENT.md](https://github.com/esoteric1entity/agent-shield/blob/main/INSTALL_AGENT.md) for consent-gated steps and verification.
+Then run `agent-shield-plugin status`. If the hooks were wired with `agent-shield-plugin enable`, it should say enabled. For project scope, run `agent-shield-plugin --project <dir> status`. Status does not show that the hooks fire.
+
+Run both checks in the terminal you start Claude Code from (bash, zsh, Git Bash or PowerShell; in cmd.exe the first one prints nothing). If the first one fails there, the hooks will likely fail too, and Claude Code may then let actions through unchecked.
+
+For OpenClaw the guide uses the library for now; agent-shield's [README](https://github.com/esoteric1entity/agent-shield/blob/v0.2.1/README.md) shows how to wire its `before_tool_call` adapter yourself, which needs a recent gateway.
 
 ---
 
-## Branches
+## Tools
 
-### Memory (Ultimate Memory Stack) — ✅ Released
 
-The flagship. Gives AI agents **persistent memory across sessions** — knowledge that survives context resets, gets searchable as a graph, and stays organized in a human-readable vault.
 
-| Component | What it provides | Tier |
+### Memory (Ultimate Memory Stack) · Released
+
+The flagship. Gives AI agents **persistent memory across sessions**: knowledge that survives context resets and stays organized in a human-readable vault.
+
+| Component | What It Provides | Tier |
 |---|---|---|
-| Core stack + install engine | The memory vault scaffold, protocol auto-registration, schemas, templates, wizard, and `verify.sh` | A — core |
-| `/config-obsidian-vault` | Obsidian-based personal-knowledge-management interface | B — primary |
-| `/install-graphiti` | Knowledge graph over your entities + relationships + temporal facts | C — opt-in |
-| `/install-graphify` | Code symbol graph (functions, classes, imports) across 31 languages | C — opt-in |
-| `/install-llmlingua` | Prompt compression at a quality-preserving threshold | C — opt-in |
+| Core stack + install engine | The memory vault scaffold, protocol auto-registration, schemas, templates, wizard, and `verify.sh` | A (core) |
+| `/config-obsidian-vault` | Obsidian-based personal-knowledge-management interface | B (primary) |
+| `/install-graphiti` | Knowledge graph over your entities + relationships + temporal facts | C (opt-in) |
+| `/install-graphify` | Code symbol graph (functions, classes, imports) | C (opt-in) |
+
+Optional add-ons set up third-party tools, and some have known problems in the current release.
+
 
 - **Repo:** [esoteric1entity/ultimate-memory-stack](https://github.com/esoteric1entity/ultimate-memory-stack)
 - **License:** Apache-2.0
-- **Status:** v4.0.0 — released · 2026-07-16
+
+### Security (agent-shield) · Released
 
 
-### Security (agent-shield) — ✅ Released
-
-An **8-layer defensive overlay** for AI agents. Sits between your agent and the outside world (skills, network, file system, tool calls) and inspects, sanitizes, audits, and blocks as needed.
+agent-shield checks what your AI agent is about to run, and where it is about to write. It blocks actions that match its list of dangerous patterns, lets you decide on those that match its list of risky ones, and lets everything else through. Wired as a hook, it keeps a record of what it decided.
 
 The 8 layers:
 
-| # | Layer | What it does | Status |
+| # | Layer | What It Does | Status |
 |---|---|---|---|
-| 0 | Cron rotation | Automated schedule for hygiene tasks (audit rotation, key rotation) | 🟡 Roadmapped |
-| 1 | Skill vetting | 3-tier automated + 5-layer manual escalation for any new Skill/tool | ✅ Shipped |
-| 2 | Input sanitization | 4-layer sanitization (structural, content, encoding, context) | ✅ Shipped |
-| 3 | Structured prompts | Anti-prompt-injection via structured output enforcement | ✅ Shipped |
-| 4 | Runtime hooks | Bash + write guards (Python ports of the original bash hooks) | ✅ Shipped |
-| 5 | Network egress | Ollama proxy + URL allowlist + rate limiting | 🟡 Roadmapped |
-| 6 | Audit logging | Append-only JSONL with SHA-256 chain integrity | ✅ Shipped |
-| 7 | Configuration | Layer-7 audit config + cross-addon contract | ✅ Shipped |
+| 0 | Cron rotation | Automated schedule for hygiene tasks (audit rotation, key rotation) | Designed but not built |
+| 1 | Skill vetting | 3-tier automated + 5-layer manual escalation that you run on a new skill or tool | Shipped |
+| 2 | Input sanitization | 4-layer sanitization (structural, content, encoding, context) | Shipped |
+| 3 | Structured output | Structured output enforcement | Shipped |
+| 4 | Runtime hooks | Bash + write guards | Shipped |
+| 5 | Network egress | Ollama proxy + URL allowlist + rate limiting | Designed but not built |
+| 6 | Audit logging | A log that can be checked for edited lines | Shipped |
+| 7 | Configuration | Layer-7 audit config + cross-layer contract | Shipped |
 
-- **Repo:** [esoteric1entity/agent-shield](https://github.com/esoteric1entity/agent-shield) — public
-- **PyPI:** [ai-agent-shield](https://pypi.org/project/ai-agent-shield/) — `pip install ai-agent-shield`
+- **Repo:** [esoteric1entity/agent-shield](https://github.com/esoteric1entity/agent-shield)
+- **PyPI:** [ai-agent-shield](https://pypi.org/project/ai-agent-shield/)
 - **License:** Apache-2.0
-- **Status:** v0.2.1 alpha — Layers 1, 2, 3, 4, 6 & 7 shipped; Layers 0 & 5 roadmapped
 
+*More tools planned.*
 
 ---
 
-## Project status
+## Harnesses and Systems
 
-**Memory branch v4.0.0 is live.** **Security branch v0.2.1 alpha is released** and available on [PyPI](https://pypi.org/project/ai-agent-shield/).
+**Security (agent-shield)**
+
+- Harnesses: Claude Code (PreToolUse hooks) and OpenClaw (a before_tool_call plugin; needs a recent gateway). More are planned, starting with Hermes Agent and OpenCode.
+- Operating systems: Windows, Linux (including WSL) and macOS, with Python 3.11 or later; its test suite runs on all three in CI. On Windows, commands Claude Code runs through its PowerShell tool are not checked.
+
+
+
+## Project Status
 
 | Item | Status |
 |---|---|
-| Memory branch — Ultimate Memory Stack | ✅ Released · v4.0.0 · 2026-07-16 · [GitHub](https://github.com/esoteric1entity/ultimate-memory-stack) |
-| Security branch — agent-shield | ✅ Released · v0.2.1 alpha · 2026-07-05 · [PyPI](https://pypi.org/project/ai-agent-shield/) · [GitHub](https://github.com/esoteric1entity/agent-shield) |
-| Security branch — Layers 0 & 5 | 🟡 Roadmapped |
-| Future branches | 🟡 In ideation & design |
-| Umbrella landing page (this) | ✅ Complete |
-| Umbrella name + brand | ✅ Locked: PDuk Brainworks / The Agent Architect Stack |
+| Memory Tool (Ultimate Memory Stack) | Released · v4.0.1 · 2026-08-19 · [GitHub](https://github.com/esoteric1entity/ultimate-memory-stack) |
+| Security Tool (agent-shield) | Released · v0.2.1 alpha · 2026-07-05 · [PyPI](https://pypi.org/project/ai-agent-shield/) · [GitHub](https://github.com/esoteric1entity/agent-shield) |
+| Future Tools | In Ideation & Design |
 
 ---
 
-## Authoring process
+## Authoring Process
 
-The architecture itself is **original to esoteric1entity** — a sustained personal design effort begun in early 2026, drawing on prior studies, practices, and influences (2025), and first deployed as the maker's own agent stack. The Memory and Security branches are **descendants of that original design, not its source.**
+The architecture itself is **original to esoteric1entity**: a sustained personal design effort begun in early 2026, drawing on prior studies, practices, and influences (2025), and first deployed as the maker's own agent stack. The Memory and Security tools are **descendants of that original design, not its source.**
 
-This stack was built using **multiple AI agents across multiple machines, working alongside the human designer** — with cross-agent peer review at each step (the Tribunal Pattern). Every architectural decision is captured in a decision-log entry with full documentation discipline (purpose / rationale / sound reasoning / scope CAN / scope CANNOT).
+This stack was built using **multiple AI agents across multiple machines, working alongside the human designer**, with cross-agent peer review at each step (the Tribunal Pattern).
 
-The same discipline applies to code quality: releases are developed test-first, must pass the full unit, integration, and end-to-end suites, and go through an independent adversarial review pass before shipping — with every claim backed by an append-only, internally maintained test-evidence register.
+Recent releases went through an adversarial review before shipping.
 
 ---
 
-## Key concepts
+## Key Concepts
 
-- The umbrella topology (independent branches, one storefront)
-- The modular consumer architecture (install any branch alone)
+- The umbrella topology (independent tools, one storefront)
+- The modular consumer architecture (install any tool alone)
 - The personal-content boundary (what does NOT go in public repos)
-- The Tribunal Pattern (cross-deployment peer review)
-- **Memory branch** — [`ultimate-memory-stack`](https://github.com/esoteric1entity/ultimate-memory-stack)
-- **agent-shield** — [`agent-shield`](https://github.com/esoteric1entity/agent-shield) v0.2.1 on [PyPI](https://pypi.org/project/ai-agent-shield/)
-- **Ecosystem directory** — curated, vetted tools & resources across the AI-agent space; see the [Ecosystem page](https://esoteric1entity.github.io/agent-architect-stack/ecosystem.html)
+- The Tribunal Pattern (cross-agent peer review)
 
 ---
 
 ## License
 
-[Apache License 2.0](LICENSE). Use, modify, distribute, fork — go forth.
+[Apache License 2.0](LICENSE). Use, modify, distribute, fork. Go forth.
 
 ---
 
-## Citing this work
+## Citing This Work
 
-Everything here is free under Apache-2.0 — no strings attached. If the stack helps
-you build something, the one thing we ask — **entirely optional, always
-appreciated** — is a citation or mention of **esoteric1entity** /
-**PDuk Brainworks**: a link back, a line in your credits, or GitHub's
+Everything here is open source under Apache-2.0, no strings attached. If the stack helps
+you build something, a citation or mention of **PDuk Brainworks** /
+esoteric1entity is always appreciated:
+a link back, a line in your credits, or GitHub's
 "Cite this repository" button (powered by [`CITATION.cff`](./CITATION.cff)).
 
 ---
 
 ## Authors
 
-- **esoteric1entity** — architect + design lead
+- **esoteric1entity**, architect + design lead
 
 ## Acknowledgements
 

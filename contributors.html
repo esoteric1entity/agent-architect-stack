@@ -3,39 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Contributors · PDuk Brainworks — Agent Architect Stack</title>
-  <meta name="description" content="The people who've helped build the Agent Architect Stack — technically, financially, or otherwise.">
+  <title>Contributors · PDuk Brainworks · Agent Architect Stack</title>
+  <meta name="description" content="Ways to help the Agent Architect Stack, most of them without code: star it, share it, report a bug or contribute code.">
+  <link rel="canonical" href="https://esoteric1entity.github.io/agent-architect-stack/contributors.html">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PDuk Brainworks">
+  <meta property="og:title" content="Contributors · PDuk Brainworks · Agent Architect Stack">
+  <meta property="og:description" content="Ways to help the Agent Architect Stack, most of them without code: star it, share it, report a bug or contribute code.">
+  <meta property="og:url" content="https://esoteric1entity.github.io/agent-architect-stack/contributors.html">
+  <meta property="og:image" content="https://esoteric1entity.github.io/agent-architect-stack/assets/agent-architect-stack-social-preview-1280x640.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta property="og:image:alt" content="Diagram: your agent at the top, the Memory and Security tools in the middle, your files at the bottom. A solid line runs through Security to your files, and a dashed line runs past both tools. With the words: The Agent Architect Stack. Modular infrastructure for AI agents. Own the memory. Own the guardrails. Own the edge.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Contributors · PDuk Brainworks · Agent Architect Stack">
+  <meta name="twitter:description" content="Ways to help the Agent Architect Stack, most of them without code: star it, share it, report a bug or contribute code.">
+  <meta name="twitter:image" content="https://esoteric1entity.github.io/agent-architect-stack/assets/agent-architect-stack-social-preview-1280x640.png">
+  <meta name="twitter:image:alt" content="Diagram: your agent at the top, the Memory and Security tools in the middle, your files at the bottom. A solid line runs through Security to your files, and a dashed line runs past both tools. With the words: The Agent Architect Stack. Modular infrastructure for AI agents. Own the memory. Own the guardrails. Own the edge.">
   <style>
-    /* =========================================================
-       Agent Architect Stack — Landing Page v0.1 (polished)
-       Refined through tribunal review, 2026-06.
-       - Self-contained: NO JS, NO external resources (system fonts, CSS-only backdrop)
-       - Dark theme — Brainworks aesthetic; light mode deferred
-       - Copy and visual treatment elevated to dev-tool-debut quality
-       - Brand tokens (§--brand*) are name-agnostic: swap ~8 vars to rebrand
-       - Content boundary: no personal/business content
-       ========================================================= */
+    
 
     :root {
-      /* --- DARK theme — Brainworks / skunkworks aesthetic (cockpit-at-night) --- */
-      --brand:        #2dd4bf;   /* bright teal — pops on near-black (~9:1 AAA) */
-      --brand-strong: #5eead4;   /* hover (lighter on dark) */
+      
+      --brand:        #2dd4bf;   
+      --brand-strong: #5eead4;   
       --brand-soft:   rgba(45,212,191,0.12);
       --brand-ring:   #2dd4bf;
-      --accent:       #fbbf24;   /* amber */
+      --accent:       #fbbf24;   
       --accent-soft:  rgba(251,191,36,0.12);
       --violet:       #a78bfa;
       --violet-soft:  rgba(167,139,250,0.14);
 
-      --ink:        #e9f2ef;     /* light text on dark — ~16:1 */
-      --muted:      #9fb4ae;     /* secondary — ~7:1 (AA) */
+      --ink:        #e9f2ef;     
+      --muted:      #9fb4ae;     
       --soft:       #76918a;
-      --line:       #1f2c29;     /* borders */
+      --line:       #1f2c29;     
       --line-strong:#33473f;
-      --bg:         #080d0c;     /* near-black, faint teal cast */
-      --surface:    #0f1716;     /* cards */
-      --surface-alt:#0b1211;     /* alternating sections */
-      --code-bg:    #060c0b;     /* terminal surface */
+      --bg:         #080d0c;     
+      --surface:    #0f1716;     
+      --surface-alt:#0b1211;     
+      --code-bg:    #060c0b;     
       --code-fg:    #d6e6e2;
 
       --ok:   #5eead4; --ok-bg: rgba(45,212,191,0.14); --ok-bd: rgba(45,212,191,0.45);
@@ -45,7 +54,7 @@
       --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 
-      /* --- spacing scale (replaces flat 24px) --- */
+      
       --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px; --s5: 24px;
       --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
 
@@ -73,7 +82,7 @@
     a { color: var(--brand); text-decoration: none; }
     a:hover { color: var(--brand-strong); text-decoration: underline; }
 
-    /* visible focus for keyboard users */
+    
     a:focus-visible, .btn:focus-visible, .skip:focus-visible {
       outline: 3px solid var(--brand-ring);
       outline-offset: 2px;
@@ -91,7 +100,7 @@
 
     .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--s5); }
 
-    /* skip link */
+    
     .skip {
       position: absolute; left: -9999px; top: 8px; z-index: 100;
       background: var(--surface); color: var(--ink); border: 1px solid var(--brand-ring);
@@ -99,7 +108,7 @@
     }
     .skip:focus { left: 16px; }
 
-    /* ---- Header / nav ---- */
+    
     header {
       border-bottom: 1px solid var(--line);
       background: rgba(255,255,255,0.85);
@@ -108,7 +117,7 @@
     }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
-      padding: var(--s4) var(--s5); max-width: var(--max); margin: 0 auto;
+      padding: var(--s4) var(--s5); max-width: max(1120px, 70rem); margin: 0 auto; 
     }
     .brand { font-weight: 800; font-size: 1.05rem; color: var(--ink); letter-spacing: -0.01em; }
     .brand .glyph { color: var(--brand); }
@@ -116,7 +125,7 @@
     .nav-links a { color: var(--muted); font-weight: 500; }
     .nav-links a:hover { color: var(--brand); text-decoration: none; }
 
-    /* ---- Hero ---- */
+    
     .hero {
       position: relative;
       padding: var(--s9) 0 var(--s8);
@@ -126,7 +135,7 @@
         radial-gradient(60% 50% at 50% 0%, rgba(15,118,110,0.08) 0%, rgba(15,118,110,0) 70%),
         linear-gradient(180deg, var(--surface-alt) 0%, #ffffff 70%);
     }
-    /* CSS-only dot grid backdrop (no image) */
+    
     .hero::before {
       content: ""; position: absolute; inset: 0; z-index: 0;
       background-image: radial-gradient(rgba(15,118,110,0.10) 1px, transparent 1px);
@@ -148,7 +157,7 @@
     }
     .hero h1 .h1-for {
       display: block; font-size: 1.05rem; font-weight: 400; font-style: italic;
-      color: var(--soft); letter-spacing: 0.02em; line-height: 1.1; margin: 6px 0;
+      color: var(--muted); letter-spacing: 0.02em; line-height: 1.1; margin: 6px 0;
     }
     .hero .tagline {
       font-size: 1.3rem; color: var(--muted); max-width: 62ch;
@@ -183,13 +192,13 @@
     .badge-status  { background: var(--ok-bg); color: var(--ok); border-color: var(--ok-bd); }
     .badge-branches{ background: var(--surface-alt); color: var(--soft); border-color: var(--line); }
 
-    /* ---- Section common ---- */
+    
     section { padding: var(--s9) 0; }
     section.alt { background: var(--surface-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     section h2 { font-size: 2.25rem; font-weight: 750; letter-spacing: -0.02em; margin-bottom: var(--s4); text-align: center; }
     section .section-intro { font-size: 1.1rem; color: var(--muted); max-width: 68ch; margin: 0 auto var(--s7); text-align: center; text-wrap: balance; }
 
-    /* ---- What this is ---- */
+    
     .what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); }
     .what-card {
       background: var(--surface); border: 1px solid var(--line);
@@ -217,7 +226,7 @@
     .what-card li strong, .what-card em { color: var(--ink); font-style: normal; font-weight: 650; }
     .what-card:nth-child(4) p { color: var(--ink); }
 
-    /* ---- Architecture tree ---- */
+    
     .tree { display: flex; flex-direction: column; align-items: center; gap: var(--s5); padding: var(--s5) 0; }
     .tree-node {
       padding: var(--s3) var(--s5); background: var(--surface); border: 1px solid var(--line-strong);
@@ -245,7 +254,7 @@
     .tree-branch-name { font-weight: 700; font-size: 1rem; }
     .tree-branch-meta { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
 
-    /* ---- Branch cards ---- */
+    
     .branches-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s5); }
     .branch-card {
       background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
@@ -265,7 +274,7 @@
     .branch-card .meta { font-size: 0.85rem; color: var(--soft); margin-top: var(--s4); padding-top: var(--s4); border-top: 1px solid var(--surface-alt); }
     .branch-card .meta strong { color: var(--muted); }
 
-    /* ---- Why pick-and-choose ---- */
+    
     .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s5); }
     .why-card { padding: var(--s5); text-align: center; }
     .why-card .icon {
@@ -276,7 +285,7 @@
     .why-card h4 { font-size: 1.12rem; font-weight: 700; margin-bottom: var(--s2); }
     .why-card p { color: var(--muted); font-size: 0.96rem; }
 
-    /* ---- Code blocks (terminal feel) ---- */
+    
     .code-head { font-size: 0.95rem; font-weight: 650; margin-bottom: var(--s3); }
     pre.term {
       background: var(--code-bg); color: var(--code-fg); border-radius: var(--radius);
@@ -287,16 +296,16 @@
     pre.term .bar i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
     pre.term .bar .r { background: #ff5f56; } pre.term .bar .y { background: #ffbd2e; } pre.term .bar .g { background: #27c93f; }
     pre.term code { display: block; background: transparent; color: var(--code-fg); padding: 18px 20px; font-size: 0.9rem; line-height: 1.7; overflow-x: auto; }
-    pre.term code .c { color: #6fae9f; } /* comments */
+    pre.term code .c { color: #6fae9f; } 
 
-    /* ---- Status table ---- */
+    
     .status-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
     .status-table th { text-align: left; padding: 14px 18px; background: var(--brand-soft); color: var(--brand-strong); font-size: 0.95rem; border-bottom: 1px solid var(--line); }
     .status-table td { padding: 13px 18px; border-bottom: 1px solid var(--surface-alt); }
     .status-table tr:nth-child(even) td { background: var(--surface-alt); }
     .status-table tr:last-child td { border-bottom: none; }
 
-    /* Original Work & Influences table — vertical group rail + tonal tints */
+    
     .influences-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: var(--s5); table-layout: fixed; }
     .influences-table th { text-align: left; padding: 14px 16px; background: var(--brand-soft); color: var(--brand-strong); font-size: 0.92rem; border-bottom: 1px solid var(--line); font-weight: 650; }
     .influences-table th.th-rail { width: 38px; padding: 0; }
@@ -318,13 +327,13 @@
     .influences-table strong { color: var(--brand-strong); font-weight: 650; }
     .influences-table em { color: var(--ink); font-style: normal; }
     .section-outro { margin-top: var(--s7); font-style: italic; color: var(--muted); text-align: center; max-width: 720px; margin-left: auto; margin-right: auto; }
-    /* Original Work intro — full-width editorial prose (spans the page; no orphan last-words) */
+    
     .influences-intro { max-width: none; margin: 0 0 var(--s7); text-align: left; }
     .influences-intro p { font-size: 1.1rem; color: var(--muted); line-height: 1.65; text-wrap: pretty; }
     .influences-intro p:first-child { margin-bottom: var(--s4); }
     .influences-intro strong { color: var(--brand-strong); font-weight: 650; }
 
-    /* ---- Footer ---- */
+    
     footer { border-top: 1px solid var(--line); padding: var(--s7) 0; background: var(--surface-alt); color: var(--soft); font-size: 0.9rem; }
     footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--s4); }
     footer .footer-links { display: flex; gap: var(--s5); }
@@ -334,7 +343,7 @@
     footer .thanks a { color: var(--brand); text-decoration: none; }
     footer .thanks a:hover { text-decoration: underline; }
 
-    /* ---- Responsive: tablet (1024) + mobile (768) ---- */
+    
     @media (max-width: 1024px) {
       .hero h1 { font-size: 2.9rem; }
       .branches-grid, .why-grid { grid-template-columns: repeat(2, 1fr); }
@@ -367,17 +376,17 @@
       footer .container { flex-direction: column; align-items: flex-start; }
     }
 
-    /* ---- Reduced motion ---- */
+    
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { transition: none !important; }
       .btn:hover, .branch-card:hover { transform: none !important; }
     }
 
-    /* ===================== DARK-THEME OVERRIDES ===================== */
-    /* token flip handles ~90%; these fix hardcoded-light values + #fff-on-brand */
+    
+    
     header { background: rgba(8,13,12,0.82); }
-    .btn-primary, .btn-primary:hover { color: #06100e; }   /* dark text on bright teal */
+    .btn-primary, .btn-primary:hover { color: #06100e; }   
     .why-card .icon { color: #06100e; }
     .tree-node.orchestrator { color: #06100e; }
     .tree-node.orchestrator .node-label { color: rgba(6,16,14,0.72); }
@@ -387,7 +396,7 @@
     }
     .tree-node.umbrella .node-label { color: var(--muted); }
 
-    /* Hero — dark atmospheric backdrop (CSS-only, no external image) */
+    
     .hero {
       background:
         radial-gradient(45% 42% at 50% 6%, rgba(45,212,191,0.18) 0%, rgba(45,212,191,0) 70%),
@@ -399,7 +408,7 @@
       background-size: 26px 26px;
     }
 
-    /* Brainworks inline-SVG logo mark */
+    
     .logo { display: inline-flex; align-items: center; gap: 10px; }
     .logo svg { width: 26px; height: 26px; flex: none; }
     .logo-hero { display: flex; justify-content: center; margin-bottom: var(--s5); }
@@ -407,7 +416,7 @@
     .maker-line { font-size: 0.95rem; color: var(--muted); margin-top: var(--s5); }
     .maker-line strong { color: var(--brand-strong); font-weight: 700; letter-spacing: 0.01em; }
 
-    /* Mission nav pill (matches index.html) */
+    
     .nav-links .nav-mission {
       color: var(--accent); font-weight: 700; white-space: nowrap; flex: none;
       padding: 3px 12px; border: 1px solid var(--warn-bd); border-radius: 999px;
@@ -425,7 +434,7 @@
       animation: mission-glint 7s ease-in-out infinite;
       pointer-events: none;
     }
-    /* Ecosystem nav pill — modest violet accent, no glint (Mission stays the one animated pill) */
+    
     .nav-links .nav-ecosystem {
       color: var(--violet); font-weight: 650; white-space: nowrap; flex: none;
       padding: 3px 12px; border: 1px solid rgba(167,139,250,0.4); border-radius: 999px;
@@ -435,7 +444,7 @@
     }
     .nav-links .nav-ecosystem:hover { color: #c9bffc; border-color: var(--violet); text-decoration: none; transform: translateY(-1px); box-shadow: 0 3px 8px rgba(0,0,0,0.25); }
 
-    /* Contributors nav pill — neutral outlined "button", no color accent (Mission = gold, Ecosystem = violet, this = plain) */
+    
     .nav-links .nav-contributors {
       font-weight: 600; white-space: nowrap; flex: none;
       padding: 3px 12px; border: 1px solid var(--line-strong); border-radius: 999px;
@@ -450,30 +459,182 @@
     }
     @media (prefers-reduced-motion: reduce) { .nav-mission::after { animation: none; } }
 
-    /* Mission layout: text + sticky anthem player; collapses on small screens */
+    
     .mission-layout { display: grid; grid-template-columns: minmax(0,1fr) 400px; gap: var(--s7); align-items: start; }
     .anthem-sticky { position: sticky; top: var(--s5); }
-    .anthem-frame { min-height: 200px; } /* YouTube ToS floor: player never below 200px tall; letterboxes on narrow screens */
+    .anthem-frame { min-height: 200px; } 
     @media (max-width: 860px) {
       .mission-layout { grid-template-columns: 1fr; }
       .anthem-sticky { position: static; order: -1; }
     }
 
-    /* Ecosystem page: collapsible categories (native <details>, no JS) + jump nav */
-    .eco-jumpnav { display: flex; flex-wrap: wrap; gap: var(--s2); margin-bottom: var(--s7); }
-    .eco-jumpnav a {
-      font-size: 0.85rem; padding: 5px 13px; border-radius: 999px;
-      border: 1px solid var(--line); background: var(--surface); color: var(--muted);
+    
+    .contrib-hero { padding-bottom: var(--s8); }
+    .contrib-hero .tag-sub { max-width: 60ch; }
+    .help-star { max-width: 62ch; margin: 0 auto var(--s7); text-align: center; }
+    .help-star p { color: var(--muted); margin-bottom: var(--s5); }
+    .help-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s5); }
+    .help-card {
+      display: flex; flex-direction: column; gap: var(--s2);
+      background: var(--surface); border: 1px solid var(--line); border-left: 4px solid var(--brand);
+      border-radius: var(--radius); padding: var(--s5) var(--s6); box-shadow: var(--shadow-sm);
     }
-    .eco-jumpnav a:hover { color: var(--brand); border-color: var(--brand-ring); text-decoration: none; }
-    details > summary { list-style: none; }
-    details > summary::-webkit-details-marker { display: none; }
-    details > summary::before {
-      content: "▸"; display: inline-block; color: var(--soft);
-      transition: transform .15s ease; margin-right: 2px;
+    .help-kind { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--soft); }
+    .help-card h3 { font-size: 1.15rem; font-weight: 700; line-height: 1.35; }
+    .help-card p { color: var(--muted); font-size: 0.96rem; }
+    .help-card code { overflow-wrap: anywhere; }
+    .help-link { margin-top: auto; align-self: flex-start; min-height: 44px; display: inline-flex; align-items: center; font-weight: 650; }
+    .repo-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s5); max-width: 860px; margin: 0 auto; }
+    .repo-card { background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); padding: var(--s5) var(--s6); box-shadow: var(--shadow-sm); }
+    .repo-card h3 { font-size: 1.2rem; font-weight: 700; }
+    .repo-card .repo-meta { font-size: 0.85rem; color: var(--soft); margin-bottom: var(--s2); }
+    .repo-card ul { list-style: none; }
+    .repo-card li { border-bottom: 1px solid var(--surface-alt); }
+    .repo-card li:last-child { border-bottom: none; }
+    .repo-card li a { min-height: 44px; display: flex; align-items: center; font-weight: 600; }
+    .repo-note { max-width: 68ch; margin: var(--s6) auto 0; text-align: center; color: var(--muted); font-size: 0.92rem; }
+    .credits-block { max-width: 720px; margin: 0 auto; text-align: center; }
+    .credit-slot { border: 1px dashed var(--line-strong); border-radius: var(--radius); padding: var(--s5); color: var(--muted); margin-bottom: var(--s5); }
+    
+    .credit-line { color: var(--muted); margin-top: var(--s3); }
+    .credit-line strong { color: var(--ink); }
+    @media (max-width: 768px) {
+      .help-grid, .repo-grid { grid-template-columns: 1fr; }
+      .help-card, .repo-card { padding: var(--s5); }
+      footer .footer-links { flex-wrap: wrap; gap: 0 var(--s5); }
+      footer .footer-links a { min-height: 44px; display: inline-flex; align-items: center; }
     }
-    details[open] > summary::before { transform: rotate(90deg); }
+
+    @media (max-width: 640px), (max-width: 40em) {
+      
+      .influences-table { table-layout: auto; border: none; background: transparent; overflow: visible; }
+      .influences-table thead { display: none; }
+      .influences-table tbody, .influences-table tr, .influences-table td { display: block; width: auto; }
+      .influences-table tr { border: 1px solid var(--line); border-radius: var(--radius); margin-bottom: var(--s3); overflow: hidden; background: var(--surface); }
+      .influences-table td, .influences-table td:last-child { border-bottom: none; padding: 6px 16px; text-align: left; }
+      .influences-table td.name { padding-top: 14px; font-size: 1rem; }
+      .influences-table td:last-child { padding-bottom: 14px; }
+      .influences-table td[data-label]::before { content: attr(data-label); display: block; font-size: 0.72rem; font-weight: 700; letter-spacing: 0.06em; text-transform: uppercase; color: var(--soft); margin-bottom: 2px; }
+      .influences-table td.rail { padding: 12px 16px 0; text-align: left; border-right: none; }
+      .influences-table td.rail span { writing-mode: horizontal-tb; transform: none; }
+    }
+
+    
+    .nav-drop { position: relative; }
+    .nav-drop > summary { list-style: none; cursor: pointer; color: var(--muted); font-weight: 500; display: inline-flex; align-items: center; gap: 6px; }
+    .nav-drop > summary::-webkit-details-marker { display: none; }
+    .nav-drop > summary::after { content: "\25BE"; content: "\25BE" / ""; font-size: 0.8em; }
+    .nav-drop[open] > summary { color: var(--brand); }
+    .drop-panel { position: absolute; right: 0; top: calc(100% + 10px); min-width: 210px; z-index: 50; display: flex; flex-direction: column;
+      background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius-sm); box-shadow: var(--shadow-md); padding: 6px; }
+    .nav-desktop .drop-panel { left: 0; right: auto; }
+    .drop-panel a { padding: 10px 12px; border-radius: 6px; color: var(--ink); font-weight: 500; min-height: 44px; display: flex; align-items: center; }
+    .drop-panel a:hover { background: var(--surface-alt); text-decoration: none; }
+    .drop-panel .drop-sub { padding: 8px 12px 2px; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--soft); }
+    .drop-panel a.indent { padding-left: 26px; }
+    .nav-phone { display: none; }
+    
+    :root { --header-grow: max(0px, (1rem - 16px) * 1.5675); }
+    
+    @media (max-width: 1010px), (max-width: 63.125em) {  
+      .nav-desktop { display: none !important; }
+      .nav-inner { flex-wrap: nowrap !important; }
+      .nav-links.nav-phone { display: flex !important; width: auto !important; flex-wrap: nowrap !important; justify-content: flex-end; gap: 10px !important; }
+      .phone-menu > summary { padding: 10px 14px; min-height: 44px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink); }
+      .nav-phone a.nav-mission { padding: 10px 14px; min-height: 44px; display: inline-flex; align-items: center; }
+      .brand { min-height: 44px; }  
+      
+      .phone-menu .drop-panel { max-height: calc(100vh - 90px); max-height: calc(100dvh - 90px); overflow-y: auto; overscroll-behavior: contain; scroll-padding-block: 8px; }
+    }
+    @media (max-width: 768px) {
+      .brand-sub { display: none; }
+      .logo-hero svg { width: 64px !important; height: 64px !important; }
+      .logo-hero { margin-bottom: 8px !important; }
+    }
+    
+    @media (max-width: 414px) {
+      .nav-inner { padding-left: 10px !important; padding-right: 10px !important; column-gap: 8px; }
+      .brand { font-size: 0.9rem; gap: 6px; }
+      .nav-links.nav-phone { gap: 6px !important; }
+      .nav-phone a.nav-mission, .phone-menu > summary { padding-left: 8px !important; padding-right: 8px !important; }
+    }
+    
+    @media (pointer: coarse) {
+      .nav-desktop > a, .nav-desktop .nav-drop > summary { min-height: 44px; display: inline-flex; align-items: center; }
+      footer .footer-links a, .footer-links a { min-height: 44px; display: inline-flex; align-items: center; }
+    }
+    
+    .nav-desktop > a[aria-current="page"]:not(.nav-ecosystem):not(.nav-mission):not(.nav-contributors), .drop-panel a[aria-current="page"] { color: var(--ink); text-decoration: underline; text-underline-offset: 6px; }
+    .nav-drop:not([open]):has(a[aria-current="page"]) > summary { color: var(--ink); }
+
+    
+    
+    .nav-links .nav-mission::after { animation-iteration-count: 1 !important; }
+    
+    .nav-drop > summary:focus-visible { outline: 3px solid var(--brand-ring); outline-offset: 2px; }
+    .nav-desktop .nav-drop > summary:focus-visible { border-radius: 4px; }
+    
+    @media (prefers-reduced-motion: reduce) { .nav-links a:hover, .nav-links .nav-mission:hover, .nav-links .nav-ecosystem:hover, .nav-links .nav-contributors:hover { transform: none !important; } }
+    
+    main a, main summary, main pre code { scroll-margin-top: calc(88px + var(--header-grow)); }
+    
+    @media (max-width: 1010px), (max-width: 63.125em) {
+      .nav-inner { flex-wrap: wrap !important; row-gap: 12px; }
+      .nav-inner > .brand { flex: 1 1 0px; max-width: max-content; }
+      .nav-inner > .nav-links.nav-phone { margin-left: auto; }
+      .phone-menu .drop-panel { max-height: max(calc(100vh - 146px - 5 * var(--header-grow)), min(calc(100vh - 90px - 5 * var(--header-grow)), 7rem)); max-height: max(calc(100dvh - 146px - 5 * var(--header-grow)), min(calc(100dvh - 90px - 5 * var(--header-grow)), 7rem)); }
+      
+      main a, main summary, main pre code { scroll-margin-top: calc(144px + 2 * var(--header-grow)); }
+    }
+    
+    .help-star .cta { display: flex; gap: var(--s4); justify-content: center; flex-wrap: wrap; }
   </style>
+<style>
+main p a:not(.btn), main td a, main dd a, main .meta a { text-decoration: underline; text-underline-offset: 0.15em; }
+body:has(main :focus-visible, footer :focus-visible) .nav-drop[open] > .drop-panel { display: none; }
+</style>
+<style>
+.credits-block { max-width: 760px; }
+.credits-frame { text-align: left; border: 1px solid var(--line-strong); border-radius: 16px; background: var(--surface-alt); padding: 24px; margin-top: var(--s4); }
+.credits-grid { display: grid; grid-template-columns: 1fr; gap: 12px; }
+.credit-box { background: var(--surface); border: 1px solid var(--line); border-radius: 12px; padding: 16px 18px; }
+.credits-block .credit-head { font-size: 0.78rem; font-weight: 700; letter-spacing: 0.08em; text-transform: uppercase; color: var(--brand-strong); margin: 0 0 8px; }
+.credit-list { list-style: none; margin: 0; padding: 0; color: var(--muted); }
+.credit-list li { break-inside: avoid; }
+.credit-list li + li { margin-top: 6px; }
+.credit-list a { text-decoration: underline; text-underline-offset: 0.15em; }
+
+.credit-list:has(li:nth-child(6)) { columns: 2 260px; column-gap: 24px; }
+.credits-frame .credit-cite { margin-top: 18px; padding-top: 14px; border-top: 1px solid var(--line); }
+
+.credits-frame .cite-link { color: var(--brand); font-weight: 600; text-decoration: none; }
+.credits-frame .cite-link:hover, .credits-frame .cite-link:focus-visible { text-decoration: underline; text-underline-offset: 0.15em; }
+@media (max-width: 768px) { .credits-frame { padding: 16px; } }
+</style>
+<style>
+
+main p, main li, main dd { text-wrap: pretty; }
+a.wl { white-space: nowrap; }
+@media (min-width: 600px) { a.wl-long { white-space: nowrap; } }
+
+
+.cta > .btn { white-space: normal; text-align: center; }
+
+@media (max-width: 19.99em) {
+  main { overflow-wrap: break-word; }
+  main :is(h1, h2, h3) { overflow-wrap: anywhere; }
+}
+
+@media (max-width: 19.99em) {
+  section h2 { font-size: min(2.25rem, 13vw); }
+  .credits-block .credit-head { font-size: min(0.78rem, 6.5vw); }
+  .repo-grid > .repo-card { min-width: 0; }
+  .repo-card { overflow-wrap: anywhere; }
+}
+</style>
+<style>
+@media (max-width: 19.99em) { a.wl, a.wl-long { white-space: normal; } }
+</style>
 </head>
 <body>
 
@@ -481,25 +642,196 @@
 
   <header>
     <div class="nav-inner">
-      <a href="index.html" class="brand logo"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 2 28 9 28 23 16 30 4 23 4 9Z" stroke="#2dd4bf" stroke-width="1.6" fill="rgba(45,212,191,0.07)"/><circle cx="16" cy="11" r="2.1" fill="#2dd4bf"/><circle cx="11" cy="20" r="2.1" fill="#5eead4"/><circle cx="21" cy="20" r="2.1" fill="#fbbf24"/><path d="M16 11 11 20M16 11 21 20M11 20 21 20" stroke="#2dd4bf" stroke-width="1.2" opacity="0.6"/></svg> PDuk Brainworks <span style="color:var(--muted);font-weight:500;font-size:0.82rem;">/ Agent Architect Stack</span></a>
-      <nav class="nav-links" aria-label="Primary">
-        <a href="mission.html" class="nav-mission">✦ Mission</a>
-        <a href="index.html#branches">Branches</a>
-        <a href="index.html#quickstart">Quick Start</a>
-        <a href="index.html#status">Status</a>
+      <a href="index.html" class="brand logo"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 2 28 9 28 23 16 30 4 23 4 9Z" stroke="#2dd4bf" stroke-width="1.6" fill="rgba(45,212,191,0.07)"/><circle cx="16" cy="11" r="2.1" fill="#2dd4bf"/><circle cx="11" cy="20" r="2.1" fill="#5eead4"/><circle cx="21" cy="20" r="2.1" fill="#fbbf24"/><path d="M16 11 11 20M16 11 21 20M11 20 21 20" stroke="#2dd4bf" stroke-width="1.2" opacity="0.6"/></svg> PDuk Brainworks <span class="brand-sub" style="color:var(--muted);font-weight:500;font-size:0.82rem;">/ Agent Architect Stack</span></a>
+      <nav class="nav-links nav-desktop" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <details class="nav-drop" name="primary-menu"><summary>Tools</summary><div class="drop-panel"><a href="memory.html">Memory</a><a href="security.html">Security</a></div></details>
+        <details class="nav-drop" name="primary-menu"><summary>Get Started</summary><div class="drop-panel"><a href="get-started.html">Get Started</a><a href="how-it-works.html">How It Works</a></div></details>
         <a href="ecosystem.html" class="nav-ecosystem">Ecosystem</a>
+        <a href="mission.html" class="nav-mission"><span aria-hidden="true">&#10022;&nbsp;</span>Mission</a>
         <a href="contributors.html" class="nav-contributors" aria-current="page">Contributors</a>
+      </nav>
+      <nav class="nav-links nav-phone" aria-label="Primary">
+        <a href="mission.html" class="nav-mission"><span aria-hidden="true">&#10022;&nbsp;</span>Mission</a>
+        <details class="nav-drop phone-menu"><summary>Menu</summary><div class="drop-panel">
+          <a href="index.html">Home</a><span class="drop-sub">Tools</span><a href="memory.html" class="indent">Memory</a><a href="security.html" class="indent">Security</a>
+          <a href="get-started.html">Get Started</a><a href="how-it-works.html" class="indent">How It Works</a><a href="ecosystem.html">Ecosystem</a><a href="mission.html">Mission</a><a href="contributors.html" aria-current="page">Contributors</a></div></details>
       </nav>
     </div>
   </header>
 
   <main id="main">
 
-  <section class="hero" style="padding-bottom: var(--s9);">
+  <section class="hero contrib-hero">
     <div class="container">
       <span class="eyebrow">Contributors</span>
-      <h1 style="font-size:2.6rem;"><em style="color:var(--brand);">Pending</em>.</h1>
-      <p class="tagline" style="margin-bottom:0;"><span class="tag-sub" style="max-width:none;"><a href="index.html">← Back to the stack</a></span></p>
+      <h1 style="font-size:2.6rem;">Help build the <em style="color:var(--brand);">stack</em>.</h1>
+      <p class="tagline" style="margin-bottom:0;"><span class="tag-sub">"We" means the people and AI agents who build this project, plus everyone who contributes.</span></p>
+    </div>
+  </section>
+
+  <section id="ways-to-help">
+    <div class="container">
+      <h2>Ways to Help</h2>
+      <p class="section-intro">Most need no code.</p>
+
+      <div class="help-star" id="star">
+        <p>If the stack saves you time, the most valuable thing you can give right now is a star: it costs one click.</p>
+        <div class="cta">
+          <a href="https://github.com/esoteric1entity/ultimate-memory-stack" target="_blank" rel="noopener" class="btn btn-primary"><span><span aria-hidden="true">⭐</span> Star the Memory Repo</span></a>
+          <a href="https://github.com/esoteric1entity/agent-shield" target="_blank" rel="noopener" class="btn btn-secondary"><span><span aria-hidden="true">⭐</span> Star the Security Repo</span></a>
+        </div>
+        <p style="color:var(--muted); margin-top:var(--s5);">Want to talk about sponsoring or supporting the project? <a href="https://github.com/esoteric1entity" target="_blank" rel="noopener" style="font-weight:650;" class="wl">Talk to us&nbsp;→</a></p>
+      </div>
+
+      <div class="help-grid">
+        <article class="help-card" id="share" aria-labelledby="share-h">
+          <p class="help-kind">No account</p>
+          <h3 id="share-h">Share It With One Person Who'd Use It</h3>
+          <p>Send the site's address to someone who uses an AI agent.</p>
+          <p><code>https://esoteric1entity.github.io/agent-architect-stack/</code></p>
+        </article>
+
+        <article class="help-card" id="got-lost" aria-labelledby="got-lost-h">
+          <p class="help-kind">Free GitHub account</p>
+          <h3 id="got-lost-h">Tell Us Where You Got Lost</h3>
+          <p>Read one page, here or in a README, then open an issue that says where you stopped understanding. One line is enough.</p>
+          <a class="help-link" href="https://github.com/esoteric1entity/agent-architect-stack/issues/new?title=Where%20I%20got%20lost" target="_blank" rel="noopener">Open an issue</a>
+        </article>
+
+        <article class="help-card" id="stale-card" aria-labelledby="stale-card-h">
+          <p class="help-kind">Free GitHub account</p>
+          <h3 id="stale-card-h">Flag a Stale Ecosystem Card</h3>
+          <p>Found a dead link or an out-of-date card on the <a href="ecosystem.html" class="wl">Ecosystem page</a>?</p>
+          <a class="help-link" href="https://github.com/esoteric1entity/agent-architect-stack/issues/new" target="_blank" rel="noopener">Open an issue</a>
+        </article>
+
+        <article class="help-card" id="hook-writeup" aria-labelledby="hook-writeup-h">
+          <p class="help-kind">Reading docs</p>
+          <h3 id="hook-writeup-h">Write Up How Another Assistant Exposes a "Before a Tool Runs" Hook</h3>
+          <p>Other assistants, including Codex, Gemini CLI, Copilot CLI and OpenCode, are not supported today. If you use one, find where its docs describe that hook and open a short issue on agent-shield with the links.</p>
+          <a class="help-link" href="https://github.com/esoteric1entity/agent-shield/issues/new/choose" target="_blank" rel="noopener">Open an issue on agent-shield</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="report" class="alt">
+    <div class="container">
+      <h2>Report a Bug or Contribute Code</h2>
+      <p class="section-intro">Found a bug or have an idea? Issues and pull requests are welcome on both repos.</p>
+
+      <div class="repo-grid">
+        <div class="repo-card">
+          <h3>Memory</h3>
+          <p class="repo-meta">ultimate-memory-stack v4.0.1</p>
+          <ul>
+            <li><a href="https://github.com/esoteric1entity/ultimate-memory-stack/issues" target="_blank" rel="noopener">Report a bug</a></li>
+            <li><a href="https://github.com/esoteric1entity/ultimate-memory-stack/blob/v4.0.1/CONTRIBUTING.md" target="_blank" rel="noopener">CONTRIBUTING.md</a></li>
+            <li><a href="https://github.com/esoteric1entity/ultimate-memory-stack/blob/v4.0.1/CODE_OF_CONDUCT.md" target="_blank" rel="noopener">CODE_OF_CONDUCT.md</a></li>
+            <li><a href="https://github.com/esoteric1entity/ultimate-memory-stack/blob/v4.0.1/SECURITY.md" target="_blank" rel="noopener">Report a security bug</a></li>
+          </ul>
+        </div>
+        <div class="repo-card">
+          <h3>Security</h3>
+          <p class="repo-meta">agent-shield v0.2.1 alpha</p>
+          <ul>
+            <li><a href="https://github.com/esoteric1entity/agent-shield/issues" target="_blank" rel="noopener">Report a bug</a></li>
+            <li><a href="https://github.com/esoteric1entity/agent-shield/blob/v0.2.1/CONTRIBUTING.md" target="_blank" rel="noopener">CONTRIBUTING.md</a></li>
+            <li><a href="https://github.com/esoteric1entity/agent-shield/blob/v0.2.1/CODE_OF_CONDUCT.md" target="_blank" rel="noopener">CODE_OF_CONDUCT.md</a></li>
+            <li><a href="https://github.com/esoteric1entity/agent-shield/blob/v0.2.1/SECURITY.md" target="_blank" rel="noopener">Report a security bug</a></li>
+          </ul>
+        </div>
+      </div>
+      
+      <p class="repo-note">Code changes need the contributor agreement (CLA.md) and a sign-off on each commit, as each repo's CONTRIBUTING.md explains.</p>
+    </div>
+  </section>
+
+  <section id="credits">
+    <div class="container credits-block">
+      <h2>Credits</h2>
+      
+      
+      <div class="credits-frame">
+        <div class="credits-grid">
+          <div class="credit-box">
+            <h3 class="credit-head">Contributors</h3>
+            <ul class="credit-list"><li>Everyone whose work is in a repo is listed in its AUTHORS.md: <a href="https://github.com/esoteric1entity/ultimate-memory-stack/blob/v4.0.1/AUTHORS.md" target="_blank" rel="noopener" class="wl">Memory</a> · <a href="https://github.com/esoteric1entity/agent-shield/blob/v0.2.1/AUTHORS.md" target="_blank" rel="noopener" class="wl">Security</a></li></ul>
+          </div>
+          <div class="credit-box">
+            <h3 class="credit-head">Supporters</h3>
+            <ul class="credit-list"><li><a href="https://github.com/JTCneo" target="_blank" rel="noopener" class="wl">@JTCneo</a>: donated some early test hardware and is a supporter of the page.</li></ul>
+          </div>
+          <div class="credit-box">
+            <h3 class="credit-head">Special Thanks</h3>
+            <ul class="credit-list"><li><a href="https://github.com/angiexu25" target="_blank" rel="noopener" class="wl">@angiexu25</a>: for inspiration, in more ways than one.</li></ul>
+          </div>
+        </div>
+        <p class="credit-line credit-cite">Built with the stack, or inspired by our <a href="mission.html" class="cite-link wl">mission</a>? A citation or mention of <strong>PDuk Brainworks</strong> / esoteric1entity is always appreciated.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="influences" class="alt">
+    <div class="container">
+      <h2>Original Work &amp; Influences</h2>
+
+      <table class="influences-table">
+        <thead>
+          <tr>
+            <th class="th-rail"></th>
+            <th class="th-component">Component</th>
+            <th>What It Provides (Our Contribution)</th>
+            <th class="th-origin">Origin</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="g-umbrella">
+            <td class="rail rail-umbrella" rowspan="2"><span>UMBRELLA</span></td>
+            <td class="name">Governance / process</td>
+            <td data-label="What it provides (our contribution)">The <strong>Tribunal Pattern</strong>: cross-agent peer review for architectural decisions</td>
+            <td data-label="Origin">DCO (Linux kernel), Apache Foundation CLA, Conventional Commits, Keep-a-Changelog</td>
+          </tr>
+          <tr class="g-umbrella">
+            <td class="name">Harness targets</td>
+            <td data-label="What it provides (our contribution)">The <strong>modular consumer architecture</strong></td>
+            <td data-label="Origin">Claude Code (Anthropic), OpenClaw (sibling platform)</td>
+          </tr>
+          <tr class="g-memory">
+            <td class="rail rail-memory" rowspan="5"><span>MEMORY</span></td>
+            <td class="name">Memory architecture <em>(core)</em></td>
+            <td data-label="What it provides (our contribution)">The 7-layer architecture with <strong>tiered deployment markers</strong>, bi-temporal supersession, compliance presets (none / enterprise / custom), and the audit + quarantine workflow</td>
+            <td data-label="Origin"><span class="pill-original">Original</span></td>
+          </tr>
+          <tr class="g-memory">
+            <td class="name">Per-project memory</td>
+            <td data-label="What it provides (our contribution)"><strong>Schemas</strong> + audit log layered on top of the adopted 6-file structure</td>
+            <td data-label="Origin">Cline-convention "memory bank"</td>
+          </tr>
+          <tr class="g-memory">
+            <td class="name">Knowledge graph</td>
+            <td data-label="What it provides (our contribution)">A planned <strong>Layer 5</strong> integration in a tiered architecture</td>
+            <td data-label="Origin">Graphiti (Zep AI): bi-temporal facts</td>
+          </tr>
+          <tr class="g-memory">
+            <td class="name">Code symbol graph</td>
+            <td data-label="What it provides (our contribution)">Layer 5 sibling add-on; the <strong>typosquat defense</strong> + deliberate <strong>opt-in install semantics</strong></td>
+            <td data-label="Origin">Graphify + tree-sitter: codebase structural index</td>
+          </tr>
+          <tr class="g-memory">
+            <td class="name">Compact memory loads (an idea)</td>
+            <td data-label="What it provides (our contribution)">Keeping what loads at session start small and relevant. An idea credit: UMS uses no compression code.</td>
+            <td data-label="Origin">LLMLingua / LLMLingua-2 (Microsoft Research): token-level perplexity compression</td>
+          </tr>
+          <tr class="g-security">
+            <td class="rail rail-security"><span>SECURITY</span></td>
+            <td class="name">Security architecture <em>(core)</em></td>
+            <td data-label="What it provides (our contribution)">The <strong>overlay</strong> synthesizing skill vetting + input sanitization + runtime hooks + structured-output enforcement + egress control (designed but not built) + audit chain</td>
+            <td data-label="Origin"><span class="pill-original">Original</span></td>
+          </tr>
+        </tbody>
+      </table>
     </div>
   </section>
 
@@ -508,14 +840,15 @@
   <footer>
     <div class="container">
       <div>
-        <strong>PDuk Brainworks</strong> 🧬 · Agent Architect Stack — Apache-2.0 — © 2026 esoteric1entity. A PDuk Brainworks project<br>
-        <span style="font-size: 0.85rem;">Part of a larger research program on agent infrastructure. Public launch: 2026-06-12.</span>
-        <div class="creds">This page: one HTML file · no JavaScript · no trackers · no external resources · loads instantly</div>
+        <strong>PDuk Brainworks</strong> <span aria-hidden="true">🧬</span> · Agent Architect Stack · <span style="white-space:nowrap">Apache-2.0</span> · © 2026 esoteric1entity.<br>
+        <span style="font-size: 0.85rem;">Project launched 2026-06-12 · Site updated 2026-11-06.</span>
+        <div class="creds"><span>This page: one HTML file</span> · no JavaScript · no trackers · no external resources</div>
       </div>
       <div class="footer-links">
         <a href="index.html">← Main page</a>
+        
         <a href="https://github.com/esoteric1entity" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://thepdukedge.substack.com/" target="_blank" rel="noopener">PDuk Edge ↗</a>
+        <a href="https://thepdukedge.substack.com/" target="_blank" rel="noopener">PDuk Edge&nbsp;↗</a>
       </div>
     </div>
   </footer>

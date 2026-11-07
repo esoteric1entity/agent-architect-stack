@@ -3,39 +3,48 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Mission · PDuk Brainworks — Agent Architect Stack</title>
-  <meta name="description" content="Your data. Your infrastructure. Your alpha. The mission behind the Agent Architect Stack — infrastructure sovereignty for solo builders.">
+  <title>Mission · PDuk Brainworks · Agent Architect Stack</title>
+  <meta name="description" content="Your data. Your infrastructure. Your alpha. The mission behind the Agent Architect Stack.">
+  <link rel="canonical" href="https://esoteric1entity.github.io/agent-architect-stack/mission.html">
+  <link rel="icon" href="favicon.svg" type="image/svg+xml">
+  <meta property="og:type" content="website">
+  <meta property="og:site_name" content="PDuk Brainworks">
+  <meta property="og:title" content="Mission · PDuk Brainworks · Agent Architect Stack">
+  <meta property="og:description" content="Your data. Your infrastructure. Your alpha. The mission behind the Agent Architect Stack.">
+  <meta property="og:url" content="https://esoteric1entity.github.io/agent-architect-stack/mission.html">
+  <meta property="og:image" content="https://esoteric1entity.github.io/agent-architect-stack/assets/agent-architect-stack-social-preview-1280x640.png">
+  <meta property="og:image:type" content="image/png">
+  <meta property="og:image:width" content="1280">
+  <meta property="og:image:height" content="640">
+  <meta property="og:image:alt" content="Diagram: your agent at the top, the Memory and Security tools in the middle, your files at the bottom. A solid line runs through Security to your files, and a dashed line runs past both tools. With the words: The Agent Architect Stack. Modular infrastructure for AI agents. Own the memory. Own the guardrails. Own the edge.">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="Mission · PDuk Brainworks · Agent Architect Stack">
+  <meta name="twitter:description" content="Your data. Your infrastructure. Your alpha. The mission behind the Agent Architect Stack.">
+  <meta name="twitter:image" content="https://esoteric1entity.github.io/agent-architect-stack/assets/agent-architect-stack-social-preview-1280x640.png">
+  <meta name="twitter:image:alt" content="Diagram: your agent at the top, the Memory and Security tools in the middle, your files at the bottom. A solid line runs through Security to your files, and a dashed line runs past both tools. With the words: The Agent Architect Stack. Modular infrastructure for AI agents. Own the memory. Own the guardrails. Own the edge.">
   <style>
-    /* =========================================================
-       Agent Architect Stack — Landing Page v0.1 (polished)
-       Refined through tribunal review, 2026-06.
-       - Self-contained: NO JS, NO external resources (system fonts, CSS-only backdrop)
-       - Dark theme — Brainworks aesthetic; light mode deferred
-       - Copy and visual treatment elevated to dev-tool-debut quality
-       - Brand tokens (§--brand*) are name-agnostic: swap ~8 vars to rebrand
-       - Content boundary: no personal/business content
-       ========================================================= */
+    
 
     :root {
-      /* --- DARK theme — Brainworks / skunkworks aesthetic (cockpit-at-night) --- */
-      --brand:        #2dd4bf;   /* bright teal — pops on near-black (~9:1 AAA) */
-      --brand-strong: #5eead4;   /* hover (lighter on dark) */
+      
+      --brand:        #2dd4bf;   
+      --brand-strong: #5eead4;   
       --brand-soft:   rgba(45,212,191,0.12);
       --brand-ring:   #2dd4bf;
-      --accent:       #fbbf24;   /* amber */
+      --accent:       #fbbf24;   
       --accent-soft:  rgba(251,191,36,0.12);
       --violet:       #a78bfa;
       --violet-soft:  rgba(167,139,250,0.14);
 
-      --ink:        #e9f2ef;     /* light text on dark — ~16:1 */
-      --muted:      #9fb4ae;     /* secondary — ~7:1 (AA) */
+      --ink:        #e9f2ef;     
+      --muted:      #9fb4ae;     
       --soft:       #76918a;
-      --line:       #1f2c29;     /* borders */
+      --line:       #1f2c29;     
       --line-strong:#33473f;
-      --bg:         #080d0c;     /* near-black, faint teal cast */
-      --surface:    #0f1716;     /* cards */
-      --surface-alt:#0b1211;     /* alternating sections */
-      --code-bg:    #060c0b;     /* terminal surface */
+      --bg:         #080d0c;     
+      --surface:    #0f1716;     
+      --surface-alt:#0b1211;     
+      --code-bg:    #060c0b;     
       --code-fg:    #d6e6e2;
 
       --ok:   #5eead4; --ok-bg: rgba(45,212,191,0.14); --ok-bd: rgba(45,212,191,0.45);
@@ -45,7 +54,7 @@
       --font-sans: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
       --font-mono: ui-monospace, SFMono-Regular, "SF Mono", Menlo, Consolas, "Liberation Mono", monospace;
 
-      /* --- spacing scale (replaces flat 24px) --- */
+      
       --s1: 4px;  --s2: 8px;  --s3: 12px; --s4: 16px; --s5: 24px;
       --s6: 32px; --s7: 48px; --s8: 64px; --s9: 96px;
 
@@ -73,7 +82,7 @@
     a { color: var(--brand); text-decoration: none; }
     a:hover { color: var(--brand-strong); text-decoration: underline; }
 
-    /* visible focus for keyboard users */
+    
     a:focus-visible, .btn:focus-visible, .skip:focus-visible {
       outline: 3px solid var(--brand-ring);
       outline-offset: 2px;
@@ -91,7 +100,7 @@
 
     .container { max-width: var(--max); margin: 0 auto; padding: 0 var(--s5); }
 
-    /* skip link */
+    
     .skip {
       position: absolute; left: -9999px; top: 8px; z-index: 100;
       background: var(--surface); color: var(--ink); border: 1px solid var(--brand-ring);
@@ -99,7 +108,7 @@
     }
     .skip:focus { left: 16px; }
 
-    /* ---- Header / nav ---- */
+    
     header {
       border-bottom: 1px solid var(--line);
       background: rgba(255,255,255,0.85);
@@ -108,7 +117,7 @@
     }
     .nav-inner {
       display: flex; align-items: center; justify-content: space-between;
-      padding: var(--s4) var(--s5); max-width: var(--max); margin: 0 auto;
+      padding: var(--s4) var(--s5); max-width: max(1120px, 70rem); margin: 0 auto; 
     }
     .brand { font-weight: 800; font-size: 1.05rem; color: var(--ink); letter-spacing: -0.01em; }
     .brand .glyph { color: var(--brand); }
@@ -116,7 +125,7 @@
     .nav-links a { color: var(--muted); font-weight: 500; }
     .nav-links a:hover { color: var(--brand); text-decoration: none; }
 
-    /* ---- Hero ---- */
+    
     .hero {
       position: relative;
       padding: var(--s9) 0 var(--s8);
@@ -126,7 +135,7 @@
         radial-gradient(60% 50% at 50% 0%, rgba(15,118,110,0.08) 0%, rgba(15,118,110,0) 70%),
         linear-gradient(180deg, var(--surface-alt) 0%, #ffffff 70%);
     }
-    /* CSS-only dot grid backdrop (no image) */
+    
     .hero::before {
       content: ""; position: absolute; inset: 0; z-index: 0;
       background-image: radial-gradient(rgba(15,118,110,0.10) 1px, transparent 1px);
@@ -148,7 +157,7 @@
     }
     .hero h1 .h1-for {
       display: block; font-size: 1.05rem; font-weight: 400; font-style: italic;
-      color: var(--soft); letter-spacing: 0.02em; line-height: 1.1; margin: 6px 0;
+      color: var(--muted); letter-spacing: 0.02em; line-height: 1.1; margin: 6px 0;
     }
     .hero .tagline {
       font-size: 1.3rem; color: var(--muted); max-width: 62ch;
@@ -183,13 +192,13 @@
     .badge-status  { background: var(--ok-bg); color: var(--ok); border-color: var(--ok-bd); }
     .badge-branches{ background: var(--surface-alt); color: var(--soft); border-color: var(--line); }
 
-    /* ---- Section common ---- */
+    
     section { padding: var(--s9) 0; }
     section.alt { background: var(--surface-alt); border-top: 1px solid var(--line); border-bottom: 1px solid var(--line); }
     section h2 { font-size: 2.25rem; font-weight: 750; letter-spacing: -0.02em; margin-bottom: var(--s4); text-align: center; }
     section .section-intro { font-size: 1.1rem; color: var(--muted); max-width: 68ch; margin: 0 auto var(--s7); text-align: center; text-wrap: balance; }
 
-    /* ---- What this is ---- */
+    
     .what-grid { display: grid; grid-template-columns: 1fr 1fr; gap: var(--s5); }
     .what-card {
       background: var(--surface); border: 1px solid var(--line);
@@ -217,7 +226,7 @@
     .what-card li strong, .what-card em { color: var(--ink); font-style: normal; font-weight: 650; }
     .what-card:nth-child(4) p { color: var(--ink); }
 
-    /* ---- Architecture tree ---- */
+    
     .tree { display: flex; flex-direction: column; align-items: center; gap: var(--s5); padding: var(--s5) 0; }
     .tree-node {
       padding: var(--s3) var(--s5); background: var(--surface); border: 1px solid var(--line-strong);
@@ -245,7 +254,7 @@
     .tree-branch-name { font-weight: 700; font-size: 1rem; }
     .tree-branch-meta { font-size: 0.8rem; color: var(--muted); margin-top: 4px; }
 
-    /* ---- Branch cards ---- */
+    
     .branches-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: var(--s5); }
     .branch-card {
       background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius);
@@ -265,7 +274,7 @@
     .branch-card .meta { font-size: 0.85rem; color: var(--soft); margin-top: var(--s4); padding-top: var(--s4); border-top: 1px solid var(--surface-alt); }
     .branch-card .meta strong { color: var(--muted); }
 
-    /* ---- Why pick-and-choose ---- */
+    
     .why-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--s5); }
     .why-card { padding: var(--s5); text-align: center; }
     .why-card .icon {
@@ -276,7 +285,7 @@
     .why-card h4 { font-size: 1.12rem; font-weight: 700; margin-bottom: var(--s2); }
     .why-card p { color: var(--muted); font-size: 0.96rem; }
 
-    /* ---- Code blocks (terminal feel) ---- */
+    
     .code-head { font-size: 0.95rem; font-weight: 650; margin-bottom: var(--s3); }
     pre.term {
       background: var(--code-bg); color: var(--code-fg); border-radius: var(--radius);
@@ -287,16 +296,16 @@
     pre.term .bar i { width: 11px; height: 11px; border-radius: 50%; display: inline-block; }
     pre.term .bar .r { background: #ff5f56; } pre.term .bar .y { background: #ffbd2e; } pre.term .bar .g { background: #27c93f; }
     pre.term code { display: block; background: transparent; color: var(--code-fg); padding: 18px 20px; font-size: 0.9rem; line-height: 1.7; overflow-x: auto; }
-    pre.term code .c { color: #6fae9f; } /* comments */
+    pre.term code .c { color: #6fae9f; } 
 
-    /* ---- Status table ---- */
+    
     .status-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; }
     .status-table th { text-align: left; padding: 14px 18px; background: var(--brand-soft); color: var(--brand-strong); font-size: 0.95rem; border-bottom: 1px solid var(--line); }
     .status-table td { padding: 13px 18px; border-bottom: 1px solid var(--surface-alt); }
     .status-table tr:nth-child(even) td { background: var(--surface-alt); }
     .status-table tr:last-child td { border-bottom: none; }
 
-    /* Original Work & Influences table — vertical group rail + tonal tints */
+    
     .influences-table { width: 100%; border-collapse: collapse; background: var(--surface); border: 1px solid var(--line); border-radius: var(--radius); overflow: hidden; margin-top: var(--s5); table-layout: fixed; }
     .influences-table th { text-align: left; padding: 14px 16px; background: var(--brand-soft); color: var(--brand-strong); font-size: 0.92rem; border-bottom: 1px solid var(--line); font-weight: 650; }
     .influences-table th.th-rail { width: 38px; padding: 0; }
@@ -318,13 +327,13 @@
     .influences-table strong { color: var(--brand-strong); font-weight: 650; }
     .influences-table em { color: var(--ink); font-style: normal; }
     .section-outro { margin-top: var(--s7); font-style: italic; color: var(--muted); text-align: center; max-width: 720px; margin-left: auto; margin-right: auto; }
-    /* Original Work intro — full-width editorial prose (spans the page; no orphan last-words) */
+    
     .influences-intro { max-width: none; margin: 0 0 var(--s7); text-align: left; }
     .influences-intro p { font-size: 1.1rem; color: var(--muted); line-height: 1.65; text-wrap: pretty; }
     .influences-intro p:first-child { margin-bottom: var(--s4); }
     .influences-intro strong { color: var(--brand-strong); font-weight: 650; }
 
-    /* ---- Footer ---- */
+    
     footer { border-top: 1px solid var(--line); padding: var(--s7) 0; background: var(--surface-alt); color: var(--soft); font-size: 0.9rem; }
     footer .container { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: var(--s4); }
     footer .footer-links { display: flex; gap: var(--s5); }
@@ -334,7 +343,7 @@
     footer .thanks a { color: var(--brand); text-decoration: none; }
     footer .thanks a:hover { text-decoration: underline; }
 
-    /* ---- Responsive: tablet (1024) + mobile (768) ---- */
+    
     @media (max-width: 1024px) {
       .hero h1 { font-size: 2.9rem; }
       .branches-grid, .why-grid { grid-template-columns: repeat(2, 1fr); }
@@ -367,17 +376,17 @@
       footer .container { flex-direction: column; align-items: flex-start; }
     }
 
-    /* ---- Reduced motion ---- */
+    
     @media (prefers-reduced-motion: reduce) {
       html { scroll-behavior: auto; }
       *, *::before, *::after { transition: none !important; }
       .btn:hover, .branch-card:hover { transform: none !important; }
     }
 
-    /* ===================== DARK-THEME OVERRIDES ===================== */
-    /* token flip handles ~90%; these fix hardcoded-light values + #fff-on-brand */
+    
+    
     header { background: rgba(8,13,12,0.82); }
-    .btn-primary, .btn-primary:hover { color: #06100e; }   /* dark text on bright teal */
+    .btn-primary, .btn-primary:hover { color: #06100e; }   
     .why-card .icon { color: #06100e; }
     .tree-node.orchestrator { color: #06100e; }
     .tree-node.orchestrator .node-label { color: rgba(6,16,14,0.72); }
@@ -387,7 +396,7 @@
     }
     .tree-node.umbrella .node-label { color: var(--muted); }
 
-    /* Hero — dark atmospheric backdrop (CSS-only, no external image) */
+    
     .hero {
       background:
         radial-gradient(45% 42% at 50% 6%, rgba(45,212,191,0.18) 0%, rgba(45,212,191,0) 70%),
@@ -399,7 +408,7 @@
       background-size: 26px 26px;
     }
 
-    /* Brainworks inline-SVG logo mark */
+    
     .logo { display: inline-flex; align-items: center; gap: 10px; }
     .logo svg { width: 26px; height: 26px; flex: none; }
     .logo-hero { display: flex; justify-content: center; margin-bottom: var(--s5); }
@@ -407,7 +416,7 @@
     .maker-line { font-size: 0.95rem; color: var(--muted); margin-top: var(--s5); }
     .maker-line strong { color: var(--brand-strong); font-weight: 700; letter-spacing: 0.01em; }
 
-    /* Mission nav pill (matches index.html) */
+    
     .nav-links .nav-mission {
       color: var(--accent); font-weight: 700; white-space: nowrap; flex: none;
       padding: 3px 12px; border: 1px solid var(--warn-bd); border-radius: 999px;
@@ -431,7 +440,7 @@
     }
     @media (prefers-reduced-motion: reduce) { .nav-mission::after { animation: none; } }
 
-    /* Ecosystem nav pill — modest violet accent, no glint (Mission stays the one animated pill) */
+    
     .nav-links .nav-ecosystem {
       color: var(--violet); font-weight: 650; white-space: nowrap; flex: none;
       padding: 3px 12px; border: 1px solid rgba(167,139,250,0.4); border-radius: 999px;
@@ -441,7 +450,7 @@
     }
     .nav-links .nav-ecosystem:hover { color: #c9bffc; border-color: var(--violet); text-decoration: none; transform: translateY(-1px); box-shadow: 0 3px 8px rgba(0,0,0,0.25); }
 
-    /* Contributors nav pill — neutral outlined "button", no color accent (Mission = gold, Ecosystem = violet, this = plain) */
+    
     .nav-links .nav-contributors {
       font-weight: 600; white-space: nowrap; flex: none;
       padding: 3px 12px; border: 1px solid var(--line-strong); border-radius: 999px;
@@ -450,15 +459,137 @@
     }
     .nav-links .nav-contributors:hover { color: var(--brand); border-color: var(--brand-ring); text-decoration: none; transform: translateY(-1px); box-shadow: 0 3px 8px rgba(0,0,0,0.2); }
 
-    /* Mission layout: text + sticky anthem player; collapses on small screens */
+    
     .mission-layout { display: grid; grid-template-columns: minmax(0,1fr) 400px; gap: var(--s7); align-items: start; }
     .anthem-sticky { position: sticky; top: var(--s5); }
-    .anthem-frame { min-height: 200px; } /* YouTube ToS floor: player never below 200px tall; letterboxes on narrow screens */
     @media (max-width: 860px) {
       .mission-layout { grid-template-columns: 1fr; }
-      .anthem-sticky { position: static; order: -1; }
+      .anthem-sticky { position: static; }
+    }
+
+    
+    .m-h1 span { display: block; white-space: nowrap; }
+    .m-h1 { font-size: clamp(1.55rem, 7.1vw, 2.9rem) !important; }
+    .anthem-cover { position: relative; aspect-ratio: 16/9; border-radius: var(--radius-sm); overflow: hidden; background: var(--code-bg); }
+    .anthem-cover iframe { position: absolute; inset: 0; width: 100%; height: 100%; border: 0; display: block; background: transparent; }
+    .play-btn { display: flex; justify-content: center; margin-top: var(--s3); }
+
+    
+    
+    .mission-layout { grid-template-areas: "letter anthem"; }
+    .mission-letter { grid-area: letter; }
+    
+    .anthem-sticky { grid-area: anthem; top: calc(66px + var(--s5) + var(--header-grow)); }
+    @media (max-width: 860px) {
+      
+      .mission-layout { grid-template-columns: minmax(0, 1fr); grid-template-areas: "anthem" "letter"; }
+    }
+    @media (max-width: 640px) {
+      
+      .anthem-cover { aspect-ratio: auto; height: 200px; }
+    }
+    .back-link { display: inline-flex; align-items: center; min-height: 44px; }
+    footer .footer-links a { display: inline-flex; align-items: center; min-height: 44px; }
+    
+    @media (max-width: 768px) { footer .footer-links { flex-wrap: wrap; gap: 0 var(--s5); } }
+    @media (prefers-reduced-motion: reduce) {
+      .nav-links a:hover, .nav-links .nav-mission:hover, .nav-links .nav-ecosystem:hover, .nav-links .nav-contributors:hover { transform: none !important; }
+    }
+
+    
+    .nav-drop { position: relative; }
+    .nav-drop > summary { list-style: none; cursor: pointer; color: var(--muted); font-weight: 500; display: inline-flex; align-items: center; gap: 6px; }
+    .nav-drop > summary::-webkit-details-marker { display: none; }
+    .nav-drop > summary::after { content: "\25BE"; content: "\25BE" / ""; font-size: 0.8em; }
+    .nav-drop[open] > summary { color: var(--brand); }
+    .drop-panel { position: absolute; right: 0; top: calc(100% + 10px); min-width: 210px; z-index: 50; display: flex; flex-direction: column;
+      background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius-sm); box-shadow: var(--shadow-md); padding: 6px; }
+    .nav-desktop .drop-panel { left: 0; right: auto; }
+    .drop-panel a { padding: 10px 12px; border-radius: 6px; color: var(--ink); font-weight: 500; min-height: 44px; display: flex; align-items: center; }
+    .drop-panel a:hover { background: var(--surface-alt); text-decoration: none; }
+    .drop-panel .drop-sub { padding: 8px 12px 2px; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--soft); }
+    .drop-panel a.indent { padding-left: 26px; }
+    .nav-phone { display: none; }
+    
+    :root { --header-grow: max(0px, (1rem - 16px) * 1.5675); }
+    
+    @media (max-width: 1010px), (max-width: 63.125em) {  
+      .nav-desktop { display: none !important; }
+      .nav-inner { flex-wrap: nowrap !important; }
+      .nav-links.nav-phone { display: flex !important; width: auto !important; flex-wrap: nowrap !important; justify-content: flex-end; gap: 10px !important; }
+      .phone-menu > summary { padding: 10px 14px; min-height: 44px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink); }
+      .nav-phone a.nav-mission { padding: 10px 14px; min-height: 44px; display: inline-flex; align-items: center; }
+      .brand { min-height: 44px; }  
+      
+      .phone-menu .drop-panel { max-height: calc(100vh - 90px); max-height: calc(100dvh - 90px); overflow-y: auto; overscroll-behavior: contain; scroll-padding-block: 8px; }
+    }
+    @media (max-width: 768px) {
+      .brand-sub { display: none; }
+      .logo-hero svg { width: 64px !important; height: 64px !important; }
+      .logo-hero { margin-bottom: 8px !important; }
+    }
+    
+    @media (max-width: 414px) {
+      .nav-inner { padding-left: 10px !important; padding-right: 10px !important; column-gap: 8px; }
+      .brand { font-size: 0.9rem; gap: 6px; }
+      .nav-links.nav-phone { gap: 6px !important; }
+      .nav-phone a.nav-mission, .phone-menu > summary { padding-left: 8px !important; padding-right: 8px !important; }
+    }
+    
+    @media (pointer: coarse) {
+      .nav-desktop > a, .nav-desktop .nav-drop > summary { min-height: 44px; display: inline-flex; align-items: center; }
+      footer .footer-links a, .footer-links a { min-height: 44px; display: inline-flex; align-items: center; }
+    }
+    
+    .nav-desktop > a[aria-current="page"]:not(.nav-ecosystem):not(.nav-mission):not(.nav-contributors), .drop-panel a[aria-current="page"] { color: var(--ink); text-decoration: underline; text-underline-offset: 6px; }
+    .nav-drop:not([open]):has(a[aria-current="page"]) > summary { color: var(--ink); }
+
+    
+    
+    .nav-links .nav-mission::after { animation-iteration-count: 1 !important; }
+    
+    .nav-drop > summary:focus-visible { outline: 3px solid var(--brand-ring); outline-offset: 2px; }
+    .nav-desktop .nav-drop > summary:focus-visible { border-radius: 4px; }
+    
+    @media (prefers-reduced-motion: reduce) { .nav-links a:hover, .nav-links .nav-mission:hover, .nav-links .nav-ecosystem:hover, .nav-links .nav-contributors:hover { transform: none !important; } }
+    
+    main a, main summary, main pre code { scroll-margin-top: calc(88px + var(--header-grow)); }
+    
+    @media (max-width: 1010px), (max-width: 63.125em) {
+      .nav-inner { flex-wrap: wrap !important; row-gap: 12px; }
+      .nav-inner > .brand { flex: 1 1 0px; max-width: max-content; }
+      .nav-inner > .nav-links.nav-phone { margin-left: auto; }
+      .phone-menu .drop-panel { max-height: max(calc(100vh - 146px - 5 * var(--header-grow)), min(calc(100vh - 90px - 5 * var(--header-grow)), 7rem)); max-height: max(calc(100dvh - 146px - 5 * var(--header-grow)), min(calc(100dvh - 90px - 5 * var(--header-grow)), 7rem)); }
+      
+      main a, main summary, main pre code { scroll-margin-top: calc(144px + 2 * var(--header-grow)); }
     }
   </style>
+<style>
+main p a:not(.btn), main td a, main dd a, main .meta a { text-decoration: underline; text-underline-offset: 0.15em; }
+body:has(main :focus-visible, footer :focus-visible) .nav-drop[open] > .drop-panel { display: none; }
+</style>
+<style>
+
+main p, main li, main dd { text-wrap: pretty; }
+a.wl { white-space: nowrap; }
+@media (min-width: 600px) { a.wl-long { white-space: nowrap; } }
+
+
+.cta > .btn { white-space: normal; text-align: center; }
+
+@media (max-width: 19.99em) {
+  main { overflow-wrap: break-word; }
+  main :is(h1, h2, h3) { overflow-wrap: anywhere; }
+}
+
+.m-h1 span { white-space: normal; }
+@media (max-width: 19.99em) {
+  .m-h1 { font-size: min(clamp(1.55rem, 7.1vw, 2.9rem), 11vw) !important; }
+}
+</style>
+<style>
+@media (max-width: 19.99em) { a.wl, a.wl-long { white-space: normal; } }
+</style>
 </head>
 <body>
 
@@ -466,14 +597,20 @@
 
   <header>
     <div class="nav-inner">
-      <a href="index.html" class="brand logo"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 2 28 9 28 23 16 30 4 23 4 9Z" stroke="#2dd4bf" stroke-width="1.6" fill="rgba(45,212,191,0.07)"/><circle cx="16" cy="11" r="2.1" fill="#2dd4bf"/><circle cx="11" cy="20" r="2.1" fill="#5eead4"/><circle cx="21" cy="20" r="2.1" fill="#fbbf24"/><path d="M16 11 11 20M16 11 21 20M11 20 21 20" stroke="#2dd4bf" stroke-width="1.2" opacity="0.6"/></svg> PDuk Brainworks <span style="color:var(--muted);font-weight:500;font-size:0.82rem;">/ Agent Architect Stack</span></a>
-      <nav class="nav-links" aria-label="Primary">
-        <a href="mission.html" class="nav-mission" aria-current="page">✦ Mission</a>
-        <a href="index.html#branches">Branches</a>
-        <a href="index.html#quickstart">Quick Start</a>
-        <a href="index.html#status">Status</a>
+      <a href="index.html" class="brand logo"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 2 28 9 28 23 16 30 4 23 4 9Z" stroke="#2dd4bf" stroke-width="1.6" fill="rgba(45,212,191,0.07)"/><circle cx="16" cy="11" r="2.1" fill="#2dd4bf"/><circle cx="11" cy="20" r="2.1" fill="#5eead4"/><circle cx="21" cy="20" r="2.1" fill="#fbbf24"/><path d="M16 11 11 20M16 11 21 20M11 20 21 20" stroke="#2dd4bf" stroke-width="1.2" opacity="0.6"/></svg> PDuk Brainworks <span class="brand-sub" style="color:var(--muted);font-weight:500;font-size:0.82rem;">/ Agent Architect Stack</span></a>
+      <nav class="nav-links nav-desktop" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <details class="nav-drop" name="primary-menu"><summary>Tools</summary><div class="drop-panel"><a href="memory.html">Memory</a><a href="security.html">Security</a></div></details>
+        <details class="nav-drop" name="primary-menu"><summary>Get Started</summary><div class="drop-panel"><a href="get-started.html">Get Started</a><a href="how-it-works.html">How It Works</a></div></details>
         <a href="ecosystem.html" class="nav-ecosystem">Ecosystem</a>
+        <a href="mission.html" class="nav-mission" aria-current="page"><span aria-hidden="true">&#10022;&nbsp;</span>Mission</a>
         <a href="contributors.html" class="nav-contributors">Contributors</a>
+      </nav>
+      <nav class="nav-links nav-phone" aria-label="Primary">
+        <a href="mission.html" class="nav-mission" aria-current="page"><span aria-hidden="true">&#10022;&nbsp;</span>Mission</a>
+        <details class="nav-drop phone-menu"><summary>Menu</summary><div class="drop-panel">
+          <a href="index.html">Home</a><span class="drop-sub">Tools</span><a href="memory.html" class="indent">Memory</a><a href="security.html" class="indent">Security</a>
+          <a href="get-started.html">Get Started</a><a href="how-it-works.html" class="indent">How It Works</a><a href="ecosystem.html">Ecosystem</a><a href="mission.html" aria-current="page">Mission</a><a href="contributors.html">Contributors</a></div></details>
       </nav>
     </div>
   </header>
@@ -483,51 +620,51 @@
   <section class="hero" style="padding-bottom: var(--s7);">
     <div class="container">
       <span class="eyebrow">Our Mission</span>
-      <h1 style="font-size:2.9rem;">Your data. Your infrastructure.<br>Your <em style="color:var(--brand);">alpha</em>.</h1>
-      <p class="tagline" style="margin-bottom:0;"><span class="tag-sub" style="max-width:none;"><a href="index.html">← Back to the stack</a></span></p>
+      <h1 class="m-h1"><span>Your data.</span> <span>Your infrastructure.</span> <span>Your <em style="color:var(--brand);">alpha</em>.</span></h1>
+      
     </div>
   </section>
 
   <section>
     <div class="container mission-layout">
 
-      <div style="font-size:1.08rem; line-height:1.75; color:var(--muted);">
-        <p style="margin-bottom:var(--s5);">Most agent infrastructure assumes a platform, a subscription, and your trust. We build the opposite: components you install, own, and can read line by line — memory that lives in your files, security that answers to you, and nothing that phones home.</p>
+      <div class="anthem-sticky">
+        <div style="background:var(--surface); border:1px solid var(--brand-ring); border-radius:var(--radius); padding:var(--s4); box-shadow:var(--shadow-sm);">
+          <div style="font-size:0.78rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--brand-strong); margin-bottom:var(--s3); text-align:center;"><span aria-hidden="true">♫</span> The Anthem</div>
+          <div class="anthem-cover"><iframe name="anthem" srcdoc="&lt;!doctype html&gt;&lt;html lang=en tabindex=0&gt;&lt;style&gt;html{height:100%;background:#060c0b}html:focus-visible{outline:3px solid #2dd4bf;outline-offset:-3px}&lt;/style&gt;&lt;/html&gt;" title="True Damage: GIANTS (official video, League of Legends)" allow="accelerometer https://www.youtube-nocookie.com; autoplay https://www.youtube-nocookie.com; clipboard-write https://www.youtube-nocookie.com; encrypted-media https://www.youtube-nocookie.com; gyroscope https://www.youtube-nocookie.com; picture-in-picture https://www.youtube-nocookie.com; web-share https://www.youtube-nocookie.com" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe></div>
+          <div class="play-btn"><a class="btn btn-primary" href="https://www.youtube-nocookie.com/embed/sVZpHFXcFJw?autoplay=1" target="anthem" aria-label="Play GIANTS by True Damage (loads YouTube)">&#9654; Play</a></div>
+          <p style="font-size:0.85rem; color:var(--muted); margin-top:var(--s3); line-height:1.5; text-align:center;">Press play and read on.</p>
+          <p style="font-size:0.75rem; color:var(--soft); margin-top:var(--s2); line-height:1.4;">"GIANTS" (True Damage) © Riot Games. Created under Riot Games' <a href="https://www.riotgames.com/en/legal" target="_blank" rel="noopener" style="color:var(--soft); text-decoration:underline;" class="wl">Legal Jibber Jabber</a> policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.</p>
+          <p style="font-size:0.75rem; color:var(--soft); margin-top:var(--s2); line-height:1.4;"><a href="https://www.youtube.com/t/terms" target="_blank" rel="noopener" style="color:var(--soft); text-decoration:underline;" class="wl">YouTube Terms</a> · <a href="https://policies.google.com/privacy" target="_blank" rel="noopener" style="color:var(--soft); text-decoration:underline;" class="wl">Google Privacy</a></p>
+        </div>
+      </div>
 
-        <p style="margin-bottom:var(--s5);">Every module in this stack exists because we personally hit a wall the public tools couldn't handle — and built the fix we wished existed. We run everything we ship, on our own agents, every day. Nothing goes public that we don't use ourselves.</p>
+      <div class="mission-letter" style="font-size:1.08rem; line-height:1.75; color:var(--muted);">
+        <p style="margin-bottom:var(--s5);">Most agent infrastructure assumes a platform, a subscription, and your trust. We build the opposite: components you install, own, and can read line by line. Memory that lives in your files, security that answers to you, and nothing that phones home.</p>
 
-        <p style="margin-bottom:var(--s5);">We're an independent studio giving solo builders a fighting chance: the solopreneurs, first-time founders, and grant-stage teams working to reverse their position in a K-shaped economy. The infrastructure sovereignty a corporation buys with a platform team — delivered as components you <code>pip install</code>. When the platforms pivot, your stack doesn't. That's the thesis of <a href="https://thepdukedge.substack.com/p/the-karp-moment" target="_blank" rel="noopener">The Karp Moment →</a></p>
+        <p style="margin-bottom:var(--s5);">Every module in this stack exists because we personally hit a wall the public tools couldn't handle, and built the fix we wished existed. We run everything we ship, on our own agents, every day. Nothing goes public that we don't use ourselves.</p>
 
-        <p style="margin-bottom:var(--s5);"><strong style="color:var(--ink);">Solo isn't a company size — it's a role.</strong> Whether you're self-employed or the only developer shipping a project inside a thousand-person org, this is for you. And if you're one person wearing five hats, a team of agents is how you wear all five.</p>
+        <p style="margin-bottom:var(--s5);">We're an independent studio giving solo builders a fighting chance: the solopreneurs, first-time founders, and grant-stage teams working to reverse their position in a <span style="white-space:nowrap">K-shaped</span> economy. When the platforms pivot, your stack doesn't. That's the thesis of <a href="https://thepdukedge.substack.com/p/the-karp-moment" target="_blank" rel="noopener" class="wl">The Karp Moment&nbsp;→</a></p>
 
-        <p style="margin-bottom:var(--s5);"><strong style="color:var(--ink);">Solo builders first — but not solo builders only.</strong> As the stack matures, we take on enterprise engagements: custom agents, integrations, infrastructure built to your constraints, on terms negotiated openly. If your team wants this built for you, <a href="https://github.com/esoteric1entity" target="_blank" rel="noopener">talk to us →</a></p>
+        <p style="margin-bottom:var(--s5);"><strong style="color:var(--ink);">Solo isn't a company size. It's a role.</strong> Whether you're self-employed or the only developer shipping a project inside a thousand-person org, this is for you. And if you're one person wearing five hats, a team of agents is how you wear all five.</p>
 
-        <p style="margin-bottom:var(--s6);">The core stack is open source and free, forever — and safety fixes are never gated. Complex capital-building tools will be paid products, on terms stated plainly. No hidden meters. Ever.</p>
+        <p style="margin-bottom:var(--s5);"><strong style="color:var(--ink);">Solo builders first, but not solo builders only.</strong> As the stack matures, we take on enterprise engagements: custom agents, integrations, infrastructure built to your constraints, on terms negotiated openly. If your team wants this built for you, <a href="https://github.com/esoteric1entity" target="_blank" rel="noopener" class="wl">talk to us&nbsp;→</a></p>
+
+        <p style="margin-bottom:var(--s6);">The core stack is open source and free, forever, and safety fixes are never gated. Complex capital-building tools will be paid products, on terms stated plainly. No hidden meters. Ever.</p>
 
         <blockquote style="margin:0 0 var(--s6); padding: var(--s2) 0 var(--s2) var(--s5); border-left: 3px solid var(--accent);">
           <p style="font-family: var(--font-voice, inherit); font-style: italic; font-size: 1.15rem; line-height: 1.6; color: var(--ink); margin-bottom: var(--s3);">"The people who are crazy enough to think they can change the world, are the ones who do."</p>
-          <p style="font-size: 0.9rem; color: var(--soft); margin: 0;">— Steve Jobs</p>
+          <p style="font-size: 0.9rem; color: var(--soft); margin: 0;">Rob Siltanen, 1997</p>
         </blockquote>
 
         <div style="border-top:1px solid var(--line); padding-top:var(--s5);">
           <p style="font-size:1.02rem; color:var(--ink); font-weight:650; margin-bottom:var(--s3);">If the mission resonates, put a star on it.</p>
-          <p style="font-size:0.95rem; margin-bottom:var(--s4);">Stars are how solo projects get found — and how you tell us to keep going. Issues, ideas, and GitHub contributions are welcome too.</p>
-          <div class="cta" style="justify-content:flex-start;">
-            <a href="https://github.com/esoteric1entity/ultimate-memory-stack" target="_blank" rel="noopener" class="btn btn-primary">⭐ Star the Memory branch</a>
-            <a href="https://github.com/esoteric1entity/agent-shield" target="_blank" rel="noopener" class="btn btn-secondary">⭐ Star the Security branch</a>
+          <p style="font-size:0.95rem; margin-bottom:var(--s4);">Stars are how solo projects get found, and how you tell us to keep going. <a href="contributors.html#report" class="wl-long">Issues, ideas, and GitHub contributions</a> are welcome too.</p>
+          <div class="cta" style="display:flex; gap:var(--s4); flex-wrap:wrap; justify-content:flex-start;">
+            <a href="https://github.com/esoteric1entity/ultimate-memory-stack" target="_blank" rel="noopener" class="btn btn-primary"><span><span aria-hidden="true">⭐</span> Star the Memory Repo</span></a>
+            <a href="https://github.com/esoteric1entity/agent-shield" target="_blank" rel="noopener" class="btn btn-secondary"><span><span aria-hidden="true">⭐</span> Star the Security Repo</span></a>
           </div>
-          <p style="font-size:0.85rem; color:var(--soft); margin-top:var(--s4);">Security fixes ship regardless — starred or not.</p>
-        </div>
-      </div>
-
-      <div class="anthem-sticky">
-        <div style="background:var(--surface); border:1px solid var(--brand-ring); border-radius:var(--radius); padding:var(--s4); box-shadow:var(--shadow-sm);">
-          <div style="font-size:0.78rem; font-weight:700; letter-spacing:0.07em; text-transform:uppercase; color:var(--brand-strong); margin-bottom:var(--s3); text-align:center;">♫ The Anthem</div>
-          <div class="anthem-frame" style="aspect-ratio:16/9; border-radius:var(--radius-sm); overflow:hidden; background:var(--code-bg);">
-            <iframe width="100%" height="100%" src="https://www.youtube-nocookie.com/embed/sVZpHFXcFJw" title="True Damage — GIANTS (official video, League of Legends)" frameborder="0" allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen style="display:block;"></iframe>
-          </div>
-          <p style="font-size:0.85rem; color:var(--muted); margin-top:var(--s3); line-height:1.5; text-align:center;">Press play and read on.</p>
-          <p style="font-size:0.75rem; color:var(--soft); margin-top:var(--s2); line-height:1.4;">"GIANTS" (True Damage) © Riot Games. Created under Riot Games' <a href="https://www.riotgames.com/en/legal" target="_blank" rel="noopener" style="color:var(--soft); text-decoration:underline;">Legal Jibber Jabber</a> policy using assets owned by Riot Games. Riot Games does not endorse or sponsor this project.</p>
+          <p style="font-size:0.85rem; color:var(--soft); margin-top:var(--s4);">Security fixes ship regardless, starred or not.</p>
         </div>
       </div>
 
@@ -539,14 +676,15 @@
   <footer>
     <div class="container">
       <div>
-        <strong>PDuk Brainworks</strong> 🧬 · Agent Architect Stack — Apache-2.0 — © 2026 esoteric1entity. A PDuk Brainworks project<br>
-        <span style="font-size: 0.85rem;">Part of a larger research program on agent infrastructure. Public launch: 2026-06-12.</span>
-        <div class="creds">This page embeds YouTube's player for the anthem (official upload, plays on click) — the only external resource on the site. The main page stays: one file · no JavaScript · no trackers.</div>
+        <strong>PDuk Brainworks</strong> <span aria-hidden="true">🧬</span> · Agent Architect Stack · <span style="white-space:nowrap">Apache-2.0</span> · © 2026 esoteric1entity.<br>
+        <span style="font-size: 0.85rem;">Project launched 2026-06-12 · Site updated 2026-11-06.</span>
+        <div class="creds">This page embeds YouTube's player for the anthem (official upload, plays on click), the only external resource on the site.</div>
       </div>
       <div class="footer-links">
         <a href="index.html">← Main page</a>
+        
         <a href="https://github.com/esoteric1entity" target="_blank" rel="noopener">GitHub</a>
-        <a href="https://thepdukedge.substack.com/" target="_blank" rel="noopener">PDuk Edge ↗</a>
+        <a href="https://thepdukedge.substack.com/" target="_blank" rel="noopener">PDuk Edge&nbsp;↗</a>
       </div>
     </div>
   </footer>

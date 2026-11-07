@@ -1,10 +1,10 @@
 # =============================================================================
-# Agent Architect Stack — Root .gitignore
+# Agent Architect Stack: root .gitignore
 # =============================================================================
 # Purpose: prevent accidental commit of secrets, build artifacts, OS files,
-#          editor temp files, and large generated files. This is the FIRST
-#          line of defense per LEARN-### (secrets-hygiene). DO NOT commit
-#          .env files, .pem files, or anything under secrets/.
+#          editor temp files, and large generated files. This is the first
+#          line of defense. Do not commit .env files, .pem files, or
+#          anything under secrets/.
 #
 # Authors: see /AUTHORS.md
 # License: Apache 2.0 (see /LICENSE)
@@ -49,14 +49,14 @@ env/
 ENV/
 .python-version
 
-# --- Node (only if any branch uses Node tooling) ---
+# --- Node (only if a tool uses Node tooling) ---
 node_modules/
 npm-debug.log*
 yarn-debug.log*
 yarn-error.log*
 .pnpm-debug.log*
 
-# --- Secrets & credentials (CRITICAL — DO NOT COMMIT) ---
+# --- Secrets & credentials (critical: do not commit) ---
 .env
 .env.*
 !.env.example

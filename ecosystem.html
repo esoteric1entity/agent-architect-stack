@@ -3,17 +3,35 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<meta name="description" content="Harnesses, models, and hardware in the agent ecosystem worth knowing about — curated, categorized, no hype.">
-<title>Ecosystem · PDuk Brainworks — Agent Architect Stack</title>
+<meta name="description" content="Harnesses, models, and hardware in the agent ecosystem worth knowing about. Curated, categorized, no hype.">
+<title>Ecosystem · PDuk Brainworks · Agent Architect Stack</title>
+<link rel="canonical" href="https://esoteric1entity.github.io/agent-architect-stack/ecosystem.html">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="PDuk Brainworks">
+<meta property="og:title" content="Ecosystem · PDuk Brainworks · Agent Architect Stack">
+<meta property="og:description" content="Harnesses, models, and hardware in the agent ecosystem worth knowing about. Curated, categorized, no hype.">
+<meta property="og:url" content="https://esoteric1entity.github.io/agent-architect-stack/ecosystem.html">
+<meta property="og:image" content="https://esoteric1entity.github.io/agent-architect-stack/assets/agent-architect-stack-social-preview-1280x640.png">
+<meta property="og:image:type" content="image/png">
+<meta property="og:image:width" content="1280">
+<meta property="og:image:height" content="640">
+<meta property="og:image:alt" content="Diagram: your agent at the top, the Memory and Security tools in the middle, your files at the bottom. A solid line runs through Security to your files, and a dashed line runs past both tools. With the words: The Agent Architect Stack. Modular infrastructure for AI agents. Own the memory. Own the guardrails. Own the edge.">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Ecosystem · PDuk Brainworks · Agent Architect Stack">
+<meta name="twitter:description" content="Harnesses, models, and hardware in the agent ecosystem worth knowing about. Curated, categorized, no hype.">
+<meta name="twitter:image" content="https://esoteric1entity.github.io/agent-architect-stack/assets/agent-architect-stack-social-preview-1280x640.png">
+<meta name="twitter:image:alt" content="Diagram: your agent at the top, the Memory and Security tools in the middle, your files at the bottom. A solid line runs through Security to your files, and a dashed line runs past both tools. With the words: The Agent Architect Stack. Modular infrastructure for AI agents. Own the memory. Own the guardrails. Own the edge.">
 <style>
   :root{
     --bg:#080d0c; --panel:#0c1211; --panel-2:#101917;
     --line:rgba(255,255,255,.07); --line-2:rgba(255,255,255,.13);
-    --ink:#e8efed; --soft:#8b9c99; --dim:#61736f;
+    
+    --ink:#e8efed; --soft:#8b9c99; --dim:#728883;
     --brand:#2dd4bf; --brand-2:#5eead4; --violet:#a78bfa; --gold:#fbbf24; --rose:#fb7185; --sky:#7dd3fc; --amber:#f59e0b;
     --s2:8px; --s3:16px; --s4:24px; --s5:40px; --s6:64px;
     --mono:ui-monospace,SFMono-Regular,"SF Mono",Menlo,Consolas,monospace;
-    /* accents the ported nav-pill CSS depends on, matched to index.html */
+    
     --accent:#fbbf24; --accent-soft:rgba(251,191,36,0.12); --warn-bd:rgba(251,191,36,0.45);
   }
   *{box-sizing:border-box}
@@ -22,7 +40,7 @@
     font:15.5px/1.58 -apple-system,BlinkMacSystemFont,"Segoe UI",Inter,Roboto,sans-serif; -webkit-font-smoothing:antialiased}
   a{color:var(--brand-2); text-decoration:none} a:hover{text-decoration:underline}
   .container{max-width:1120px; margin:0 auto; padding:0 var(--s4)}
-  /* a11y set ported back from the live ecosystem.html, which already had all of this */
+  
   .skip{position:absolute; left:-9999px; top:8px; z-index:100; background:var(--panel-2); color:var(--ink);
     border:1px solid var(--brand); padding:10px 16px; border-radius:6px}
   .skip:focus{left:16px}
@@ -33,17 +51,41 @@
   #f-mcp:focus-visible   ~ .filters label[for="f-mcp"],
   #f-int:focus-visible   ~ .filters label[for="f-int"],
   #f-rival:focus-visible ~ .filters label[for="f-rival"]{outline:2px solid var(--brand); outline-offset:3px}
-  header{border-bottom:1px solid var(--line); background:rgba(8,13,12,.9); backdrop-filter:blur(10px); position:sticky; top:0; z-index:60}
-  .nav-inner{max-width:1120px; margin:0 auto; padding:13px var(--s4); display:flex; align-items:center; justify-content:space-between; gap:var(--s3)}
-  .brand{display:flex; align-items:center; gap:9px; color:var(--ink); font-weight:600; font-size:.92rem}
-  .brand span{color:var(--soft); font-weight:400}
-  .nav-links{display:flex; align-items:center; gap:var(--s4); font-size:.88rem}
-  .nav-links a{color:var(--soft)} .nav-links a[aria-current]{color:var(--violet)}
-  .nav-links .nav-ecosystem, .nav-links .nav-contributors{padding:3px 12px; border:1px solid var(--line-2);
-    border-radius:999px; white-space:nowrap}
-  .nav-links .nav-ecosystem[aria-current]{color:var(--brand); border-color:rgba(45,212,191,.45);
-    background:rgba(45,212,191,.10)}
-  /* nav pill styling, ported from index.html so the header matches the other three pages */
+  
+  header{
+    --ink:#e9f2ef; --muted:#9fb4ae; --soft:#76918a; --line:#1f2c29; --line-strong:#33473f;
+    --surface:#0f1716; --surface-alt:#0b1211; --brand-strong:#5eead4; --brand-ring:#2dd4bf;
+    --violet-soft:rgba(167,139,250,0.14); --radius-sm:7px; --shadow-md:0 8px 24px rgba(0,0,0,.55);
+    --s3:12px; --s4:16px; --s5:24px;
+    border-bottom:1px solid var(--line); background:rgba(8,13,12,0.82);
+    -webkit-backdrop-filter:saturate(140%) blur(8px); backdrop-filter:saturate(140%) blur(8px);
+    position:sticky; top:0; z-index:60; line-height:1.65;
+    font-family:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Helvetica,Arial,sans-serif}
+  header a{color:var(--brand)} header a:hover{color:var(--brand-strong)}
+  header a:focus-visible, header summary:focus-visible{outline:3px solid var(--brand-ring); outline-offset:2px}
+  .nav-inner{display:flex; align-items:center; justify-content:space-between; padding:var(--s4) var(--s5); max-width:max(1120px, 70rem); margin:0 auto} 
+  .brand{font-weight:800; font-size:1.05rem; color:var(--ink); letter-spacing:-0.01em}
+  .nav-links{display:flex; align-items:center; gap:var(--s5); font-size:0.95rem}
+  .nav-links a{color:var(--muted); font-weight:500}
+  .nav-links a:hover{color:var(--brand); text-decoration:none}
+  .logo{display:inline-flex; align-items:center; gap:10px}
+  .logo svg{width:26px; height:26px; flex:none}
+  
+  .nav-links .nav-ecosystem{
+    color:var(--violet); font-weight:650; white-space:nowrap; flex:none;
+    padding:3px 12px; border:1px solid rgba(167,139,250,0.4); border-radius:999px;
+    background-color:var(--violet-soft);
+    background-image:linear-gradient(180deg, rgba(255,255,255,0.10) 0%, rgba(255,255,255,0) 55%);
+    transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease}
+  .nav-links .nav-ecosystem:hover{color:#c9bffc; border-color:var(--violet); text-decoration:none; transform:translateY(-1px); box-shadow:0 3px 8px rgba(0,0,0,0.25)}
+  
+  .nav-links .nav-contributors{
+    font-weight:600; white-space:nowrap; flex:none;
+    padding:3px 12px; border:1px solid var(--line-strong); border-radius:999px;
+    background-color:var(--surface);
+    transition:transform .15s ease, box-shadow .15s ease, border-color .15s ease, color .15s ease}
+  .nav-links .nav-contributors:hover{color:var(--brand); border-color:var(--brand-ring); text-decoration:none; transform:translateY(-1px); box-shadow:0 3px 8px rgba(0,0,0,0.2)}
+  
 .nav-links .nav-mission {
       color: var(--accent); font-weight: 700; white-space: nowrap; flex: none;
       padding: 3px 12px; border: 1px solid var(--warn-bd); border-radius: 999px;
@@ -92,27 +134,27 @@
   #f-mcp:checked ~ .filters label[for="f-mcp"],
   #f-int:checked ~ .filters label[for="f-int"],
   #f-rival:checked ~ .filters label[for="f-rival"]{background:rgba(45,212,191,.16); border-color:var(--brand); color:var(--brand)}
-  #f-local:checked ~ main .card:not(.t-local){display:none}
-  #f-oss:checked   ~ main .card:not(.t-oss){display:none}
-  #f-mcp:checked   ~ main .card:not(.t-mcp){display:none}
-  #f-int:checked   ~ main .card:not(.t-int){display:none}
-  #f-rival:checked ~ main .card:not(.t-rival){display:none}
-  #f-local:checked ~ main .subgroup:not(:has(.card.t-local)), #f-local:checked ~ main .stage:not(:has(.card.t-local)),
-  #f-oss:checked   ~ main .subgroup:not(:has(.card.t-oss)),   #f-oss:checked   ~ main .stage:not(:has(.card.t-oss)),
-  #f-mcp:checked   ~ main .subgroup:not(:has(.card.t-mcp)),   #f-mcp:checked   ~ main .stage:not(:has(.card.t-mcp)),
-  #f-int:checked   ~ main .subgroup:not(:has(.card.t-int)),   #f-int:checked   ~ main .stage:not(:has(.card.t-int)),
-  #f-rival:checked ~ main .subgroup:not(:has(.card.t-rival)), #f-rival:checked ~ main .stage:not(:has(.card.t-rival)){display:none}
-  /* the off-the-arc divider dies with the shelves it introduces */
-  #f-local:checked ~ main .arc-end:not(:has(~ .stage.s-dom .card.t-local)),
-  #f-oss:checked   ~ main .arc-end:not(:has(~ .stage.s-dom .card.t-oss)),
-  #f-mcp:checked   ~ main .arc-end:not(:has(~ .stage.s-dom .card.t-mcp)),
-  #f-int:checked   ~ main .arc-end:not(:has(~ .stage.s-dom .card.t-int)),
-  #f-rival:checked ~ main .arc-end:not(:has(~ .stage.s-dom .card.t-rival)){display:none}
+  #f-local:checked ~ .eco-body .card:not(.t-local){display:none}
+  #f-oss:checked   ~ .eco-body .card:not(.t-oss){display:none}
+  #f-mcp:checked   ~ .eco-body .card:not(.t-mcp){display:none}
+  #f-int:checked   ~ .eco-body .card:not(.t-int){display:none}
+  #f-rival:checked ~ .eco-body .card:not(.t-rival){display:none}
+  #f-local:checked ~ .eco-body .subgroup:not(:has(.card.t-local)), #f-local:checked ~ .eco-body .stage:not(:has(.card.t-local)),
+  #f-oss:checked   ~ .eco-body .subgroup:not(:has(.card.t-oss)),   #f-oss:checked   ~ .eco-body .stage:not(:has(.card.t-oss)),
+  #f-mcp:checked   ~ .eco-body .subgroup:not(:has(.card.t-mcp)),   #f-mcp:checked   ~ .eco-body .stage:not(:has(.card.t-mcp)),
+  #f-int:checked   ~ .eco-body .subgroup:not(:has(.card.t-int)),   #f-int:checked   ~ .eco-body .stage:not(:has(.card.t-int)),
+  #f-rival:checked ~ .eco-body .subgroup:not(:has(.card.t-rival)), #f-rival:checked ~ .eco-body .stage:not(:has(.card.t-rival)){display:none}
+  
+  #f-local:checked ~ .eco-body .arc-end:not(:has(~ .stage.s-dom .card.t-local)),
+  #f-oss:checked   ~ .eco-body .arc-end:not(:has(~ .stage.s-dom .card.t-oss)),
+  #f-mcp:checked   ~ .eco-body .arc-end:not(:has(~ .stage.s-dom .card.t-mcp)),
+  #f-int:checked   ~ .eco-body .arc-end:not(:has(~ .stage.s-dom .card.t-int)),
+  #f-rival:checked ~ .eco-body .arc-end:not(:has(~ .stage.s-dom .card.t-rival)){display:none}
   .fnote{font:10px/1.4 var(--mono); color:var(--dim); margin-left:auto}
-  /* the shelf-collapse rules need :has(); without it the filters would leave empty shelf headings */
+  
   @supports not (selector(:has(*))){ .filters{display:none} }
 
-  .layout{display:grid; grid-template-columns:196px 1fr; gap:var(--s5); padding:var(--s5) 0 var(--s6)}
+  .layout{display:grid; grid-template-columns:196px 1fr; gap:var(--s5); padding:var(--s5) var(--s4) var(--s6)}
   .rail{position:sticky; top:112px; align-self:start; font-size:.85rem}
   .rail-title{font:10px/1 var(--mono); letter-spacing:.16em; text-transform:uppercase; color:var(--dim); margin-bottom:var(--s3)}
   .rail a{display:flex; gap:9px; align-items:baseline; padding:5px 0; color:var(--soft)}
@@ -120,17 +162,17 @@
   .rail .n{font:10.5px/1.4 var(--mono); color:var(--dim); min-width:18px}
   .rail a:hover .n{color:var(--brand)}
   .rail .rule{height:1px; background:var(--line); margin:var(--s3) 0}
-  /* under an active filter most shelves are hidden, so the jump rail would point at nothing */
-  #f-local:checked ~ main .rail, #f-oss:checked ~ main .rail, #f-mcp:checked ~ main .rail,
-  #f-int:checked ~ main .rail, #f-rival:checked ~ main .rail{display:none}
-  #f-local:checked ~ main .layout, #f-oss:checked ~ main .layout, #f-mcp:checked ~ main .layout,
-  #f-int:checked ~ main .layout, #f-rival:checked ~ main .layout{grid-template-columns:1fr}
+  
+  #f-local:checked ~ .eco-body .rail, #f-oss:checked ~ .eco-body .rail, #f-mcp:checked ~ .eco-body .rail,
+  #f-int:checked ~ .eco-body .rail, #f-rival:checked ~ .eco-body .rail{display:none}
+  #f-local:checked ~ .eco-body .layout, #f-oss:checked ~ .eco-body .layout, #f-mcp:checked ~ .eco-body .layout,
+  #f-int:checked ~ .eco-body .layout, #f-rival:checked ~ .eco-body .layout{grid-template-columns:1fr}
 
   .stage{position:relative; padding-left:var(--s5); padding-bottom:var(--s5); scroll-margin-top:120px}
   .stage::before{content:""; position:absolute; left:9px; top:24px; bottom:0; width:1px;
     background:linear-gradient(to bottom,var(--line-2),transparent)}
   .stage:last-of-type::before{display:none}
-  /* the arc ends at 14; the two domain shelves hang off it, so the connector stops */
+  
   .stage.s-dom::before, #voice::before{display:none}
   .stage.s-dom .dot{border-style:dashed} .stage.s-dom .dot i{width:5px; height:5px}
   .arc-end{display:flex; align-items:center; gap:12px; margin:0 0 var(--s5); padding-left:var(--s5);
@@ -173,24 +215,23 @@
   .tag.paid{color:var(--gold); border-color:rgba(251,191,36,.26)}
   .tag.mcp{color:#c4b5fd; border-color:rgba(196,181,253,.34)}
   .tag.mcpc{color:#8b9c99; border-color:rgba(196,181,253,.2)}
-  /* the two disclosure tags read as a different KIND of tag: dashed, unfilled, off-brand */
+  
   .tag.int{color:var(--soft); border-color:var(--line-2); border-style:dashed; background:none}
   .tag.rival{color:var(--rose); border-color:rgba(251,113,133,.34); border-style:dashed; background:none}
 
   .split{display:grid; grid-template-columns:1fr 1fr; gap:var(--s4); margin-top:var(--s4)}
   .box{border:1px solid var(--line-2); border-radius:10px; padding:var(--s4); background:rgba(255,255,255,.012)}
   .box.dashed{border-style:dashed}
-  /* provisional, not premium: dashed says "not listed yet"; a solid listed card still outranks it */
+  
   .bench{border:1px dashed rgba(45,212,191,.45); border-radius:8px;
     background:rgba(45,212,191,.04); padding:14px 16px; margin-bottom:var(--s4)}
   .bench-label{font:10px/1 var(--mono); letter-spacing:.15em; text-transform:uppercase; color:var(--brand); margin-bottom:8px}
-  /* one gold card: the enterprise option exists, and we are not pretending otherwise */
+  
   .card.ent{border-color:rgba(251,191,36,.34); border-left:2px solid var(--gold);
     background:linear-gradient(180deg, rgba(251,191,36,.05), rgba(251,191,36,.02))}
   .card.ent:hover{border-color:rgba(251,191,36,.5)}
   .tag.ent{color:var(--gold); border-color:rgba(251,191,36,.42); background:rgba(251,191,36,.08)}
-  .bench li b::after{content:"TESTING NEXT"; font:8.5px/1 var(--mono); letter-spacing:.1em; color:var(--brand);
-    border:1px solid rgba(45,212,191,.42); border-radius:3px; padding:3px 5px; margin-left:8px; vertical-align:2px}
+  
   .bench p.thesis{margin:0 0 10px; color:var(--soft); font-size:.85rem}
   .bench ul{margin:0; padding-left:17px; font-size:.85rem; color:var(--soft)}
   .bench li{margin-bottom:7px} .bench li b{color:var(--brand-2)} .bench li em{color:var(--dim); font-style:normal}
@@ -209,7 +250,7 @@
     .layout{grid-template-columns:1fr}
     .split{grid-template-columns:1fr} .fnote{display:none}
     .stage{padding-left:var(--s4); scroll-margin-top:64px} .stage::before{left:7px} .dot{width:15px; height:15px}
-    /* one source of truth: the rail BECOMES the jump bar. No duplicated link list to hand-sync. */
+    
     header{position:static} .filters{position:static}
     .rail{position:sticky; top:0; z-index:45; display:flex; gap:7px; overflow-x:auto; overscroll-behavior-x:contain;
       margin:0 0 var(--s4); padding:8px 10px; background:rgba(11,17,16,.97); border:1px solid var(--line-2);
@@ -220,81 +261,218 @@
       border:1px solid var(--line-2); border-radius:999px; font-size:.84rem}
   }
   @media (max-width:768px){
-    .nav-inner{flex-wrap:wrap; row-gap:var(--s3); padding:11px var(--s4)}
-    .nav-links{flex-wrap:wrap; justify-content:center; width:100%; gap:var(--s2) var(--s3)}
-    .nav-links a{padding:10px 8px; min-height:44px; display:inline-flex; align-items:center}
+    
+    .nav-inner{flex-wrap:wrap; row-gap:var(--s3)}
+    .nav-links{display:flex; flex-wrap:wrap; justify-content:center; width:100%; gap:var(--s3) var(--s4); font-size:0.95rem}
+    .nav-links a{padding:10px 6px; min-height:44px; display:inline-flex; align-items:center}
+    .nav-links a.nav-mission, .nav-links a.nav-ecosystem, .nav-links a.nav-contributors{padding:10px 14px; min-height:44px}
     .stats{gap:var(--s4)}
-    .footer-links{flex-direction:column; align-items:flex-start; gap:var(--s2)}
+    .footer-links{flex-direction:column; align-items:flex-start; gap:0}
+    .footer-links a{min-height:44px; display:inline-flex; align-items:center}
   }
   @media (prefers-reduced-motion: reduce){
     html{scroll-behavior:auto}
     *,*::before,*::after{transition:none !important}
     .card:hover{transform:none !important}
+    .nav-links a:hover{transform:none !important}
   }
+
+  
+  
+  .filters{top:calc(66px + var(--header-grow))}
+  .rail{top:calc(126px + var(--header-grow))}
+  .stage, #watchlist{scroll-margin-top:calc(134px + var(--header-grow))}
+  .stat .l, .flabel, .rail-title, .sublabel, .sublabel .hint, .arc-end, .bench-label, .fnote, .rail .n, .tag, .bench li b::after{font-size:11px}
+  @media (max-width:900px){
+    .stage, #watchlist{scroll-margin-top:64px}
+    
+    .rail{top:0}
+    .chips label{min-height:44px; min-width:44px; justify-content:center; display:inline-flex; align-items:center}
+    .layout{padding-left:0; padding-right:var(--s4)}
+    .split{margin-left:var(--s4)} 
+    .rail{-webkit-mask-image:linear-gradient(to right,#000 calc(100% - 44px),transparent); mask-image:linear-gradient(to right,#000 calc(100% - 44px),transparent)}
+    .rail::after{content:""; flex:0 0 32px}
+    
+    .card h3 a{display:inline-block; position:relative; padding:12px 0; margin:-12px 0; min-width:44px}
+  }
+  
+  
+  @media (min-width:900.02px) and (pointer:coarse){ .filters{top:max(77px, 66px + var(--header-grow))} .rail{top:max(137px, 126px + var(--header-grow))} .stage, #watchlist{scroll-margin-top:max(145px, 134px + var(--header-grow))} }
+  @media (min-width:900.02px) and (max-width:1010px), (min-width:900.02px) and (max-width:63.125em){ .filters{top:calc(80px + var(--header-grow))} .rail{top:calc(140px + var(--header-grow))} .stage, #watchlist{scroll-margin-top:calc(148px + var(--header-grow))} }
+  
+  @media (min-width:900.02px){ #main{scroll-margin-top:16px} }
+  
+  @media (min-width:900.02px){ .eco-body a{scroll-margin-top:calc(124px + var(--header-grow))} }
+  @media (min-width:900.02px) and (pointer:coarse){ .eco-body a{scroll-margin-top:max(135px, 124px + var(--header-grow))} }
+  @media (min-width:900.02px) and (max-width:1010px), (min-width:900.02px) and (max-width:63.125em){ .eco-body a{scroll-margin-top:calc(138px + var(--header-grow))} }
+  
+  @media (min-width:900.02px){ input[name="f"]:focus-visible{scroll-margin-bottom:42px} }
+  
+  @media (max-width:900px){ .rail a{scroll-margin-top:0} }
+
+
+    .nav-drop { position: relative; }
+    .nav-drop > summary { list-style: none; cursor: pointer; color: var(--muted); font-weight: 500; display: inline-flex; align-items: center; gap: 6px; }
+    .nav-drop > summary::-webkit-details-marker { display: none; }
+    .nav-drop > summary::after { content: "\25BE"; content: "\25BE" / ""; font-size: 0.8em; }
+    .nav-drop[open] > summary { color: var(--brand); }
+    .drop-panel { position: absolute; right: 0; top: calc(100% + 10px); min-width: 210px; z-index: 50; display: flex; flex-direction: column;
+      background: var(--surface); border: 1px solid var(--line-strong); border-radius: var(--radius-sm); box-shadow: var(--shadow-md); padding: 6px; }
+    .nav-desktop .drop-panel { left: 0; right: auto; }
+    .drop-panel a { padding: 10px 12px; border-radius: 6px; color: var(--ink); font-weight: 500; min-height: 44px; display: flex; align-items: center; }
+    .drop-panel a:hover { background: var(--surface-alt); text-decoration: none; }
+    .drop-panel .drop-sub { padding: 8px 12px 2px; font-size: 0.75rem; letter-spacing: 0.06em; text-transform: uppercase; color: var(--soft); }
+    .drop-panel a.indent { padding-left: 26px; }
+    .nav-phone { display: none; }
+    
+    :root { --header-grow: max(0px, (1rem - 16px) * 1.5675); }
+    
+    @media (max-width: 1010px), (max-width: 63.125em) {  
+      .nav-desktop { display: none !important; }
+      .nav-inner { flex-wrap: nowrap !important; }
+      .nav-links.nav-phone { display: flex !important; width: auto !important; flex-wrap: nowrap !important; justify-content: flex-end; gap: 10px !important; }
+      .phone-menu > summary { padding: 10px 14px; min-height: 44px; border: 1px solid var(--line-strong); border-radius: 999px; color: var(--ink); }
+      .nav-phone a.nav-mission { padding: 10px 14px; min-height: 44px; display: inline-flex; align-items: center; }
+      .brand { min-height: 44px; }  
+      
+      .phone-menu .drop-panel { max-height: calc(100vh - 90px); max-height: calc(100dvh - 90px); overflow-y: auto; overscroll-behavior: contain; scroll-padding-block: 8px; }
+    }
+    @media (max-width: 768px) {
+      .brand-sub { display: none; }
+      .logo-hero svg { width: 64px !important; height: 64px !important; }
+      .logo-hero { margin-bottom: 8px !important; }
+    }
+    
+    @media (max-width: 414px) {
+      .nav-inner { padding-left: 10px !important; padding-right: 10px !important; column-gap: 8px; }
+      .brand { font-size: 0.9rem; gap: 6px; }
+      .nav-links.nav-phone { gap: 6px !important; }
+      .nav-phone a.nav-mission, .phone-menu > summary { padding-left: 8px !important; padding-right: 8px !important; }
+    }
+    
+    @media (pointer: coarse) {
+      .nav-desktop > a, .nav-desktop .nav-drop > summary { min-height: 44px; display: inline-flex; align-items: center; }
+      footer .footer-links a, .footer-links a { min-height: 44px; display: inline-flex; align-items: center; }
+    }
+    
+    .nav-desktop > a[aria-current="page"]:not(.nav-ecosystem):not(.nav-mission):not(.nav-contributors), .drop-panel a[aria-current="page"] { color: var(--ink); text-decoration: underline; text-underline-offset: 6px; }
+    .nav-drop:not([open]):has(a[aria-current="page"]) > summary { color: var(--ink); }
+
+    
+    
+    .nav-links .nav-mission::after { animation-iteration-count: 1 !important; }
+    
+    .nav-drop > summary:focus-visible { outline: 3px solid var(--brand-ring); outline-offset: 2px; }
+    .nav-desktop .nav-drop > summary:focus-visible { border-radius: 4px; }
+    
+    @media (prefers-reduced-motion: reduce) { .nav-links a:hover, .nav-links .nav-mission:hover, .nav-links .nav-ecosystem:hover, .nav-links .nav-contributors:hover { transform: none !important; } }
+    
+    main a, main summary, main pre code { scroll-margin-top: calc(88px + var(--header-grow)); }
+    
+    @media (max-width: 1010px), (max-width: 63.125em) {
+      .nav-inner { flex-wrap: wrap !important; row-gap: 12px; }
+      .nav-inner > .brand { flex: 1 1 0px; max-width: max-content; }
+      .nav-inner > .nav-links.nav-phone { margin-left: auto; }
+      .phone-menu .drop-panel { max-height: max(calc(100vh - 146px - 5 * var(--header-grow)), min(calc(100vh - 90px - 5 * var(--header-grow)), 7rem)); max-height: max(calc(100dvh - 146px - 5 * var(--header-grow)), min(calc(100dvh - 90px - 5 * var(--header-grow)), 7rem)); }
+      
+      main a, main summary, main pre code { scroll-margin-top: calc(144px + 2 * var(--header-grow)); }
+    }
+</style>
+<style>
+main p a:not(.btn), main td a, main dd a, main .meta a { text-decoration: underline; text-underline-offset: 0.15em; }
+body:has(main :focus-visible, footer :focus-visible) .nav-drop[open] > .drop-panel { display: none; }
+</style>
+<style>
+.stage-q, .lede { text-wrap: pretty; }
+</style>
+<style>
+
+main p, main li, main dd { text-wrap: pretty; }
+a.wl { white-space: nowrap; }
+@media (min-width: 600px) { a.wl-long { white-space: nowrap; } }
+
+
+.cta > .btn { white-space: normal; text-align: center; }
+
+@media (max-width: 19.99em) {
+  main { overflow-wrap: break-word; }
+  main :is(h1, h2, h3) { overflow-wrap: anywhere; }
+}
+
+@media (max-width: 19.99em) {
+  h1 { font-size: min(clamp(2.4rem, 5.8vw, 3.5rem), 15vw); }
+  .stage-head h2 { font-size: min(1.3rem, 10vw); }
+}
+</style>
+<style>
+@media (max-width: 19.99em) { a.wl, a.wl-long { white-space: normal; } }
 </style>
 </head>
 <body>
 <a href="#main" class="skip">Skip to content</a>
 
 <header>
-  <div class="nav-inner">
-    <a href="index.html" class="brand">
-      <svg width="25" height="25" viewBox="0 0 32 32" fill="none" aria-hidden="true">
-        <path d="M16 2 28 9 28 23 16 30 4 23 4 9Z" stroke="#2dd4bf" stroke-width="1.6" fill="rgba(45,212,191,0.07)"/>
-        <circle cx="16" cy="11" r="2.1" fill="#2dd4bf"/><circle cx="11" cy="20" r="2.1" fill="#5eead4"/>
-        <circle cx="21" cy="20" r="2.1" fill="#fbbf24"/>
-        <path d="M16 11 11 20M16 11 21 20M11 20 21 20" stroke="#2dd4bf" stroke-width="1.2" opacity=".6"/>
-      </svg>
-      PDuk Brainworks <span>/ Agent Architect Stack</span>
-    </a>
-    <nav class="nav-links" aria-label="Primary">
-      <a href="mission.html" class="nav-mission">✦ Mission</a><a href="index.html#branches">Branches</a><a href="index.html#quickstart">Quick Start</a><a href="index.html#status">Status</a>
-      <a href="ecosystem.html" class="nav-ecosystem" aria-current="page">Ecosystem</a><a href="contributors.html" class="nav-contributors">Contributors</a>
-    </nav>
-  </div>
-</header>
+    <div class="nav-inner">
+      <a href="index.html" class="brand logo"><svg viewBox="0 0 32 32" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true"><path d="M16 2 28 9 28 23 16 30 4 23 4 9Z" stroke="#2dd4bf" stroke-width="1.6" fill="rgba(45,212,191,0.07)"/><circle cx="16" cy="11" r="2.1" fill="#2dd4bf"/><circle cx="11" cy="20" r="2.1" fill="#5eead4"/><circle cx="21" cy="20" r="2.1" fill="#fbbf24"/><path d="M16 11 11 20M16 11 21 20M11 20 21 20" stroke="#2dd4bf" stroke-width="1.2" opacity="0.6"/></svg> PDuk Brainworks <span class="brand-sub" style="color:var(--muted);font-weight:500;font-size:0.82rem;">/ Agent Architect Stack</span></a>
+      <nav class="nav-links nav-desktop" aria-label="Primary">
+        <a href="index.html">Home</a>
+        <details class="nav-drop" name="primary-menu"><summary>Tools</summary><div class="drop-panel"><a href="memory.html">Memory</a><a href="security.html">Security</a></div></details>
+        <details class="nav-drop" name="primary-menu"><summary>Get Started</summary><div class="drop-panel"><a href="get-started.html">Get Started</a><a href="how-it-works.html">How It Works</a></div></details>
+        <a href="ecosystem.html" class="nav-ecosystem" aria-current="page">Ecosystem</a>
+        <a href="mission.html" class="nav-mission"><span aria-hidden="true">&#10022;&nbsp;</span>Mission</a>
+        <a href="contributors.html" class="nav-contributors">Contributors</a>
+      </nav>
+      <nav class="nav-links nav-phone" aria-label="Primary">
+        <a href="mission.html" class="nav-mission"><span aria-hidden="true">&#10022;&nbsp;</span>Mission</a>
+        <details class="nav-drop phone-menu"><summary>Menu</summary><div class="drop-panel">
+          <a href="index.html">Home</a><span class="drop-sub">Tools</span><a href="memory.html" class="indent">Memory</a><a href="security.html" class="indent">Security</a>
+          <a href="get-started.html">Get Started</a><a href="how-it-works.html" class="indent">How It Works</a><a href="ecosystem.html" aria-current="page">Ecosystem</a><a href="mission.html">Mission</a><a href="contributors.html">Contributors</a></div></details>
+      </nav>
+    </div>
+  </header>
 
+<main id="main">
 <section class="hero">
   <div class="container">
     <span class="eyebrow">Ecosystem</span>
     <h1>What we're <em>watching</em>.</h1>
-    <p class="lede">Harnesses, models and hardware in the agent ecosystem worth knowing about. Some of this we run ourselves, some of it our own tools can plug into; the rest we've checked out and found legitimate — real, functioning, and worth your time. <b>We don't list vaporware, and nobody pays to be on this page.</b></p>
+    <p class="lede">Harnesses, models and hardware in the agent ecosystem worth knowing about. Some of this we run ourselves, some of it our own tools can plug into; the rest we've checked out and found legitimate: real, functioning, and worth your time. <b>We don't list vaporware, and nobody pays to be on this page.</b></p>
     <div class="stats">
-      <div class="stat"><div class="n">140</div><div class="l">Entries</div></div>
-      <div class="stat"><div class="n">164</div><div class="l">Evaluated, Aug 2026</div></div>
+      <div class="stat"><div class="n">141</div><div class="l">Entries</div></div>
+      <div class="stat"><div class="n">500+</div><div class="l">Evaluated, Nov 2026</div></div>
       <div class="stat"><div class="n">16</div><div class="l">Shelves</div></div>
-      <div class="stat"><div class="n">2026-08</div><div class="l">Last Reviewed</div></div>
+      <div class="stat"><div class="n">2026-11</div><div class="l">Last Reviewed</div></div>
     </div>
   </div>
 </section>
 
 <section style="border-bottom:1px solid var(--line); padding:var(--s4) 0; background:rgba(255,255,255,.012)">
   <div class="container">
-    <div style="font:10px/1 var(--mono); letter-spacing:.16em; text-transform:uppercase; color:var(--dim); margin-bottom:12px">Reading The Tags</div>
+    <div style="font:11px/1 var(--mono); letter-spacing:.16em; text-transform:uppercase; color:var(--dim); margin-bottom:12px">Reading The Tags</div>
     <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(250px,1fr)); gap:10px var(--s4); font-size:.82rem; color:var(--soft)">
       <div><span class="tag oss">OSS</span> &nbsp;a recognised open-source licence</div>
-      <div><span class="tag src">SOURCE-AVAILABLE</span> &nbsp;readable, but restricted — not open source</div>
+      <div><span class="tag src">SOURCE-AVAILABLE</span> &nbsp;readable, but restricted (not open source)</div>
       <div><span class="tag local">LOCAL</span> &nbsp;runs on hardware you own</div>
       <div><span class="tag paid">PAID</span> &nbsp;commercial, or free only up to a limit</div>
       <div><span class="tag mcp">MCP SERVER</span> &nbsp;an agent can drive it directly</div>
-      <div><span class="tag mcpc">MCP CLIENT</span> &nbsp;it connects out to other servers — a different thing, and not what the filter finds</div>
-      <div><span class="tag int">INTEGRATED</span> &nbsp;<b style="color:var(--ink)">an optional UMS add-on</b></div>
+      <div><span class="tag mcpc">MCP CLIENT</span> &nbsp;it connects out to other servers, which is a different thing and not what the filter finds</div>
+      <div><span class="tag int">INTEGRATED</span> &nbsp;<b style="color:var(--ink)">an optional Ultimate Memory Stack (UMS) add-on</b></div>
       <div><span class="tag rival">OVERLAPS</span> &nbsp;<b style="color:var(--ink)">an alternative to something we make</b></div>
       <div style="color:var(--dim)">The last two are disclosures, not ratings. They mark where we have a stake, so you can discount us accordingly.</div>
     </div>
   </div>
 </section>
 
-<input type="radio" name="f" id="f-all" checked>
-<input type="radio" name="f" id="f-local">
-<input type="radio" name="f" id="f-oss">
-<input type="radio" name="f" id="f-mcp">
-<input type="radio" name="f" id="f-int">
-<input type="radio" name="f" id="f-rival">
+<input type="radio" name="f" aria-describedby="f-label" id="f-all" checked>
+<input type="radio" name="f" aria-describedby="f-label" id="f-local">
+<input type="radio" name="f" aria-describedby="f-label" id="f-oss">
+<input type="radio" name="f" aria-describedby="f-label" id="f-mcp">
+<input type="radio" name="f" aria-describedby="f-label" id="f-int">
+<input type="radio" name="f" aria-describedby="f-label" id="f-rival">
 
 <div class="filters">
   <div class="container">
-    <span class="flabel">Filter</span>
+    <span class="flabel" id="f-label">Filter</span>
     <div class="chips">
       <label for="f-all">ALL</label>
       <label for="f-local">RUNS LOCALLY</label>
@@ -303,11 +481,11 @@
       <label for="f-int">INTEGRATED</label>
       <label for="f-rival">OVERLAPS</label>
     </div>
-    <span class="fnote">no javascript — CSS only</span>
+    
   </div>
 </div>
 
-<main id="main">
+<div class="eco-body">
   <div class="container layout">
     <aside class="rail" aria-label="Jump to a shelf">
       <div class="rail-title">The Arc</div>
@@ -326,316 +504,317 @@
       <a href="#create"><span class="n">13</span> Create</a>
       <a href="#voice"><span class="n">14</span> Voice</a>
       <div class="rule"></div>
-      <a href="#biotech"><span class="n">◆</span> Biotech</a>
-      <a href="#learn"><span class="n">◆</span> Learn</a>
-      <a href="#watchlist"><span class="n">◆</span> Watchlist</a>
+      <a href="#biotech"><span class="n" aria-hidden="true">◆</span> Biotech</a>
+      <a href="#learn"><span class="n" aria-hidden="true">◆</span> Learn</a>
+      <a href="#watchlist"><span class="n" aria-hidden="true">◆</span> Watchlist</a>
     </aside>
 
     <div>
-      <!-- 01 BUILD -->
+      
       <section class="stage" id="build">
         <span class="dot"><i></i></span>
         <div class="stage-head"><span class="code">01 BUILD</span><h2>Harnesses &amp; Agent Platforms</h2></div>
-        <p class="stage-q"><b>Which One Runs Your Agent?</b> Most of these run against local models and need no subscription; where one does not, its card says so.</p>
+        <p class="stage-q"><b>Which one runs your agent?</b> Most of these run against local models and need no subscription; where one does not, its card says so.</p>
         <div class="subgroup">
           <div class="sublabel">Terminal &amp; CLI Agents</div>
           <div class="grid">
             <article class="card"><h3><a href="https://claude.com/product/claude-code" target="_blank" rel="noopener">Claude Code</a></h3><p>Anthropic's terminal-native coding agent, and the harness most of this stack is built against.</p><div class="tags"><span class="tag paid">COMMERCIAL</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://github.com/openclaw/openclaw" target="_blank" rel="noopener">OpenClaw</a></h3><p>Self-hosted multi-agent framework you run on your own box, with its own gateway and session model. Now under independent foundation governance.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss"><h3><a href="https://www.nvidia.com/en-us/ai/nemoclaw/" target="_blank" rel="noopener">NemoClaw</a></h3><p>NVIDIA’s open blueprints for running an agent under OpenShell policy controls. OpenClaw is the default, with Hermes and LangChain Deep Agents as alternates.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
+            <article class="card t-rival t-oss"><h3><a href="https://www.nvidia.com/en-us/ai/nemoclaw/" target="_blank" rel="noopener">NemoClaw</a></h3><p>NVIDIA's open blueprints for running an agent under OpenShell policy controls. OpenClaw is the default.</p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag oss">Apache-2.0</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://aider.chat/" target="_blank" rel="noopener">Aider</a></h3><p>A terminal pair programmer that edits files in your git repository and commits each change separately, using a repository map instead of loading the whole codebase.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss t-local"><h3><a href="https://github.com/block/goose" target="_blank" rel="noopener">goose</a></h3><p>A local-first agent, CLI and desktop, reaching models and tools through MCP extensions and able to run entirely offline. Donated by Block to the Agentic AI Foundation, so no longer vendor-owned.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss t-local"><h3><a href="https://opencode.ai/" target="_blank" rel="noopener">OpenCode</a></h3><p>A provider-agnostic terminal agent — the option if you want a daily driver that isn't tied to one vendor's model.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/aaif-goose/goose" target="_blank" rel="noopener">goose</a></h3><p>A local-first agent, CLI and desktop, reaching models and tools through MCP extensions and able to run entirely offline. Donated by Block to the Agentic AI Foundation, so no longer vendor-owned.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://opencode.ai/" target="_blank" rel="noopener">OpenCode</a></h3><p>A provider-agnostic terminal agent.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://github.com/cline/cline" target="_blank" rel="noopener">Cline</a></h3><p>Started as an editor extension and now ships a standalone CLI with a headless mode and an SDK for building your own agents, so it is no longer editor-only.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss t-local"><h3><a href="https://github.com/QwenLM/qwen-code" target="_blank" rel="noopener">Qwen Code</a></h3><p>An open terminal agent forked from Google’s Gemini CLI and developed independently since. Tuned for Qwen models, but it will run against other endpoints.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss"><h3><a href="https://github.com/xai-org/grok-build" target="_blank" rel="noopener">Grok Build</a></h3><p>xAI’s terminal coding agent, against its hosted models — full-screen TUI, plan mode, parallel subagents, and MCP servers working out of the box. The Rust source is published.<span class="caveat">In July 2026 a researcher’s wire captures showed it packaging the entire tracked repository — git history and committed secrets included — and uploading it to xAI storage, even when told to read no files and with the “improve the model” toggle off. xAI mitigated it server-side within a day, without a formal advisory (<a href="https://thehackernews.com/2026/07/grok-build-uploads-entire-git.html" target="_blank" rel="noopener">reported here</a>). Rotate anything it could have seen.</span></p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag paid">PAID MODELS</span><span class="tag mcpc">MCP CLIENT</span></div></article>
-            <article class="card t-oss"><h3><a href="https://pi.dev/" target="_blank" rel="noopener">Pi</a></h3><p>A deliberately small terminal harness: a handful of built-in tools, a short prompt, everything else added as extensions. The harness OpenClaw is built on.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/QwenLM/qwen-code" target="_blank" rel="noopener">Qwen Code</a></h3><p>An open terminal agent forked from Google's Gemini CLI and developed independently since. Tuned for Qwen models, but it will run against other endpoints.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/xai-org/grok-build" target="_blank" rel="noopener">Grok Build</a></h3><p>SpaceXSI's (formerly xAI's) terminal coding agent: full-screen TUI, plan mode, parallel subagents, and MCP servers working out of the box. The Rust source is published.<span class="caveat">In July 2026 a researcher's wire captures showed it packaging the entire tracked repository, git history and committed secrets included, and uploading it to xAI storage, even when told to read no files and with the "improve the model" toggle off. xAI mitigated it server-side, without a formal advisory (<a href="https://thehackernews.com/2026/07/grok-build-uploads-entire-git.html" target="_blank" rel="noopener" class="wl">reported here</a>). Rotate anything it could have seen.</span></p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span><span class="tag paid">FREE TIER</span><span class="tag mcpc">MCP CLIENT</span></div></article>
+            <article class="card t-oss"><h3><a href="https://pi.dev/" target="_blank" rel="noopener">Pi</a></h3><p>A deliberately small terminal harness: a handful of built-in tools, a short prompt, everything else added as extensions.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
+            
+            <article class="card t-oss t-local"><h3><a href="https://cmux.com/" target="_blank" rel="noopener">cmux</a></h3><p>A macOS terminal for running several coding agents side by side. Any agent that runs in a terminal works in it; each tab shows its git branch, and a pane lights up when its agent needs you.<span class="caveat">The app and CLI are GPL-3.0-or-later; the server folders are <span style="white-space:nowrap">BUSL-1.1</span> and need a commercial licence for production use or self-hosting. Anonymous telemetry is on by default.</span></p><div class="tags"><span class="tag oss">GPL-3.0-or-later</span><span class="tag local">LOCAL</span></div></article>
           </div>
         </div>
         <div class="subgroup">
           <div class="sublabel">Autonomous &amp; Framework Agents</div>
           <div class="grid">
-            <article class="card t-oss t-local"><h3><a href="https://github.com/All-Hands-AI/OpenHands" target="_blank" rel="noopener">OpenHands</a></h3><p>A self-hosted control centre for coding agents — it will take an issue, write the code, run the tests and open a pull request, and it drives other agents besides its own. Model-agnostic, so it runs against local endpoints too.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss"><h3><a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes Agent</a></h3><p>NousResearch's open agent framework — younger and faster-moving than the mature terminal tools above.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/OpenHands/OpenHands" target="_blank" rel="noopener">OpenHands</a></h3><p>A self-hosted control centre for coding agents. It will take an issue, write the code, run the tests and open a pull request, and it drives other agents besides its own. Model-agnostic, so it runs against local endpoints too.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss"><h3><a href="https://github.com/NousResearch/hermes-agent" target="_blank" rel="noopener">Hermes Agent</a></h3><p>NousResearch's open agent framework, younger and faster-moving than the mature terminal tools above.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
           </div>
         </div>
         <div class="subgroup">
-          <div class="sublabel">Build Your Own <span class="hint">— APIs, SDKs and structured output</span></div>
+          <div class="sublabel">Build Your Own <span class="hint">(APIs, SDKs and structured output)</span></div>
           <div class="grid">
-            <article class="card"><h3><a href="https://platform.claude.com/" target="_blank" rel="noopener">Claude Developer Platform</a></h3><p>The API and SDK surface for building agents directly, rather than sitting inside someone else's harness.</p><div class="tags"><span class="tag paid">COMMERCIAL</span></div></article>
-            <article class="card t-oss"><h3><a href="https://github.com/instructor-ai/instructor" target="_blank" rel="noopener">Instructor</a></h3><p>Makes a model return data that matches a schema you defined, retrying on validation failure instead of leaving you to parse prose.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
-            <article class="card t-oss t-local"><h3><a href="https://github.com/dottxt-ai/outlines" target="_blank" rel="noopener">Outlines</a></h3><p>Constrains generation so the output is structurally valid by construction rather than by retry — useful when you control the local inference stack.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card"><h3><a href="https://platform.claude.com/" target="_blank" rel="noopener">Claude Platform</a></h3><p>The API and SDK surface for building agents directly, rather than sitting inside someone else's harness.</p><div class="tags"><span class="tag paid">COMMERCIAL</span></div></article>
+            <article class="card t-oss"><h3><a href="https://github.com/567-labs/instructor" target="_blank" rel="noopener">Instructor</a></h3><p>Makes a model return data that matches a schema you defined, retrying on validation failure instead of leaving you to parse prose.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/dottxt-ai/outlines" target="_blank" rel="noopener">Outlines</a></h3><p>Constrains generation so the output is structurally valid by construction rather than by retry. Useful when you control the local inference stack.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
           </div>
         </div>
       </section>
 
-      <!-- 02 ORCHESTRATE -->
+      
       <section class="stage" id="orchestrate">
         <span class="dot"><i></i></span>
         <div class="stage-head"><span class="code">02 ORCHESTRATE</span><h2>Multi-Step &amp; Multi-Agent</h2></div>
-        <p class="stage-q"><b>One Agent Turn Is Easy. What Runs A Hundred Of Them, In Order, Without Losing State?</b> This is the most crowded corner of the field, and most builders do not need this layer until they do.</p>
+        <p class="stage-q"><b>One agent turn is easy. What runs a hundred of them, in order, without losing state?</b> This is the most crowded corner of the field, and most builders do not need this layer until they do.</p>
         <div class="subgroup">
           <div class="sublabel">Graph &amp; Contract-First</div>
           <div class="grid">
             <article class="card t-oss t-local"><h3><a href="https://github.com/langchain-ai/langgraph" target="_blank" rel="noopener">LangGraph</a></h3><p>Graph-based orchestration where durable execution, streaming, human-in-the-loop and memory are runtime guarantees rather than things you bolt on. The default pick if you want explicit control over state.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">SELF-HOST</span></div></article>
-            <article class="card t-oss t-local"><h3><a href="https://ai.pydantic.dev/" target="_blank" rel="noopener">PydanticAI</a></h3><p>Type contracts rather than a graph: you define what each step must return and the framework holds the model to it. The lighter option if a graph DSL feels like ceremony.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">SELF-HOST</span></div></article>
-            <article class="card t-oss"><h3><a href="https://developers.llamaindex.ai/python/framework/module_guides/workflow/" target="_blank" rel="noopener">LlamaIndex Workflows</a></h3><p>Event-driven orchestration from the LlamaIndex team, at its best when the pipeline is document- and retrieval-heavy rather than general-purpose.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://pydantic.dev/docs/ai/overview/" target="_blank" rel="noopener">PydanticAI</a></h3><p>Type contracts rather than a graph: you define what each step must return and the framework holds the model to it. The lighter option if a graph DSL feels like ceremony.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">SELF-HOST</span></div></article>
+            <article class="card t-oss"><h3><a href="https://developers.llamaindex.ai/python/llamaagents/workflows/" target="_blank" rel="noopener">LlamaIndex Workflows</a></h3><p>Event-driven orchestration from the LlamaIndex team, at its best when the pipeline is document- and retrieval-heavy rather than general-purpose.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
           </div>
         </div>
         <div class="subgroup">
           <div class="sublabel">Role-Based &amp; Interoperability-First</div>
           <div class="grid">
             <article class="card t-oss"><h3><a href="https://github.com/crewAIInc/crewAI" target="_blank" rel="noopener">CrewAI</a></h3><p>Models a workflow as a crew of role-playing agents with assigned tasks. The most widely adopted framework in this style, and the fastest way to see a multi-agent system working.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
-            <article class="card t-oss"><h3><a href="https://github.com/ag2ai/ag2" target="_blank" rel="noopener">AG2</a></h3><p>The community continuation of AutoGen, with native MCP and agent-to-agent protocol support — the pick when you care most about talking to other systems.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag mcpc">MCP CLIENT</span></div></article>
+            <article class="card t-oss"><h3><a href="https://github.com/ag2ai/ag2" target="_blank" rel="noopener">AG2</a></h3><p>The community continuation of AutoGen, with native MCP and agent-to-agent protocol support. The pick when you care most about talking to other systems.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag mcpc">MCP CLIENT</span></div></article>
             <article class="card t-oss"><h3><a href="https://mastra.ai/" target="_blank" rel="noopener">Mastra</a></h3><p>A TypeScript-native agent framework, for when the rest of the project is already JavaScript and a Python orchestrator would be the odd one out.</p><div class="tags"><span class="tag oss">Apache-2.0 core</span></div></article>
           </div>
         </div>
       </section>
 
-      <!-- 03 RUN -->
+      
       <section class="stage" id="run">
         <span class="dot"><i></i></span>
         <div class="stage-head"><span class="code">03 RUN</span><h2>Models &amp; Inference</h2></div>
-        <p class="stage-q"><b>Where Does The Model Actually Execute?</b> Local first; hosted where it earns its place.</p>
+        <p class="stage-q"><b>Where does the model actually execute?</b> Local first; hosted where it earns its place.</p>
         <div class="subgroup">
           <div class="sublabel">Local Engines &amp; Runtimes</div>
           <div class="grid">
-            <article class="card t-oss t-local"><h3><a href="https://ollama.com/" target="_blank" rel="noopener">Ollama</a></h3><p>The shortest path from nothing to a model running on your own machine, and increasingly an agent CLI in its own right. If you would rather click than type, the desktop apps that do the same job are on <a href="#interact">Interact</a>. If you already run it, UMS can point its optional memory add-ons at a local Ollama model for embeddings — one of two local options, and nothing in the stack installs it for you.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://ollama.com/" target="_blank" rel="noopener">Ollama</a></h3><p>The shortest path from nothing to a model running on your own machine. If you would rather click than type, the desktop apps that do the same job are on <a href="#interact" class="wl">Interact</a>. </p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://github.com/ggml-org/llama.cpp" target="_blank" rel="noopener">llama.cpp</a></h3><p>The engine underneath most local LLM tooling. Its mixture-of-experts offload options let a large model run on one consumer GPU plus system RAM.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss t-local"><h3><a href="https://github.com/kvcache-ai/ktransformers" target="_blank" rel="noopener">KTransformers</a></h3><p>Runs large mixture-of-experts models on a single consumer GPU plus system RAM by keeping the routed experts on the CPU. Backed by a published systems paper.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss t-local"><h3><a href="https://github.com/ikawrakow/ik_llama.cpp" target="_blank" rel="noopener">ik_llama.cpp</a></h3><p>A llama.cpp fork for hybrid CPU/GPU inference of large mixture-of-experts models. One maintainer, CPU and CUDA only — a specialist tool, not a replacement.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss t-local"><h3><a href="https://github.com/ml-explore/mlx" target="_blank" rel="noopener">MLX</a></h3><p>Apple's array framework for on-device training and inference, and the software half of what makes a Mac worth buying for this. No longer Apple-only — it now ships a CUDA backend that installs on Linux.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/kvcache-ai/ktransformers" target="_blank" rel="noopener">KTransformers</a></h3><p>Runs large mixture-of-experts models on a single consumer GPU plus system RAM. Backed by a published systems paper.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/ikawrakow/ik_llama.cpp" target="_blank" rel="noopener">ik_llama.cpp</a></h3><p>A llama.cpp fork for hybrid CPU/GPU inference of large mixture-of-experts models. One maintainer, CPU and CUDA only: a specialist tool, not a replacement.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/ml-explore/mlx" target="_blank" rel="noopener">MLX</a></h3><p>Apple's array framework for on-device training and inference, and the software half of what makes a Mac worth buying for this. No longer Apple-only, it now ships a CUDA backend that installs on Linux.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://github.com/ggml-org/llama.cpp/tree/master/tools/quantize" target="_blank" rel="noopener">llama.cpp quantize &amp; imatrix</a></h3><p>The tooling that converts full-precision weights to GGUF at a chosen bit depth, with importance-matrix calibration to decide what to keep sharp. This is how a model that would not fit ends up fitting.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
           </div>
         </div>
         <div class="subgroup">
-          <div class="sublabel">Serving At Scale</div>
+          <div class="sublabel">Serving at Scale</div>
           <div class="grid">
             <article class="card t-oss t-local"><h3><a href="https://vllm.ai/" target="_blank" rel="noopener">vLLM</a></h3><p>Throughput-focused serving for when one machine has to answer many requests at once.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss t-local"><h3><a href="https://github.com/sgl-project/sglang" target="_blank" rel="noopener">SGLang</a></h3><p>Reuses shared prompt prefixes across requests — the common pattern in agent workloads, where system prompts and tool schemas repeat.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/sgl-project/sglang" target="_blank" rel="noopener">SGLang</a></h3><p>Reuses shared prompt prefixes across requests: the common pattern in agent workloads, where system prompts and tool schemas repeat.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
           </div>
         </div>
         <div class="subgroup">
           <div class="sublabel">Routing &amp; Gateways</div>
           <div class="grid">
-            <article class="card"><h3><a href="https://openrouter.ai/" target="_blank" rel="noopener">OpenRouter</a></h3><p>One API across many providers, with a rotating set of no-cost models. The daily cap rises permanently once you have ever added credit.</p><div class="tags"><span class="tag paid">FREE TIER</span></div></article>
+            <article class="card"><h3><a href="https://openrouter.ai/" target="_blank" rel="noopener">OpenRouter</a></h3><p>One API across many providers, with a rotating set of no-cost models.</p><div class="tags"><span class="tag paid">FREE TIER</span></div></article>
           </div>
         </div>
         <div class="subgroup">
           <div class="sublabel">Hosted Access &amp; Model Hubs</div>
           <div class="grid">
-            <article class="card"><h3><a href="https://groq.com/" target="_blank" rel="noopener">Groq</a></h3><p>Hosted inference notable for speed rather than headroom; no card required to start. Not xAI’s Grok — a different company.</p><div class="tags"><span class="tag paid">FREE TIER</span></div></article>
-            <article class="card"><h3><a href="https://www.cerebras.ai/inference" target="_blank" rel="noopener">Cerebras</a></h3><p>A no-card daily token allowance on unusually fast hardware, positioned by Cerebras itself as a development tier rather than a production one.</p><div class="tags"><span class="tag paid">FREE TIER</span></div></article>
+            <article class="card"><h3><a href="https://groq.com/" target="_blank" rel="noopener">Groq</a></h3><p>Hosted inference; no card required to start. Not Grok; Groq is a different company.</p><div class="tags"><span class="tag paid">FREE TIER</span></div></article>
             <article class="card"><h3><a href="https://huggingface.co/" target="_blank" rel="noopener">Hugging Face</a></h3><p>Where the open weights live, along with the datasets and Spaces around them.</p><div class="tags"><span class="tag">HUB</span></div></article>
             <article class="card"><h3><a href="https://developer.nvidia.com/topics/ai/nemotron" target="_blank" rel="noopener">NVIDIA Nemotron</a></h3><p>NVIDIA's open model family, tuned for reasoning and tool use, with recent releases aimed explicitly at a single desktop GPU.</p><div class="tags"><span class="tag">MODELS</span></div></article>
-            <article class="card"><h3><a href="https://github.com/mnfst/awesome-free-llm-apis" target="_blank" rel="noopener">Free-Provider List</a></h3><p>A community-maintained, frequently refreshed table of free-tier API providers. Terms in this corner of the market change often enough that a living list beats anything we could freeze here.</p><div class="tags"><span class="tag">LIST</span></div></article>
+            <article class="card"><h3><a href="https://github.com/mnfst/awesome-free-llm-apis" target="_blank" rel="noopener">Free-Provider List</a></h3><p>A frequently refreshed table of free-tier API providers. Terms in this corner of the market change often enough that a living list beats anything we could freeze here.</p><div class="tags"><span class="tag">LIST</span></div></article>
           </div>
         </div>
       </section>
 
-      <!-- 04 METAL -->
+      
       <section class="stage" id="metal">
         <span class="dot"><i></i></span>
         <div class="stage-head"><span class="code">04 METAL</span><h2>Hardware &amp; Vendor Platforms</h2></div>
-        <p class="stage-q"><b>What Are You Running It On?</b> Entries name the platform, not one vendor's box — the same silicon usually ships in several.</p>
+        <p class="stage-q"><b>What are you running it on?</b> Entries name the platform, not one vendor's box, because the same silicon usually ships in several.</p>
         <div class="subgroup">
-          <div class="sublabel">Platforms <span class="hint">— the silicon, and everyone who ships a box around it</span></div>
+          <div class="sublabel">Platforms</div>
           <div class="grid">
-            <article class="card"><h3><a href="https://www.nvidia.com/en-us/products/workstations/dgx-spark/" target="_blank" rel="noopener">NVIDIA GB10 <span style="color:var(--soft);font-weight:400;font-size:.85rem">(DGX Spark platform)</span></a></h3><p>A desk-side class of machine with unified memory, for running and fine-tuning large models locally without a rack. NVIDIA's own DGX Spark is one of eight systems on this chip — Acer, ASUS, Dell, GIGABYTE, HP, Lenovo and MSI ship the rest.<span class="caveat">The silicon is identical across all of them; price, storage and support are not, and the spread between cheapest and dearest is roughly double.</span></p><div class="tags"><span class="tag">PLATFORM</span></div></article>
-            <article class="card"><h3><a href="https://www.amd.com/en/products/processors/desktops/ryzen/ryzen-ai-halo.html" target="_blank" rel="noopener">AMD Ryzen AI Max+ <span style="color:var(--soft);font-weight:400;font-size:.85rem">(Strix Halo)</span></a></h3><p>Unified-memory APUs that let a mid-range system hold models that would not fit in discrete VRAM, with most of the pool assignable to the GPU. Dozens of machines ship it; Framework Desktop is the most open and repairable.<span class="caveat">Memory is soldered, so buy the capacity you want up front. ROCm tooling still trails CUDA.</span></p><div class="tags"><span class="tag">PLATFORM</span></div></article>
-            <article class="card"><h3><a href="https://www.apple.com/mac/" target="_blank" rel="noopener">Apple Silicon <span style="color:var(--soft);font-weight:400;font-size:.85rem">(Mac Studio, Mac mini)</span></a></h3><p>Unified memory makes large-model inference practical on a desktop that fits under a monitor. The choice across the Mac line is capacity and bandwidth, not a different platform.</p><div class="tags"><span class="tag">PLATFORM</span></div></article>
-            <article class="card ent"><h3><a href="https://www.nvidia.com/en-us/products/workstations/dgx-station/" target="_blank" rel="noopener">NVIDIA DGX Station</a></h3><p>748&nbsp;GB of coherent memory, models up to a trillion parameters. NVIDIA supplies the board and the OEMs build the machine; there is no published price.</p><div class="tags"><span class="tag ent">FOR ENTERPRISE</span></div></article>
+            <article class="card t-local"><h3><a href="https://www.nvidia.com/en-us/products/workstations/dgx-spark/" target="_blank" rel="noopener">NVIDIA GB10 <span style="color:var(--soft);font-weight:400;font-size:.85rem">(DGX Spark platform)</span></a></h3><p>A desk-side class of machine with unified memory, for running and fine-tuning large models locally without a rack. NVIDIA's own DGX Spark is one of several systems on this chip. Acer, ASUS, Dell, GIGABYTE, HP, Lenovo and MSI ship the rest.<span class="caveat">The chip is identical across all of them; memory size, price, storage and support are not.</span></p><div class="tags"><span class="tag">PLATFORM</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-local"><h3><a href="https://www.amd.com/en/products/processors/laptop/ryzen/ai-300-series/amd-ryzen-ai-max-plus-395.html" target="_blank" rel="noopener">AMD Ryzen AI Max+ <span style="color:var(--soft);font-weight:400;font-size:.85rem">(Strix Halo)</span></a></h3><p>Unified-memory APUs that let a mid-range system hold models that would not fit in discrete VRAM, with most of the pool assignable to the GPU. Many machines ship it; Framework Desktop is the most open and repairable.<span class="caveat">Memory is soldered, so buy the capacity you want up front. ROCm tooling still trails CUDA.</span></p><div class="tags"><span class="tag">PLATFORM</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-local"><h3><a href="https://www.apple.com/mac/" target="_blank" rel="noopener">Apple Silicon <span style="color:var(--soft);font-weight:400;font-size:.85rem">(Mac Studio, Mac mini)</span></a></h3><p>Unified memory makes large-model inference practical on a desktop that fits under a monitor. The choice across the Mac line is capacity and bandwidth, not a different platform.</p><div class="tags"><span class="tag">PLATFORM</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card ent t-local"><h3><a href="https://www.nvidia.com/en-us/products/workstations/dgx-station/" target="_blank" rel="noopener">NVIDIA DGX Station</a></h3><p>748&nbsp;GB of coherent memory, models up to a trillion parameters. NVIDIA supplies the board and the OEMs build the machine.</p><div class="tags"><span class="tag ent">FOR ENTERPRISE</span><span class="tag local">LOCAL</span></div></article>
           </div>
         </div>
         <div class="subgroup">
-          <div class="sublabel">Vendor Developer Platforms <span class="hint">— drivers, SDKs, reference material</span></div>
+          <div class="sublabel">Vendor Developer Platforms <span class="hint">(drivers, SDKs, reference material)</span></div>
           <div class="grid">
-            <article class="card"><h3><a href="https://developer.nvidia.com/" target="_blank" rel="noopener">NVIDIA Developer</a></h3><p>CUDA, drivers, SDKs and reference material — the enablement layer for NVIDIA hardware you own.</p><div class="tags"><span class="tag">DOCS / SDK</span></div></article>
-            <article class="card"><h3><a href="https://developer.amd.com/" target="_blank" rel="noopener">AMD Developer</a></h3><p>ROCm drivers, SDKs and reference material for running AI workloads on AMD hardware.</p><div class="tags"><span class="tag">DOCS / SDK</span></div></article>
-            <article class="card"><h3><a href="https://developer.apple.com/machine-learning/" target="_blank" rel="noopener">Apple Developer</a></h3><p>The Metal and Core ML documentation and tooling behind on-device inference, and the home of MLX.</p><div class="tags"><span class="tag">DOCS / SDK</span></div></article>
+            <article class="card"><h3><a href="https://developer.nvidia.com/" target="_blank" rel="noopener">NVIDIA Developer</a></h3><p>CUDA, drivers, SDKs and reference material: the enablement layer for NVIDIA hardware you own.</p><div class="tags"><span class="tag">DOCS / SDK</span></div></article>
+            <article class="card"><h3><a href="https://www.amd.com/en/developer.html" target="_blank" rel="noopener">AMD Developer</a></h3><p>ROCm drivers, SDKs and reference material for running AI workloads on AMD hardware.</p><div class="tags"><span class="tag">DOCS / SDK</span></div></article>
+            <article class="card"><h3><a href="https://developer.apple.com/machine-learning/" target="_blank" rel="noopener">Apple Developer</a></h3><p>The Metal, Core AI and Core ML documentation and tooling behind on-device inference, and the home of MLX.</p><div class="tags"><span class="tag">DOCS / SDK</span></div></article>
           </div>
         </div>
       </section>
 
-      <!-- 05 FLEET -->
+      
       <section class="stage" id="fleet">
         <span class="dot"><i></i></span>
         <div class="stage-head"><span class="code">05 FLEET</span><h2>Self-Hosting &amp; Multi-Machine</h2></div>
-        <p class="stage-q"><b>Where Do Your Agents Live When They're Not On Your Laptop — And How Does One Machine Find Another Without Opening A Hole In Your Router?</b> Listed only where a tool does an agent-specific job.</p>
+        <p class="stage-q"><b>Where do your agents live when they're not on your laptop? And how does one machine find another without opening a hole in your router?</b> Listed only where a tool does an agent-specific job.</p>
         <div class="subgroup">
           <div class="sublabel">Networking, Isolation &amp; Packaging</div>
           <div class="grid">
-            <article class="card t-oss t-local"><h3><a href="https://www.proxmox.com/en/products/proxmox-virtual-environment/overview" target="_blank" rel="noopener">Proxmox VE</a></h3><p>Turns one always-on box into several isolated hosts, each running its own agent stack, with a whole GPU handed to whichever one needs it. Passing a consumer card through works; <em>splitting</em> one card across machines does not — that needs datacenter hardware and a licence.</p><div class="tags"><span class="tag oss">AGPLv3</span><span class="tag local">SELF-HOST</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://www.proxmox.com/en/products/proxmox-virtual-environment/overview" target="_blank" rel="noopener">Proxmox VE</a></h3><p>Turns one always-on box into several isolated hosts, each running its own agent stack, with a whole GPU handed to whichever one needs it. Passing a consumer card through works; <em>splitting</em> one card across machines does not.</p><div class="tags"><span class="tag oss">AGPLv3</span><span class="tag local">SELF-HOST</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://github.com/NVIDIA/nvidia-container-toolkit" target="_blank" rel="noopener">Docker + NVIDIA Container Toolkit</a></h3><p>The unit an agent actually ships in. Compose keeps one host's stack reproducible; the NVIDIA toolkit is what makes the GPU visible inside the container instead of stranded on the host.</p><div class="tags"><span class="tag oss">Toolkit Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss t-local"><h3><a href="https://tailscale.com/" target="_blank" rel="noopener">Tailscale &amp; Headscale</a></h3><p>Puts your laptop and your home box on the same private network without forwarding a port. Run the coordinator yourself with Headscale if you would rather the connection metadata never left your hands.<span class="caveat">Tailscale is commercial with a free personal tier; Headscale is BSD-3.</span></p><div class="tags"><span class="tag oss">Headscale BSD-3</span><span class="tag paid">FREE TIER</span><span class="tag local">SELF-HOST</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://tailscale.com/" target="_blank" rel="noopener">Tailscale &amp; Headscale</a></h3><p>Puts your laptop and your home box on the same private network without forwarding a port. Run the coordinator yourself with Headscale.<span class="caveat">Tailscale is commercial with a free personal tier; Headscale is BSD-3.</span></p><div class="tags"><span class="tag oss">Headscale BSD-3</span><span class="tag paid">FREE TIER</span><span class="tag local">SELF-HOST</span></div></article>
           </div>
         </div>
         <div class="subgroup">
           <div class="sublabel">Routing, Sharing &amp; Watching</div>
           <div class="grid">
             <article class="card t-oss t-local"><h3><a href="https://github.com/mostlygeek/llama-swap" target="_blank" rel="noopener">llama-swap</a></h3><p>A single binary that loads and unloads local models on demand, so you are not running three inference processes at once burning VRAM you do not have.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss t-local"><h3><a href="https://github.com/ggml-org/llama.cpp/blob/master/tools/rpc/README.md" target="_blank" rel="noopener">llama.cpp RPC Mode</a></h3><p>Already built in: point it at a second machine and that card's VRAM joins the same model load. Not secure by default — keep it on your own network, and run identical builds on every node or it will hang rather than run.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/ggml-org/llama.cpp/blob/master/tools/rpc/README.md" target="_blank" rel="noopener">llama.cpp RPC Mode</a></h3><p>Already built in: point it at a second machine and that card's VRAM joins the same model load. Not secure by default. Keep it on your own network, and run identical builds on every node.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://github.com/henrygd/beszel" target="_blank" rel="noopener">Beszel</a></h3><p>One screen that answers one question across every box you own: is it still alive, and is the GPU actually being used.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">SELF-HOST</span></div></article>
           </div>
         </div>
       </section>
 
-      <!-- 06 INTERACT -->
+      
       <section class="stage" id="interact">
         <span class="dot"><i></i></span>
         <div class="stage-head"><span class="code">06 INTERACT</span><h2>Front-Ends &amp; Local Interfaces</h2></div>
-        <p class="stage-q"><b>An Engine Is Not An Interface.</b> These sit on top of a local model and add chat, accounts, retrieval and MCP — the layer you hand to someone who will never open a terminal. The engines themselves are on <a href="#run">Run</a>.</p>
+        <p class="stage-q"><b>An engine is not an interface.</b> These sit on top of a local model and add chat, accounts, retrieval and MCP: the layer you hand to someone who will never open a terminal. The engines themselves are on <a href="#run" class="wl">Run</a>.</p>
         <div class="subgroup">
           <div class="grid">
             <article class="card t-local"><h3><a href="https://github.com/open-webui/open-webui" target="_blank" rel="noopener">Open WebUI</a></h3><p>The most complete self-hosted chat front-end for local models, with document chat, multi-user accounts and MCP support.<span class="caveat">Source-available, not open source: its licence adds a branding restriction above a user threshold. Read it before deploying for an organisation.</span></p><div class="tags"><span class="tag src">SOURCE-AVAILABLE</span><span class="tag local">SELF-HOST</span><span class="tag mcpc">MCP CLIENT</span></div></article>
-            <article class="card t-oss t-local"><h3><a href="https://github.com/danny-avila/LibreChat" target="_blank" rel="noopener">LibreChat</a></h3><p>A self-hosted, multi-provider chat interface with agents, file handling and MCP support, under a plain MIT licence.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">SELF-HOST</span><span class="tag mcpc">MCP CLIENT</span></div></article>
-            <article class="card t-local"><h3><a href="https://lmstudio.ai/" target="_blank" rel="noopener">LM Studio</a></h3><p>A polished desktop app for downloading and running local models, with an OpenAI-compatible server and MCP support. Closed source, free for personal use — the easiest on-ramp, stated plainly.</p><div class="tags"><span class="tag paid">CLOSED, FREE</span><span class="tag local">LOCAL</span><span class="tag mcpc">MCP CLIENT</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/LibreChat-AI/LibreChat" target="_blank" rel="noopener">LibreChat</a></h3><p>A self-hosted, multi-provider chat interface with agents, file handling and MCP support, under a plain MIT licence.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">SELF-HOST</span><span class="tag mcpc">MCP CLIENT</span></div></article>
+            <article class="card t-local"><h3><a href="https://lmstudio.ai/" target="_blank" rel="noopener">LM Studio</a></h3><p>A polished desktop app for downloading and running local models, with an OpenAI-compatible server and MCP support. Closed source, free.</p><div class="tags"><span class="tag paid">CLOSED, FREE</span><span class="tag local">LOCAL</span><span class="tag mcpc">MCP CLIENT</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://jan.ai/" target="_blank" rel="noopener">Jan</a></h3><p>The open alternative in the same shape as LM Studio: a desktop app that runs models locally and exposes a local API.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://anythingllm.com/" target="_blank" rel="noopener">AnythingLLM</a></h3><p>A desktop and self-hosted app built around document workspaces, for when the job is mostly "chat with my own files".</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">SELF-HOST</span></div></article>
           </div>
         </div>
       </section>
 
-      <!-- 07 REMEMBER -->
+      
       <section class="stage s-mem" id="remember">
         <span class="dot"><i></i></span>
         <div class="stage-head"><span class="code">07 REMEMBER</span><h2>Agent Memory</h2></div>
-        <p class="stage-q"><b>An Agent That Forgets Between Sessions Is A Demo, Not A Tool.</b> <b>This is the shelf where we have the most at stake:</b> some of these we integrate as optional add-ons, and some are alternatives to what we make. Both are marked. Judge them yourself.</p>
+        <p class="stage-q"><b>An agent that forgets between sessions is a demo, not a tool.</b> <b>This is the shelf where we have the most at stake:</b> some of these we integrate as optional add-ons, and some are alternatives to what we make. Both are marked. Judge them yourself.</p>
         <div class="subgroup">
-          <div class="sublabel">What UMS Can Plug Into <span class="hint">— optional add-ons, not requirements</span></div>
+          <div class="sublabel">What UMS Can Plug Into</div>
+          <p style="color:var(--soft); font-size:0.92rem; margin:-4px 0 var(--s4);">Optional add-ons set up third-party tools, and some have known problems in the current release.</p>
           <div class="grid">
-            <article class="card t-int t-oss t-local t-mcp"><h3><a href="https://github.com/getzep/graphiti" target="_blank" rel="noopener">Graphiti</a></h3><p>A knowledge-graph memory layer where every fact carries a validity period, so a changed fact closes the old one instead of overwriting it. Ships an MCP server. UMS can install it as an opt-in graph layer; nothing in the core requires it.</p><div class="tags"><span class="tag int">INTEGRATED</span><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span><span class="tag mcp">MCP SERVER</span></div></article>
-            <article class="card t-int t-oss t-local"><h3><a href="https://github.com/kuzudb/kuzu" target="_blank" rel="noopener">Kuzu</a></h3><p>An embedded graph database — roughly what SQLite is for relational data — which is what made a local graph backend practical with no server to administer. It is the default backend for the Graphiti add-on above, which also supports several others.<span class="caveat">Upstream is archived: the team was acquired and the repo is read-only after a final release. Existing versions still work, and a community fork continues the line.</span></p><div class="tags"><span class="tag int">INTEGRATED</span><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-int t-oss"><h3><a href="https://github.com/Graphify-Labs/graphify" target="_blank" rel="noopener">Graphify</a></h3><p>Builds a queryable symbol graph of a codebase — definitions, references and call sites across thirty-six languages — so an agent can ask where a function is used instead of grepping for it. One of the opt-in UMS add-ons.<span class="caveat">The PyPI package is <b>graphifyy</b>, with two y's. The single-y name is an unrelated package.</span></p><div class="tags"><span class="tag int">INTEGRATED</span><span class="tag oss">Apache-2.0</span></div></article>
-            <article class="card t-int t-oss"><h3><a href="https://github.com/microsoft/LLMLingua" target="_blank" rel="noopener">LLMLingua</a></h3><p>Prompt compression that shortens context without discarding the parts a model actually needs. Available as an opt-in UMS add-on.<span class="caveat">Quiet for the better part of a year — usable, but not actively developed.</span></p><div class="tags"><span class="tag int">INTEGRATED</span><span class="tag oss">MIT</span></div></article>
-            <article class="card t-int t-local"><h3><a href="https://obsidian.md/" target="_blank" rel="noopener">Obsidian</a></h3><p>A local markdown vault with wiki-links and a graph view. UMS memory files are written to be vault-compatible, so you can read your agent's memory in an ordinary editor — whether or not you ever open Obsidian.</p><div class="tags"><span class="tag int">INTEGRATED</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-int t-oss t-local t-mcp"><h3><a href="https://github.com/getzep/graphiti" target="_blank" rel="noopener">Graphiti</a></h3><p>A knowledge-graph memory layer where every fact carries a validity period, so a changed fact closes the old one instead of overwriting it. Ships an MCP server. A working UMS add-on for it is planned; nothing in the core requires it.</p><div class="tags"><span class="tag int">INTEGRATED</span><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span><span class="tag mcp">MCP SERVER</span></div></article>
+            <article class="card t-int t-oss t-local"><h3><a href="https://github.com/kuzudb/kuzu" target="_blank" rel="noopener">Kuzu</a></h3><p>An embedded graph database (roughly what SQLite is for relational data), which is what made a local graph backend practical with no server to administer. UMS's Graphiti add-on recommends it; Graphiti also supports several others.<span class="caveat">Upstream is archived: Apple <a href="https://digital-markets-act-cases.ec.europa.eu/acquisitions" target="_blank" rel="noopener" class="wl">told the EU</a> in October 2025 that it would buy the company, and the repo is read-only after a final release. Existing versions still work.</span></p><div class="tags"><span class="tag int">INTEGRATED</span><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-int t-oss"><h3><a href="https://github.com/Graphify-Labs/graphify" target="_blank" rel="noopener">Graphify</a></h3><p>Builds a queryable symbol graph of a codebase, with definitions, references and call sites, so an agent can ask where a function is used instead of grepping for it.<span class="caveat">The PyPI package is <b>graphifyy</b>, with two y's. Other graphify names on PyPI are not affiliated.</span></p><div class="tags"><span class="tag int">INTEGRATED</span><span class="tag oss">Apache-2.0</span></div></article>
+            <article class="card t-int t-local"><h3><a href="https://obsidian.md/" target="_blank" rel="noopener">Obsidian</a></h3><p>A local markdown vault with wiki-links and a graph view. UMS memory files are written to be vault-compatible, so you can read your agent's memory in an ordinary editor, whether or not you ever open Obsidian.</p><div class="tags"><span class="tag int">INTEGRATED</span><span class="tag local">LOCAL</span></div></article>
           </div>
         </div>
         <div class="subgroup">
-          <div class="sublabel">Alternatives To UMS <span class="hint">— honest competition</span></div>
+          <div class="sublabel">Alternatives to UMS <span class="hint">(honest competition)</span></div>
           <div class="grid">
-            <article class="card t-rival t-oss t-local t-mcp"><h3><a href="https://github.com/topoteretes/cognee" target="_blank" rel="noopener">cognee</a></h3><p>Turns an agent's documents and past conversations into a queryable knowledge graph plus vector store, served back through an MCP server. Graph-native where UMS is file-native — the closest direct alternative we found.</p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag oss">Apache-2.0</span><span class="tag local">SELF-HOST</span><span class="tag mcp">MCP SERVER</span></div></article>
-            <article class="card t-rival t-oss"><h3><a href="https://mem0.ai/" target="_blank" rel="noopener">Mem0</a></h3><p>Stores and retrieves facts about a user or project across sessions, hosted or self-hosted. Aimed at developers embedding memory inside an application rather than in a CLI harness.</p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag oss">Apache-2.0</span></div></article>
-            <article class="card t-rival t-oss"><h3><a href="https://www.letta.com/" target="_blank" rel="noopener">Letta</a></h3><p>A runtime for agents whose memory is tiered, with the agent itself deciding what to keep in context and what to page out to storage.</p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag oss">Apache-2.0</span></div></article>
-            <article class="card t-rival t-oss t-local"><h3><a href="https://supermemory.ai/" target="_blank" rel="noopener">Supermemory</a></h3><p>A memory layer with a local-first mode and direct plugins for several agent CLIs, including the ones we run.<span class="caveat">Its benchmark-leadership claims are self-reported; we have not seen an independent result.</span></p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-rival t-oss t-local t-mcp"><h3><a href="https://github.com/topoteretes/cognee" target="_blank" rel="noopener">cognee</a></h3><p>Turns an agent's documents and past conversations into a queryable knowledge graph plus vector store, served back through an MCP server. Graph-native where UMS is file-native.</p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag oss">Apache-2.0</span><span class="tag local">SELF-HOST</span><span class="tag mcp">MCP SERVER</span></div></article>
+            <article class="card t-rival t-oss"><h3><a href="https://mem0.ai/" target="_blank" rel="noopener">Mem0</a></h3><p>Stores and retrieves facts about a user or project across sessions, hosted or self-hosted.</p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag oss">Apache-2.0</span></div></article>
+            <article class="card t-rival t-local"><h3><a href="https://supermemory.ai/" target="_blank" rel="noopener">Supermemory</a></h3><p>A memory layer with a local-first mode and direct plugins for several agent CLIs, including the ones we run.<span class="caveat">Most of its benchmark-leadership claims are self-reported.</span></p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag local">LOCAL</span></div></article>
           </div>
         </div>
       </section>
 
-      <!-- 08 RETRIEVE -->
+      
       <section class="stage" id="retrieve">
         <span class="dot"><i></i></span>
         <div class="stage-head"><span class="code">08 RETRIEVE</span><h2>Context &amp; Retrieval</h2></div>
-        <p class="stage-q">Memory is what it knows about you. <b>Retrieval Is Everything Else It Has To Look Up.</b></p>
+        <p class="stage-q">Memory is what it knows about you. <b>Retrieval is everything else it has to look up.</b></p>
         <div class="subgroup">
           <div class="sublabel">Frameworks &amp; Methods</div>
           <div class="grid">
             <article class="card t-oss"><h3><a href="https://www.llamaindex.ai/" target="_blank" rel="noopener">LlamaIndex</a></h3><p>Connects your documents and data sources to a model in a form it can query.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
             <article class="card t-oss"><h3><a href="https://www.langchain.com/" target="_blank" rel="noopener">LangChain</a></h3><p>The long-standing toolkit for chaining model calls, tools, and retrieval steps together.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
-            <article class="card"><h3><a href="https://www.anthropic.com/engineering/contextual-retrieval" target="_blank" rel="noopener">Contextual Retrieval</a></h3><p>Anthropic's write-up on prepending context to chunks before embedding them — a method, not a product, and one of the cheapest accuracy wins available.</p><div class="tags"><span class="tag">METHOD</span></div></article>
+            <article class="card"><h3><a href="https://www.anthropic.com/research/contextual-retrieval" target="_blank" rel="noopener">Contextual Retrieval</a></h3><p>Anthropic's write-up on prepending context to chunks before embedding them: a method, not a product, and one of the cheapest accuracy wins available.</p><div class="tags"><span class="tag">METHOD</span></div></article>
+            <article class="card t-oss"><h3><a href="https://github.com/microsoft/LLMLingua" target="_blank" rel="noopener">LLMLingua</a></h3><p>Prompt compression that shortens context without discarding the parts a model actually needs.<span class="caveat">Not actively developed.</span></p><div class="tags"><span class="tag oss">MIT</span></div></article>
           </div>
         </div>
         <div class="subgroup">
           <div class="sublabel">Ingestion, Parsing &amp; Crawling</div>
           <div class="grid">
-            <article class="card t-oss t-local"><h3><a href="https://github.com/docling-project/docling" target="_blank" rel="noopener">Docling</a></h3><p>Converts PDFs, office documents and scans into structured markdown for retrieval, keeping tables and reading order intact. Two competitors parse more accurately but carry revenue-gated commercial licences — this one does not.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss t-local"><h3><a href="https://github.com/unclecode/crawl4ai" target="_blank" rel="noopener">Crawl4AI</a></h3><p>A self-hosted crawler that turns pages into clean Markdown for retrieval pipelines, with no per-request API billing.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-mcp t-oss"><h3><a href="https://github.com/firecrawl/firecrawl" target="_blank" rel="noopener">Firecrawl</a></h3><p>Crawling and extraction with an official MCP server, so an agent can fetch and structure a site mid-task.<span class="caveat">Core is AGPL-3.0 while the SDKs are MIT; the copyleft only bites if you modify and redistribute the self-hosted service.</span></p><div class="tags"><span class="tag oss">AGPL core</span><span class="tag mcp">MCP SERVER</span><span class="tag paid">HOSTED</span></div></article>
-            <article class="card t-oss"><h3><a href="https://github.com/StarTrail-org/PixelRAG" target="_blank" rel="noopener">PixelRAG</a></h3><p>Retrieves from rendered screenshots rather than parsed text, preserving the tables, charts and layout that HTML parsing drops. Costs more per query — a trade-off, not a straight upgrade.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/docling-project/docling" target="_blank" rel="noopener">Docling</a></h3><p>Converts PDFs, office documents and scans into structured markdown for retrieval, keeping tables and reading order intact.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/unclecode/crawl4ai" target="_blank" rel="noopener">Crawl4AI</a></h3><p>A self-hosted crawler that turns pages into clean Markdown for retrieval pipelines, with no per-request API billing.</p><div class="tags"><span class="tag oss">Apache-2.0 + attribution</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-mcp t-oss"><h3><a href="https://github.com/firecrawl/firecrawl" target="_blank" rel="noopener">Firecrawl</a></h3><p>Crawling and extraction with an official MCP server, so an agent can fetch and structure a site mid-task.<span class="caveat">Core is AGPL-3.0 while the SDKs are MIT.</span></p><div class="tags"><span class="tag oss">AGPL core</span><span class="tag mcp">MCP SERVER</span><span class="tag paid">HOSTED</span></div></article>
+            <article class="card t-oss"><h3><a href="https://github.com/StarTrail-org/PixelRAG" target="_blank" rel="noopener">PixelRAG</a></h3><p>Retrieves from rendered screenshots rather than parsed text, preserving the tables, charts and layout that HTML parsing drops. A trade-off, not a straight upgrade.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
           </div>
         </div>
         <div class="subgroup">
-          <div class="sublabel">Embedded Vector Stores <span class="hint">— no server to administer</span></div>
+          <div class="sublabel">Embedded Vector Stores <span class="hint">(no server to administer)</span></div>
           <div class="grid">
             <article class="card t-oss t-local"><h3><a href="https://github.com/lancedb/lancedb" target="_blank" rel="noopener">LanceDB</a></h3><p>An embedded vector database with disk-based indexes, so a retrieval store is a directory rather than a service you keep alive.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss t-local"><h3><a href="https://github.com/asg017/sqlite-vec" target="_blank" rel="noopener">sqlite-vec</a></h3><p>Vector search as a SQLite extension — the smallest possible answer when the data already lives in a file next to your code.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/asg017/sqlite-vec" target="_blank" rel="noopener">sqlite-vec</a></h3><p>Vector search as a SQLite extension, the smallest possible answer when the data already lives in a file next to your code.</p><div class="tags"><span class="tag oss">MIT / Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
           </div>
         </div>
       </section>
 
-      <!-- 09 EXTEND -->
+      
       <section class="stage" id="extend">
         <span class="dot"><i></i></span>
         <div class="stage-head"><span class="code">09 EXTEND</span><h2>Protocols, Skills &amp; Reach</h2></div>
-        <p class="stage-q"><b>How Does It Touch The Outside World?</b></p>
+        <p class="stage-q"><b>How does it touch the outside world?</b></p>
         <div class="subgroup">
           <div class="sublabel">Protocols &amp; Standards</div>
           <div class="grid">
-            <article class="card t-oss"><h3><a href="https://github.com/a2aproject/A2A" target="_blank" rel="noopener">A2A</a></h3><p>The agent-to-agent protocol, for one agent to discover and delegate to another — the sibling standard to MCP, under the same foundation.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
-            <article class="card"><h3><a href="https://modelcontextprotocol.io" target="_blank" rel="noopener">Model Context Protocol</a></h3><p>The open standard for connecting agents to tools and data sources, now governed by the Agentic AI Foundation under the Linux Foundation. <b>Our own security branch is hook-based rather than MCP-based by design</b> — it vets and sanitises MCP servers rather than being one.</p><div class="tags"><span class="tag">STANDARD</span></div></article>
-            <article class="card"><h3><a href="https://agentskills.io" target="_blank" rel="noopener">Agent Skills</a></h3><p>An open format for packaging agent capabilities as a folder with a SKILL.md file. Skills are plain text the agent will follow, so read one before you install it.</p><div class="tags"><span class="tag">STANDARD</span></div></article>
-            <article class="card t-oss"><h3><a href="https://agentclientprotocol.com" target="_blank" rel="noopener">Agent Client Protocol</a></h3><p>An open protocol from Zed and JetBrains for connecting any coding agent to any editor — the editor-side counterpart to MCP.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
+            <article class="card t-oss"><h3><a href="https://github.com/a2aproject/A2A" target="_blank" rel="noopener">A2A</a></h3><p>The agent-to-agent protocol, for one agent to discover and delegate to another. The sibling standard to MCP, under the same foundation.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
+            <article class="card"><h3><a href="https://modelcontextprotocol.io" target="_blank" rel="noopener">Model Context Protocol</a></h3><p>The open standard for connecting agents to tools and data sources, now governed by the Agentic AI Foundation under the Linux Foundation. <b>Our own security tool is hook-based rather than MCP-based by design</b>. If you download an MCP server's code, you can run its add-on check on it before installing, and its library can sanitize what the server returns if you call it.</p><div class="tags"><span class="tag">STANDARD</span></div></article>
+            <article class="card"><h3><a href="https://agentskills.io" target="_blank" rel="noopener">Agent Skills</a></h3><p>An open format for packaging agent capabilities as a folder with a SKILL.md file. Read one before you install it.</p><div class="tags"><span class="tag">STANDARD</span></div></article>
+            <article class="card t-oss"><h3><a href="https://agentclientprotocol.com" target="_blank" rel="noopener">Agent Client Protocol</a></h3><p>An open protocol from Zed and JetBrains for connecting any coding agent to any editor. The editor-side counterpart to MCP.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
           </div>
         </div>
         <div class="subgroup">
           <div class="sublabel">Registries &amp; Skill Hubs</div>
           <div class="grid">
             <article class="card"><h3><a href="https://clawhub.ai/" target="_blank" rel="noopener">ClawHub</a></h3><p>Community registry of agent skills. Treat installs as code you are running: read before you trust.</p><div class="tags"><span class="tag">REGISTRY</span></div></article>
-            <article class="card"><h3><a href="https://code.claude.com/docs/en/plugin-marketplaces" target="_blank" rel="noopener">Claude Code Plugin Marketplace</a></h3><p>First-party plugin distribution for Claude Code, including self-hosted marketplaces you control.<span class="caveat">We ship UMS through one of these, so this is how our own install door works.</span></p><div class="tags"><span class="tag">REGISTRY</span></div></article>
+            <article class="card"><h3><a href="https://code.claude.com/docs/en/plugin-marketplaces" target="_blank" rel="noopener">Claude Code Plugin Marketplace</a></h3><p>First-party plugin distribution for Claude Code.</p><div class="tags"><span class="tag">REGISTRY</span></div></article>
           </div>
         </div>
         <div class="subgroup">
           <div class="sublabel">Browser &amp; Computer Use</div>
           <div class="grid">
             <article class="card t-oss t-local"><h3><a href="https://github.com/browser-use/browser-use" target="_blank" rel="noopener">browser-use</a></h3><p>Lets an agent operate a real Chromium browser from written instructions rather than hand-maintained selectors.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss t-local t-mcp"><h3><a href="https://github.com/microsoft/playwright-mcp" target="_blank" rel="noopener">Playwright MCP</a></h3><p>Microsoft's own MCP server for driving a browser through the accessibility tree rather than screenshots — deterministic, and the natural build-and-test loop for anything an agent builds.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span><span class="tag mcp">MCP SERVER</span></div></article>
+            <article class="card t-oss t-local t-mcp"><h3><a href="https://github.com/microsoft/playwright-mcp" target="_blank" rel="noopener">Playwright MCP</a></h3><p>Microsoft's own MCP server for driving a browser through the accessibility tree rather than screenshots. Deterministic, and the natural build-and-test loop for anything an agent builds.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span><span class="tag mcp">MCP SERVER</span></div></article>
             <article class="card t-oss t-local t-mcp"><h3><a href="https://github.com/ChromeDevTools/chrome-devtools-mcp" target="_blank" rel="noopener">Chrome DevTools MCP</a></h3><p>Google's MCP server exposing the DevTools protocol, so an agent can read the console, inspect network requests and profile a page it just changed.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span><span class="tag mcp">MCP SERVER</span></div></article>
-            <article class="card t-oss t-mcp"><h3><a href="https://github.com/Skyvern-AI/skyvern" target="_blank" rel="noopener">Skyvern</a></h3><p>Vision-driven browser automation: it looks at the rendered page rather than the DOM, which survives layout changes that break selector-based tools. A different bet from browser-use, not a duplicate.</p><div class="tags"><span class="tag oss">AGPL</span><span class="tag mcp">MCP SERVER</span></div></article>
+            <article class="card t-oss t-mcp"><h3><a href="https://github.com/Skyvern-AI/skyvern" target="_blank" rel="noopener">Skyvern</a></h3><p>Vision-driven browser automation: it looks at the rendered page rather than fixed selectors, which survives layout changes that break selector-based tools. A different bet from browser-use, not a duplicate.</p><div class="tags"><span class="tag oss">AGPL</span><span class="tag mcp">MCP SERVER</span></div></article>
           </div>
         </div>
         <div class="subgroup">
-          <div class="sublabel">Platform Servers <span class="hint">— commercial tools an agent can drive</span></div>
+          <div class="sublabel">Platform Servers <span class="hint">(commercial tools an agent can drive)</span></div>
           <div class="grid">
             <article class="card t-mcp"><h3><a href="https://github.com/github/github-mcp-server" target="_blank" rel="noopener">GitHub MCP Server</a></h3><p>First-party access to issues, pull requests, actions and code search, so an agent can work the repository rather than only the working copy.</p><div class="tags"><span class="tag mcp">MCP SERVER</span><span class="tag paid">FREE TIER</span></div></article>
-            <article class="card t-mcp"><h3><a href="https://docs.stripe.com/mcp" target="_blank" rel="noopener">Stripe MCP Server</a></h3><p>Official access to Stripe's API for building and testing billing flows.<span class="caveat">This one moves money. Keep it on test keys unless you have a deliberate reason not to, and never hand it credentials you would not hand a stranger.</span></p><div class="tags"><span class="tag mcp">MCP SERVER</span><span class="tag paid">COMMERCIAL</span></div></article>
+            <article class="card t-mcp"><h3><a href="https://docs.stripe.com/mcp" target="_blank" rel="noopener">Stripe MCP Server</a></h3><p>Official access to Stripe's API for building and testing billing flows.<span class="caveat">This one moves money.</span></p><div class="tags"><span class="tag mcp">MCP SERVER</span><span class="tag paid">COMMERCIAL</span></div></article>
             <article class="card t-mcp t-oss"><h3><a href="https://supabase.com" target="_blank" rel="noopener">Supabase</a></h3><p>Postgres with auth and storage attached, and an official MCP server so an agent can query and migrate the database it is building against.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag mcp">MCP SERVER</span><span class="tag paid">FREE TIER</span></div></article>
             <article class="card t-mcp"><h3><a href="https://www.cloudflare.com/" target="_blank" rel="noopener">Cloudflare</a></h3><p>Edge hosting with a permanent daily free allowance across a catalogue of open models, plus an official MCP server so an agent can manage the deployment it just made.</p><div class="tags"><span class="tag paid">FREE TIER</span><span class="tag mcp">MCP SERVER</span></div></article>
           </div>
         </div>
       </section>
 
-      <!-- 10 CONSTRAIN -->
+      
       <section class="stage s-sec" id="constrain">
         <span class="dot"><i></i></span>
         <div class="stage-head"><span class="code">10 CONSTRAIN</span><h2>Security &amp; Sandboxing</h2></div>
-        <p class="stage-q"><b>Two Directions Of Risk.</b> An agent with tool access is a process that can delete things — and it is also a way in: a poisoned skill, an injected instruction hidden in a web page, an MCP server you did not read. This shelf covers both what an agent might do to you and what someone might do through it.</p>
+        <p class="stage-q"><b>Two directions of risk.</b> An agent with tool access is a process that can delete things, and it is also a way in: a poisoned skill, an injected instruction hidden in a web page, an MCP server you did not read.</p>
         <div class="subgroup">
           <div class="sublabel">Guardrails &amp; Permissions</div>
           <div class="grid">
-            <article class="card t-rival t-oss t-local"><h3><a href="https://github.com/always-further/nono" target="_blank" rel="noopener">nono</a></h3><p>Confines a CLI agent using the operating system's own sandboxing — Landlock, Seatbelt, WSL2 — so access is checked by the kernel rather than inside the agent's process. Ships profiles for Claude Code and OpenClaw.</p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-rival t-oss"><h3><a href="https://github.com/kenryu42/cc-safety-net" target="_blank" rel="noopener">cc-safety-net</a></h3><p>A pre-tool hook blocking destructive git and filesystem commands across a dozen agent CLIs. It does not enforce filesystem permissions, inspect network traffic, or contain a process — the authors say so plainly.</p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag oss">MIT</span></div></article>
-            <article class="card t-oss"><h3><a href="https://www.guardrailsai.com/" target="_blank" rel="noopener">Guardrails AI</a></h3><p>Validates model output against declared rules before it reaches your code, and the maintained answer in a category where several well-known projects have been archived.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
+            <article class="card t-rival t-oss t-local"><h3><a href="https://github.com/nolabs-ai/nono" target="_blank" rel="noopener">nono</a></h3><p>Confines a CLI agent using the operating system's own sandboxing so access is checked by the kernel rather than inside the agent's process. Ships profiles for Claude Code and OpenClaw.</p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-rival t-oss"><h3><a href="https://github.com/kenryu42/cc-safety-net" target="_blank" rel="noopener">cc-safety-net</a></h3><p>A pre-tool hook blocking destructive commands and secret reads. It does not enforce filesystem permissions, inspect network traffic, or contain a process. The authors say so plainly.</p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag oss">MIT</span></div></article>
+            <article class="card t-rival t-oss"><h3><a href="https://github.com/guardrails-ai/guardrails" target="_blank" rel="noopener">Guardrails AI</a></h3><p>Validates model output against declared rules before it reaches your code.<span class="caveat">Acquired by Harvey in September 2026.</span></p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag oss">Apache-2.0</span></div></article>
           </div>
         </div>
         <div class="subgroup">
           <div class="sublabel">Sandboxed Execution</div>
           <div class="grid">
             <article class="card t-oss"><h3><a href="https://e2b.dev/" target="_blank" rel="noopener">E2B</a></h3><p>Runs model-generated code inside microVMs, so the isolation boundary is hardware virtualization rather than a shared kernel.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag paid">HOSTED</span></div></article>
-            <article class="card t-oss t-local"><h3><a href="https://github.com/opensandbox-group/OpenSandbox" target="_blank" rel="noopener">OpenSandbox</a></h3><p>A self-hostable sandbox runtime with pluggable isolation behind one API, and signed release images.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">SELF-HOST</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/opensandbox-group/OpenSandbox" target="_blank" rel="noopener">OpenSandbox</a></h3><p>A self-hostable sandbox runtime with pluggable isolation behind one API.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">SELF-HOST</span></div></article>
             <article class="card t-local t-mcp"><h3><a href="https://docs.docker.com/ai/mcp-catalog-and-toolkit/toolkit/" target="_blank" rel="noopener">Docker MCP Toolkit</a></h3><p>Runs MCP servers inside containers with scoped secrets, which matters because an MCP server is code you are running with your credentials.</p><div class="tags"><span class="tag local">LOCAL</span><span class="tag mcp">MCP RUNTIME</span></div></article>
           </div>
         </div>
         <div class="subgroup">
           <div class="sublabel">Red-Teaming &amp; Supply Chain</div>
           <div class="grid">
-            <article class="card t-oss t-local"><h3><a href="https://github.com/NVIDIA/garak" target="_blank" rel="noopener">garak</a></h3><p>NVIDIA's scanner for probing a model with known attack patterns — prompt injection, jailbreaks, data leakage — and reporting what got through.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/NVIDIA/garak" target="_blank" rel="noopener">garak</a></h3><p>NVIDIA's scanner for probing a model with known attack patterns (prompt injection, jailbreaks, data leakage) and reporting what got through.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://github.com/microsoft/PyRIT" target="_blank" rel="noopener">PyRIT</a></h3><p>Microsoft's risk-identification toolkit for automating adversarial probes against a system you are building, rather than testing it by hand.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss"><h3><a href="https://github.com/meta-llama/PurpleLlama/tree/main/LlamaFirewall" target="_blank" rel="noopener">LlamaFirewall</a></h3><p>A layered scanner for agent inputs and outputs, aimed at prompt injection and unsafe tool calls.<span class="caveat">The scanner code is MIT; the separately distributed models carry their own community licence.</span></p><div class="tags"><span class="tag oss">MIT</span></div></article>
-            <article class="card"><h3><a href="https://github.com/snyk/agent-scan" target="_blank" rel="noopener">Snyk agent-scan</a></h3><p>Finds the MCP servers and skills installed on a machine and checks them for prompt injection, tool poisoning and credential handling. Snyk notes that scanning executes the commands defined in discovered MCP configs.</p><div class="tags"><span class="tag paid">FREE TIER</span></div></article>
+            <article class="card t-rival t-oss"><h3><a href="https://github.com/meta-llama/PurpleLlama/tree/main/LlamaFirewall" target="_blank" rel="noopener">LlamaFirewall</a></h3><p>A layered scanner for agent inputs and outputs, aimed at prompt injection and unsafe tool calls.<span class="caveat">The scanner code is MIT; the separately distributed models carry their own community licence. No release since May 2025.</span></p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag oss">MIT</span></div></article>
+            <article class="card t-rival"><h3><a href="https://github.com/snyk/agent-scan" target="_blank" rel="noopener">Snyk agent-scan</a></h3><p>Finds the MCP servers and skills installed on a machine and checks them for prompt injection, tool poisoning and credential handling.</p><div class="tags"><span class="tag rival">OVERLAPS</span><span class="tag paid">FREE TIER</span></div></article>
           </div>
         </div>
       </section>
 
-      <!-- 11 IMPROVE -->
+      
       <section class="stage" id="improve">
         <span class="dot"><i></i></span>
         <div class="stage-head"><span class="code">11 IMPROVE</span><h2>Fine-Tuning &amp; Reinforcement Learning</h2></div>
-        <p class="stage-q"><b>Running A Model Is Table Stakes. Making One Better At Your Job Is Not.</b> Everything here adapts a model that already exists — from scratch is on <a href="#learn">Learn</a>. Nearly all of it means a small adapter: full weights cost about sixteen gigabytes of VRAM per billion parameters, which prices out most consumer cards.</p>
+        <p class="stage-q"><b>Running a model is table stakes. Making one better at your job is not.</b> Everything here adapts a model that already exists (from scratch is on <a href="#learn" class="wl">Learn</a>). Nearly all of it means a small adapter: full weights cost about sixteen gigabytes of VRAM per billion parameters, which prices out most consumer cards.</p>
         <div class="subgroup">
           <div class="sublabel">Fine-Tuning</div>
           <div class="grid">
-            <article class="card t-oss t-local"><h3><a href="https://github.com/unslothai/unsloth" target="_blank" rel="noopener">Unsloth</a></h3><p>Fine-tunes open-weight models with custom kernels that cut training memory enough to work on a single consumer GPU, and exports to GGUF, safetensors or vLLM. It also does full-parameter fine-tuning in the same tool, not only adapters. The bundled Studio interface is separately licensed under a copyleft licence, which matters only if you redistribute it.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss t-local"><h3><a href="https://github.com/hiyouga/LLaMA-Factory" target="_blank" rel="noopener">LLaMA-Factory</a></h3><p>A fine-tuning front end with both a command line and a web interface, covering a wide range of architectures with no training scripts to write. Switches between full, LoRA and QLoRA training with one config flag, and can use Unsloth underneath.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/unslothai/unsloth" target="_blank" rel="noopener">Unsloth</a></h3><p>Fine-tunes open-weight models with custom kernels that cut training memory enough to work on a single consumer GPU, and exports to GGUF, safetensors or vLLM. It also does full-parameter fine-tuning in the same tool, not only adapters. The bundled Studio interface is separately licensed under a copyleft licence.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/hiyouga/LlamaFactory" target="_blank" rel="noopener">LLaMA-Factory</a></h3><p>A fine-tuning front end with both a command line and a web interface, covering a wide range of architectures with no training scripts to write. Switches between full, LoRA and QLoRA training with one config flag, and can use Unsloth underneath.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
             <article class="card t-oss"><h3><a href="https://github.com/arcee-ai/DistillKit" target="_blank" rel="noopener">DistillKit</a></h3><p>Distils a large model down into a smaller one that keeps more of its behaviour than fine-tuning alone would. The realistic middle path when adapting an existing model is not enough but training one from nothing is out of reach.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
           </div>
         </div>
@@ -649,24 +828,24 @@
         </div>
       </section>
 
-      <!-- 12 VERIFY -->
+      
       <section class="stage" id="verify">
         <span class="dot"><i></i></span>
         <div class="stage-head"><span class="code">12 VERIFY</span><h2>Evaluation &amp; Observability</h2></div>
-        <p class="stage-q"><b>Did That Change Make It Better, Or Just Different?</b> The hardest question in agent work.</p>
+        <p class="stage-q"><b>Did that change make it better, or just different?</b></p>
         <div class="subgroup">
           <div class="sublabel">Testing Before You Ship</div>
           <div class="grid">
-            <article class="card t-oss t-local"><h3><a href="https://github.com/promptfoo/promptfoo" target="_blank" rel="noopener">Promptfoo</a></h3><p>Runs evaluations and adversarial tests against prompts, agents and retrieval pipelines from the command line, with nothing required to leave the machine.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss"><h3><a href="https://inspect.aisi.org.uk/" target="_blank" rel="noopener">Inspect AI</a></h3><p>An evaluation framework from the UK AI Security Institute, used by several national safety institutes, with evaluations mapped to the OWASP agentic risk list.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/promptfoo/promptfoo" target="_blank" rel="noopener">Promptfoo</a></h3><p>Runs evaluations and adversarial tests against prompts, agents and retrieval pipelines from the command line.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss"><h3><a href="https://inspect.aisi.org.uk/" target="_blank" rel="noopener">Inspect AI</a></h3><p>An evaluation framework from the UK AI Security Institute.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
           </div>
         </div>
         <div class="subgroup">
           <div class="sublabel">Seeing What Happened After</div>
           <div class="grid">
             <article class="card t-oss t-local"><h3><a href="https://github.com/langfuse/langfuse" target="_blank" rel="noopener">Langfuse</a></h3><p>Tracing, evaluation and prompt versioning for agent runs, built on OpenTelemetry. Open-core: the main codebase is MIT with separately licensed enterprise directories.</p><div class="tags"><span class="tag oss">MIT core</span><span class="tag local">SELF-HOST</span></div></article>
-            <article class="card t-mcp"><h3><a href="https://mcp.sentry.dev/" target="_blank" rel="noopener">Sentry</a></h3><p>Error tracking with an official MCP server, so an agent can pull the stack trace for the exception it is being asked to fix.<span class="caveat">The MCP server is source-available under a licence that converts to Apache-2.0 after two years — not open source today.</span></p><div class="tags"><span class="tag src">SOURCE-AVAILABLE</span><span class="tag mcp">MCP SERVER</span><span class="tag paid">FREE TIER</span></div></article>
-            <article class="card t-oss t-local"><h3><a href="https://github.com/ryoppippi/ccusage" target="_blank" rel="noopener">ccusage</a></h3><p>Reads the local logs a coding agent already writes and tells you what a session actually cost. No account, no proxy, nothing leaves the machine.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-mcp"><h3><a href="https://mcp.sentry.dev/" target="_blank" rel="noopener">Sentry</a></h3><p>Error tracking with an official MCP server, so an agent can pull the stack trace for the exception it is being asked to fix.<span class="caveat">The MCP server is source-available under a licence that converts to Apache-2.0 after two years. Not open source today.</span></p><div class="tags"><span class="tag src">SOURCE-AVAILABLE</span><span class="tag mcp">MCP SERVER</span><span class="tag paid">FREE TIER</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/ccusage/ccusage" target="_blank" rel="noopener">ccusage</a></h3><p>Reads the local logs a coding agent already writes and estimates what a session cost. No account, no proxy.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
           </div>
         </div>
         <div class="subgroup">
@@ -678,93 +857,95 @@
         </div>
       </section>
 
-      <!-- 13 CREATE -->
+      
       <section class="stage" id="create">
         <span class="dot"><i></i></span>
         <div class="stage-head"><span class="code">13 CREATE</span><h2>Visual Media &amp; Design</h2></div>
-        <p class="stage-q">Media generation became scriptable. <b>What Can An Agent Drive, Rather Than A Person Click?</b></p>
+        <p class="stage-q">Media generation became scriptable. <b>What can an agent drive, rather than a person click?</b></p>
         <div class="subgroup">
           <div class="sublabel">Local Pipelines &amp; Models</div>
           <div class="grid">
-            <article class="card t-oss t-local"><h3><a href="https://github.com/comfyanonymous/ComfyUI" target="_blank" rel="noopener">ComfyUI</a></h3><p>A node-graph front end and backend for running image and video models locally, where each step of a pipeline is a node you can inspect, save and reuse. New open architectures usually arrive here first.</p><div class="tags"><span class="tag oss">GPL-3.0</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss t-mcp"><h3><a href="https://github.com/Comfy-Org/comfy-mcp" target="_blank" rel="noopener">Comfy MCP</a></h3><p>Comfy-Org's own MCP server, exposing generation, workflow search and job status as tools an agent can call.<span class="caveat">AGPL-3.0, with a paid commercial licence offered as the alternative — check which you need before building on it.</span></p><div class="tags"><span class="tag oss">AGPL-3.0</span><span class="tag mcp">MCP SERVER</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/Comfy-Org/ComfyUI" target="_blank" rel="noopener">ComfyUI</a></h3><p>A node-graph front end and backend for running image and video models locally, where each step of a pipeline is a node you can inspect, save and reuse. New open architectures usually arrive here first.</p><div class="tags"><span class="tag oss">GPL-3.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-mcp"><h3><a href="https://github.com/Comfy-Org/comfy-mcp" target="_blank" rel="noopener">Comfy MCP</a></h3><p>Comfy-Org's own MCP server, exposing generation, workflow search and job status as tools an agent can call.<span class="caveat">AGPL-3.0, with a paid commercial licence offered as the alternative. Check which you need before building on it.</span></p><div class="tags"><span class="tag oss">AGPL-3.0</span><span class="tag mcp">MCP SERVER</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://github.com/Wan-Video/Wan2.2" target="_blank" rel="noopener">Wan</a></h3><p>Alibaba's open-weight text- and image-to-video model family, usable inside ComfyUI. The smaller variants target a high-end consumer card.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
           </div>
         </div>
         <div class="subgroup">
-          <div class="sublabel">Agent-Drivable Services <span class="hint">— design surfaces and hosted generation</span></div>
+          <div class="sublabel">Agent-Drivable Services <span class="hint">(design surfaces and hosted generation)</span></div>
           <div class="grid">
-            <article class="card t-mcp"><h3><a href="https://developers.figma.com/docs/figma-mcp-server/" target="_blank" rel="noopener">Figma Dev Mode MCP</a></h3><p>Figma's official MCP server lets an agent read a frame's structure, variables and components and generate code from it, and in beta write frames back to the canvas. Only worth it if you already design in Figma.<span class="caveat">Gating is strict: free and view-only seats get a handful of tool calls a month, which one design-to-code session exceeds. The local server needs a paid seat.</span></p><div class="tags"><span class="tag paid">PAID</span><span class="tag mcp">MCP SERVER</span></div></article>
-            <article class="card t-oss t-local t-mcp"><h3><a href="https://penpot.app" target="_blank" rel="noopener">Penpot</a></h3><p>A self-hostable design tool that stores work as real SVG and CSS rather than a proprietary format, with a small official MCP server. The no-lock-in counterpart to Figma.<span class="caveat">Its MCP surface is genuinely thinner, and models know its API less well. Listed as the self-hosted option, not as an equivalent.</span></p><div class="tags"><span class="tag oss">MPL-2.0</span><span class="tag local">SELF-HOST</span><span class="tag mcp">MCP SERVER</span></div></article>
-            <article class="card t-mcp"><h3><a href="https://mcp.higgsfield.ai" target="_blank" rel="noopener">Higgsfield MCP</a></h3><p>A hosted MCP server for image, video and audio models, plus a command-line tool for batch use. Commercial and credit-based, not open source.<span class="caveat">Disclosure: we use it for our own media work.</span></p><div class="tags"><span class="tag paid">PAID</span><span class="tag mcp">MCP SERVER</span></div></article>
+            <article class="card t-mcp"><h3><a href="https://developers.figma.com/docs/figma-mcp-server/" target="_blank" rel="noopener">Figma MCP Server</a></h3><p>Figma's official MCP server lets an agent read a frame's structure, variables and components and generate code from it, and in beta write frames back to the canvas. Only worth it if you already design in Figma.<span class="caveat">Gating is strict: free and view-only seats get 20 tool calls a month, which one design-to-code session exceeds. The desktop server needs a Dev or Full seat on a paid or Education plan.</span></p><div class="tags"><span class="tag paid">PAID</span><span class="tag mcp">MCP SERVER</span></div></article>
+            <article class="card t-oss t-local t-mcp"><h3><a href="https://penpot.app" target="_blank" rel="noopener">Penpot</a></h3><p>A self-hostable design tool with a small official MCP server. The no-lock-in counterpart to Figma.<span class="caveat">Its MCP surface is genuinely thinner, and models know its API less well. Listed as the self-hosted option, not as an equivalent.</span></p><div class="tags"><span class="tag oss">MPL-2.0</span><span class="tag local">SELF-HOST</span><span class="tag mcp">MCP SERVER</span></div></article>
+            <article class="card t-mcp"><h3><a href="https://higgsfield.ai/mcp" target="_blank" rel="noopener">Higgsfield MCP</a></h3><p>A hosted MCP server for image, video and audio models, plus a command-line tool for coding agents. Commercial and credit-based, not open source.<span class="caveat">Disclosure: we use it for our own media work.</span></p><div class="tags"><span class="tag paid">PAID</span><span class="tag mcp">MCP SERVER</span></div></article>
           </div>
         </div>
       </section>
 
-      <!-- 14 VOICE -->
+      
       <section class="stage" id="voice">
         <span class="dot"><i></i></span>
         <div class="stage-head"><span class="code">14 VOICE</span><h2>Speech &amp; Audio</h2></div>
-        <p class="stage-q"><b>Both Directions: What An Agent Can Say, And What It Can Hear.</b> Each entry says which it does.</p>
+        <p class="stage-q"><b>Both directions: what an agent can say, and what it can hear.</b> Each entry says which it does.</p>
         <div class="subgroup">
           <div class="grid">
-            <article class="card t-oss t-local"><h3><a href="https://github.com/resemble-ai/chatterbox" target="_blank" rel="noopener">Chatterbox</a></h3><p>Open-weight text-to-speech and voice cloning that runs on your own GPU and watermarks its output by default — the most permissive of the open speech options we checked.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/resemble-ai/chatterbox" target="_blank" rel="noopener">Chatterbox</a></h3><p>Open-weight text-to-speech and voice cloning that runs on your own GPU and watermarks its output by default.<span class="caveat">Retired by its authors in 2026; no longer maintained.</span></p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://github.com/hexgrad/kokoro" target="_blank" rel="noopener">Kokoro</a></h3><p>A small text-to-speech model that runs acceptably on CPU alone, for when there is no GPU to spare. No voice cloning.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://github.com/SYSTRAN/faster-whisper" target="_blank" rel="noopener">faster-whisper &amp; WhisperX</a></h3><p>Speech-to-text: a re-implementation of Whisper that is markedly faster on a consumer card, with WhisperX adding word-level timing and speaker labels.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag oss">WhisperX BSD-2</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-mcp"><h3><a href="https://elevenlabs.io" target="_blank" rel="noopener">ElevenLabs</a></h3><p>Hosted speech synthesis, voice cloning, transcription and speech-to-speech, with an official MIT-licensed MCP server so an agent can call all of it directly. Widely treated as the quality bar for hosted speech.</p><div class="tags"><span class="tag paid">PAID</span><span class="tag mcp">MCP SERVER</span></div></article>
-            <article class="card t-mcp"><h3><a href="https://fish.audio" target="_blank" rel="noopener">Fish Audio</a></h3><p>Hosted text-to-speech and voice cloning with an official MCP server, so an agent can search the voice library, generate speech and transcribe without an API key sitting in config.<span class="caveat">Two caveats. The free tier is governed by a fair-use policy with no published threshold or reset cycle — validate on free, price on paid. And this is the hosted platform only: the open-weights repo is a separate thing under a research and non-commercial licence, whatever third-party sites claim.</span></p><div class="tags"><span class="tag paid">PAID</span><span class="tag mcp">MCP SERVER</span></div></article>
+            <article class="card t-mcp"><h3><a href="https://elevenlabs.io" target="_blank" rel="noopener">ElevenLabs</a></h3><p>Hosted speech synthesis, voice cloning, transcription and speech-to-speech.</p><div class="tags"><span class="tag paid">PAID</span><span class="tag mcp">MCP SERVER</span></div></article>
+            <article class="card t-mcp"><h3><a href="https://fish.audio" target="_blank" rel="noopener">Fish Audio</a></h3><p>Hosted text-to-speech and voice cloning with an official MCP server, so an agent can search the voice library, generate speech and transcribe without an API key sitting in config.<span class="caveat">This is the hosted platform only: the open-weights repo is a separate thing.</span></p><div class="tags"><span class="tag paid">PAID</span><span class="tag mcp">MCP SERVER</span></div></article>
           </div>
         </div>
       </section>
 
-      <div class="arc-end">Off The Arc — Domain Shelves</div>
-      <!-- BIOTECH -->
+      <div class="arc-end">Off The Arc: Domain Shelves</div>
+      
       <section class="stage s-dom" id="biotech">
         <span class="dot"><i></i></span>
-        <div class="stage-head"><span class="code">◆ DOMAIN</span><h2>Biotech &amp; Life Sciences</h2></div>
-        <p class="stage-q">A domain shelf, not a lifecycle stage — kept because it is the domain we know best. <b>Priority: Tools That Keep Genomic Data On Your Own Machine.</b></p>
+        <div class="stage-head"><span class="code"><span aria-hidden="true">◆</span> DOMAIN</span><h2>Biotech &amp; Life Sciences</h2></div>
+        <p class="stage-q">A domain shelf, not a lifecycle stage, kept because it is the domain we know best. <b>Priority: tools that keep genomic data on your own machine.</b></p>
         <div class="subgroup">
           <div class="grid">
-            <article class="card t-oss t-local"><h3><a href="https://github.com/ClawBio/ClawBio" target="_blank" rel="noopener">ClawBio</a></h3><p>Bioinformatics skills — pharmacogenomics, variant interpretation, single-cell analysis — running locally on OpenClaw, so genomic data stays on your machine.</p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card"><h3><a href="https://github.com/wu-yc/LabClaw" target="_blank" rel="noopener">LabClaw</a></h3><p>Agent tooling aimed at wet-lab and computational biology workflows.<span class="caveat">The README carries an MIT badge, but no licence file resolves in the repository. Ask before you build on it.</span></p><div class="tags"><span class="tag">LICENCE UNCONFIRMED</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/ClawBio/ClawBio" target="_blank" rel="noopener">ClawBio</a></h3><p>Bioinformatics skills (pharmacogenomics, variant interpretation, single-cell analysis) running locally on OpenClaw. Its igv-validator skill checks variant calls from your VCF against the reads in your BAM and, with IGV installed, saves a screenshot of each one.<span class="caveat">Some skills, including the variant annotation ones, send your variants to public services such as Ensembl. The project's data-handling page lists each one and what it sends. igv-validator is built for tumor (somatic) calls and is not yet in a tagged release (November 2026).</span></p><div class="tags"><span class="tag oss">MIT core</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/igvteam/igv" target="_blank" rel="noopener">IGV (Integrative Genomics Viewer)</a></h3><p>A desktop genome viewer for checking the BAM, CRAM and VCF files your pipeline produces.<span class="caveat">By default it accepts commands on port 60151 with no password, from other machines too unless a firewall blocks them; you can turn this off in View &gt; Preferences &gt; Advanced. Its BLAT menu items send the selected sequence to UCSC.</span></p><div class="tags"><span class="tag oss">MIT</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss"><h3><a href="https://github.com/igvteam/igv-reports" target="_blank" rel="noopener">igv-reports</a></h3><p>The IGV team's command-line tool that turns a VCF and its BAM files into one HTML page with an IGV view at every variant, so calls can be reviewed without opening IGV. An assistant that can run commands can build these pages for you.<span class="caveat">Use version 1.17.0 or later with a local reference (--fasta); with --genome hg38 it reads the region around each site from UCSC while it builds the page. The page holds read data and sample names, so handle it like the BAM.</span></p><div class="tags"><span class="tag oss">MIT</span></div></article>
+            <article class="card t-oss t-mcp"><h3><a href="https://github.com/RTrentJones/BAMCP" target="_blank" rel="noopener">BAMCP</a></h3><p>An MCP server that shows the reads behind a variant in a viewer inside the chat, with read evidence and artifact flags for candidate calls or the calls in your VCF.<span class="caveat">Its ClinVar and gnomAD lookups are on by default and send the variant to NCBI or gnomAD when they run; set BAMCP_CLINVAR_ENABLED and BAMCP_GNOMAD_ENABLED to false for private data. In alpha (November 2026): install from the GitHub main branch and use the default stdio mode.</span></p><div class="tags"><span class="tag oss">MIT</span><span class="tag mcp">MCP SERVER</span></div></article>
             <article class="card t-oss"><h3><a href="https://github.com/NVIDIA-BioNeMo/bionemo-recipes" target="_blank" rel="noopener">NVIDIA BioNeMo Recipes</a></h3><p>Worked LoRA fine-tuning recipes for biological foundation models such as ESM2 and Evo2, written to run on a single workstation GPU.</p><div class="tags"><span class="tag oss">Apache-2.0</span></div></article>
-            <article class="card"><h3><a href="https://www.youtube.com/watch?v=RNY0p5wL4AA" target="_blank" rel="noopener">BIO26 Healthcare Special Address</a></h3><p>NVIDIA’s Kimberly Powell at the BIO International Convention, on the BioNeMo Agent Toolkit and the shift from AI that suggests science to AI that runs it.</p><div class="tags"><span class="tag">TALK</span></div></article>
+            <article class="card"><h3><a href="https://www.youtube.com/watch?v=RNY0p5wL4AA" target="_blank" rel="noopener">BIO26 Healthcare Special Address</a></h3><p>NVIDIA's Kimberly Powell at the BIO International Convention, on the BioNeMo Agent Toolkit and the shift from AI that suggests science to AI that runs it.</p><div class="tags"><span class="tag">TALK</span></div></article>
           </div>
         </div>
       </section>
 
-      <!-- LEARN -->
+      
       <section class="stage s-dom" id="learn">
         <span class="dot"><i></i></span>
-        <div class="stage-head"><span class="code">◆ LEARN</span><h2>Learning</h2></div>
-        <p class="stage-q">Courses that teach. <b>Free Unless Noted.</b></p>
+        <div class="stage-head"><span class="code"><span aria-hidden="true">◆</span> LEARN</span><h2>Learning</h2></div>
+        <p class="stage-q">Courses that teach.</p>
         <div class="subgroup">
           <div class="sublabel">First-Party Academies</div>
           <div class="grid">
-            <article class="card"><h3><a href="https://anthropic.skilljar.com/" target="_blank" rel="noopener">Anthropic Academy</a></h3><p>First-party courses on building with Claude, the API and the agent SDK.</p><div class="tags"><span class="tag">FREE</span></div></article>
-            <article class="card"><h3><a href="https://learn.nvidia.com/self-paced-courses" target="_blank" rel="noopener">NVIDIA Deep Learning Institute</a></h3><p>Self-paced courses, a number of them free, including inference optimisation and deployment.</p><div class="tags"><span class="tag">FREE TIER</span></div></article>
-            <article class="card"><h3><a href="https://developer.amd.com/amd-ai-academy/" target="_blank" rel="noopener">AMD AI Academy</a></h3><p>Free self-paced courses and hands-on labs split into developer, GPU-kernel and infrastructure tracks, with a ROCm certification path added in 2026. Joining the developer program also comes with cloud credits.</p><div class="tags"><span class="tag">FREE</span><span class="tag">CERTIFICATION</span></div></article>
-            <article class="card"><h3><a href="https://higgsfield.ai/academy" target="_blank" rel="noopener">Higgsfield Academy</a></h3><p>Course library and walkthroughs for building video and image work with the platform's tools — scripting, shot lists, character consistency and the full pipeline. Free to browse; generation itself is credit-based. We are a paying customer of the platform it teaches.</p><div class="tags"><span class="tag">COURSES</span></div></article>
+            <article class="card"><h3><a href="https://academy.claude.com/" target="_blank" rel="noopener">Claude Academy</a></h3><p>First-party courses on building with Claude.</p><div class="tags"><span class="tag">FREE</span></div></article>
+            <article class="card"><h3><a href="https://www.nvidia.com/en-us/training/self-paced-courses/" target="_blank" rel="noopener">NVIDIA Deep Learning Institute</a></h3><p>Self-paced courses, a number of them free.</p><div class="tags"><span class="tag">FREE TIER</span></div></article>
+            <article class="card"><h3><a href="https://developer.amd.com/amd-ai-academy/" target="_blank" rel="noopener">AMD AI Academy</a></h3><p>Free self-paced courses and hands-on labs, with a ROCm certification path added in 2026. Joining the developer program also comes with cloud credits.</p><div class="tags"><span class="tag">FREE</span><span class="tag">CERTIFICATION</span></div></article>
+            <article class="card"><h3><a href="https://higgsfield.ai/academy/courses" target="_blank" rel="noopener">Higgsfield Academy</a></h3><p>Course library and walkthroughs for building video and image work with the platform's tools: scripting, shot lists, character consistency and the full pipeline. Free to browse; generation itself is credit-based.</p><div class="tags"><span class="tag">COURSES</span></div></article>
           </div>
         </div>
         <div class="subgroup">
-          <div class="sublabel">End-To-End LLM Training <span class="hint">— understand the machine, not ship a model</span></div>
+          <div class="sublabel">End-To-End LLM Training <span class="hint">(understand the machine, not ship a model)</span></div>
           <div class="grid">
-            <article class="card t-oss"><h3><a href="https://github.com/karpathy/nanochat" target="_blank" rel="noopener">nanochat</a></h3><p>A full pretrain-to-chat pipeline in one readable codebase. The reference run wants a rented multi-GPU node for a few hours; a single 24&nbsp;GB card will do it slowly, and a mid-range consumer card sits below what the default configuration expects.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
-            <article class="card t-local"><h3><a href="https://gist.github.com/karpathy/8627fe009c40f57531cb18360106ce95" target="_blank" rel="noopener">microgpt</a></h3><p>Two hundred lines of dependency-free Python that train and run a tiny model in about a minute on a laptop CPU. Not a model you would use for anything — it is the whole algorithm, short enough to read start to finish.</p><div class="tags"><span class="tag">GIST</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card"><h3><a href="https://cs336.stanford.edu/" target="_blank" rel="noopener">Stanford CS336 — Language Modeling From Scratch</a></h3><p>A full-semester course where you implement tokenization, attention and a distributed training loop by hand rather than calling a library. Free to watch; doing the assignments yourself runs up real rented-GPU bills.</p><div class="tags"><span class="tag">FREE</span></div></article>
+            <article class="card t-oss"><h3><a href="https://github.com/karpathy/nanochat" target="_blank" rel="noopener">nanochat</a></h3><p>A full pretrain-to-chat pipeline in one readable codebase. The reference run wants a rented multi-GPU node for about an hour and a half; a single 24&nbsp;GB card will do it slowly, and a mid-range consumer card sits below what the default configuration expects.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
+            <article class="card t-local"><h3><a href="https://gist.github.com/karpathy/8627fe009c40f57531cb18360106ce95" target="_blank" rel="noopener">microgpt</a></h3><p>Two hundred lines of dependency-free Python that train and run a tiny model in about a minute on a laptop CPU. Not a model you would use for anything, but it is the whole algorithm, short enough to read start to finish.</p><div class="tags"><span class="tag">GIST</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card"><h3><a href="https://cs336.stanford.edu/" target="_blank" rel="noopener">Stanford CS336: Language Modeling From Scratch</a></h3><p>A full-semester course where you implement tokenization, attention and a distributed training loop by hand rather than calling a library. Free to watch; doing the assignments yourself runs up real rented-GPU bills.</p><div class="tags"><span class="tag">FREE</span></div></article>
             <article class="card"><h3><a href="https://huggingface.co/spaces/HuggingFaceTB/smol-training-playbook" target="_blank" rel="noopener">The Smol Training Playbook</a></h3><p>Hugging Face's account of what actually went wrong training a small model, including a run they restarted after burning through a trillion tokens. Reads like a field report rather than a paper.</p><div class="tags"><span class="tag">FREE</span></div></article>
-            <article class="card t-oss"><h3><a href="https://github.com/KellerJordan/modded-nanogpt" target="_blank" rel="noopener">modded-nanogpt</a></h3><p>An ongoing competition to train a small model to a fixed loss target as fast as possible. Worth knowing about without running it — several optimizer tricks now in general use were proven out here first.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
+            <article class="card t-oss"><h3><a href="https://github.com/KellerJordan/modded-nanogpt" target="_blank" rel="noopener">modded-nanogpt</a></h3><p>An ongoing competition to train a small model to a fixed loss target as fast as possible. Several optimizer tricks now in general use were proven out here first.</p><div class="tags"><span class="tag oss">MIT</span></div></article>
           </div>
         </div>
 
         <div class="subgroup">
-          <div class="sublabel">Non-LLM Model Training <span class="hint">— vision, scientific, and everything that is not a chatbot</span></div>
+          <div class="sublabel">Non-LLM Model Training <span class="hint">(vision, scientific, and everything that is not a chatbot)</span></div>
           <div class="grid">
             <article class="card t-oss t-local"><h3><a href="https://docs.pytorch.org/tutorials/" target="_blank" rel="noopener">PyTorch</a></h3><p>The framework nearly everything else on this page already runs on. Its own tutorials walk through a training loop starting from a blank module, which is the place to learn what is actually happening before reaching for something higher-level.</p><div class="tags"><span class="tag oss">BSD-3</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss t-local"><h3><a href="https://www.tensorflow.org/" target="_blank" rel="noopener">TensorFlow &amp; Keras</a></h3><p>The other lineage, and still the common answer for edge and production serving. <a href="https://keras.io/" target="_blank" rel="noopener">Keras 3</a> runs on JAX, TensorFlow or PyTorch, so the same model code can be a PyTorch module or a TensorFlow SavedModel — the API outlives the framework choice.<span class="caveat">Pick the backend before importing Keras; it cannot be swapped afterwards. Legacy tf.keras now lives in its own repository.</span></p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss t-local"><h3><a href="https://course.fast.ai/" target="_blank" rel="noopener">fastai — Practical Deep Learning For Coders</a></h3><p>A course built around training a working model in the first lesson and then working backwards into the theory. The library underneath it is still actively developed, and a second track covers building diffusion models from scratch.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
-            <article class="card t-oss t-local"><h3><a href="https://github.com/huggingface/pytorch-image-models" target="_blank" rel="noopener">timm</a></h3><p>The default starting point when the thing you are training is a vision model — a large collection of backbones with training scripts included, not just architecture definitions.<span class="caveat">The code is Apache-2.0, but a few individual pretrained weight sets carry their own non-commercial terms. Check the weights you use, not just the repository.</span></p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://www.tensorflow.org/" target="_blank" rel="noopener">TensorFlow &amp; Keras</a></h3><p>The other lineage, and still the common answer for edge and production serving. <a href="https://keras.io/" target="_blank" rel="noopener" class="wl">Keras 3</a> runs on JAX, TensorFlow or PyTorch, so the same model code can be a PyTorch module or a TensorFlow SavedModel. The API outlives the framework choice.<span class="caveat">Pick the backend before importing Keras; it cannot be swapped afterwards. Legacy tf.keras now lives in its own repository.</span></p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://course.fast.ai/" target="_blank" rel="noopener">fastai: Practical Deep Learning for Coders</a></h3><p>A course built around training a working model in the first lesson and then working backwards into the theory. The library underneath it is still actively developed, and a second track covers building diffusion models from scratch.</p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
+            <article class="card t-oss t-local"><h3><a href="https://github.com/huggingface/pytorch-image-models" target="_blank" rel="noopener">timm</a></h3><p>The default starting point when the thing you are training is a vision model: a large collection of backbones with training scripts included, not just architecture definitions.<span class="caveat">The code is Apache-2.0, but a few individual pretrained weight sets carry their own non-commercial terms. Check the weights you use, not just the repository.</span></p><div class="tags"><span class="tag oss">Apache-2.0</span><span class="tag local">LOCAL</span></div></article>
             <article class="card t-oss t-local"><h3><a href="https://scvi-tools.org/" target="_blank" rel="noopener">scvi-tools</a></h3><p>Trains probabilistic models directly on single-cell and spatial omics data, wrapping PyTorch in a workflow built around a real dataset rather than a benchmark. Runs on one GPU, and often without one.</p><div class="tags"><span class="tag oss">BSD-3</span><span class="tag local">LOCAL</span></div></article>
           </div>
         </div>
@@ -772,7 +953,7 @@
         <div class="subgroup">
           <div class="sublabel">Open Courses &amp; Fundamentals</div>
           <div class="grid">
-            <article class="card"><h3><a href="https://www.skills.google/course_templates/536" target="_blank" rel="noopener">Google Cloud — Introduction To Generative AI</a></h3><p>A short primer for someone starting from zero.</p><div class="tags"><span class="tag">FREE</span></div></article>
+            <article class="card"><h3><a href="https://www.skills.google/course_templates/536" target="_blank" rel="noopener">Google Cloud: Introduction to Generative AI</a></h3><p>A short primer for someone starting from zero.</p><div class="tags"><span class="tag">FREE</span></div></article>
             <article class="card"><h3><a href="https://www.kaggle.com/learn" target="_blank" rel="noopener">Kaggle Learn</a></h3><p>Short practical micro-courses; the fastest on-ramp if you are starting from nothing.</p><div class="tags"><span class="tag">FREE</span></div></article>
             <article class="card"><h3><a href="https://huggingface.co/learn/deep-rl-course/unit1/introduction" target="_blank" rel="noopener">Hugging Face Deep RL Course</a></h3><p>Hands-on reinforcement-learning fundamentals with runnable notebooks.</p><div class="tags"><span class="tag">FREE</span></div></article>
           </div>
@@ -782,57 +963,59 @@
       <div class="split" id="watchlist">
         <div class="box dashed">
           <h2>Watchlist</h2>
-          <p class="sub">Not listed yet — and exactly what would change our mind.</p>
+          <p class="sub">Not listed yet, and exactly what would change our mind.</p>
           <div class="bench">
-            <div class="bench-label">On Our Bench — Testing Next</div>
-            <p class="thesis">Two projects attacking the same wall from opposite ends: the model you want is bigger than the machine you have. One squeezes a larger model onto a single box; the other pools several boxes into one. We are watching both closely and want to test them.</p>
+            <div class="bench-label">On Our Bench: Testing Next</div>
+            <p class="thesis">Three projects attacking the same wall from two ends: the model you want is bigger than the machine you have. Two squeeze a larger model onto a single box by reading weights from disk as they go; the third pools several boxes into one.</p>
             <ul>
-              <li><b>Colibri</b> — offloads to SSD rather than treating VRAM as the ceiling, so the size of model you can load stops being fixed by the card you own. The trade is speed: at the extreme it is measured in seconds per token, which makes it a can-it-run-at-all tool rather than an interactive one. <em>Needs: a third-party reproduction on a 12&nbsp;GB card, and enough of a track record to trust the project is not a spike.</em></li>
-              <li><b>exo</b> — pools several machines into a single inference cluster, so spare hardware adds up instead of sitting idle. <em>Needs: an official CUDA path — its README still says Linux runs on CPU only, with first-class acceleration on Apple Silicon.</em></li>
+              <li><b>Colibri</b>: offloads to SSD rather than treating VRAM as the ceiling, so the size of model you can load stops being fixed by the card you own. The trade is speed: at the extreme it is measured in seconds per token, which makes it a can-it-run-at-all tool rather than an interactive one. <em>Its own setup asks for at least 8&nbsp;GB of RAM for the smallest model, and from 16&nbsp;GB for the large ones it streams from disk; a graphics card is optional.</em></li>
+              <li><b>AirLLM</b>: runs models larger than the GPU by streaming each layer from disk onto the card just before it is needed and dropping it straight after. The third-party runs we know of took many seconds per token, and by default it lets a model repo run its own code, so load only models you trust. <em>Needs: an openly published third-party run of an unquantized 70B model on a 4&nbsp;GB card, with its hardware and timings.</em></li>
+              <li><b>exo</b>: pools several machines into a single inference cluster, so spare hardware adds up instead of sitting idle. <em>Needs: a README that stands behind its CUDA path. Its install step lists CUDA extras, but its README still says Linux runs on CPU only.</em></li>
             </ul>
           </div>
           <ul>
-            <li><b>TurboQuant</b> — Google's KV-cache quantization: about three bits per value, six times less cache memory, and no calibration step. If it lands, how much context fits on one consumer card changes materially. <em>Needs an upstream merge: Google published no code, llama.cpp has an open discussion and five competing forks, vLLM a feature request. Early forks trade the memory back for speed — one Metal run measured generation eight times slower than q8_0 at long context.</em></li>
-            <li><b>MemU</b> — plain-markdown agent memory, philosophically the closest thing to what we build. <em>Needs: a longer track record; it has only been public since early 2026.</em></li>
-            <li><b>k3s</b> — one control plane instead of three separately managed hosts. <em>Needs a fleet that has actually outgrown Compose.</em></li>
-            <li><b>Microsoft BitNet</b> — native 1-bit models rather than post-hoc quantization. <em>Needs a real trained model above 7B.</em></li>
-            <li><b>container-use</b> — a container and a git branch per agent. <em>Needs a stable release; it self-describes as experimental.</em></li>
+            <li><b>TurboQuant</b>: Google's KV-cache quantization, with about three bits per value, six times less cache memory, and no calibration step. <em>Needs: a TurboQuant cache type merged into llama.cpp.</em></li>
+            <li><b>MemU</b>: agent memory, philosophically the closest thing to what we build. <em>Needs: a longer track record.</em></li>
+            <li><b>k3s</b>: one control plane instead of three separately managed hosts. <em>Needs a fleet that has actually outgrown Compose.</em></li>
+            <li><b>Microsoft BitNet</b>: native 1-bit models rather than post-hoc quantization. <em>Needs a real trained model above 7B.</em></li>
+            <li><b>container-use</b>: a container and a git branch per agent. <em>Needs a stable release; it self-describes as experimental.</em></li>
           </ul>
         </div>
         <div class="box">
-          <h2>Checked And Rejected</h2>
-          <p class="sub">Candidates we looked at and did not list. Going read-only is not on its own a reason — what matters is whether there is a maintained path forward.</p>
+          <h2>Checked and Rejected</h2>
+          <p class="sub">Candidates we looked at and did not list. Going read-only is not on its own a reason; what matters is whether there is a maintained path forward.</p>
           <ul>
             <li><b>LiteLLM</b>: malware that steals credentials shipped in its published releases twice in 2026, in two PyPI releases on 24 March and in version 1.107.0 on PyPI and its official Docker images on 21 October. Both were pulled within hours. The line between its MIT core and its commercial enterprise code is also publicly disputed. <em>Removed from the list on 2026-10-22.</em></li>
-            <li><b>Daytona</b> — core development moved to a private codebase; no further public updates since July 2026. <em>It still looks active at a glance.</em></li>
-            <li><b>LLM Guard</b> — archived, along with its models. Guardrails AI is the maintained alternative.</li>
-            <li><b>GitHub Models</b> — retired. <em>Still listed as free across many directories.</em></li>
-            <li><b>PlayHT</b> — API sunset after acquisition.</li>
-            <li><b>Piper</b> — the original repo was archived and the maintained fork changed licence, which complicates bundling.</li>
-            <li><b>Automatic1111</b> — no meaningful activity in months; superseded in practice.</li>
+            <li><b>LabClaw</b>: most of its skills are copies of K-Dense's and ToolUniverse's; the K-Dense copies omit the scripts and reference files they tell an agent to open, and the repository has no licence file. <em>The originals are still maintained.</em></li>
+            <li><b>LLM Guard</b>: archived, along with its models, and no fork has taken its place.</li>
+            <li><b>GitHub Models</b>: retired. <em>Still listed as free across many directories.</em></li>
+            <li><b>PlayHT</b>: shut down after acquisition.</li>
+            <li><b>Piper</b>: the original repo was archived and the maintained fork changed licence, which complicates bundling.</li>
+            <li><b>Automatic1111</b>: no meaningful activity in months; superseded in practice.</li>
           </ul>
         </div>
       </div>
     </div>
   </div>
+</div>
 </main>
 
 <footer>
   <div class="container">
     <div class="attrib">
-      <strong>PDuk Brainworks</strong> 🧬 · Agent Architect Stack — Apache-2.0 — © 2026 esoteric1entity. A PDuk Brainworks project<br>
-      <span style="font-size:.85rem">Part of a larger research program on agent infrastructure. Public launch: 2026-06-12.</span>
+      <strong>PDuk Brainworks</strong> <span aria-hidden="true">🧬</span> · Agent Architect Stack · <span style="white-space:nowrap">Apache-2.0</span> · © 2026 esoteric1entity.<br>
+      <span style="font-size:.85rem">Project launched 2026-06-12 · Site updated 2026-11-06.</span>
     </div>
     <div class="footer-links">
-      <a href="index.html">← Back to the stack</a>
-      <a href="index.html#quickstart">Install the Memory branch</a>
-      <a href="index.html#branches">Install agent-shield</a>
+      <a href="index.html">← Main page</a>
+      
+      <a href="get-started.html#security-install"><span>Install the Security tool</span></a>
       <a href="https://github.com/esoteric1entity" target="_blank" rel="noopener">GitHub</a>
-      <a href="https://thepdukedge.substack.com/" target="_blank" rel="noopener">PDuk Edge ↗</a>
+      <a href="https://thepdukedge.substack.com/" target="_blank" rel="noopener">PDuk Edge&nbsp;↗</a>
     </div>
     <p class="creds">This page: one HTML file · no JavaScript · no trackers · links out to third parties, nothing embedded.</p>
-    <p class="reviewed">LAST REVIEWED 2026-08 · CANDIDATES CHECKED AGAINST PRIMARY SOURCES · LICENCES READ FROM THE LICENSE FILE, NOT FROM BADGES · ACCURATE AS OF THAT DATE — LICENCES AND MAINTENANCE STATUS CHANGE</p>
-    <p>Nobody pays to be on this page. If something here has gone stale or dead — or should be here and is not — <a href="https://github.com/esoteric1entity/agent-architect-stack/issues/new" target="_blank" rel="noopener">open an issue</a>.</p>
+    <p class="reviewed">LAST REVIEWED 2026-11 · CANDIDATES CHECKED AGAINST PRIMARY SOURCES · LICENCES READ FROM THE LICENSE FILE, NOT FROM BADGES · ACCURATE AS OF THAT DATE · LICENCES AND MAINTENANCE STATUS CHANGE</p>
+    <p>Nobody pays to be on this page. If something here has gone stale or dead, or should be here and is not, <a href="https://github.com/esoteric1entity/agent-architect-stack/issues/new" target="_blank" rel="noopener" class="wl">open an issue</a>.</p>
   </div>
 </footer>
 </body>

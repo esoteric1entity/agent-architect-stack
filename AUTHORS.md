@@ -6,15 +6,15 @@ headers; git commit history is the source of truth for line-level attribution.
 
 ## Primary author
 
-- **`esoteric1entity`** (GitHub) — A PDuk Brainworks project.
+- **`esoteric1entity`** (GitHub). A PDuk Brainworks project.
   - **Role:** primary author and project owner. Conceived the "Agent
     Architect" concept and the modular umbrella topology. Designed the
     Memory Stack (Ultimate Memory Stack) to address the common problem
     of agents losing context between sessions. Designed and maintains
-    the Security branch (agent-shield). Designed the umbrella
+    the Security tool (agent-shield). Designed the umbrella
     architecture, the pick-and-choose install model, and the
     documentation discipline. Wrote the schemas, the decision log
-    protocol, and the per-branch install guides.
+    protocol, and the per-tool install guides.
   - **Contact:** via GitHub issues on this repository.
 
 ## How to add yourself
@@ -30,7 +30,7 @@ promoted to a role section above after discussion with the project owner.
 
 _(Sorted by GitHub username, auto-generated from git history at v1.0 release.)_
 
-- (no external contributors yet — be the first!)
+- (no external contributors yet; be the first!)
 
 ---
 
@@ -46,17 +46,17 @@ in the public release.
 This project follows the standard open-source convention of distinguishing
 between **role** (what someone did and is doing for the project) and
 **affiliation** (where they worked at the time). Affiliation is intentionally
-not recorded here — only role.
+not recorded here, only role.
 
 **Role categories used by this project, in decreasing order of weight:**
 
-1. **Primary author** — sole decision-maker; takes blame and credit for
+1. **Primary author**: sole decision-maker; takes blame and credit for
    the project's direction. Currently: `esoteric1entity`.
-2. **(reserved for future substantive contributors)** — people with an
+2. **(reserved for future substantive contributors)**: people with an
    ongoing role in design or maintenance.
-3. **Acknowledgements** — people who participated in some way but did
+3. **Acknowledgements**: people who participated in some way but did
    not contribute to the design or implementation.
-4. **Contributors** — people whose accepted pull requests appear in
+4. **Contributors**: people whose accepted pull requests appear in
    the git history. Auto-generated from git at v1.0 release.
 
 If you are unsure which section you belong in, default to "Contributors"
